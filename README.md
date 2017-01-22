@@ -1,6 +1,10 @@
 MarkdownToPdf
 ------------------
 
+![](./dist/Adobe_Acrobat_Pro_PDF.png)
+
+Convert markdown document to html/pdf using VisualBasic in a super easy way!
+
 Translate from https://github.com/codaxy/wkhtmltopdf.
 
 This is a small VB.NET wrapper utility around ``wkhtmltopdf`` console tool. You can use it to easily convert Markdown/HTML reports to PDF.
@@ -37,6 +41,13 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 }, New PdfOutput With {
     .OutputFilePath = "inline_cht.pdf"
 })
+```
+
+## CLI Usage
+
+```bash
+# markdown2pdf
+markdown2pdf ./input.html
 ```
 
 ## Licence

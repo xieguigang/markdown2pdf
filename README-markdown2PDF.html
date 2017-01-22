@@ -1,0 +1,56 @@
+﻿<h2>MarkdownToPdf</h2>
+
+<p><img src="./dist/Adobe_Acrobat_Pro_PDF.png" alt="" /></p>
+
+<p>Convert markdown document to html/pdf using VisualBasic in a super easy way!</p>
+
+<p>Translate from <a href="https://github.com/codaxy/wkhtmltopdf">https://github.com/codaxy/wkhtmltopdf</a>.</p>
+
+<p>This is a small VB.NET wrapper utility around <code>wkhtmltopdf</code> console tool. You can use it to easily convert Markdown/HTML reports to PDF.</p>
+
+<h2>Usage</h2>
+
+<p>```vbnet<br />
+Console.InputEncoding = Encoding.UTF8</p>
+
+<p>PdfConvert.Environment.Debug = False<br />
+PdfConvert.ConvertHtmlToPdf(New PdfDocument With {<br />
+    .Url = "input.html"<br />
+}, New PdfOutput With {<br />
+    .OutputFilePath = "output.pdf"<br />
+})</p>
+
+<p>PdfConvert.ConvertHtmlToPdf(New PdfDocument With {<br />
+    .Url = "input.html",<br />
+    .HeaderLeft = "[title]",<br />
+    .HeaderRight = "[date] [time]",<br />
+    .FooterCenter = "Page [page] of [topage]"<br />
+}, New PdfOutput With {<br />
+    .OutputFilePath = "output.pdf"<br />
+})<br />
+PdfConvert.ConvertHtmlToPdf(New PdfDocument With {<br />
+    .Url = "-",<br />
+    .Html = "<html><h1>test</h1></html>"<br />
+}, New PdfOutput With {<br />
+    .OutputFilePath = "inline.pdf"<br />
+})<br />
+PdfConvert.ConvertHtmlToPdf(New PdfDocument With {<br />
+    .Url = "-",<br />
+    .Html = "<html><h1>測試</h1></html>"<br />
+}, New PdfOutput With {<br />
+    .OutputFilePath = "inline_cht.pdf"<br />
+})<br />
+```</p>
+
+<h2>CLI Usage</h2>
+
+<p>```bash</p>
+
+<h1>markdown2pdf</h1>
+
+<p>markdown2pdf ./input.html<br />
+```</p>
+
+<h2>Licence</h2>
+
+<p>This project is available under MIT Licence.</p>
