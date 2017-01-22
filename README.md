@@ -52,7 +52,8 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 ```bash
 # markdown2pdf
 markdown2pdf ./input.md
-# Due to the reason of markdown parser is compatible with html format, so that convert from a html file is also works fine!
+# Due to the reason of markdown parser is compatible with html format, 
+# so that convert from a html file is also works fine!
 markdown2pdf ./input.html
 ```
 
