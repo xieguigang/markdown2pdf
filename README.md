@@ -1,5 +1,4 @@
-MarkdownToPdf
-------------------
+# MarkdownToPdf
 
 ![](./dist/Adobe_Acrobat_Pro_PDF.png)
 
