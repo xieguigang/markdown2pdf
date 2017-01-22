@@ -56,6 +56,16 @@ markdown2pdf ./input.md
 markdown2pdf ./input.html
 ```
 
+## Dependence
+
+###### sciBASIC#
+
+```bash
+# http://github.com/xieguigang/sciBASIC
+# install via nuget 
+PM> Install-Package sciBASIC -Pre
+```
+
 ## Licence
 
 This project is available under MIT Licence.
