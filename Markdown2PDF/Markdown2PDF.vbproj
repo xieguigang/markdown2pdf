@@ -152,6 +152,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App.ico" />
+    <None Include="Resources\haroopad.css" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\PdfConvert\WkHtmlToPdf.vbproj">
