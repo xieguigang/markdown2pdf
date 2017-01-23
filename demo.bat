@@ -1,0 +1,1 @@
+"./Markdown2PDF/bin/Release/Markdown2PDF.exe" ./README.md
