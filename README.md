@@ -13,6 +13,14 @@ This is a small VB.NET wrapper utility around ``wkhtmltopdf`` console tool. You 
 - [ ] Convert markdown/html document to PDF
 - [ ] Custom CSS style supports. (Works in progress)
 
+## How to install
+
++ Clone the source code in this repository
++ Open in VisualStudio 2017 and restore the nuget package ``sciBASIC#``
++ compile
++ Extract ``wkhtmltopdf`` from ``./dist/wkhtmltopdf.7z`` to app release folder
++ Run app in cmd/bash
+
 ## Usage
 
 ```vbnet
