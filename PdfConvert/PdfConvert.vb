@@ -1,5 +1,4 @@
-﻿Imports System.Configuration
-Imports System.Diagnostics
+﻿Imports System.Diagnostics
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
@@ -7,51 +6,6 @@ Imports System.Threading
 Imports Microsoft.VisualBasic.Language
 
 Public Module PdfConvert
-
-    Public ReadOnly Property Environment As PdfConvertEnvironment
-
-    Sub New()
-        PdfConvert.Environment = New PdfConvertEnvironment With {
-            .TempFolderPath = Path.GetTempPath(),
-            .WkHtmlToPdfPath = GetWkhtmlToPdfExeLocation(),
-            .Timeout = 60000
-        }
-    End Sub
-
-    Private Function GetWkhtmlToPdfExeLocation() As String
-        Dim customPath As String = ConfigurationManager.AppSettings("wkhtmltopdf:path")
-        Dim filePath As New Value(Of String)
-
-        If customPath Is Nothing Then
-            customPath = App.HOME
-        End If
-
-        If (filePath = Path.Combine(customPath, "wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
-
-        If (filePath = Path.Combine(App.HOME, "wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
-
-        Dim programFilesPath As String = System.Environment.GetEnvironmentVariable("ProgramFiles")
-
-        If (filePath = Path.Combine(programFilesPath, "wkhtmltopdf\wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
-
-        Dim programFilesx86Path As String = System.Environment.GetEnvironmentVariable("ProgramFiles(x86)")
-
-        If (filePath = Path.Combine(programFilesx86Path, "wkhtmltopdf\wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
-
-        If (filePath = Path.Combine(programFilesPath, "wkhtmltopdf\bin\wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
-
-        Return Path.Combine(programFilesx86Path, "wkhtmltopdf\bin\wkhtmltopdf.exe")
-    End Function
 
     Public Sub ConvertHtmlToPdf(document As PDFContent, output As PdfOutput)
         ConvertHtmlToPdf(document, Nothing, output)
@@ -87,7 +41,7 @@ Public Module PdfConvert
         End If
 
         If environment Is Nothing Then
-            environment = PdfConvert.Environment
+            environment = WkHtmlToPdf.Environment
         End If
 
         Dim outputPdfFilePath As String
@@ -258,51 +212,5 @@ Public Module PdfConvert
         }
 
         Call ConvertHtmlToPdf([in], out)
-    End Sub
-
-    Public Sub HelloWorld()
-        Dim html As New HTMLDocument With {
-            .HTML =
-<html>
-    <head>
-        <title>Hello World!</title>
-    </head>
-    <body>
-        <h1>Hello World!!!</h1>
-        <hr/>
-        <h2>Example code</h2>
-        <code>
-            <pre>
-Public Function Main() As Integer
-    Call println("Hello world!")
-    Return 0
-End Function
-            </pre>
-        </code>
-        <h4>Another header</h4>
-        <table>
-            <thead>
-                <tr>
-                    <th>1</th>
-                    <th>2</th>
-                    <th>3</th>
-                </tr>
-            </thead>
-            <tr>
-                <td>a</td>
-                <td>b</td>
-                <td>c</td>
-            </tr>
-        </table>
-        <footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">
-            Here is the PDF document footer.
-        </footer>
-    </body>
-</html>
-        }
-        Call println(html.GetDocument)
-        Call PdfConvert.ConvertHtmlToPdf(
-            html,
-            App.HOME & "/hello-world.pdf")
     End Sub
 End Module
