@@ -52,14 +52,23 @@ Public Module PdfConvert
         Return Path.Combine(programFilesx86Path, "wkhtmltopdf\bin\wkhtmltopdf.exe")
     End Function
 
-    Public Sub ConvertHtmlToPdf(document As PdfDocument, output As PdfOutput)
+    Public Sub ConvertHtmlToPdf(document As PDFContent, output As PdfOutput)
         ConvertHtmlToPdf(document, Nothing, output)
     End Sub
 
     Const noHTML$ = "You must supply a HTML string, if you have enterd the url: '-'"
 
-    Public Sub ConvertHtmlToPdf(document As PdfDocument, environment As PdfConvertEnvironment, woutput As PdfOutput)
-        If document.Url = "-" AndAlso document.Html Is Nothing Then
+    Public Sub ConvertHtmlToPdf(document As PDFContent, environment As PdfConvertEnvironment, woutput As PdfOutput)
+        Dim html$ = document.GetDocument
+        Dim url$
+
+        If TypeOf document Is PdfDocument Then
+            url = DirectCast(document, PdfDocument).Url
+        Else
+            url = "-"
+        End If
+
+        If (url.IsNullOrEmpty OrElse url = "-") AndAlso html.IsNullOrEmpty Then
             Throw New PdfConvertException(noHTML)
         End If
 
@@ -132,7 +141,7 @@ Public Module PdfConvert
             Next
         End If
 
-        paramsBuilder.AppendFormat("""{0}"" ""{1}""", document.Url, outputPdfFilePath)
+        paramsBuilder.AppendFormat("""{0}"" ""{1}""", url, outputPdfFilePath)
 
         Try
             Dim output As New StringBuilder(), [error] As New StringBuilder()
@@ -173,9 +182,9 @@ Public Module PdfConvert
                         process.BeginOutputReadLine()
                         process.BeginErrorReadLine()
 
-                        If document.Html IsNot Nothing Then
+                        If Not html.IsNullOrEmpty Then
                             Using stream = process.StandardInput
-                                Dim buffer As Byte() = Encoding.UTF8.GetBytes(document.Html)
+                                Dim buffer As Byte() = Encoding.UTF8.GetBytes(html)
                                 stream.BaseStream.Write(buffer, 0, buffer.Length)
                                 stream.WriteLine()
                             End Using
@@ -186,7 +195,7 @@ Public Module PdfConvert
                             errorWaitHandle.WaitOne(environment.Timeout) Then
 
                             If process.ExitCode <> 0 AndAlso Not File.Exists(outputPdfFilePath) Then
-                                Dim msg$ = $"Html to PDF conversion of '{document.Url}' failed. Wkhtmltopdf output:
+                                Dim msg$ = $"Html to PDF conversion of '{url}' failed. Wkhtmltopdf output:
 {[error]}"
                                 Throw New PdfConvertException(msg)
                             End If
