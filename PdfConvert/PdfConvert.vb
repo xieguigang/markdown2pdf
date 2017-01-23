@@ -1,6 +1,7 @@
-Imports System.Configuration
+﻿Imports System.Configuration
 Imports System.Diagnostics
 Imports System.IO
+Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports System.Threading
 Imports Microsoft.VisualBasic.Language
@@ -25,7 +26,7 @@ Public Module PdfConvert
             customPath = App.HOME
         End If
 
-        If (filePath = Path.Combine(customPath, "wkhtmltopdf.exe")).FileExists  Then
+        If (filePath = Path.Combine(customPath, "wkhtmltopdf.exe")).FileExists Then
             Return filePath
         End If
 
@@ -54,6 +55,19 @@ Public Module PdfConvert
 
     Public Sub ConvertHtmlToPdf(document As PDFContent, output As PdfOutput)
         ConvertHtmlToPdf(document, Nothing, output)
+    End Sub
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="document"></param>
+    ''' <param name="out$">PDF的保存的文件路径</param>
+    <Extension>
+    Public Sub ConvertHtmlToPdf(document As PDFContent, out$)
+        Call ConvertHtmlToPdf(
+            document, New PdfOutput With {
+                .OutputFilePath = out
+            })
     End Sub
 
     Const noHTML$ = "You must supply a HTML string, if you have enterd the url: '-'"
@@ -244,5 +258,51 @@ Public Module PdfConvert
         }
 
         Call ConvertHtmlToPdf([in], out)
+    End Sub
+
+    Public Sub HelloWorld()
+        Dim html As New HTMLDocument With {
+            .HTML =
+<html>
+    <head>
+        <title>Hello World!</title>
+    </head>
+    <body>
+        <h1>Hello World!!!</h1>
+        <hr/>
+        <h2>Example code</h2>
+        <code>
+            <pre>
+Public Function Main() As Integer
+    Call println("Hello world!")
+    Return 0
+End Function
+            </pre>
+        </code>
+        <h4>Another header</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>1</th>
+                    <th>2</th>
+                    <th>3</th>
+                </tr>
+            </thead>
+            <tr>
+                <td>a</td>
+                <td>b</td>
+                <td>c</td>
+            </tr>
+        </table>
+        <footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">
+            Here is the PDF document footer.
+        </footer>
+    </body>
+</html>
+        }
+        Call println(html.GetDocument)
+        Call PdfConvert.ConvertHtmlToPdf(
+            html,
+            App.HOME & "/hello-world.pdf")
     End Sub
 End Module
