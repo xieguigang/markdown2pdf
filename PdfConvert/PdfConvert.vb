@@ -162,9 +162,7 @@ Public Module PdfConvert
                             errorWaitHandle.WaitOne(environment.Timeout) Then
 
                             If process.ExitCode <> 0 AndAlso Not File.Exists(outputPdfFilePath) Then
-                                Dim msg$ = $"Html to PDF conversion of '{url}' failed. Wkhtmltopdf output:
-{[error]}"
-                                Throw New PdfConvertException(msg)
+                                Call [error].PdfConvertFailure(url)
                             End If
                         Else
                             If Not process.HasExited Then
@@ -200,6 +198,12 @@ Public Module PdfConvert
                 File.Delete(outputPdfFilePath)
             End If
         End Try
+    End Sub
+
+    <Extension> Private Sub PdfConvertFailure([error] As StringBuilder, url$)
+        Dim msg$ = $"Html to PDF conversion of '{url}' failed. Wkhtmltopdf output:
+{[error]}"
+        Throw New PdfConvertException(msg)
     End Sub
 
     Public Sub ConvertHtmlToPdf(url As String, outputFilePath As String)
