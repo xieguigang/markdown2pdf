@@ -1,5 +1,6 @@
 ﻿Imports System.Configuration
 Imports System.IO
+Imports Microsoft.VisualBasic.FileIO.Path
 Imports Microsoft.VisualBasic.Language
 
 Module InternalEnvironment
@@ -44,10 +45,12 @@ Module InternalEnvironment
             Return filePath
         End If
 
-        If (filePath = Path.Combine(programFilesPath, "wkhtmltopdf\bin\wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
+        For Each dir As String In ProgramPathSearchTool.SearchDirectory("wkhtmltopdf")
+            For Each exeFile As String In ProgramPathSearchTool.SearchProgram(dir, "wkhtmltopdf", includeDll:=False)
+                Return exeFile
+            Next
+        Next
 
-        Return Path.Combine(programFilesx86Path, "wkhtmltopdf\bin\wkhtmltopdf.exe")
+        Throw New FileNotFoundException("Progream ""wkhtmltopdf"" is not installed!")
     End Function
 End Module
