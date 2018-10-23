@@ -1,8 +1,7 @@
-﻿Imports System.Diagnostics
-Imports System.IO
+﻿Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
-Imports System.Threading
+Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.Language
 
 Public Module PdfConvert
@@ -111,88 +110,14 @@ Public Module PdfConvert
         paramsBuilder.AppendFormat("""{0}"" ""{1}""", url, outputPdfFilePath)
 
         Try
-            Dim output As New StringBuilder(), [error] As New StringBuilder()
-
-            Using process As New Process()
-                process.StartInfo.FileName = environment.WkHtmlToPdfPath
-                process.StartInfo.Arguments = paramsBuilder.ToString()
-                process.StartInfo.UseShellExecute = False
-                process.StartInfo.RedirectStandardOutput = True
-                process.StartInfo.RedirectStandardError = True
-                process.StartInfo.RedirectStandardInput = True
-
-                Using outputWaitHandle As New AutoResetEvent(False), errorWaitHandle As New AutoResetEvent(False)
-
-                    Dim outputHandler As DataReceivedEventHandler =
-                        Sub(sender, e)
-                            If e.Data Is Nothing Then
-                                outputWaitHandle.[Set]()
-                            Else
-                                output.AppendLine(e.Data)
-                            End If
-                        End Sub
-                    Dim errorHandler As DataReceivedEventHandler =
-                        Sub(sender, e)
-                            If e.Data Is Nothing Then
-                                errorWaitHandle.[Set]()
-                            Else
-                                [error].AppendLine(e.Data)
-                            End If
-                        End Sub
-
-                    AddHandler process.OutputDataReceived, outputHandler
-                    AddHandler process.ErrorDataReceived, errorHandler
-
-                    Try
-                        process.Start()
-
-                        process.BeginOutputReadLine()
-                        process.BeginErrorReadLine()
-
-                        If Not html.StringEmpty Then
-                            Using stream = process.StandardInput
-                                Dim buffer As Byte() = Encoding.UTF8.GetBytes(html)
-                                stream.BaseStream.Write(buffer, 0, buffer.Length)
-                                stream.WriteLine()
-                            End Using
-                        End If
-
-                        If process.WaitForExit(environment.Timeout) AndAlso
-                            outputWaitHandle.WaitOne(environment.Timeout) AndAlso
-                            errorWaitHandle.WaitOne(environment.Timeout) Then
-
-                            If process.ExitCode <> 0 AndAlso Not File.Exists(outputPdfFilePath) Then
-                                Call [error].PdfConvertFailure(url)
-                            End If
-                        Else
-                            If Not process.HasExited Then
-                                process.Kill()
-                            End If
-
-                            Throw New PdfConvertTimeoutException()
-                        End If
-                    Finally
-                        RemoveHandler process.OutputDataReceived, outputHandler
-                        RemoveHandler process.ErrorDataReceived, errorHandler
-                    End Try
-                End Using
-            End Using
-
-            If woutput.OutputStream IsNot Nothing Then
-                Using fs As Stream = New FileStream(outputPdfFilePath, FileMode.Open)
-                    Dim buffer As Byte() = New Byte(32 * 1024 - 1) {}
-                    Dim read As New Value(Of Integer)
-
-                    While (read = fs.Read(buffer, 0, buffer.Length)) > 0
-                        woutput.OutputStream.Write(buffer, 0, read)
-                    End While
-                End Using
-            End If
-
-            If woutput.OutputCallback IsNot Nothing Then
-                Dim pdfFileBytes As Byte() = File.ReadAllBytes(outputPdfFilePath)
-                woutput.OutputCallback()(document, pdfFileBytes)
-            End If
+            Call environment.RunProcess(
+                args:=paramsBuilder.ToString,
+                html:=html,
+                url:=url,
+                document:=document,
+                outputPdfFilePath:=outputPdfFilePath,
+                woutput:=woutput
+            )
         Finally
             If delete AndAlso File.Exists(outputPdfFilePath) Then
                 File.Delete(outputPdfFilePath)
@@ -200,8 +125,55 @@ Public Module PdfConvert
         End Try
     End Sub
 
-    <Extension> Private Sub PdfConvertFailure([error] As StringBuilder, url$)
-        Dim msg$ = $"Html to PDF conversion of '{url}' failed. Wkhtmltopdf output:
+    <Extension>
+    Private Sub RunProcess(environment As PdfConvertEnvironment, args$, html$, url$, outputPdfFilePath$, document As PDFContent, woutput As PdfOutput)
+        Using process As New IORedirect(environment.WkHtmlToPdfPath, args)
+            Call process.Start(False)
+
+            If Not html.StringEmpty Then
+                Dim buffer As Byte() = Encoding.UTF8.GetBytes(html)
+
+                Call process.Write(buffer)
+                Call process.WriteLine()
+            End If
+
+            If process.WaitForExit(environment.Timeout) AndAlso
+               process.WaitOutput(environment.Timeout) AndAlso
+               process.WaitError(environment.Timeout) Then
+
+                If process.ExitCode <> 0 AndAlso Not File.Exists(outputPdfFilePath) Then
+                    Call process.GetError.PdfConvertFailure(url)
+                End If
+            Else
+                If Not process.HasExited Then
+                    process.Kill()
+                End If
+
+                Throw New PdfConvertTimeoutException()
+            End If
+        End Using
+
+        If woutput.OutputStream IsNot Nothing Then
+            Using fs As Stream = New FileStream(outputPdfFilePath, FileMode.Open)
+                Dim buffer As Byte() = New Byte(32 * 1024 - 1) {}
+                Dim read As New Value(Of Integer)
+
+                While (read = fs.Read(buffer, 0, buffer.Length)) > 0
+                    woutput.OutputStream.Write(buffer, 0, read)
+                End While
+            End Using
+        End If
+
+        If woutput.OutputCallback IsNot Nothing Then
+            Dim pdfFileBytes As Byte() = File.ReadAllBytes(outputPdfFilePath)
+            woutput.OutputCallback()(document, pdfFileBytes)
+        End If
+    End Sub
+
+    <Extension> Private Sub PdfConvertFailure(error$, url$)
+        Dim msg$ = $"Html to PDF conversion of '{url}' failed. 
+Wkhtmltopdf output:
+
 {[error]}"
         Throw New PdfConvertException(msg)
     End Sub
