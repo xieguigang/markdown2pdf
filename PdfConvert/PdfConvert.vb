@@ -9,7 +9,7 @@ Public Module PdfConvert
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <Extension>
     Public Sub ConvertHtmlToPdf(document As PDFContent, output As PdfOutput)
-        ConvertHtmlToPdf(document, output)
+        ConvertHtmlToPdf(document, output, Nothing)
     End Sub
 
     ''' <summary>
