@@ -28,22 +28,23 @@ Public Module PdfConvert
 
     Public Sub ConvertHtmlToPdf(document As PDFContent, woutput As PdfOutput, Optional environment As PdfConvertEnvironment = Nothing)
         Dim html$ = document.GetDocument
-        Dim url$
+        Dim url$ = Nothing
 
         If TypeOf document Is PdfDocument Then
             url = DirectCast(document, PdfDocument).Url
+        ElseIf Not html.StringEmpty Then
+            With App.GetAppSysTempFile(, App.PID)
+                Call html.SaveTo(.ByRef)
+                Call url.SetValue(.ByRef)
+            End With
         Else
-            url = "-"
-        End If
-
-        If (url.StringEmpty OrElse url = "-") AndAlso html.StringEmpty Then
             Throw New PdfConvertException(noHTML)
-        Else
-            environment = environment Or InternalEnvironment.Environment
         End If
 
         Dim outputPdfFilePath As String
         Dim delete As Boolean
+
+        environment = environment Or InternalEnvironment.Environment
 
         If woutput.OutputFilePath IsNot Nothing Then
             outputPdfFilePath = woutput.OutputFilePath
@@ -112,7 +113,6 @@ Public Module PdfConvert
         Try
             Call environment.RunProcess(
                 args:=paramsBuilder.ToString,
-                html:=html,
                 url:=url,
                 document:=document,
                 outputPdfFilePath:=outputPdfFilePath,
@@ -126,16 +126,9 @@ Public Module PdfConvert
     End Sub
 
     <Extension>
-    Private Sub RunProcess(environment As PdfConvertEnvironment, args$, html$, url$, outputPdfFilePath$, document As PDFContent, woutput As PdfOutput)
+    Private Sub RunProcess(environment As PdfConvertEnvironment, args$, url$, outputPdfFilePath$, document As PDFContent, woutput As PdfOutput)
         Using process As New IORedirect(environment.WkHtmlToPdfPath, args)
             Call process.Start(False)
-
-            If Not html.StringEmpty Then
-                Dim buffer As Byte() = Encoding.UTF8.GetBytes(html)
-
-                Call process.Write(buffer)
-                Call process.WriteLine()
-            End If
 
             If process.WaitForExit(environment.Timeout) AndAlso
                process.WaitOutput(environment.Timeout) AndAlso
