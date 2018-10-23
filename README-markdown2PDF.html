@@ -1339,16 +1339,14 @@ footer {
 
 <h2>Feature</h2>
 
-<ul>
-<li>[ ] Convert markdown/html document to PDF</li>
-<li>[ ] Custom CSS style supports. (Works in progress)</li>
-</ul>
+<p><input type="checkbox" disabled="" class="task-list-item-checkbox" /> Convert markdown/html document to PDF<br />
+<input type="checkbox" disabled="" class="task-list-item-checkbox" /> Custom CSS style supports. (Works in progress)</p>
 
 <h2>How to install</h2>
 
 <ul>
 <li>Clone the source code in this repository</li>
-<li>Open in VisualStudio 2017 and restore the nuget package <code>sciBASIC#</code></li>
+<li>Open in VisualStudio 2017 and restore the nuget package <code>sciBASIC&#35;</code></li>
 <li>compile</li>
 <li>Extract <code>wkhtmltopdf</code> binary distributes from <code>./dist/wkhtmltopdf.7z</code> package to app release folder</li>
 <li>Run app in <strong>cmd/bash</strong> or shell scripting for batch converts of the PDF documents.</li>
@@ -1392,57 +1390,53 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 <h6>Demo: hello world</h6>
 
 <pre><code class="vbnet">Dim html As New HTMLDocument With {
-.HTML =
-&lt;html&gt;
-&lt;head&gt;
-    &lt;title&gt;Hello World!&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-    &lt;h1&gt;Hello World!!!&lt;/h1&gt;
-    &lt;hr/&gt;
-    &lt;h2&gt;Example code&lt;/h2&gt;
-    &lt;code&gt;
-        &lt;pre&gt;
-Public Function Main() As Integer
-Call println("Hello world!")
-Return 0
-End Function
-        &lt;/pre&gt;
-    &lt;/code&gt;
-    &lt;h4&gt;Another header&lt;/h4&gt;
-    &lt;table&gt;
-        &lt;thead&gt;
-            &lt;tr&gt;
-                &lt;th&gt;1&lt;/th&gt;
-                &lt;th&gt;2&lt;/th&gt;
-                &lt;th&gt;3&lt;/th&gt;
-            &lt;/tr&gt;
-        &lt;/thead&gt;
-        &lt;tr&gt;
-            &lt;td&gt;a&lt;/td&gt;
-            &lt;td&gt;b&lt;/td&gt;
-            &lt;td&gt;c&lt;/td&gt;
-        &lt;/tr&gt;
-    &lt;/table&gt;
-    &lt;footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;"&gt;
-        Here is the PDF document footer.
-    &lt;/footer&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+.HTML = &lt;html&gt;
+            &lt;head&gt;
+                &lt;title&gt;Hello World!&lt;/title&gt;
+            &lt;/head&gt;
+            &lt;body&gt;
+                &lt;h1&gt;Hello World!!!&lt;/h1&gt;
+                &lt;hr/&gt;
+                &lt;h2&gt;Example code&lt;/h2&gt;
+                &lt;code&gt;
+                    &lt;pre&gt;
+                        Public Function Main() As Integer
+                            Call println("Hello world!")
+                            Return 0
+                        End Function
+                    &lt;/pre&gt;
+                &lt;/code&gt;
+                &lt;h4&gt;Another header&lt;/h4&gt;
+                &lt;table&gt;
+                    &lt;thead&gt;
+                        &lt;tr&gt;
+                            &lt;th&gt;1&lt;/th&gt;
+                            &lt;th&gt;2&lt;/th&gt;
+                            &lt;th&gt;3&lt;/th&gt;
+                        &lt;/tr&gt;
+                    &lt;/thead&gt;
+                    &lt;tr&gt;
+                        &lt;td&gt;a&lt;/td&gt;
+                        &lt;td&gt;b&lt;/td&gt;
+                        &lt;td&gt;c&lt;/td&gt;
+                    &lt;/tr&gt;
+                &lt;/table&gt;
+                &lt;footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;"&gt;
+                    Here is the PDF document footer.
+                &lt;/footer&gt;
+            &lt;/body&gt;
+        &lt;/html&gt;
 }
 Call println(html.GetDocument)
-Call PdfConvert.ConvertHtmlToPdf(
-html, App.HOME &amp; "/hello-world.pdf")
+Call PdfConvert.ConvertHtmlToPdf(html, App.HOME &amp; "/hello-world.pdf")
 </code></pre>
 
 <h2>CLI Usage</h2>
 
-<pre><code class="bash"># markdown2pdf
+<pre><code class="bash">&#35; markdown2pdf
 markdown2pdf ./input.md
-<h1>Due to the reason of markdown parser is compatible with html format,</h1>
-
-<h1>so that convert from a html file is also works fine!</h1>
-
+&#35; Due to the reason of markdown parser is compatible with html format, 
+&#35; so that convert from a html file is also works fine!
 markdown2pdf ./input.html
 </code></pre>
 
@@ -1450,9 +1444,8 @@ markdown2pdf ./input.html
 
 <h6>sciBASIC</h6>
 
-<pre><code class="bash"># http://github.com/xieguigang/sciBASIC
-<h1>install via nuget</h1>
-
+<pre><code class="bash">&#35; http://github.com/xieguigang/sciBASIC
+&#35; install via nuget 
 PM&gt; Install-Package sciBASIC -Pre
 </code></pre>
 
