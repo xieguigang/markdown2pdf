@@ -32,13 +32,17 @@ Public Module PdfConvert
 
         If TypeOf document Is PdfDocument Then
             url = DirectCast(document, PdfDocument).Url
-        ElseIf Not html.StringEmpty Then
-            With App.GetAppSysTempFile(, App.PID)
-                Call html.SaveTo(.ByRef)
-                Call url.SetValue(.ByRef)
-            End With
-        Else
-            Throw New PdfConvertException(noHTML)
+        End If
+
+        If url.StringEmpty Then
+            If Not html.StringEmpty Then
+                With App.GetAppSysTempFile(, App.PID)
+                    Call html.SaveTo(.ByRef)
+                    Call url.SetValue(.ByRef)
+                End With
+            Else
+                Throw New PdfConvertException(noHTML)
+            End If
         End If
 
         Dim outputPdfFilePath As String
