@@ -7,8 +7,10 @@ Imports Microsoft.VisualBasic.Language
 
 Public Module PdfConvert
 
+    <MethodImpl(MethodImplOptions.AggressiveInlining)>
+    <Extension>
     Public Sub ConvertHtmlToPdf(document As PDFContent, output As PdfOutput)
-        ConvertHtmlToPdf(document, Nothing, output)
+        ConvertHtmlToPdf(document, output)
     End Sub
 
     ''' <summary>
@@ -18,15 +20,14 @@ Public Module PdfConvert
     ''' <param name="out$">PDF的保存的文件路径</param>
     <Extension>
     Public Sub ConvertHtmlToPdf(document As PDFContent, out$)
-        Call ConvertHtmlToPdf(
-            document, New PdfOutput With {
-                .OutputFilePath = out
-            })
+        Call ConvertHtmlToPdf(document, New PdfOutput With {
+            .OutputFilePath = out
+        })
     End Sub
 
     Const noHTML$ = "You must supply a HTML string, if you have enterd the url: '-'"
 
-    Public Sub ConvertHtmlToPdf(document As PDFContent, environment As PdfConvertEnvironment, woutput As PdfOutput)
+    Public Sub ConvertHtmlToPdf(document As PDFContent, woutput As PdfOutput, Optional environment As PdfConvertEnvironment = Nothing)
         Dim html$ = document.GetDocument
         Dim url$
 
@@ -36,12 +37,10 @@ Public Module PdfConvert
             url = "-"
         End If
 
-        If (url.IsNullOrEmpty OrElse url = "-") AndAlso html.IsNullOrEmpty Then
+        If (url.StringEmpty OrElse url = "-") AndAlso html.StringEmpty Then
             Throw New PdfConvertException(noHTML)
-        End If
-
-        If environment Is Nothing Then
-            environment = WkHtmlToPdf.Environment
+        Else
+            environment = environment Or InternalEnvironment.Environment
         End If
 
         Dim outputPdfFilePath As String
@@ -150,7 +149,7 @@ Public Module PdfConvert
                         process.BeginOutputReadLine()
                         process.BeginErrorReadLine()
 
-                        If Not html.IsNullOrEmpty Then
+                        If Not html.StringEmpty Then
                             Using stream = process.StandardInput
                                 Dim buffer As Byte() = Encoding.UTF8.GetBytes(html)
                                 stream.BaseStream.Write(buffer, 0, buffer.Length)

@@ -1,12 +1,11 @@
 ﻿Imports System.Configuration
 Imports System.IO
-Imports Microsoft.VisualBasic.Language
-Imports ENV = System.Environment
+Imports Microsoft.VisualBasic.Language.Default
 Imports ProgramFiles = Microsoft.VisualBasic.FileIO.Path.ProgramPathSearchTool
 
 Module InternalEnvironment
 
-    Public ReadOnly Property Environment As PdfConvertEnvironment
+    Public ReadOnly Property Environment As DefaultValue(Of PdfConvertEnvironment)
 
     Public Const wkhtmltopdf$ = "wkhtmltopdf.exe"
     Public Const wkhtmltopdfInstall$ = "wkhtmltopdf\wkhtmltopdf.exe"
@@ -22,7 +21,9 @@ Module InternalEnvironment
     Private Function GetWkhtmlToPdfExeLocation() As String
         Dim customPath As String = ConfigurationManager.AppSettings("wkhtmltopdf:path")
         Dim search As New ProgramFiles() With {
-            .CustomDirectories = {customPath, App.HOME}
+            .CustomDirectories = {
+                customPath, App.HOME
+            }
         }
         Dim file As String = search _
             .FindProgram("wkhtmltopdf", includeDll:=False) _
