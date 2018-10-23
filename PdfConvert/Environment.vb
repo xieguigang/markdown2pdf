@@ -21,28 +21,16 @@ Module InternalEnvironment
 
     Private Function GetWkhtmlToPdfExeLocation() As String
         Dim customPath As String = ConfigurationManager.AppSettings("wkhtmltopdf:path")
-        Dim file As New Value(Of String)
-
-        If customPath Is Nothing Then
-            customPath = App.HOME
-        End If
-
-        If (file = Path.Combine(customPath, wkhtmltopdf)).FileExists Then
-            Return file
-        End If
-
-        If (file = Path.Combine(App.HOME, wkhtmltopdf)).FileExists Then
-            Return file
-        End If
-
-        For Each folder As String In {
-            ENV.GetEnvironmentVariable("ProgramFiles"),
-            ENV.GetEnvironmentVariable("ProgramFiles(x86)")
+        Dim search As New ProgramFiles() With {
+            .CustomDirectories = {customPath, App.HOME}
         }
-            If (file = Path.Combine(folder, wkhtmltopdfInstall)).FileExists Then
-                Return file
-            End If
-        Next
+        Dim file As String = search _
+            .FindProgram("wkhtmltopdf", includeDll:=False) _
+            .FirstOrDefault
+
+        If Not file.StringEmpty Then
+            Return file
+        End If
 
         For Each dir As String In ProgramFiles.SearchDirectory("wkhtmltopdf")
             For Each exeFile As String In ProgramFiles.SearchProgram(dir, "wkhtmltopdf", includeDll:=False)
