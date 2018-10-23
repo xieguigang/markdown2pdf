@@ -1,13 +1,15 @@
 ﻿Imports System.Configuration
 Imports System.IO
-Imports Microsoft.VisualBasic.FileIO.Path
 Imports Microsoft.VisualBasic.Language
+Imports ENV = System.Environment
+Imports ProgramFiles = Microsoft.VisualBasic.FileIO.Path.ProgramPathSearchTool
 
 Module InternalEnvironment
 
     Public ReadOnly Property Environment As PdfConvertEnvironment
 
     Public Const wkhtmltopdf$ = "wkhtmltopdf.exe"
+    Public Const wkhtmltopdfInstall$ = "wkhtmltopdf\wkhtmltopdf.exe"
 
     Sub New()
         Environment = New PdfConvertEnvironment With {
@@ -19,34 +21,31 @@ Module InternalEnvironment
 
     Private Function GetWkhtmlToPdfExeLocation() As String
         Dim customPath As String = ConfigurationManager.AppSettings("wkhtmltopdf:path")
-        Dim filePath As New Value(Of String)
+        Dim file As New Value(Of String)
 
         If customPath Is Nothing Then
             customPath = App.HOME
         End If
 
-        If (filePath = Path.Combine(customPath, "wkhtmltopdf.exe")).FileExists Then
-            Return filePath
+        If (file = Path.Combine(customPath, wkhtmltopdf)).FileExists Then
+            Return file
         End If
 
-        If (filePath = Path.Combine(App.HOME, "wkhtmltopdf.exe")).FileExists Then
-            Return filePath
+        If (file = Path.Combine(App.HOME, wkhtmltopdf)).FileExists Then
+            Return file
         End If
 
-        Dim programFilesPath As String = System.Environment.GetEnvironmentVariable("ProgramFiles")
+        For Each folder As String In {
+            ENV.GetEnvironmentVariable("ProgramFiles"),
+            ENV.GetEnvironmentVariable("ProgramFiles(x86)")
+        }
+            If (file = Path.Combine(folder, wkhtmltopdfInstall)).FileExists Then
+                Return file
+            End If
+        Next
 
-        If (filePath = Path.Combine(programFilesPath, "wkhtmltopdf\wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
-
-        Dim programFilesx86Path As String = System.Environment.GetEnvironmentVariable("ProgramFiles(x86)")
-
-        If (filePath = Path.Combine(programFilesx86Path, "wkhtmltopdf\wkhtmltopdf.exe")).FileExists Then
-            Return filePath
-        End If
-
-        For Each dir As String In ProgramPathSearchTool.SearchDirectory("wkhtmltopdf")
-            For Each exeFile As String In ProgramPathSearchTool.SearchProgram(dir, "wkhtmltopdf", includeDll:=False)
+        For Each dir As String In ProgramFiles.SearchDirectory("wkhtmltopdf")
+            For Each exeFile As String In ProgramFiles.SearchProgram(dir, "wkhtmltopdf", includeDll:=False)
                 Return exeFile
             Next
         Next
