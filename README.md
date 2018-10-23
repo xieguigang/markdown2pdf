@@ -25,9 +25,15 @@ Convert markdown document to html/pdf using VisualBasic in a super easy way! Thi
 
 ## Usage
 
+First of all, please make sure the encoding of your console is UTF8. Utf8 encoding is the default encoding of the html document:
+
 ```vbnet
 Console.InputEncoding = Encoding.UTF8
+```
 
+### Convert: from URL source
+
+```vbnet
 PdfConvert.Environment.Debug = False
 PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
     .Url = "input.html"
@@ -43,62 +49,67 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 }, New PdfOutput With {
     .OutputFilePath = "output.pdf"
 })
+```
+
+### Convert: given html content
+
+```vbnet
 PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
-    .Url = "-",
     .Html = "<html><h1>test</h1></html>"
 }, New PdfOutput With {
     .OutputFilePath = "inline.pdf"
 })
 PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
-    .Url = "-",
     .Html = "<html><h1>測試</h1></html>"
 }, New PdfOutput With {
     .OutputFilePath = "inline_cht.pdf"
 })
 ```
 
-<div style="page-break-after: always;"></div>
-
 ### Demo: hello world
 
+Actually, you can construct a html document content from ``XElement`` directly in your VB code:
+
 ```vbnet
+' In this case, we use HTMLDocument object instead of PdfDocument object
 Dim html As New HTMLDocument With {
-    .HTML = <html>
-				<head>
-					<title>Hello World!</title>
-				</head>
-				<body>
-					<h1>Hello World!!!</h1>
-					<hr/>
-					<h2>Example code</h2>
-					<code>
-						<pre>
-							Public Function Main() As Integer
-								Call println("Hello world!")
-								Return 0
-							End Function
-						</pre>
-					</code>
-					<h4>Another header</h4>
-					<table>
-						<thead>
-							<tr>
-								<th>1</th>
-								<th>2</th>
-								<th>3</th>
-							</tr>
-						</thead>
-						<tr>
-							<td>a</td>
-							<td>b</td>
-							<td>c</td>
-						</tr>
-					</table>
-					<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">
-						Here is the PDF document footer.
-					</footer>
-				</body>
-			</html>
+    .HTML = 
+	<html>
+		<head>
+			<title>Hello World!</title>
+		</head>
+		<body>
+			<h1>Hello World!!!</h1>
+			<hr/>
+			<h2>Example code</h2>
+			<code>
+				<pre>
+					Public Function Main() As Integer
+						Call println("Hello world!")
+						Return 0
+					End Function
+				</pre>
+			</code>
+			<h4>Another header</h4>
+			<table>
+				<thead>
+					<tr>
+						<th>1</th>
+						<th>2</th>
+						<th>3</th>
+					</tr>
+				</thead>
+				<tr>
+					<td>a</td>
+					<td>b</td>
+					<td>c</td>
+				</tr>
+			</table>
+			<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">
+				Here is the PDF document footer.
+			</footer>
+		</body>
+	</html>
 }
 Call println(html.GetDocument)
 Call PdfConvert.ConvertHtmlToPdf(html, App.HOME & "/hello-world.pdf")

@@ -1339,8 +1339,10 @@ footer {
 
 <h2>Feature</h2>
 
-<p><input type="checkbox" disabled="" class="task-list-item-checkbox" checked="checked" /> Convert markdown/html document to PDF<br />
-<input type="checkbox" disabled="" class="task-list-item-checkbox" /> Custom CSS style supports. (Works in progress)</p>
+<ul>
+<li>[+] Convert markdown/html document to PDF<br />
+<input type="checkbox" disabled="" class="task-list-item-checkbox" /> Custom CSS style supports. (Works in progress)</li>
+</ul>
 
 <h2>How to install</h2>
 
@@ -1358,9 +1360,14 @@ footer {
 
 <h2>Usage</h2>
 
-<pre><code class="vbnet">Console.InputEncoding = Encoding.UTF8
+<p>First of all, please make sure the encoding of your console is UTF8. Utf8 encoding is the default encoding of the html document:</p>
 
-PdfConvert.Environment.Debug = False
+<pre><code class="vbnet">Console.InputEncoding = Encoding.UTF8
+</code></pre>
+
+<h3>Convert: from URL source</h3>
+
+<pre><code class="vbnet">PdfConvert.Environment.Debug = False
 PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 .Url = "input.html"
 }, New PdfOutput With {
@@ -1375,61 +1382,65 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 }, New PdfOutput With {
 .OutputFilePath = "output.pdf"
 })
-PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
-.Url = "-",
+</code></pre>
+
+<h3>Convert: given html content</h3>
+
+<pre><code class="vbnet">PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 .Html = "&lt;html&gt;&lt;h1&gt;test&lt;/h1&gt;&lt;/html&gt;"
 }, New PdfOutput With {
 .OutputFilePath = "inline.pdf"
 })
 PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
-.Url = "-",
 .Html = "&lt;html&gt;&lt;h1&gt;測試&lt;/h1&gt;&lt;/html&gt;"
 }, New PdfOutput With {
 .OutputFilePath = "inline_cht.pdf"
 })
 </code></pre>
 
-<div style="page-break-after: always;"></div>
-
 <h3>Demo: hello world</h3>
 
-<pre><code class="vbnet">Dim html As New HTMLDocument With {
-.HTML = &lt;html&gt;
-            &lt;head&gt;
-                &lt;title&gt;Hello World!&lt;/title&gt;
-            &lt;/head&gt;
-            &lt;body&gt;
-                &lt;h1&gt;Hello World!!!&lt;/h1&gt;
-                &lt;hr/&gt;
-                &lt;h2&gt;Example code&lt;/h2&gt;
-                &lt;code&gt;
-                    &lt;pre&gt;
-                        Public Function Main() As Integer
-                            Call println("Hello world!")
-                            Return 0
-                        End Function
-                    &lt;/pre&gt;
-                &lt;/code&gt;
-                &lt;h4&gt;Another header&lt;/h4&gt;
-                &lt;table&gt;
-                    &lt;thead&gt;
-                        &lt;tr&gt;
-                            &lt;th&gt;1&lt;/th&gt;
-                            &lt;th&gt;2&lt;/th&gt;
-                            &lt;th&gt;3&lt;/th&gt;
-                        &lt;/tr&gt;
-                    &lt;/thead&gt;
-                    &lt;tr&gt;
-                        &lt;td&gt;a&lt;/td&gt;
-                        &lt;td&gt;b&lt;/td&gt;
-                        &lt;td&gt;c&lt;/td&gt;
-                    &lt;/tr&gt;
-                &lt;/table&gt;
-                &lt;footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;"&gt;
-                    Here is the PDF document footer.
-                &lt;/footer&gt;
-            &lt;/body&gt;
-        &lt;/html&gt;
+<p>Actually, you can construct a html document content from <code>XElement</code> directly in your VB code:</p>
+
+<pre><code class="vbnet">' In this case, we use HTMLDocument object instead of PdfDocument object
+Dim html As New HTMLDocument With {
+.HTML = 
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;title&gt;Hello World!&lt;/title&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+        &lt;h1&gt;Hello World!!!&lt;/h1&gt;
+        &lt;hr/&gt;
+        &lt;h2&gt;Example code&lt;/h2&gt;
+        &lt;code&gt;
+            &lt;pre&gt;
+                Public Function Main() As Integer
+                    Call println("Hello world!")
+                    Return 0
+                End Function
+            &lt;/pre&gt;
+        &lt;/code&gt;
+        &lt;h4&gt;Another header&lt;/h4&gt;
+        &lt;table&gt;
+            &lt;thead&gt;
+                &lt;tr&gt;
+                    &lt;th&gt;1&lt;/th&gt;
+                    &lt;th&gt;2&lt;/th&gt;
+                    &lt;th&gt;3&lt;/th&gt;
+                &lt;/tr&gt;
+            &lt;/thead&gt;
+            &lt;tr&gt;
+                &lt;td&gt;a&lt;/td&gt;
+                &lt;td&gt;b&lt;/td&gt;
+                &lt;td&gt;c&lt;/td&gt;
+            &lt;/tr&gt;
+        &lt;/table&gt;
+        &lt;footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;"&gt;
+            Here is the PDF document footer.
+        &lt;/footer&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
 }
 Call println(html.GetDocument)
 Call PdfConvert.ConvertHtmlToPdf(html, App.HOME &amp; "/hello-world.pdf")
