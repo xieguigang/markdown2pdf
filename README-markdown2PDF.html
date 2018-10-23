@@ -1331,15 +1331,15 @@ footer {
 
 <p><img src="./dist/Adobe_Acrobat_Pro_PDF.png" alt="" /></p>
 
-<p>Convert markdown document to html/pdf using VisualBasic in a super easy way!</p>
+<p>Convert markdown document to html/pdf using VisualBasic in a super easy way! This is a small VB.NET wrapper utility around <code>wkhtmltopdf</code> console tool. You can use it to easily convert Markdown/HTML reports to PDF.</p>
 
-<p>Translate from <a href="https://github.com/codaxy/wkhtmltopdf">https://github.com/codaxy/wkhtmltopdf</a>.</p>
-
-<p>This is a small VB.NET wrapper utility around <code>wkhtmltopdf</code> console tool. You can use it to easily convert Markdown/HTML reports to PDF.</p>
+<blockquote>
+  <p><code>wkhtmltopdf</code> cli wrapper code translate from <a href="https://github.com/codaxy/wkhtmltopdf">https://github.com/codaxy/wkhtmltopdf</a>.</p>
+</blockquote>
 
 <h2>Feature</h2>
 
-<p><input type="checkbox" disabled="" class="task-list-item-checkbox" /> Convert markdown/html document to PDF<br />
+<p><input type="checkbox" disabled="" class="task-list-item-checkbox" checked="checked" /> Convert markdown/html document to PDF<br />
 <input type="checkbox" disabled="" class="task-list-item-checkbox" /> Custom CSS style supports. (Works in progress)</p>
 
 <h2>How to install</h2>
@@ -1353,6 +1353,8 @@ footer {
 </ul>
 
 <p><img src="./dist/CLI.png" alt="" /></p>
+
+<div style="page-break-after: always;"></div>
 
 <h2>Usage</h2>
 
@@ -1387,7 +1389,9 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 })
 </code></pre>
 
-<h6>Demo: hello world</h6>
+<div style="page-break-after: always;"></div>
+
+<h3>Demo: hello world</h3>
 
 <pre><code class="vbnet">Dim html As New HTMLDocument With {
 .HTML = &lt;html&gt;
@@ -1430,6 +1434,8 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 Call println(html.GetDocument)
 Call PdfConvert.ConvertHtmlToPdf(html, App.HOME &amp; "/hello-world.pdf")
 </code></pre>
+
+<div style="page-break-after: always;"></div>
 
 <h2>CLI Usage</h2>
 

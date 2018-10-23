@@ -2,15 +2,13 @@
 
 ![](./dist/Adobe_Acrobat_Pro_PDF.png)
 
-Convert markdown document to html/pdf using VisualBasic in a super easy way!
+Convert markdown document to html/pdf using VisualBasic in a super easy way! This is a small VB.NET wrapper utility around ``wkhtmltopdf`` console tool. You can use it to easily convert Markdown/HTML reports to PDF.
 
-Translate from https://github.com/codaxy/wkhtmltopdf.
-
-This is a small VB.NET wrapper utility around ``wkhtmltopdf`` console tool. You can use it to easily convert Markdown/HTML reports to PDF.
+> ``wkhtmltopdf`` cli wrapper code translate from https://github.com/codaxy/wkhtmltopdf.
 
 ## Feature
 
-- [ ] Convert markdown/html document to PDF
+- [+] Convert markdown/html document to PDF
 - [ ] Custom CSS style supports. (Works in progress)
 
 ## How to install
@@ -22,6 +20,8 @@ This is a small VB.NET wrapper utility around ``wkhtmltopdf`` console tool. You 
 + Run app in **cmd/bash** or shell scripting for batch converts of the PDF documents.
 
 ![](./dist/CLI.png)
+
+<div style="page-break-after: always;"></div>
 
 ## Usage
 
@@ -57,7 +57,9 @@ PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
 })
 ```
 
-###### Demo: hello world
+<div style="page-break-after: always;"></div>
+
+### Demo: hello world
 
 ```vbnet
 Dim html As New HTMLDocument With {
@@ -101,6 +103,8 @@ Dim html As New HTMLDocument With {
 Call println(html.GetDocument)
 Call PdfConvert.ConvertHtmlToPdf(html, App.HOME & "/hello-world.pdf")
 ```
+
+<div style="page-break-after: always;"></div>
 
 ## CLI Usage
 
