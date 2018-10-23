@@ -8,7 +8,7 @@ Convert markdown document to html/pdf using VisualBasic in a super easy way! Thi
 
 ## Feature
 
-- [+] Convert markdown/html document to PDF
+- [x] Convert markdown/html document to PDF
 - [ ] Custom CSS style supports. (Works in progress)
 
 ## How to install
