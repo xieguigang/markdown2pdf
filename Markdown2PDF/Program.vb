@@ -1,6 +1,8 @@
 ﻿Imports System.Text
-Imports Microsoft.VisualBasic.MIME.Markup
 Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.MIME.Markup
+Imports Microsoft.VisualBasic.Scripting.SymbolBuilder
+Imports Microsoft.VisualBasic.Text
 Imports WkHtmlToPdf
 
 Module Program
@@ -8,13 +10,18 @@ Module Program
     ''' <summary>
     ''' HTML模板
     ''' </summary>
-    ReadOnly HTML_template As XElement =
-        <html>
+    ReadOnly HTMLtemplate As XElement =
+        <html lang="zh">
             <head>
-                <style>{0}</style>
+                <meta charset="utf-8"/>
+                <meta name="viewport" content="width=device-width"/>
+
+                <style type="text/css">
+                    {$style}
+                </style>
             </head>
             <body class="markdown haroopad">
-                {1}
+                {$content}
             </body>
         </html>
 
@@ -39,8 +46,12 @@ Module Program
                 css = My.Resources.haroopad
             End If
 
-            html = String.Format(HTML_template.ToString, css, html)
-            html.SaveTo(url, Encoding.UTF8)
+            With New ScriptBuilder(HTMLtemplate)
+                !style = css
+                !content = html
+
+                Call .Save(url, UTF8)
+            End With
 
             PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
                .Url = url
