@@ -32,9 +32,6 @@ Module Program
         If Not [in].FileExists Then
             Call Console.WriteLine("markdown2PDF <input.md> [custom.css]")
             Call Console.WriteLine()
-
-            Call Program.HelloWorld()
-            Call Pause()
         Else
             Dim md As String = [in].ReadAllText
             Dim html$ = New MarkDown.MarkdownHTML().Transform(md)
