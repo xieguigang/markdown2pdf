@@ -6,6 +6,8 @@ Module InternalEnvironment
 
     Public ReadOnly Property Environment As PdfConvertEnvironment
 
+    Public Const wkhtmltopdf$ = "wkhtmltopdf.exe"
+
     Sub New()
         Environment = New PdfConvertEnvironment With {
             .TempFolderPath = Path.GetTempPath(),
