@@ -96,9 +96,7 @@ Namespace Arguments
                     .orientation = Orientations.Portrait,
                     .imagequality = 100,
                     .marginleft = 10,
-                    .marginright = 30,
-                    .nopdfcompression = True,
-                    .grayscale = True
+                    .marginright = 30
                 }
                 .page = New Page With {
                     .debugjavascript = True,
