@@ -3,6 +3,7 @@ Imports Microsoft.VisualBasic.MIME.Markup
 Imports Microsoft.VisualBasic.Scripting.SymbolBuilder
 Imports Microsoft.VisualBasic.Text
 Imports WkHtmlToPdf
+Imports WkHtmlToPdf.Arguments
 
 Module Program
 
