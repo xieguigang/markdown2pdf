@@ -101,17 +101,17 @@ Public Module PdfConvert
         If Not document.pagesize Is Nothing Then
             Call paramsBuilder.AppendLine(document.pagesize.ToString)
         End If
-        If Not document.header Is Nothing Then
-            Call paramsBuilder.AppendLine(document.header.GetCLI("--header"))
-        End If
-        If Not document.footer Is Nothing Then
-            Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
-        End If
         If Not document.TOC Is Nothing Then
             Call paramsBuilder.AppendLine(document.TOC.GetCLI)
         End If
         If Not document.outline Is Nothing Then
             Call paramsBuilder.AppendLine(document.outline.GetCLI)
+        End If
+        If Not document.header Is Nothing Then
+            Call paramsBuilder.AppendLine(document.header.GetCLI("--header"))
+        End If
+        If Not document.footer Is Nothing Then
+            Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
         End If
         If Not document.page Is Nothing Then
             Call paramsBuilder.AppendLine(document.page.GetCLI)
