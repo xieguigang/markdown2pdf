@@ -47,6 +47,7 @@ Public Module PdfConvert
 
         Dim outputPdfFilePath As String
         Dim delete As Boolean
+        Dim argument$
 
         environment = environment Or InternalEnvironment.Environment
 
@@ -54,14 +55,33 @@ Public Module PdfConvert
             outputPdfFilePath = woutput.OutputFilePath
             delete = False
         Else
-            outputPdfFilePath = Path.Combine(environment.TempFolderPath, String.Format("{0}.pdf", Guid.NewGuid()))
+            outputPdfFilePath = App.GetAppSysTempFile(".pdf", App.PID)
             delete = True
         End If
 
         If Not File.Exists(environment.WkHtmlToPdfPath) Then
             Throw New PdfConvertException($"File '{environment.WkHtmlToPdfPath}' not found. Check if wkhtmltopdf application is installed.")
+        Else
+            argument = document.BuildArguments(url, outputPdfFilePath)
         End If
 
+        Try
+            Call environment.RunProcess(
+                args:=argument,
+                url:=url,
+                document:=document,
+                outputPdfFilePath:=outputPdfFilePath,
+                woutput:=woutput
+            )
+        Finally
+            If delete AndAlso File.Exists(outputPdfFilePath) Then
+                File.Delete(outputPdfFilePath)
+            End If
+        End Try
+    End Sub
+
+    <Extension>
+    Public Function BuildArguments(document As PDFContent, url$, pdfOut$) As String
         Dim paramsBuilder As New StringBuilder()
         paramsBuilder.Append("--page-size A4 ")
 
@@ -112,22 +132,10 @@ Public Module PdfConvert
             Next
         End If
 
-        paramsBuilder.AppendFormat("""{0}"" ""{1}""", url, outputPdfFilePath)
+        paramsBuilder.AppendFormat("""{0}"" ""{1}""", url, pdfOut)
 
-        Try
-            Call environment.RunProcess(
-                args:=paramsBuilder.ToString,
-                url:=url,
-                document:=document,
-                outputPdfFilePath:=outputPdfFilePath,
-                woutput:=woutput
-            )
-        Finally
-            If delete AndAlso File.Exists(outputPdfFilePath) Then
-                File.Delete(outputPdfFilePath)
-            End If
-        End Try
-    End Sub
+        Return paramsBuilder.ToString
+    End Function
 
     <Extension>
     Private Sub RunProcess(environment As PdfConvertEnvironment, args$, url$, outputPdfFilePath$, document As PDFContent, woutput As PdfOutput)
