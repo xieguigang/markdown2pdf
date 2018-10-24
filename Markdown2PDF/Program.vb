@@ -36,7 +36,11 @@ Module Program
         Else
             Dim md As String = [in].ReadAllText
             Dim html$ = New MarkDown.MarkdownHTML().Transform(md)
-            Dim url$ = App.GetAppSysTempFile(".html", App.PID)
+            ' 2018-10-24
+            ' 转换好的html文本不可以保存在临时文件夹
+            ' 应该保存在和原始的markdown文档相同的位置，否则markdown文档之中的图片之类的使用相对路径的
+            ' 文件会无法找到
+            Dim file$ = $"{[in].TrimSuffix}.html"
 
             If css.FileExists Then
                 css = css.ReadAllText
@@ -48,15 +52,16 @@ Module Program
                 !style = css
                 !content = html
 
-                Call .Save(url, UTF8)
+                Call .Save(file, UTF8)
             End With
 
             PdfConvert.ConvertHtmlToPdf(
-                document:=PDFContent.DefaultPDFStyle(url, True),
+                document:=PDFContent.DefaultPDFStyle(file, True),
                 output:=New PdfOutput With {
                     .OutputFilePath = [in].TrimSuffix & ".pdf"
                 }
             )
+            Call file.Delete()
         End If
 
         Return 0

@@ -2,6 +2,12 @@
 
 Namespace Arguments
 
+    Public Enum handlers
+        abort
+        ignore
+        [skip]
+    End Enum
+
     ''' <summary>
     ''' Page Options
     ''' </summary>
@@ -85,6 +91,20 @@ Namespace Arguments
         ''' <returns></returns>
         <Argv("--disable-external-links", CLITypes.Boolean)>
         Public Property disableexternallinks As Boolean
+
+        ''' <summary>
+        ''' Specify how to handle pages that fail to load: abort, ignore Or skip (default abort)
+        ''' </summary>
+        ''' <returns></returns>
+        <Argv("--load-error-handling", CLITypes.String)>
+        Public Property loaderrorhandling As handlers?
+
+        ''' <summary>
+        ''' Specify how to handle media files that fail To load: abort, ignore Or skip (default ignore)
+        ''' </summary>
+        ''' <returns></returns>
+        <Argv("--load-media-error-handling", CLITypes.String)>
+        Public Property loadmediaerrorhandling As handlers?
 
         ''' <summary>
         ''' Turn HTML form fields into pdf form fields

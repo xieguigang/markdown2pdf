@@ -94,7 +94,7 @@ Namespace Arguments
         ''' </summary>
         ''' <returns></returns>
         <Argv("--orientation", CLITypes.String)>
-        Public Property orientation As Orientations
+        Public Property orientation As Orientations?
 
         ''' <summary>
         ''' Do not use lossless compression on pdf objects
