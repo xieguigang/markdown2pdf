@@ -1,5 +1,4 @@
 ﻿Imports System.Xml.Linq
-Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Arguments
@@ -25,25 +24,18 @@ Namespace Arguments
         End Function
     End Class
 
-    Public MustInherit Class PDFContent
-
-        <Prefix("--header")>
-        Public Property header As Decoration
-        <Prefix("--footer")>
-        Public Property footer As Decoration
-        Public Property globalOptions As GlobalOptions
-        Public Property outline As Outline
-        Public Property page As Page
-        Public Property pagesize As PageSize
-        Public Property TOC As TOC
+    Public MustInherit Class PDFContent : Inherits WkHtmlToPdfArguments
 
         Public Property state As Object
 
+#Region "Public methods"
         Public MustOverride Function GetDocument() As String
 
         Public Overrides Function ToString() As String
             Return Me.GetJson
         End Function
+#End Region
+
     End Class
 
     Public Interface IPDFDocument(Of T)
