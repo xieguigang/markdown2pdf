@@ -51,11 +51,12 @@ Module Program
                 Call .Save(url, UTF8)
             End With
 
-            PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
-               .Url = url
-            }, New PdfOutput With {
-                .OutputFilePath = [in].TrimSuffix & ".pdf"
-            })
+            PdfConvert.ConvertHtmlToPdf(
+                document:=PDFContent.DefaultPDFStyle(url, True),
+                output:=New PdfOutput With {
+                    .OutputFilePath = [in].TrimSuffix & ".pdf"
+                }
+            )
         End If
 
         Return 0
