@@ -35,7 +35,7 @@ Module Program
         Else
             Dim md As String = [in].ReadAllText
             Dim html$ = New MarkDown.MarkdownHTML().Transform(md)
-            Dim url$ = [in].TrimSuffix & "-markdown2PDF.html"
+            Dim url$ = App.GetAppSysTempFile(".html", App.PID)
 
             If css.FileExists Then
                 css = css.ReadAllText
@@ -53,7 +53,7 @@ Module Program
             PdfConvert.ConvertHtmlToPdf(New PdfDocument With {
                .Url = url
             }, New PdfOutput With {
-                .OutputFilePath = url.TrimSuffix & ".pdf"
+                .OutputFilePath = [in].TrimSuffix & ".pdf"
             })
         End If
 
