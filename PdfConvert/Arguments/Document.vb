@@ -37,6 +37,17 @@ Namespace Arguments
         Public Property State As Object
         Public Property Cookies As Dictionary(Of String, String)
         Public Property ExtraParams As Dictionary(Of String, String)
+        ''' <summary>
+        ''' Change the dpi explicitly (this has no effect on X11 based systems) 
+        ''' (default 96)
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property dpi As Integer?
+        ''' <summary>
+        ''' PDF will be generated in grayscale
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property grayscale As Boolean = False
 
         Public MustOverride Function GetDocument() As String
 
