@@ -5,13 +5,13 @@ Imports System.Runtime.InteropServices
 ' General Information about an assembly is controlled through the following 
 ' set of attributes. Change these attribute values to modify the information
 ' associated with an assembly.
-<Assembly: AssemblyTitle("Codaxy.WkHtmlToPdf.Tests")>
-<Assembly: AssemblyDescription("")>
+<Assembly: AssemblyTitle("CLI to WkHtmlToPdf")>
+<Assembly: AssemblyDescription("CLI to WkHtmlToPdf")>
 <Assembly: AssemblyConfiguration("")>
-<Assembly: AssemblyCompany("Microsoft")>
-<Assembly: AssemblyProduct("Codaxy.WkHtmlToPdf.Tests")>
-<Assembly: AssemblyCopyright("Copyright © Microsoft 2011")>
-<Assembly: AssemblyTrademark("")>
+<Assembly: AssemblyCompany("MIT license")>
+<Assembly: AssemblyProduct("WkHtmlToPdf")>
+<Assembly: AssemblyCopyright("Copyright © MIT license 2018")>
+<Assembly: AssemblyTrademark("WkHtmlToPdf")>
 <Assembly: AssemblyCulture("")>
 
 ' Setting ComVisible to false makes the types in this assembly not visible 
