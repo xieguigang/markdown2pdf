@@ -1,7 +1,9 @@
 ﻿Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Text
+Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine
+Imports Microsoft.VisualBasic.CommandLine.InteropService
 Imports Microsoft.VisualBasic.Language
 Imports WkHtmlToPdf.Arguments
 
@@ -91,59 +93,44 @@ Public Module PdfConvert
 
     <Extension>
     Public Function BuildArguments(document As PDFContent, url$, pdfOut$) As String
-        Dim paramsBuilder As New StringBuilder()
-        paramsBuilder.Append("--page-size A4 ")
+        Dim paramsBuilder As New StringBuilder
 
-        If Not String.IsNullOrEmpty(document.HeaderUrl) Then
-            paramsBuilder.AppendFormat("--header-html {0} ", document.HeaderUrl)
-            paramsBuilder.Append("--margin-top 25 ")
-            paramsBuilder.Append("--header-spacing 5 ")
+        If Not document.globalOptions Is Nothing Then
+            Call paramsBuilder.AppendLine(document.globalOptions.GetCLI)
         End If
-        If Not String.IsNullOrEmpty(document.FooterUrl) Then
-            paramsBuilder.AppendFormat("--footer-html {0} ", document.FooterUrl)
-            paramsBuilder.Append("--margin-bottom 25 ")
-            paramsBuilder.Append("--footer-spacing 5 ")
+        If Not document.page Is Nothing Then
+            Call paramsBuilder.AppendLine(document.page.GetCLI)
         End If
-
-        If Not String.IsNullOrEmpty(document.HeaderLeft) Then
-            paramsBuilder.AppendFormat("--header-left ""{0}"" ", document.HeaderLeft)
+        If Not document.pagesize Is Nothing Then
+            Call paramsBuilder.AppendLine(document.pagesize.ToString)
         End If
-
-        If Not String.IsNullOrEmpty(document.HeaderCenter) Then
-            paramsBuilder.AppendFormat("--header-center ""{0}"" ", document.HeaderCenter)
+        If Not document.header Is Nothing Then
+            Call paramsBuilder.AppendLine(document.header.GetCLI("--header"))
         End If
-
-        If Not String.IsNullOrEmpty(document.HeaderRight) Then
-            paramsBuilder.AppendFormat("--header-right ""{0}"" ", document.HeaderRight)
+        If Not document.footer Is Nothing Then
+            Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
+        End If
+        If Not document.TOC Is Nothing Then
+            Call paramsBuilder.AppendLine(document.TOC.GetCLI)
+        End If
+        If Not document.outline Is Nothing Then
+            Call paramsBuilder.AppendLine(document.outline.GetCLI)
         End If
 
-        If Not String.IsNullOrEmpty(document.FooterLeft) Then
-            paramsBuilder.AppendFormat("--footer-left ""{0}"" ", document.FooterLeft)
-        End If
-
-        If Not String.IsNullOrEmpty(document.FooterCenter) Then
-            paramsBuilder.AppendFormat("--footer-center ""{0}"" ", document.FooterCenter)
-        End If
-
-        If Not String.IsNullOrEmpty(document.FooterRight) Then
-            paramsBuilder.AppendFormat("--footer-right ""{0}"" ", document.FooterRight)
-        End If
-
-        If document.ExtraParams IsNot Nothing Then
-            For Each extraParam In document.ExtraParams
-                paramsBuilder.AppendFormat("--{0} {1} ", extraParam.Key, extraParam.Value)
-            Next
-        End If
-
-        If document.Cookies IsNot Nothing Then
-            For Each cookie In document.Cookies
-                paramsBuilder.AppendFormat("--cookie {0} {1} ", cookie.Key, cookie.Value)
-            Next
-        End If
-
-        paramsBuilder.AppendFormat("""{0}"" ""{1}""", url, pdfOut)
+        Call paramsBuilder.AppendLine($"""{url}"" ""{pdfOut}""")
 
         Return paramsBuilder.ToString
+    End Function
+
+    <Extension>
+    Private Function getRepeatParameters(data As Dictionary(Of String, String), argName$) As String
+        Dim sb As New StringBuilder
+
+        For Each item In data
+            Call sb.AppendLine($"{argName} {item.Key.CLIToken} {item.Value.CLIToken}")
+        Next
+
+        Return sb.ToString
     End Function
 
     <Extension>
@@ -160,7 +147,7 @@ Public Module PdfConvert
                 End If
             Else
                 If Not process.HasExited Then
-                    process.Kill()
+                    Call process.Kill()
                 End If
 
                 Throw New PdfConvertTimeoutException()
@@ -173,14 +160,14 @@ Public Module PdfConvert
                 Dim read As New Value(Of Integer)
 
                 While (read = fs.Read(buffer, 0, buffer.Length)) > 0
-                    woutput.OutputStream.Write(buffer, 0, read)
+                    Call woutput.OutputStream.Write(buffer, 0, read)
                 End While
             End Using
         End If
 
         If woutput.OutputCallback IsNot Nothing Then
             Dim pdfFileBytes As Byte() = File.ReadAllBytes(outputPdfFilePath)
-            woutput.OutputCallback()(document, pdfFileBytes)
+            Call woutput.OutputCallback()(document, pdfFileBytes)
         End If
     End Sub
 
