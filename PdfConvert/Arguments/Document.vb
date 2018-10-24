@@ -7,10 +7,14 @@ Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Arguments
 
+    ''' <summary>
+    ''' 如果需要打印多个网页到一个pdf文件之中，必须要使用这个对象来完成
+    ''' 此时，<see cref="PdfDocument.Html"/>属性将不再适用
+    ''' </summary>
     Public Class PdfDocument : Inherits PDFContent
         Implements IPDFDocument(Of String)
 
-        Public Property Url As String
+        Public Property Url As String()
         Public Property Html As String Implements IPDFDocument(Of String).HTML
 
         Public Overrides Function GetDocument() As String Implements IPDFDocument(Of String).GetDocument
@@ -54,7 +58,7 @@ Namespace Arguments
             Return DefaultStyleDocument(Of PdfDocument)(
                 Sub(doc)
                     If isUrl Then
-                        doc.Url = data
+                        doc.Url = {data}
                     Else
                         doc.Html = data
                     End If

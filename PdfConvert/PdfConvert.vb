@@ -5,6 +5,7 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Text
 Imports WkHtmlToPdf.Arguments
 
 ''' <summary>
@@ -39,17 +40,17 @@ Public Module PdfConvert
 
     Public Sub ConvertHtmlToPdf(document As PDFContent, woutput As PdfOutput, Optional environment As PdfConvertEnvironment = Nothing)
         Dim html$ = document.GetDocument
-        Dim url$ = Nothing
+        Dim url$() = Nothing
 
         If TypeOf document Is PdfDocument Then
             url = DirectCast(document, PdfDocument).Url
         End If
 
-        If url.StringEmpty Then
+        If url.IsNullOrEmpty Then
             If Not html.StringEmpty Then
                 With App.GetAppSysTempFile(, App.PID)
-                    Call html.SaveTo(.ByRef)
-                    Call url.SetValue(.ByRef)
+                    html.SaveTo(.ByRef)
+                    url = { .ByRef}
                 End With
             Else
                 Throw New PdfConvertException(noHTML)
@@ -79,7 +80,7 @@ Public Module PdfConvert
         Try
             Call environment.RunProcess(
                 args:=argument,
-                url:=url,
+                url:=url.JoinBy(ASCII.LF),
                 document:=document,
                 outputPdfFilePath:=outputPdfFilePath,
                 woutput:=woutput
@@ -102,7 +103,7 @@ Public Module PdfConvert
     ''' 这些命令部分之间是具有顺序的
     ''' </remarks>
     <Extension>
-    Public Function BuildArguments(document As PDFContent, url$, pdfOut$) As String
+    Public Function BuildArguments(document As PDFContent, url$(), pdfOut$) As String
         Dim paramsBuilder As New StringBuilder
 
         If Not document.globalOptions Is Nothing Then
@@ -138,7 +139,7 @@ Public Module PdfConvert
             Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
         End If
 
-        Call paramsBuilder.AppendLine($"""{url}"" ""{pdfOut}""")
+        Call paramsBuilder.AppendLine($"""{url.JoinBy(""" """)}"" ""{pdfOut}""")
 
         Return paramsBuilder.ToString
     End Function
@@ -207,7 +208,7 @@ Wkhtmltopdf output:
 
     Public Sub ConvertHtmlToPdf(url As String, outputFilePath As String)
         Dim [in] As New PdfDocument With {
-            .Url = url
+            .Url = {url}
         }
         Dim out As New PdfOutput With {
             .OutputFilePath = outputFilePath
