@@ -91,6 +91,16 @@ Public Module PdfConvert
         End Try
     End Sub
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="document"></param>
+    ''' <param name="url$"></param>
+    ''' <param name="pdfOut$"></param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' 这些命令部分之间是具有顺序的
+    ''' </remarks>
     <Extension>
     Public Function BuildArguments(document As PDFContent, url$, pdfOut$) As String
         Dim paramsBuilder As New StringBuilder
@@ -101,7 +111,9 @@ Public Module PdfConvert
         If Not document.pagesize Is Nothing Then
             Call paramsBuilder.AppendLine(document.pagesize.ToString)
         End If
+
         If Not document.TOC Is Nothing Then
+            Call paramsBuilder.AppendLine("toc")
             Call paramsBuilder.AppendLine(document.TOC.GetCLI)
         End If
         If Not document.outline Is Nothing Then
@@ -113,7 +125,9 @@ Public Module PdfConvert
         If Not document.footer Is Nothing Then
             Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
         End If
+
         If Not document.page Is Nothing Then
+            Call paramsBuilder.AppendLine("page")
             Call paramsBuilder.AppendLine(document.page.GetCLI)
 
             If Not document.page.cookies.IsNullOrEmpty Then

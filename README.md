@@ -141,6 +141,4 @@ PM> Install-Package sciBASIC -Pre
 
 This project is available under MIT Licence.
 
-<footer style="position:fixed; font-size:.8em; text-align:right; bottom:0px; margin-left:-25px; height:20px; width:100%;">
-MIT licence. Copyright (c) 2017 しゃけい よしつな
-</footer>
+> MIT licence. Copyright (c) 2017 しゃけい よしつな
