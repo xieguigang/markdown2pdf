@@ -141,7 +141,12 @@ Public Module PdfConvert
     End Function
 
     <Extension>
-    Private Sub RunProcess(environment As PdfConvertEnvironment, args$, url$, outputPdfFilePath$, document As PDFContent, woutput As PdfOutput)
+    Private Sub RunProcess(environment As PdfConvertEnvironment,
+                           args$,
+                           url$, outputPdfFilePath$,
+                           document As PDFContent,
+                           woutput As PdfOutput)
+
         Using process As New IORedirect(environment.WkHtmlToPdfPath, args)
             Call process.Start(False)
 
@@ -164,7 +169,7 @@ Public Module PdfConvert
         If woutput.OutputStream IsNot Nothing Then
             Using fs As Stream = New FileStream(outputPdfFilePath, FileMode.Open)
                 Dim buffer As Byte() = New Byte(32 * 1024 - 1) {}
-                Dim read As New Value(Of Integer)
+                Dim read As int = 0
 
                 While (read = fs.Read(buffer, 0, buffer.Length)) > 0
                     Call woutput.OutputStream.Write(buffer, 0, read)
