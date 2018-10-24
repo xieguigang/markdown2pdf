@@ -5,6 +5,14 @@ Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.Language
 Imports WkHtmlToPdf.Arguments
 
+''' <summary>
+''' wkhtmltopdf is able to put several objects into the output file, an object is
+''' either a single webpage, a cover webpage or a table of contents.  The objects
+''' are put into the output document in the order they are specified on the
+''' command line, options can be specified on a per object basis or in the global
+''' options area. Options from the Global Options section can only be placed in
+''' the global options area
+''' </summary>
 Public Module PdfConvert
 
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
