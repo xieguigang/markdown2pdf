@@ -27,14 +27,11 @@ Namespace Arguments
 
     Public MustInherit Class PDFContent
 
-        Public Property HeaderUrl As String
-        Public Property FooterUrl As String
-        Public Property HeaderLeft As String
-        Public Property HeaderCenter As String
-        Public Property HeaderRight As String
-        Public Property FooterLeft As String
-        Public Property FooterCenter As String
-        Public Property FooterRight As String
+        <Prefix("--header")>
+        Public Property header As Decoration
+        <Prefix("--footer")>
+        Public Property footer As Decoration
+
         Public Property State As Object
         Public Property Cookies As Dictionary(Of String, String)
         Public Property ExtraParams As Dictionary(Of String, String)

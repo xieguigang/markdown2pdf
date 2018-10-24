@@ -142,7 +142,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arguments\Class1.vb" />
+    <Compile Include="Arguments\Decoration.vb" />
     <Compile Include="Arguments\Page.vb" />
     <Compile Include="Arguments\Document.vb" />
     <Compile Include="Exceptions.vb" />
