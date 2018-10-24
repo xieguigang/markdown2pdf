@@ -31,7 +31,13 @@ Namespace Arguments
         Public Property header As Decoration
         <Prefix("--footer")>
         Public Property footer As Decoration
-        Public Property State As Object
+        Public Property globalOptions As GlobalOptions
+        Public Property outline As Outline
+        Public Property page As Page
+        Public Property pagesize As PageSize
+        Public Property TOC As TOC
+
+        Public Property state As Object
 
         Public MustOverride Function GetDocument() As String
 

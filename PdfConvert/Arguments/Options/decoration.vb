@@ -64,7 +64,7 @@ Namespace Arguments
         ''' </summary>
         ''' <returns></returns>
         <Argv("-spacing", CLITypes.Double)>
-        Public Property footerspacing As Double
+        Public Property footerspacing As Double?
 
     End Class
 
