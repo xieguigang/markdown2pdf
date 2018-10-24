@@ -100,6 +100,12 @@ Namespace Arguments
                     .nopdfcompression = True,
                     .grayscale = True
                 }
+                .page = New Page With {
+                    .debugjavascript = True,
+                    .enableforms = True,
+                    .javascriptdelay = 1000,
+                    .keeprelativelinks = True
+                }
 
                 Return .ByRef
             End With

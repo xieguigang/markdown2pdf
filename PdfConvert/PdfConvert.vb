@@ -98,16 +98,6 @@ Public Module PdfConvert
         If Not document.globalOptions Is Nothing Then
             Call paramsBuilder.AppendLine(document.globalOptions.GetCLI)
         End If
-        If Not document.page Is Nothing Then
-            Call paramsBuilder.AppendLine(document.page.GetCLI)
-
-            If Not document.page.cookies.IsNullOrEmpty Then
-                Call paramsBuilder.AppendLine(document.page.cookies.getRepeatParameters("--cookie"))
-            End If
-            If Not document.page.customheader.IsNullOrEmpty Then
-                Call paramsBuilder.AppendLine(document.page.customheader.getRepeatParameters("--custom-header"))
-            End If
-        End If
         If Not document.pagesize Is Nothing Then
             Call paramsBuilder.AppendLine(document.pagesize.ToString)
         End If
@@ -122,6 +112,16 @@ Public Module PdfConvert
         End If
         If Not document.outline Is Nothing Then
             Call paramsBuilder.AppendLine(document.outline.GetCLI)
+        End If
+        If Not document.page Is Nothing Then
+            Call paramsBuilder.AppendLine(document.page.GetCLI)
+
+            If Not document.page.cookies.IsNullOrEmpty Then
+                Call paramsBuilder.AppendLine(document.page.cookies.getRepeatParameters("--cookie"))
+            End If
+            If Not document.page.customheader.IsNullOrEmpty Then
+                Call paramsBuilder.AppendLine(document.page.customheader.getRepeatParameters("--custom-header"))
+            End If
         End If
 
         Call paramsBuilder.AppendLine($"""{url}"" ""{pdfOut}""")

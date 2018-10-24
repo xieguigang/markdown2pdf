@@ -8,13 +8,6 @@ Namespace Arguments
     Public Class TOC
 
         ''' <summary>
-        ''' Do not use dotted lines in the toc
-        ''' </summary>
-        ''' <returns></returns>
-        <Argv("--disable-dotted-lines", CLITypes.Boolean)>
-        Public Property disabledottedlines As Boolean
-
-        ''' <summary>
         ''' The header text of the toc (default Table of Contents)
         ''' </summary>
         ''' <returns></returns>
@@ -27,6 +20,13 @@ Namespace Arguments
         ''' <returns></returns>
         <Argv("--toc-level-indentation", CLITypes.String)>
         Public Property toclevelindentation As String
+
+        ''' <summary>
+        ''' Do not use dotted lines in the toc
+        ''' </summary>
+        ''' <returns></returns>
+        <Argv("--disable-dotted-lines", CLITypes.Boolean)>
+        Public Property disabledottedlines As Boolean
 
         ''' <summary>
         ''' Do not link from toc to sections
