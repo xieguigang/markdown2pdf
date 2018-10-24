@@ -1,4 +1,5 @@
 ﻿Imports System.Xml.Linq
+Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Arguments
@@ -37,17 +38,28 @@ Namespace Arguments
         Public Property State As Object
         Public Property Cookies As Dictionary(Of String, String)
         Public Property ExtraParams As Dictionary(Of String, String)
+
         ''' <summary>
         ''' Change the dpi explicitly (this has no effect on X11 based systems) 
         ''' (default 96)
         ''' </summary>
         ''' <returns></returns>
+        <Argv("--dpi", CLITypes.Integer)>
         Public Property dpi As Integer?
+
         ''' <summary>
         ''' PDF will be generated in grayscale
         ''' </summary>
         ''' <returns></returns>
+        <Argv("--grayscale", CLITypes.Boolean)>
         Public Property grayscale As Boolean = False
+
+        ''' <summary>
+        ''' Generates lower quality pdf/ps. Useful to shrink the result document space
+        ''' </summary>
+        ''' <returns></returns>
+        <Argv("--lowquality", CLITypes.Boolean)>
+        Public Property lowquality As Boolean = False
 
         Public MustOverride Function GetDocument() As String
 
