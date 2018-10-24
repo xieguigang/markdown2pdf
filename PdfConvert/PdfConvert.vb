@@ -119,12 +119,6 @@ Public Module PdfConvert
         If Not document.outline Is Nothing Then
             Call paramsBuilder.AppendLine(document.outline.GetCLI)
         End If
-        If Not document.header Is Nothing Then
-            Call paramsBuilder.AppendLine(document.header.GetCLI("--header"))
-        End If
-        If Not document.footer Is Nothing Then
-            Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
-        End If
 
         If Not document.page Is Nothing Then
             Call paramsBuilder.AppendLine("page")
@@ -136,6 +130,12 @@ Public Module PdfConvert
             If Not document.page.customheader.IsNullOrEmpty Then
                 Call paramsBuilder.AppendLine(document.page.customheader.getRepeatParameters("--custom-header"))
             End If
+        End If
+        If Not document.header Is Nothing Then
+            Call paramsBuilder.AppendLine(document.header.GetCLI("--header"))
+        End If
+        If Not document.footer Is Nothing Then
+            Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
         End If
 
         Call paramsBuilder.AppendLine($"""{url}"" ""{pdfOut}""")

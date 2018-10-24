@@ -102,7 +102,9 @@ Namespace Arguments
                     .debugjavascript = True,
                     .enableforms = True,
                     .javascriptdelay = 1000,
-                    .keeprelativelinks = True
+                    .keeprelativelinks = True,
+                    .loaderrorhandling = handlers.ignore,
+                    .loadmediaerrorhandling = handlers.ignore
                 }
 
                 Return .ByRef
