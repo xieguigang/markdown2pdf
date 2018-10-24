@@ -131,6 +131,9 @@ Public Module PdfConvert
             If Not document.page.customheader.IsNullOrEmpty Then
                 Call paramsBuilder.AppendLine(document.page.customheader.getRepeatParameters("--custom-header"))
             End If
+            If Not document.page.runscript.IsNullOrEmpty Then
+                Call paramsBuilder.AppendLine(document.page.runscript.getRepeatParameters("--run-script"))
+            End If
         End If
         If Not document.header Is Nothing Then
             Call paramsBuilder.AppendLine(document.header.GetCLI("--header"))
@@ -142,6 +145,17 @@ Public Module PdfConvert
         Call paramsBuilder.AppendLine($"""{url.JoinBy(""" """)}"" ""{pdfOut}""")
 
         Return paramsBuilder.ToString
+    End Function
+
+    <Extension>
+    Private Function getRepeatParameters(data$(), argName$) As String
+        Dim sb As New StringBuilder
+
+        For Each item In data
+            Call sb.AppendLine($"{argName} {item.CLIToken}")
+        Next
+
+        Return sb.ToString
     End Function
 
     <Extension>

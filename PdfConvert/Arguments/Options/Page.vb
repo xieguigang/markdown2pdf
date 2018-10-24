@@ -166,6 +166,13 @@ Namespace Arguments
         Public Property pageoffset As Integer?
 
         ''' <summary>
+        ''' Run this additional javascript after the page is done loading (repeatable)
+        ''' </summary>
+        ''' <returns></returns>
+        <Argv("--run-script", CLITypes.Undefined)>
+        Public Property runscript As String()
+
+        ''' <summary>
         ''' Link from section header to toc
         ''' </summary>
         ''' <returns></returns>
