@@ -142,7 +142,6 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Arguments\ArgumentBuilder.vb" />
     <Compile Include="Arguments\Options\Global.vb" />
     <Compile Include="Arguments\Options\Outline.vb" />
     <Compile Include="Arguments\Options\PageSize.vb" />
