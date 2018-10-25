@@ -93,14 +93,14 @@ Namespace Arguments
         ''' </summary>
         ''' <returns></returns>
         <Argv("-center", CLITypes.String)>
-        Public Property footercenter As String
+        Public Property center As String
 
         ''' <summary>
         ''' Set footer/header font name (default Arial)
         ''' </summary>
         ''' <returns></returns>
         <Argv("-font-name", CLITypes.String)>
-        Public Property footerfontname As String
+        Public Property fontname As String
 
         ''' <summary>
         ''' Set footer/header font size (default 12)
@@ -108,14 +108,14 @@ Namespace Arguments
         ''' <returns></returns>
         ''' 
         <Argv("-font-size", CLITypes.Double)>
-        Public Property footerfontsize As Double?
+        Public Property fontsize As Double?
 
         ''' <summary>
         ''' Adds a html footer/header
         ''' </summary>
         ''' <returns></returns>
         <Argv("-html", CLITypes.File)>
-        Public Property footerhtml As String
+        Public Property html As String
 
         ''' <summary>
         ''' Left aligned footer/header text
@@ -123,7 +123,7 @@ Namespace Arguments
         ''' <returns></returns>
         ''' 
         <Argv("-left", CLITypes.String)>
-        Public Property footerleft As String
+        Public Property left As String
 
         ''' <summary>
         ''' Display line above the footer/header
@@ -131,21 +131,21 @@ Namespace Arguments
         ''' <returns></returns>
         ''' 
         <Argv("-line", CLITypes.Boolean)>
-        Public Property footerline As Boolean
+        Public Property line As Boolean
 
         ''' <summary>
         ''' Right aligned footer/header text
         ''' </summary>
         ''' <returns></returns>
         <Argv("-right", CLITypes.String)>
-        Public Property footerright As String
+        Public Property right As String
 
         ''' <summary>
         ''' Spacing between footer/header and content in mm (default 0)
         ''' </summary>
         ''' <returns></returns>
         <Argv("-spacing", CLITypes.Double)>
-        Public Property footerspacing As Double?
+        Public Property spacing As Double?
 
     End Class
 End Namespace

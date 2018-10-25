@@ -12,10 +12,15 @@ Module InternalEnvironment
     Public Const wkhtmltopdfInstall$ = "wkhtmltopdf\wkhtmltopdf.exe"
 
     Sub New()
+        Dim isDebugMode As Boolean = False
+#If DEBUG Then
+        isDebugMode = True
+#End If
         Environment = New PdfConvertEnvironment With {
             .TempFolderPath = Path.GetTempPath(),
             .WkHtmlToPdfPath = GetWkhtmlToPdfExeLocation(),
-            .Timeout = 60000
+            .Timeout = 60000,
+            .Debug = isDebugMode
         }
     End Sub
 

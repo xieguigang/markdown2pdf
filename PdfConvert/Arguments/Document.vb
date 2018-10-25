@@ -76,11 +76,11 @@ Namespace Arguments
 
                 ' set default style
                 .footer = New Decoration With {
-                    .footerspacing = "10",
-                    .footerfontname = FontFace.MicrosoftYaHei,
-                    .footerfontsize = 11,
-                    .footerline = True,
-                    .footerright = $"{Decoration.page}/{Decoration.topage}"
+                    .spacing = "10",
+                    .fontname = FontFace.MicrosoftYaHei,
+                    .fontsize = 11,
+                    .line = True,
+                    .right = $"{Decoration.page}/{Decoration.topage}"
                 }
                 .pagesize = New PageSize With {
                     .pagesize = QPrinter.A4
@@ -91,9 +91,9 @@ Namespace Arguments
                     .toctextsizeshrink = 0.9
                 }
                 .header = New Decoration With {
-                    .footercenter = Decoration.title,
-                    .footerspacing = 10,
-                    .footerline = True
+                    .center = Decoration.title,
+                    .spacing = 10,
+                    .line = True
                 }
                 .globalOptions = New GlobalOptions With {
                     .marginbottom = 20,

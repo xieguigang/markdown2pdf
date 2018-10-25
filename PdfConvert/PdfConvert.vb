@@ -177,6 +177,10 @@ Public Module PdfConvert
                            woutput As PdfOutput)
 
         Using process As New IORedirect(environment.WkHtmlToPdfPath, args)
+            If environment.Debug Then
+                Call "Process running in debug mode...".__INFO_ECHO
+            End If
+
             Call process.Start(False)
 
             If process.WaitForExit(environment.Timeout) AndAlso
@@ -192,6 +196,10 @@ Public Module PdfConvert
                 End If
 
                 Throw New PdfConvertTimeoutException()
+            End If
+
+            If environment.Debug Then
+                Call Console.WriteLine(process.StandardOutput)
             End If
         End Using
 

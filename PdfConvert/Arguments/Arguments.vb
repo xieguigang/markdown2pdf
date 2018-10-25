@@ -1,6 +1,4 @@
 ﻿Imports System.IO
-Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.ComponentModel
 Imports Microsoft.VisualBasic.Serialization.JSON
 
 Namespace Arguments
