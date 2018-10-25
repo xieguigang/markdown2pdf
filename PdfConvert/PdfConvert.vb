@@ -153,7 +153,8 @@ Public Module PdfConvert
     Private Function createPageArguments(document As PDFContent) As String
         Dim paramsBuilder As New StringBuilder
 
-        Call paramsBuilder.AppendLine("page")
+        ' 2018-10-25 添加page标记会出bug
+        ' Call paramsBuilder.AppendLine("page")
         Call paramsBuilder.AppendLine(document.page.GetCLI)
 
         If Not document.page.cookies.IsNullOrEmpty Then
