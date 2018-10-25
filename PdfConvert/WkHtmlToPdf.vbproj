@@ -180,9 +180,10 @@
     <Compile Include="Arguments\Options\Decoration.vb" />
     <Compile Include="Arguments\Options\Page.vb" />
     <Compile Include="Arguments\Document.vb" />
-    <Compile Include="Exceptions.vb" />
+    <Compile Include="Exception\Exceptions.vb" />
     <Compile Include="Arguments\Arguments.vb" />
     <Compile Include="Environment.vb" />
+    <Compile Include="Exception\ErrorParser.vb" />
     <Compile Include="PdfConvert.vb" />
     <Compile Include="Properties\AssemblyInfo.vb" />
     <Compile Include="Properties\Settings.Designer.vb">
