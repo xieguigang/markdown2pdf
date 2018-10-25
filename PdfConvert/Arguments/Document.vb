@@ -17,6 +17,12 @@ Namespace Arguments
         Public Property Url As String()
         Public Property Html As String Implements IPDFDocument(Of String).HTML
 
+        ''' <summary>
+        ''' 如果这个属性为真，则会将配置参数拷贝给每一个页面
+        ''' </summary>
+        ''' <returns></returns>
+        Public Property LocalConfigMode As Boolean = False
+
         Public Overrides Function GetDocument() As String Implements IPDFDocument(Of String).GetDocument
             Return Html
         End Function

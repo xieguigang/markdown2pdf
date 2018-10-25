@@ -96,14 +96,14 @@ Public Module PdfConvert
     ''' 
     ''' </summary>
     ''' <param name="document"></param>
-    ''' <param name="url$"></param>
+    ''' <param name="urls$"></param>
     ''' <param name="pdfOut$"></param>
     ''' <returns></returns>
     ''' <remarks>
     ''' 这些命令部分之间是具有顺序的
     ''' </remarks>
     <Extension>
-    Public Function BuildArguments(document As PDFContent, url$(), pdfOut$) As String
+    Public Function BuildArguments(document As PDFContent, urls$(), pdfOut$) As String
         Dim paramsBuilder As New StringBuilder
 
         If Not document.globalOptions Is Nothing Then
@@ -121,20 +121,6 @@ Public Module PdfConvert
             Call paramsBuilder.AppendLine(document.outline.GetCLI)
         End If
 
-        If Not document.page Is Nothing Then
-            Call paramsBuilder.AppendLine("page")
-            Call paramsBuilder.AppendLine(document.page.GetCLI)
-
-            If Not document.page.cookies.IsNullOrEmpty Then
-                Call paramsBuilder.AppendLine(document.page.cookies.getRepeatParameters("--cookie"))
-            End If
-            If Not document.page.customheader.IsNullOrEmpty Then
-                Call paramsBuilder.AppendLine(document.page.customheader.getRepeatParameters("--custom-header"))
-            End If
-            If Not document.page.runscript.IsNullOrEmpty Then
-                Call paramsBuilder.AppendLine(document.page.runscript.getRepeatParameters("--run-script"))
-            End If
-        End If
         If Not document.header Is Nothing Then
             Call paramsBuilder.AppendLine(document.header.GetCLI("--header"))
         End If
@@ -142,7 +128,43 @@ Public Module PdfConvert
             Call paramsBuilder.AppendLine(document.footer.GetCLI("--footer"))
         End If
 
-        Call paramsBuilder.AppendLine($"""{url.JoinBy(""" """)}"" ""{pdfOut}""")
+        If Not document.page Is Nothing Then
+            Dim pageArgument = document.createPageArguments
+
+            If TypeOf document Is PdfDocument AndAlso TryCast(document, PdfDocument).LocalConfigMode Then
+                For Each url As String In urls
+                    Call paramsBuilder.AppendLine(pageArgument)
+                    Call paramsBuilder.AppendLine(url.CLIPath)
+                Next
+            Else
+                Call paramsBuilder.AppendLine(pageArgument)
+                Call paramsBuilder.AppendLine($"""{urls.JoinBy(""" """)}""")
+            End If
+        Else
+            Call paramsBuilder.AppendLine($"""{urls.JoinBy(""" """)}""")
+        End If
+
+        Call paramsBuilder.AppendLine(pdfOut.CLIPath)
+
+        Return paramsBuilder.ToString
+    End Function
+
+    <Extension>
+    Private Function createPageArguments(document As PDFContent) As String
+        Dim paramsBuilder As New StringBuilder
+
+        Call paramsBuilder.AppendLine("page")
+        Call paramsBuilder.AppendLine(document.page.GetCLI)
+
+        If Not document.page.cookies.IsNullOrEmpty Then
+            Call paramsBuilder.AppendLine(document.page.cookies.getRepeatParameters("--cookie"))
+        End If
+        If Not document.page.customheader.IsNullOrEmpty Then
+            Call paramsBuilder.AppendLine(document.page.customheader.getRepeatParameters("--custom-header"))
+        End If
+        If Not document.page.runscript.IsNullOrEmpty Then
+            Call paramsBuilder.AppendLine(document.page.runscript.getRepeatParameters("--run-script"))
+        End If
 
         Return paramsBuilder.ToString
     End Function
