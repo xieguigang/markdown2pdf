@@ -78,6 +78,7 @@ Public Module PdfConvert
         End If
 
         Try
+            Call outputPdfFilePath.ParentPath.MkDIR
             Call environment.RunProcess(
                 args:=argument,
                 url:=url.JoinBy(ASCII.LF),
