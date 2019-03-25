@@ -231,7 +231,7 @@ Public Module PdfConvert
         If woutput.OutputStream IsNot Nothing Then
             Using fs As Stream = New FileStream(outputPdfFilePath, FileMode.Open)
                 Dim buffer As Byte() = New Byte(32 * 1024 - 1) {}
-                Dim read As int = 0
+                Dim read As VBInteger = 0
 
                 While (read = fs.Read(buffer, 0, buffer.Length)) > 0
                     Call woutput.OutputStream.Write(buffer, 0, read)
