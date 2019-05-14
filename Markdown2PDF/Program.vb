@@ -61,7 +61,7 @@ Module Program
                     .OutputFilePath = [in].TrimSuffix & ".pdf"
                 }
             )
-            Call file.Delete()
+            Call file.DeleteFile()
         End If
 
         Return 0
