@@ -6,7 +6,7 @@ Imports ProgramFiles = Microsoft.VisualBasic.FileIO.Path.ProgramPathSearchTool
 
 Module InternalEnvironment
 
-    Public ReadOnly Property Environment As DefaultValue(Of PdfConvertEnvironment)
+    Public ReadOnly Property Environment As [Default](Of PdfConvertEnvironment)
 
     Public Const wkhtmltopdf$ = "wkhtmltopdf.exe"
     Public Const wkhtmltopdfInstall$ = "wkhtmltopdf\wkhtmltopdf.exe"
