@@ -1,4 +1,7 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Language.Default
+Imports Microsoft.VisualBasic.Language.Values
 
 Namespace Arguments
 
@@ -75,6 +78,21 @@ Namespace Arguments
 
         <Argv("--page-height", CLITypes.Double)>
         Public Property pageheight As Double
+
+        ''' <summary>
+        ''' Config page size from commandline
+        ''' </summary>
+        ''' <param name="pdf_size"></param>
+        ''' <returns></returns>
+        Public Shared Function ParsePageSize(pdf_size As Value(Of String), Optional defaultSize As QPrinter = QPrinter.A4) As QPrinter
+            Static toEnums As Dictionary(Of String, QPrinter) = Enums(Of QPrinter).ToDictionary(Function(size) size.ToString.ToLower)
+
+            If toEnums.ContainsKey(pdf_size = pdf_size.ToLower) Then
+                Return toEnums(pdf_size)
+            Else
+                Return defaultSize
+            End If
+        End Function
 
         Public Overrides Function ToString() As String
             If pagesize = QPrinter.Custom Then
