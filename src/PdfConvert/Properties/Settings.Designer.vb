@@ -11,7 +11,7 @@
 Option Strict On
 Option Explicit On
 
-
+#if netcore5=0 then 
 
 <Global.System.Runtime.CompilerServices.CompilerGeneratedAttribute(),  _
  Global.System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.5.0.0"),  _
@@ -78,3 +78,4 @@ Namespace My
         End Property
     End Module
 End Namespace
+#end if

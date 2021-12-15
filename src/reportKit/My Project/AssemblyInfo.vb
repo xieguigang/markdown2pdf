@@ -6,7 +6,7 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 ' General Information about an assembly is controlled through the following
 ' set of attributes. Change these attribute values to modify the information
 ' associated with an assembly.
-
+#if netcore5=0 then 
 ' Review the values of the assembly attributes
 
 <Assembly: AssemblyTitle("reportKit: the html report helper")>
@@ -34,4 +34,7 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 
 <Assembly: AssemblyVersion("1.0.0.0")>
 <Assembly: AssemblyFileVersion("1.0.0.0")>
+
+#end if
+
 <Assembly: RPackageModule>
