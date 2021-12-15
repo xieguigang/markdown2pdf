@@ -53,10 +53,11 @@
     <DebugType>full</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineConstants>netcore5=1,UNIX=1</DefineConstants>
+    <OutputPath>../../assembly/</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="System.Resources.Extensions" Version="6.0.0-preview.7.21377.19" />
+	  <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
 
   <ItemGroup>
