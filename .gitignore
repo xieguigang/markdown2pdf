@@ -254,3 +254,4 @@ paket-files/
 *.sln.iml
 /Apps
 .Rproj.user
+*.zip
