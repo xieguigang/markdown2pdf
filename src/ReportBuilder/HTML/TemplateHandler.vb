@@ -78,6 +78,11 @@ Namespace HTML
             End Get
         End Property
 
+        ''' <summary>
+        ''' create a report template handler for 
+        ''' a single html template file.
+        ''' </summary>
+        ''' <param name="file"></param>
         Sub New(file As String)
             ' 可能在将报告写入硬盘文件之前，文件系统的上下文已经变了
             ' 所以需要在这里获取得到全路径
