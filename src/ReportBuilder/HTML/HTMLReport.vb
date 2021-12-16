@@ -119,7 +119,13 @@ Namespace HTML
 
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Sub SetByIndex(index As String, value As Object) Implements IDataIndex.SetByIndex
-            Me(index) = any.ToString(value)
+            If value Is Nothing Then
+                Me(index) = ""
+            ElseIf value.GetType.IsArray Then
+                Me(index) = any.ToString(DirectCast(value, Array).GetValue(Scan0))
+            Else
+                Me(index) = any.ToString(value)
+            End If
         End Sub
 
         Public Function GetByIndex(index As String, [default] As Object) As Object Implements IDataIndex.GetByIndex
