@@ -3,7 +3,7 @@
   <PropertyGroup>
     <RootNamespace>SMRUCC.genomics.GCModeller.Workbench.ReportBuilder</RootNamespace>
     <TargetFramework>net5.0</TargetFramework>
-    <AssemblyName>SMRUCC.genomics.GCModeller.Workbench.ReportBuilder</AssemblyName>
+    <AssemblyName>Workbench.ReportBuilder</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
