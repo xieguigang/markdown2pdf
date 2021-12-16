@@ -126,6 +126,8 @@ Module pdf
 
         Dim files As String() = report.HtmlFiles
 
+        Call report.Save()
+
         Return files.makePDF(
             pdfout:=pdfout,
             wwwroot:=report.directory,
