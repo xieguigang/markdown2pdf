@@ -140,6 +140,10 @@ Module pdf
     ''' markdown files or html files
     ''' </param>
     ''' <param name="pdfout"></param>
+    ''' <remarks>
+    ''' the executable file path of the wkhtmltopdf should be
+    ''' configed via ``options(wkhtmltopdf = ...)``.
+    ''' </remarks>
     <ExportAPI("makePDF")>
     <RApiReturn(GetType(String))>
     <Extension>
