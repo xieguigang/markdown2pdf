@@ -97,6 +97,7 @@ Module highcharts
                 }
             },
             .title = New title With {.text = title},
+            .subtitle = New title With {.text = subtitle},
             .xAxis = x,
             .yAxis = New Axis With {
                 .min = 0,
