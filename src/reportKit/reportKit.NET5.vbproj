@@ -66,6 +66,7 @@
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\text%markdown\markdown.NET5.vbproj" />
+    <ProjectReference Include="..\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj" />
     <ProjectReference Include="..\PdfConvert\WkHtmlToPdf.NET5.vbproj" />
     <ProjectReference Include="..\ReportBuilder\reportBuilder-netcore5.vbproj" />
   </ItemGroup>
