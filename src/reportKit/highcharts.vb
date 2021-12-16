@@ -1,21 +1,26 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
+Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.WebCloud.JavaScript.highcharts
+Imports SMRUCC.WebCloud.JavaScript.highcharts.Javascript
 Imports SMRUCC.WebCloud.JavaScript.highcharts.PieChart
+Imports any = Microsoft.VisualBasic.Scripting
 Imports chartProfiles = SMRUCC.WebCloud.JavaScript.highcharts.chart
 
 <Package("highcharts.js")>
 Module highcharts
 
     <ExportAPI("to_javascript")>
-    Public Function getJavascript(chart As Object, Optional divId As Object = "") As String
+    Public Function getJavascript(chart As Object, <RDefaultExpression> Optional divId As Object = "~random_str(8)") As String
         If chart Is Nothing Then
             Return ""
         End If
 
         If TypeOf chart Is PieChart Then
-
+            Return any.ToString(divId).WriteJavascript(DirectCast(chart, PieChart))
+        Else
+            Throw New NotImplementedException
         End If
     End Function
 
