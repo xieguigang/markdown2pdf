@@ -30,6 +30,11 @@ Module highcharts
         End If
     End Function
 
+    <ExportAPI("to_html")>
+    Public Function getHtml(Javascript As String, divId As String, Optional style$ = "height: 450px;") As String
+        Return Javascript.GetHtmlViewer(divId, style)
+    End Function
+
     <ExportAPI("piechart")>
     Public Function piechart(data As list,
                              Optional title As String = "title",
