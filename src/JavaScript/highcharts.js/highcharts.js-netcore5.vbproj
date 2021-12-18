@@ -5,6 +5,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <AssemblyName>SMRUCC.WebCloud.JavaScript.highcharts</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
+    <Configurations>Debug;Release;Rsharp_app_release</Configurations>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -12,6 +13,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineConstants>netcore5=1,UNIX=1</DefineConstants>
+    <DocumentationFile>SMRUCC.WebCloud.JavaScript.highcharts.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -19,6 +21,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <DefineConstants>netcore5=1,UNIX=1</DefineConstants>
+    <DocumentationFile>SMRUCC.WebCloud.JavaScript.highcharts.xml</DocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -28,6 +31,25 @@
     <DebugType>full</DebugType>
     <DefineDebug>false</DefineDebug>
     <DefineConstants>netcore5=1,UNIX=1</DefineConstants>
+    <DocumentationFile>SMRUCC.WebCloud.JavaScript.highcharts.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Rsharp_app_release|x64'">
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineConstants>netcore5=1,UNIX=1</DefineConstants>
+    <DocumentationFile>SMRUCC.WebCloud.JavaScript.highcharts.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>SMRUCC.WebCloud.JavaScript.highcharts.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Rsharp_app_release|AnyCPU'">
+    <DocumentationFile>SMRUCC.WebCloud.JavaScript.highcharts.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
