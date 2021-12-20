@@ -136,4 +136,50 @@ Module highcharts
 
         Return chart
     End Function
+
+    <ExportAPI("varywide_barChart")>
+    Public Function VariWideBarChart(data As list,
+                                     Optional title As String = "title",
+                                     Optional subtitle As String = "subtitle",
+                                     Optional xlab As String = "X",
+                                     Optional ylab As String = "Y",
+                                     Optional serialName As String = "data",
+                                     Optional env As Environment = Nothing) As VariWideBarChart
+
+        Dim sdata = data.slots.Keys _
+            .Select(Function(name)
+                        Dim value As Object() = data.getValue(name, env, New Object() {0.0, 0.0})
+                        Dim items As Object() = New Object() {name} _
+                            .Join(value) _
+                            .ToArray
+
+                        Return items
+                    End Function) _
+            .ToArray
+        Dim chart As New VariWideBarChart With {
+            .chart = chartProfiles.VariWide,
+            .title = New title With {.text = title},
+            .subtitle = New title With {.text = subtitle},
+            .yAxis = New Axis With {.title = New title With {.text = ylab}},
+            .xAxis = New Axis With {
+                .type = "category",
+                .title = New title With {.text = xlab}},
+                .legend = New legendOptions With {.enabled = False},
+                .series = {
+                    New serial With {
+                        .colorByPoint = True,
+                        .tooltip = New tooltip With {
+                            .headerFormat = "",
+                            .pointFormat = $"<span style=""color:{{point.color}}""><b> {{point.name}}</b></span> <br/><br />" &
+                                           $"{ylab}: <b>{{point.y:.2f}}</b><br>" &
+                                           $"{xlab}: <b>{{point.z:.2f}}</b><br>"
+                        },
+                        .name = serialName,
+                        .data = sdata
+                    }
+                }
+        }
+
+        Return chart
+    End Function
 End Module
