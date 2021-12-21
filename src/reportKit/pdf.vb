@@ -54,6 +54,7 @@ Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports WkHtmlToPdf
 Imports WkHtmlToPdf.Arguments
+Imports REnv = SMRUCC.Rsharp.Runtime
 
 <Package("pdf", Category:=APICategories.UtilityTools)>
 Module pdf
@@ -118,22 +119,6 @@ Module pdf
                 Yield htmlfile
             End If
         Next
-    End Function
-
-    <ExportAPI("toPDF")>
-    Public Function toPdf(report As HTMLReport,
-                          Optional pdfout As String = "out.pdf",
-                          Optional env As Environment = Nothing) As Object
-
-        Dim files As String() = report.HtmlFiles
-
-        Call report.Save()
-
-        Return files.makePDF(
-            pdfout:=pdfout,
-            wwwroot:=report.directory,
-            env:=env
-        )
     End Function
 
     <ExportAPI("pdfPage_options")>
@@ -222,8 +207,7 @@ Module pdf
     ''' </remarks>
     <ExportAPI("makePDF")>
     <RApiReturn(GetType(String))>
-    <Extension>
-    Public Function makePDF(files As String(),
+    Public Function makePDF(<RRawVectorArgument> files As Object,
                             Optional pdfout As String = "out.pdf",
                             Optional wwwroot As String = "/",
                             Optional style As String = Nothing,
@@ -236,14 +220,21 @@ Module pdf
                             Optional env As Environment = Nothing) As Object
 
         Dim [strict] As Boolean = env.globalEnvironment.options.strict
-        Dim contentUrls As String() = files _
-            .GetContentHtml(
-                wwwroot:=wwwroot,
-                style:=style,
-                resolvedAsDataUri:=resolvedAsDataUri,
-                strict:=strict
-            ) _
-            .ToArray
+        Dim filelist As Array = REnv.asVector(Of Object)(files)
+        Dim contentUrls As String()
+
+        If filelist.Length = 1 AndAlso TypeOf filelist(Scan0) Is HTMLReport Then
+            contentUrls = DirectCast(filelist(Scan0), HTMLReport).HtmlFiles
+        Else
+            contentUrls = DirectCast(REnv.asVector(Of String)(filelist), String()) _
+                .GetContentHtml(
+                    wwwroot:=wwwroot,
+                    style:=style,
+                    resolvedAsDataUri:=resolvedAsDataUri,
+                    strict:=strict
+                ) _
+                .ToArray
+        End If
 
         If contentUrls.IsNullOrEmpty Then
             Return Internal.debug.stop("no pdf content files was found!", env)
