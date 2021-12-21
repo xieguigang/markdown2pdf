@@ -25,6 +25,8 @@ Module highcharts
             Return any.ToString(divId).WriteJavascript(DirectCast(chart, PieChart))
         ElseIf TypeOf chart Is BarChart Then
             Return any.ToString(divId).WriteJavascript(DirectCast(chart, BarChart))
+        ElseIf TypeOf chart Is VariWideBarChart Then
+            Return any.ToString(divId).WriteJavascript(DirectCast(chart, VariWideBarChart))
         Else
             Throw New NotImplementedException
         End If
@@ -137,6 +139,19 @@ Module highcharts
         Return chart
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="data">
+    ''' data mapping of ``[name -> x, y]``
+    ''' </param>
+    ''' <param name="title"></param>
+    ''' <param name="subtitle"></param>
+    ''' <param name="xlab"></param>
+    ''' <param name="ylab"></param>
+    ''' <param name="serialName"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
     <ExportAPI("varywide_barChart")>
     Public Function VariWideBarChart(data As list,
                                      Optional title As String = "title",
