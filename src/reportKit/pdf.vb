@@ -205,6 +205,10 @@ Module pdf
     ''' markdown files or html files
     ''' </param>
     ''' <param name="pdfout"></param>
+    ''' <param name="cover">
+    ''' the pdf file path for using as the cover of the
+    ''' generated pdf file
+    ''' </param>
     ''' <remarks>
     ''' the executable file path of the wkhtmltopdf should be
     ''' configed via ``options(wkhtmltopdf = ...)``.
@@ -221,6 +225,7 @@ Module pdf
                             Optional opts As GlobalOptions = Nothing,
                             Optional pageOpts As Page = Nothing,
                             Optional pdf_size As QPrinter = QPrinter.A4,
+                            Optional cover As String = Nothing,
                             Optional env As Environment = Nothing) As Object
 
         Dim [strict] As Boolean = env.globalEnvironment.options.strict
@@ -255,9 +260,10 @@ Module pdf
             .pagesize = New PageSize With {.pagesize = pdf_size},
             .LocalConfigMode = False
         }
-        Dim output As New PdfOutput With {.OutputFilePath = pdfout}
+        Dim workdir As String = TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf")
+        Dim output As New PdfOutput With {.OutputFilePath = If(cover.FileExists, $"{workdir}/file.pdf", pdfout)}
         Dim wkhtmltopdf As New PdfConvertEnvironment With {
-            .TempFolderPath = TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf"),
+            .TempFolderPath = workdir,
             .Debug = env.globalEnvironment.Rscript.debug,
             .Timeout = 60000,
             .WkHtmlToPdfPath = env.globalEnvironment.options.getOption("wkhtmltopdf")
@@ -281,6 +287,29 @@ Module pdf
         Call pdfout.ParentPath.MakeDir
         Call PdfConvert.ConvertHtmlToPdf(content, output, environment:=wkhtmltopdf)
 
-        Return Nothing
+        If cover.FileExists Then
+            If Not cover.ExtensionSuffix("pdf") Then
+                cover = pdf.makePDF(
+                    files:=cover,
+                    pdfout:=$"{workdir}/____cover.pdf",
+                    wwwroot:=wwwroot,
+                    style:=style,
+                    resolvedAsDataUri:=resolvedAsDataUri,
+                    footer:=footer,
+                    header:=header,
+                    opts:=opts,
+                    pageOpts:=pageOpts,
+                    pdf_size:=pdf_size,
+                    env:=env
+                )
+            End If
+
+            Using combine As New PDFBinder(pdfout)
+                Call combine.AddFile(cover)
+                Call combine.AddFile($"{workdir}/file.pdf")
+            End Using
+        End If
+
+        Return pdfout.GetFullPath
     End Function
 End Module

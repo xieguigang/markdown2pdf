@@ -28,7 +28,11 @@ Public Class PDFBinder : Implements IDisposable
     Private disposedValue As Boolean
 
     Public Sub New(outputFilePath As String)
-        Dim outputStream = File.Create(outputFilePath)
+        Dim outputStream = outputFilePath.Open(
+            mode:=FileMode.OpenOrCreate,
+            doClear:=True,
+            [readOnly]:=False
+        )
 
         _document = New Document()
         _pdfCopy = New PdfCopy(_document, outputStream)
