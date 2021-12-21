@@ -1,5 +1,4 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
@@ -11,6 +10,7 @@ Imports SMRUCC.WebCloud.JavaScript.highcharts.PieChart
 Imports SMRUCC.WebCloud.JavaScript.highcharts.viz3D
 Imports any = Microsoft.VisualBasic.Scripting
 Imports chartProfiles = SMRUCC.WebCloud.JavaScript.highcharts.chart
+Imports REnv = SMRUCC.Rsharp.Runtime
 
 <Package("highcharts.js")>
 Module highcharts
@@ -134,6 +134,49 @@ Module highcharts
                         .ToArray
                 }
             }
+        }
+
+        Return chart
+    End Function
+
+    <ExportAPI("varywide_pieChart")>
+    Public Function VariablePieChart(data As dataframe,
+                                     Optional innerSize# = 20,
+                                     Optional title$ = "pie chart",
+                                     Optional subtitle$ = "pie chart",
+                                     Optional pointerName$ = "item",
+                                     Optional serialName$ = "serial name") As VariablePieChart
+
+        Dim names As String() = data.rownames
+        Dim y As Double() = REnv.asVector(Of Double)(data.getColumnVector("y"))
+        Dim z As Double() = REnv.asVector(Of Double)(data.getColumnVector("z"))
+        Dim dataset As VariablePieSerialData() = names _
+            .Select(Function(name, i)
+                        Return New VariablePieSerialData With {
+                            .name = name,
+                            .y = y(i),
+                            .z = z(i)
+                        }
+                    End Function) _
+            .ToArray
+        Dim serial As New VariablePieSerial With {
+            .minPointSize = 10,
+            .innerSize = $"{innerSize}%",
+            .zMin = 0,
+            .name = serialName,
+            .data = dataset
+        }
+
+        Dim chart As New VariablePieChart With {
+            .chart = VariablePieChart.ChartType,
+            .title = New title With {.text = title},
+            .subtitle = New title With {.text = subtitle},
+            .tooltip = New tooltip With {
+                .headerFormat = "",
+                .pointFormat = $"<span style=""color:{{point.color}}""><b> {{point.name}}</b></span> <br/>" &
+                               $"{pointerName}: <b>{{point.y}}</b><br/>"
+            },
+            .series = {serial}
         }
 
         Return chart
