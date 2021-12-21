@@ -164,11 +164,13 @@ Namespace HTML
             Return directory
         End Function
 
-        Public Sub Save()
+        Public Function Save() As HTMLReport
             For Each template In templates.Values
                 Call template.Flush(minify:=minify)
             Next
-        End Sub
+
+            Return Me
+        End Function
 
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' To detect redundant calls

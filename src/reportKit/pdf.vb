@@ -60,7 +60,11 @@ Imports REnv = SMRUCC.Rsharp.Runtime
 Module pdf
 
     <Extension>
-    Private Iterator Function GetContentHtml(files As IEnumerable(Of String), wwwroot$, style$, resolvedAsDataUri As Boolean, [strict] As Boolean) As IEnumerable(Of String)
+    Private Iterator Function GetContentHtml(files As IEnumerable(Of String),
+                                             wwwroot$,
+                                             style$,
+                                             resolvedAsDataUri As Boolean,
+                                             [strict] As Boolean) As IEnumerable(Of String)
         Dim render As New MarkdownHTML
         Dim dir As String = App.CurrentDirectory
 
@@ -224,7 +228,9 @@ Module pdf
         Dim contentUrls As String()
 
         If filelist.Length = 1 AndAlso TypeOf filelist(Scan0) Is HTMLReport Then
-            contentUrls = DirectCast(filelist(Scan0), HTMLReport).HtmlFiles
+            contentUrls = DirectCast(filelist(Scan0), HTMLReport) _
+                .Save() _
+                .HtmlFiles
         Else
             contentUrls = DirectCast(REnv.asVector(Of String)(filelist), String()) _
                 .GetContentHtml(
