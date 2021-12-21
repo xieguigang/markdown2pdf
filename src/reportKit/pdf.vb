@@ -168,18 +168,45 @@ Module pdf
         }
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="spacing"></param>
+    ''' <param name="center"></param>
+    ''' <param name="fontsize"></param>
+    ''' <param name="fontname"></param>
+    ''' <param name="html">Adds a html footer/header</param>
+    ''' <returns></returns>
     <ExportAPI("pdfDecoration")>
     Public Function pdfDecoration(Optional spacing# = 8,
                                   Optional center$ = "-- " & Decoration.page & " --",
                                   Optional fontsize! = 14,
-                                  Optional fontname$ = FontFace.MicrosoftYaHei) As Decoration
+                                  Optional fontname$ = FontFace.MicrosoftYaHei,
+                                  Optional html As String = Nothing) As Decoration
 
         Return New Decoration With {
             .center = center,
             .fontname = fontname,
             .fontsize = fontsize,
-            .spacing = spacing
+            .spacing = spacing,
+            .html = html
         }
+    End Function
+
+    <ExportAPI("logo_html")>
+    Public Function logoHtml(logo As String) As String
+        If (Not logo.ExtensionSuffix("html", "htm")) Then
+            Dim tmp As String = App.SysTemp & $"/{App.PID.ToHexString}_logo{App.GetNextUniqueName("image_")}.html"
+            Dim html As String = sprintf(
+                <div>
+                    <img style="height 100%;" src=<%= New DataURI(logo).ToString %>/>
+                </div>)
+
+            html.SaveTo(tmp)
+            logo = tmp.GetFullPath
+        End If
+
+        Return logo
     End Function
 
     ''' <summary>
@@ -201,8 +228,11 @@ Module pdf
                             Optional wwwroot As String = "/",
                             Optional style As String = Nothing,
                             Optional resolvedAsDataUri As Boolean = False,
-                            Optional logo As String = Nothing,
-                            Optional footer As String = Nothing,
+                            Optional footer As Decoration = Nothing,
+                            Optional header As Decoration = Nothing,
+                            Optional opts As GlobalOptions = Nothing,
+                            Optional pageOpts As Page = Nothing,
+                            Optional pdf_size As QPrinter = QPrinter.A4,
                             Optional env As Environment = Nothing) As Object
 
         Dim [strict] As Boolean = env.globalEnvironment.options.strict
@@ -219,33 +249,15 @@ Module pdf
             Return Internal.debug.stop("no pdf content files was found!", env)
         End If
 
-        If (Not logo.StringEmpty) Then
-            If (Not logo.ExtensionSuffix("html", "htm")) Then
-                Dim tmp As String = App.SysTemp & $"/{App.PID.ToHexString}_logo{App.GetNextUniqueName("image_")}.html"
-                Dim logoHtml As String = sprintf(
-                    <div>
-                        <img style="height 100%;" src=<%= New DataURI(logo).ToString %>/>
-                    </div>)
-
-                logoHtml.SaveTo(tmp)
-                logo = tmp.GetFullPath
-            End If
-        End If
-
         Dim content As New PdfDocument With {
             .Url = contentUrls,
-            .footer = New Decoration With {.right = "[page] / [toPage]"},
-            .header = New Decoration With {.html = logo, .spacing = 10}
+            .footer = If(footer, New Decoration With {.right = "[page] / [toPage]"}),
+            .header = header,
+            .globalOptions = If(opts, New GlobalOptions With {.imagequality = 100}),
+            .page = If(pageOpts, New Page With {.javascriptdelay = 3000, .loaderrorhandling = handlers.ignore, .enableforms = True}),
+            .pagesize = New PageSize With {.pagesize = pdf_size},
+            .LocalConfigMode = False
         }
-
-        If footer.StringEmpty Then
-            content.footer = New Decoration With {.center = "[page] / [toPage]"}
-        ElseIf footer.ExtensionSuffix("html") Then
-            content.footer = New Decoration With {.html = footer}
-        Else
-            content.footer = New Decoration With {.center = footer}
-        End If
-
         Dim output As New PdfOutput With {.OutputFilePath = pdfout}
         Dim wkhtmltopdf As New PdfConvertEnvironment With {
             .TempFolderPath = TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf"),
