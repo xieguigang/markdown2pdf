@@ -42,6 +42,7 @@
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Net.Http
@@ -135,6 +136,52 @@ Module pdf
         )
     End Function
 
+    <ExportAPI("pdfPage_options")>
+    Public Function pdfPageOptions(Optional javascriptdelay# = 3000,
+                                   Optional loaderrorhandling As handlers = handlers.abort,
+                                   Optional debugjavascript As Boolean = True,
+                                   Optional enableforms As Boolean = True) As Page
+
+        Return New Page With {
+            .javascriptdelay = javascriptdelay,
+            .loaderrorhandling = loaderrorhandling,
+            .debugjavascript = debugjavascript,
+            .enableforms = enableforms
+        }
+    End Function
+
+    <ExportAPI("pdfGlobal_options")>
+    Public Function pdfGlobalOptions(Optional margintop% = 0,
+                                     Optional marginleft% = 0,
+                                     Optional marginright% = 0,
+                                     Optional marginbottom% = 0,
+                                     Optional imagequality% = 100,
+                                     Optional title$ = "") As GlobalOptions
+
+        Return New GlobalOptions With {
+            .margintop = margintop,
+            .marginleft = marginleft,
+            .marginright = marginright,
+            .marginbottom = marginbottom,
+            .imagequality = imagequality,
+            .title = title
+        }
+    End Function
+
+    <ExportAPI("pdfDecoration")>
+    Public Function pdfDecoration(Optional spacing# = 8,
+                                  Optional center$ = "-- " & Decoration.page & " --",
+                                  Optional fontsize! = 14,
+                                  Optional fontname$ = FontFace.MicrosoftYaHei) As Decoration
+
+        Return New Decoration With {
+            .center = center,
+            .fontname = fontname,
+            .fontsize = fontsize,
+            .spacing = spacing
+        }
+    End Function
+
     ''' <summary>
     ''' convert the local html documents to pdf document.
     ''' </summary>
@@ -177,7 +224,7 @@ Module pdf
                 Dim tmp As String = App.SysTemp & $"/{App.PID.ToHexString}_logo{App.GetNextUniqueName("image_")}.html"
                 Dim logoHtml As String = sprintf(
                     <div>
-                        <img style="height: 100%;" src=<%= New DataURI(logo).ToString %>/>
+                        <img style="height 100%;" src=<%= New DataURI(logo).ToString %>/>
                     </div>)
 
                 logoHtml.SaveTo(tmp)
@@ -210,7 +257,7 @@ Module pdf
         If wkhtmltopdf.WkHtmlToPdfPath.StringEmpty Then
             Return Internal.debug.stop("please config wkhtmltopdf program at first!", env)
         ElseIf Not wkhtmltopdf.WkHtmlToPdfPath.FileExists Then
-            Return Internal.debug.stop($"wkhtmltopdf program Is Not exists at the given location: '{wkhtmltopdf.WkHtmlToPdfPath}'...", env)
+            Return Internal.debug.stop($"wkhtmltopdf program Is Not exists at the given location '{wkhtmltopdf.WkHtmlToPdfPath}'...", env)
         End If
 
         If wkhtmltopdf.Debug Then

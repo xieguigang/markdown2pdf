@@ -27,6 +27,8 @@ Module highcharts
             Return any.ToString(divId).WriteJavascript(DirectCast(chart, BarChart))
         ElseIf TypeOf chart Is VariWideBarChart Then
             Return any.ToString(divId).WriteJavascript(DirectCast(chart, VariWideBarChart))
+        ElseIf TypeOf chart Is VariablePieChart Then
+            Return any.ToString(divId).WriteJavascript(DirectCast(chart, VariablePieChart))
         Else
             Throw New NotImplementedException
         End If
