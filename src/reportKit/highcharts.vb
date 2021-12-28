@@ -141,9 +141,19 @@ Module highcharts
         Return chart
     End Function
 
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="data"></param>
+    ''' <param name="innerSize">radius size in percentage.</param>
+    ''' <param name="title$"></param>
+    ''' <param name="subtitle$"></param>
+    ''' <param name="pointerName$"></param>
+    ''' <param name="serialName$"></param>
+    ''' <returns></returns>
     <ExportAPI("varywide_pieChart")>
     Public Function VariablePieChart(data As dataframe,
-                                     Optional innerSize# = 20,
+                                     Optional innerSize$ = "20",
                                      Optional title$ = "pie chart",
                                      Optional subtitle$ = "pie chart",
                                      Optional pointerName$ = "item",
