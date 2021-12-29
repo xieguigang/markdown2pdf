@@ -143,6 +143,11 @@ Public Module Javascript
         Return trim.ToString
     End Function
 
+    ''' <summary>
+    ''' [key => value] to [[key, value]]
+    ''' </summary>
+    ''' <param name="obj"></param>
+    ''' <returns></returns>
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <Extension>
     Public Function CreateDataSequence(obj As Dictionary(Of String, Object)) As Object()
