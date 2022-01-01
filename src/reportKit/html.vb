@@ -42,10 +42,14 @@
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 
+''' <summary>
+''' html templat handler
+''' </summary>
 <Package("html", Category:=APICategories.UtilityTools)>
 Public Module html
 
@@ -77,11 +81,18 @@ Public Module html
     ''' <param name="template"></param>
     ''' <returns></returns>
     <ExportAPI("reportTemplate")>
-    Public Function reportTemplate(template As String) As HTMLReport
+    Public Function reportTemplate(template As String, Optional copyToTemp As Boolean = True) As HTMLReport
         If template.ExtensionSuffix("zip") Then
             Dim tempdir As String = TempFileSystem.TempDir
             Call Zip.ImprovedExtractToDirectory(template, tempdir, Overwrite.Always)
             template = tempdir
+            copyToTemp = False
+        End If
+
+        If copyToTemp Then
+            Dim tmpdir As String = TempFileSystem.GetAppSysTempFile
+            Call New Directory(template).CopyTo(tmpdir).ToArray
+            template = tmpdir
         End If
 
         Return New HTMLReport(template)
