@@ -37,4 +37,3 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 
 #end if
 
-<Assembly: RPackageModule>
