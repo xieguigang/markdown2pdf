@@ -1,23 +1,25 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32210.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ReportBuilder", "ReportBuilder\ReportBuilder.vbproj", "{EEB2BB03-20B0-4381-8A9E-E2210EB568A5}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "47-dotnet_Microsoft.VisualBasic", "..\..\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\47-dotnet_Microsoft.VisualBasic.vbproj", "{FECCE1FD-E1D4-49E3-A668-60BB5E7AED99}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "47-dotnet_Microsoft.VisualBasic", "..\..\..\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\47-dotnet_Microsoft.VisualBasic.vbproj", "{FECCE1FD-E1D4-49E3-A668-60BB5E7AED99}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{AC1B5723-573F-40FB-9E98-EB9DBB7425A2}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "framework", "framework", "{AC1B5723-573F-40FB-9E98-EB9DBB7425A2}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "47_dotnet_ms-vb_data.framework", "..\..\runtime\sciBASIC#\Data\DataFrame\47_dotnet_ms-vb_data.framework.vbproj", "{7283C179-F852-4EAD-8D8F-B82EF2CBD7DB}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "47_dotnet_ms-vb_data.framework", "..\..\..\runtime\sciBASIC#\Data\DataFrame\47_dotnet_ms-vb_data.framework.vbproj", "{7283C179-F852-4EAD-8D8F-B82EF2CBD7DB}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MIME-htmls", "..\..\runtime\sciBASIC#\mime\text%html\MIME-htmls.vbproj", "{2DD4BE80-DDC3-4767-94A7-10F1C3395716}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "MIME-htmls", "..\..\..\runtime\sciBASIC#\mime\text%html\MIME-htmls.vbproj", "{2DD4BE80-DDC3-4767-94A7-10F1C3395716}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "WkHtmlToPdf", "PdfConvert\WkHtmlToPdf.vbproj", "{CD7790F5-E348-4A82-B966-90C7CCD07CBC}"
 EndProject
 Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "reportKit", "reportKit\reportKit.vbproj", "{8B5CB280-D756-4AE0-8FCE-F64AA0567B53}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "R", "..\..\R-sharp\R#\R.vbproj", "{0C2EB77C-39F2-460D-A3F8-CE905F867637}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "R", "..\..\..\R-sharp\R#\R.vbproj", "{0C2EB77C-39F2-460D-A3F8-CE905F867637}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{88C0631F-B2E9-4DF4-96C8-0C0D7F76103F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1333,10 +1335,11 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{EEB2BB03-20B0-4381-8A9E-E2210EB568A5} = {88C0631F-B2E9-4DF4-96C8-0C0D7F76103F}
 		{FECCE1FD-E1D4-49E3-A668-60BB5E7AED99} = {AC1B5723-573F-40FB-9E98-EB9DBB7425A2}
 		{7283C179-F852-4EAD-8D8F-B82EF2CBD7DB} = {AC1B5723-573F-40FB-9E98-EB9DBB7425A2}
 		{2DD4BE80-DDC3-4767-94A7-10F1C3395716} = {AC1B5723-573F-40FB-9E98-EB9DBB7425A2}
-		{CD7790F5-E348-4A82-B966-90C7CCD07CBC} = {AC1B5723-573F-40FB-9E98-EB9DBB7425A2}
+		{CD7790F5-E348-4A82-B966-90C7CCD07CBC} = {88C0631F-B2E9-4DF4-96C8-0C0D7F76103F}
 		{0C2EB77C-39F2-460D-A3F8-CE905F867637} = {AC1B5723-573F-40FB-9E98-EB9DBB7425A2}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
