@@ -225,7 +225,6 @@ Module pdf
                             Optional opts As GlobalOptions = Nothing,
                             Optional pageOpts As Page = Nothing,
                             Optional pdf_size As QPrinter = QPrinter.A4,
-                            Optional cover As String = Nothing,
                             Optional env As Environment = Nothing) As Object
 
         Dim [strict] As Boolean = env.globalEnvironment.options.strict
@@ -261,7 +260,7 @@ Module pdf
             .LocalConfigMode = False
         }
         Dim workdir As String = TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf")
-        Dim output As New PdfOutput With {.OutputFilePath = If(cover.FileExists, $"{workdir}/file.pdf", pdfout)}
+        Dim output As New PdfOutput With {.OutputFilePath = pdfout}
         Dim wkhtmltopdf As New PdfConvertEnvironment With {
             .TempFolderPath = workdir,
             .Debug = env.globalEnvironment.Rscript.debug,
@@ -286,29 +285,6 @@ Module pdf
 
         Call pdfout.ParentPath.MakeDir
         Call PdfConvert.ConvertHtmlToPdf(content, output, environment:=wkhtmltopdf)
-
-        If cover.FileExists Then
-            If Not cover.ExtensionSuffix("pdf") Then
-                cover = pdf.makePDF(
-                    files:=cover,
-                    pdfout:=$"{workdir}/____cover.pdf",
-                    wwwroot:=wwwroot,
-                    style:=style,
-                    resolvedAsDataUri:=resolvedAsDataUri,
-                    footer:=footer,
-                    header:=header,
-                    opts:=opts,
-                    pageOpts:=pageOpts,
-                    pdf_size:=pdf_size,
-                    env:=env
-                )
-            End If
-
-            Using combine As New PDFBinder(pdfout)
-                Call combine.AddFile(cover)
-                Call combine.AddFile($"{workdir}/file.pdf")
-            End Using
-        End If
 
         Return pdfout.GetFullPath
     End Function
