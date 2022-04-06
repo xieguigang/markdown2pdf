@@ -205,10 +205,6 @@ Module pdf
     ''' markdown files or html files
     ''' </param>
     ''' <param name="pdfout"></param>
-    ''' <param name="cover">
-    ''' the pdf file path for using as the cover of the
-    ''' generated pdf file
-    ''' </param>
     ''' <remarks>
     ''' the executable file path of the wkhtmltopdf should be
     ''' configed via ``options(wkhtmltopdf = ...)``.
