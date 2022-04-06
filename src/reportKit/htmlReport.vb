@@ -46,7 +46,9 @@ Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
+Imports SMRUCC.Rsharp.Interpreter
 Imports SMRUCC.Rsharp.Runtime
+Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports REnv = SMRUCC.Rsharp.Runtime
@@ -87,13 +89,29 @@ Public Module htmlReportEngine
     ''' <returns></returns>
     <ExportAPI("interpolate")>
     <ROperator("+")>
-    Public Function fillContent(template As HTMLReport, metadata As list, Optional env As Environment = Nothing) As HTMLReport
+    <RApiReturn(GetType(HTMLReport))>
+    Public Function fillContent(template As HTMLReport, metadata As list, Optional env As Environment = Nothing) As Object
         Dim singleVal As String
         Dim strs As String()
+        Dim engine As RInterpreter = env.globalEnvironment.Rscript
+        Dim value As Object
 
         For Each key As String In metadata.getNames
-            strs = REnv.asVector(Of String)(metadata.getByName(key))
+getStringValue:
+            value = metadata.getByName(key)
+
+            If TypeOf value Is Message Then
+                Return value
+            End If
+
+            strs = REnv.asVector(Of String)(value)
             singleVal = If(strs.IsNullOrEmpty, "", strs(Scan0))
+
+            If singleVal.StartsWith("~") Then
+                value = engine.Evaluate(singleVal.Trim("~"c))
+                GoTo getStringValue
+            End If
+
             template(key) = singleVal
         Next
 
