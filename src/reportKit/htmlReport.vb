@@ -46,12 +46,13 @@ Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
+Imports SMRUCC.Rsharp.Runtime.Internal.Object
 
 ''' <summary>
 ''' html templat handler
 ''' </summary>
-<Package("html", Category:=APICategories.UtilityTools)>
-Public Module html
+<Package("htmlReport", Category:=APICategories.UtilityTools)>
+Public Module htmlReportEngine
 
     ''' <summary>
     ''' Create a html template model from the given template file
@@ -72,6 +73,10 @@ Public Module html
     Public Function markdownToHtml(markdown As String) As String
         Static render As New MarkdownHTML
         Return render.Transform(markdown)
+    End Function
+
+    Public Function fillContent(template As HTMLReport, metadata As list, Optional env As Environment = Nothing) As HTMLReport
+
     End Function
 
     ''' <summary>
