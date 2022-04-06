@@ -44,7 +44,7 @@ Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 
-Module Interpolation
+Public Module Interpolation
 
     ''' <summary>
     ''' 在模板之中可能还会存在html碎片的插值
@@ -79,6 +79,17 @@ Module Interpolation
         Next
 
         Return resources
+    End Function
+
+    <Extension>
+    Public Function CreateResourceHtml(res As ResourceDescription, workdir As String) As String
+        Select Case res.type
+            Case ResourceTypes.image : Return New ImageSolver(res).GetHtml(workdir)
+            Case ResourceTypes.table : Return New TableSolver(res).GetHtml(workdir)
+            Case ResourceTypes.text : Return New TextSolver(res).GetHtml(workdir)
+            Case Else
+                Throw New NotImplementedException
+        End Select
     End Function
 
     <Extension>

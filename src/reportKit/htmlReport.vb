@@ -43,8 +43,10 @@ Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.FileIO
+Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
+Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 Imports SMRUCC.Rsharp.Interpreter
 Imports SMRUCC.Rsharp.Runtime
@@ -115,6 +117,26 @@ getStringValue:
         Next
 
         Return template
+    End Function
+
+    <ExportAPI("loadResource")>
+    <RApiReturn(GetType(list))>
+    Public Function loadResource(description As JsonObject,
+                                 <RDefaultExpression>
+                                 Optional workdir As Object = "~getwd();",
+                                 Optional env As Environment = Nothing) As Object
+
+        Dim res As Dictionary(Of String, ResourceDescription) = Interpolation.ParseResourceList(description)
+        Dim contents As New Dictionary(Of String, Object)
+
+        For Each file As String In res.Keys
+            Dim resVal As ResourceDescription = res(file)
+            Dim html As String = resVal.CreateResourceHtml(workdir)
+
+            contents(file) = html
+        Next
+
+        Return New list With {.slots = contents}
     End Function
 
     <ExportAPI("flush")>
