@@ -97,9 +97,8 @@ Public Module htmlReportEngine
         Dim value As Object
 
         For Each key As String In metadata.getNames
-getStringValue:
             value = metadata.getByName(key)
-
+getStringValue:
             If TypeOf value Is Message Then
                 Return value
             End If
