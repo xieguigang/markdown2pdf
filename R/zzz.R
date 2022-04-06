@@ -1,4 +1,4 @@
-imports ["html", "pdf"] from "reportKit";
+imports ["htmlReport", "pdf"] from "reportKit";
 
 #' Config for the runtime environment
 #' at package startup.
