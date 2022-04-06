@@ -1,4 +1,6 @@
-﻿Public Class ResourceDescription
+﻿Imports System.Text
+
+Public Class ResourceDescription
 
     Public Property image As String
     Public Property table As String
@@ -16,6 +18,25 @@
             End If
         End Get
     End Property
+
+    Public Function FillMetadata(meta As Dictionary(Of String, String)) As ResourceDescription
+        Dim text As New StringBuilder(If(Me.text, ""))
+        Dim image As New StringBuilder(If(Me.image, ""))
+        Dim table As New StringBuilder(If(Me.table, ""))
+
+        For Each key As String In meta.Keys
+            Call text.Replace($"${{{key}}}", meta(key))
+            Call image.Replace($"${{{key}}}", meta(key))
+            Call table.Replace($"${{{key}}}", meta(key))
+        Next
+
+        Return New ResourceDescription With {
+            .text = text.ToString,
+            .image = image.ToString,
+            .table = table.ToString,
+            .styles = styles
+        }
+    End Function
 
     Public Function getResourceValue() As String
         Select Case type

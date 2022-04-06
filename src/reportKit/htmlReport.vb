@@ -39,10 +39,12 @@
 
 #End Region
 
+Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.FileIO
+Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
@@ -93,30 +95,41 @@ Public Module htmlReportEngine
     <ROperator("+")>
     <RApiReturn(GetType(HTMLReport))>
     Public Function fillContent(template As HTMLReport, metadata As list, Optional env As Environment = Nothing) As Object
-        Dim singleVal As String
-        Dim strs As String()
+        Dim singleVal As [Variant](Of String, Message)
         Dim engine As RInterpreter = env.globalEnvironment.Rscript
         Dim value As Object
 
         For Each key As String In metadata.getNames
             value = metadata.getByName(key)
-getStringValue:
-            If TypeOf value Is Message Then
-                Return value
+            singleVal = engine.evalString(value)
+
+            If singleVal Like GetType(Message) Then
+                Return singleVal.TryCast(Of Message)
+            Else
+                template(key) = singleVal.TryCast(Of String)
             End If
-
-            strs = REnv.asVector(Of String)(value)
-            singleVal = If(strs.IsNullOrEmpty, "", strs(Scan0))
-
-            If singleVal.StartsWith("~") Then
-                value = engine.Evaluate(singleVal.Trim("~"c))
-                GoTo getStringValue
-            End If
-
-            template(key) = singleVal
         Next
 
         Return template
+    End Function
+
+    <Extension>
+    Public Function evalString(engine As RInterpreter, value As Object) As [Variant](Of String, Message)
+getStringValue:
+
+        If TypeOf value Is Message Then
+            Return DirectCast(value, Message)
+        End If
+
+        Dim strs As String() = REnv.asVector(Of String)(value)
+        Dim singleVal = If(strs.IsNullOrEmpty, "", strs(Scan0))
+
+        If singleVal.StartsWith("~") Then
+            value = engine.Evaluate(singleVal.Trim("~"c))
+            GoTo getStringValue
+        End If
+
+        Return singleVal
     End Function
 
     <ExportAPI("loadResource")>
@@ -124,14 +137,35 @@ getStringValue:
     Public Function loadResource(description As JsonObject,
                                  <RDefaultExpression>
                                  Optional workdir As Object = "~getwd();",
+                                 Optional meta As list = Nothing,
                                  Optional env As Environment = Nothing) As Object
 
         Dim res As Dictionary(Of String, ResourceDescription) = Interpolation.ParseResourceList(description)
         Dim contents As New Dictionary(Of String, Object)
+        Dim singleVal As [Variant](Of String, Message)
+        Dim engine As RInterpreter = env.globalEnvironment.Rscript
+
+        If meta Is Nothing Then
+            meta = New list
+        End If
+
+        Dim metadata As New Dictionary(Of String, String)
+
+        For Each line In meta.slots
+            singleVal = engine.evalString(line.Value)
+
+            If singleVal Like GetType(Message) Then
+                Return singleVal.TryCast(Of Message)
+            Else
+                metadata(line.Key) = singleVal.TryCast(Of String)
+            End If
+        Next
 
         For Each file As String In res.Keys
             Dim resVal As ResourceDescription = res(file)
-            Dim html As String = resVal.CreateResourceHtml(workdir)
+            Dim html As String = resVal _
+                .FillMetadata(metadata) _
+                .CreateResourceHtml(workdir)
 
             contents(file) = html
         Next
