@@ -99,6 +99,12 @@ Public Module htmlReportEngine
         Return template
     End Function
 
+    <ExportAPI("flush")>
+    Public Function saveReport(template As HTMLReport) As Boolean
+        Call template.Save()
+        Return True
+    End Function
+
     ''' <summary>
     ''' Create a html template model from a 
     ''' given report template directory.
