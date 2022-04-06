@@ -47,6 +47,8 @@ Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
+Imports SMRUCC.Rsharp.Runtime.Interop
+Imports REnv = SMRUCC.Rsharp.Runtime
 
 ''' <summary>
 ''' html templat handler
@@ -75,8 +77,26 @@ Public Module htmlReportEngine
         Return render.Transform(markdown)
     End Function
 
+    ''' <summary>
+    ''' do report data interpolation.
+    ''' </summary>
+    ''' <param name="template"></param>
+    ''' <param name="metadata"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    <ExportAPI("interpolate")>
+    <ROperator("+")>
     Public Function fillContent(template As HTMLReport, metadata As list, Optional env As Environment = Nothing) As HTMLReport
+        Dim singleVal As String
+        Dim strs As String()
 
+        For Each key As String In metadata.getNames
+            strs = REnv.asVector(Of String)(metadata.getByName(key))
+            singleVal = If(strs.IsNullOrEmpty, "", strs(Scan0))
+            template(key) = singleVal
+        Next
+
+        Return template
     End Function
 
     ''' <summary>
