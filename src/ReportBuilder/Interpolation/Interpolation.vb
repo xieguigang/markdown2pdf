@@ -72,11 +72,11 @@ Public Module Interpolation
     End Function
 
     <Extension>
-    Public Function ParseResourceList(json As JsonObject) As Dictionary(Of String, ResourceDescription)
+    Public Function ParseResourceList(json As JsonObject, meta As Dictionary(Of String, String)) As Dictionary(Of String, ResourceDescription)
         Dim resources As New Dictionary(Of String, ResourceDescription)
 
         For Each name As String In json.ObjectKeys
-            resources(name) = json(name).ParseResourceFile
+            resources(name) = json(name).ParseResourceFile(meta)
         Next
 
         Return resources
@@ -94,12 +94,12 @@ Public Module Interpolation
     End Function
 
     <Extension>
-    Public Function ParseResourceFile(value As JsonElement) As ResourceDescription
+    Public Function ParseResourceFile(value As JsonElement, meta As Dictionary(Of String, String)) As ResourceDescription
         If TypeOf value Is JsonValue Then
             ' text
             Return New ResourceDescription With {.text = DirectCast(value, JsonValue).GetStripString}
         ElseIf TypeOf value Is JsonObject Then
-            Return DirectCast(value, JsonObject).ParseResourceFile
+            Return DirectCast(value, JsonObject).ParseResourceFile(meta)
         Else
             ' json array for ul list in html
             Throw New NotImplementedException
@@ -128,11 +128,22 @@ Public Module Interpolation
     End Function
 
     <Extension>
-    Private Function parseCss(styles As JsonElement) As CSSFile
+    Private Function getCssString(meta As Dictionary(Of String, String), str As String) As String
+        Dim css As New StringBuilder(str)
+
+        For Each key As String In meta.Keys
+            Call css.Replace($"${{{key}}}", meta(key))
+        Next
+
+        Return css.ToString
+    End Function
+
+    <Extension>
+    Private Function parseCss(styles As JsonElement, meta As Dictionary(Of String, String)) As CSSFile
         If TypeOf styles Is JsonValue Then
             Return New CSSFile With {
                 .Selectors = New Dictionary(Of Selector) From {
-                    {"*", CssParser.ParseStyle(DirectCast(styles, JsonValue).GetStripString)}
+                    {"*", CssParser.ParseStyle(meta.getCssString(DirectCast(styles, JsonValue).GetStripString))}
                 }
             }
         Else
@@ -141,9 +152,10 @@ Public Module Interpolation
 
             For Each key As String In list.ObjectKeys
                 Dim value As JsonValue = DirectCast(list(key), JsonValue)
-                Dim style As Selector = CssParser.ParseStyle(value.GetStripString)
+                Dim cssStr As String = meta.getCssString(value.GetStripString)
+                Dim style As Selector = CssParser.ParseStyle(cssStr)
 
-                css.Selectors.Add(key, style)
+                Call css.Selectors.Add(key, style)
             Next
 
             Return css
@@ -151,13 +163,13 @@ Public Module Interpolation
     End Function
 
     <Extension>
-    Public Function ParseResourceFile(res As JsonObject) As ResourceDescription
+    Public Function ParseResourceFile(res As JsonObject, meta As Dictionary(Of String, String)) As ResourceDescription
         Dim names As Index(Of String) = res.ObjectKeys.Indexing
         Dim styles As CSSFile = Nothing
         Dim options As Dictionary(Of String, Object) = parseOpts(res)
 
         If "styles" Like names Then
-            styles = res("styles").parseCss
+            styles = res("styles").parseCss(meta)
         Else
             styles = New CSSFile With {.Selectors = New Dictionary(Of Selector)}
         End If
