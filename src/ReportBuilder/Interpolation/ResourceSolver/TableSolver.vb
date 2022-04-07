@@ -25,13 +25,13 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim thead As String = BuildRowHtml(names, css, isHeader:=True)
 
         For Each row As EntityObject In table
-            tbody.AppendLine($"<tr style='{any.ToString(css("tr"))}'>{BuildRowHtml(row(names), css, isHeader:=False)}</tr>")
+            tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row(names), css, isHeader:=False)}</tr>")
         Next
 
-        Return $"<table style='{any.ToString(css("table"))}'>
+        Return $"<table style='{any.ToString(css("table")?.CSSValue)}'>
 
-<thead style='{any.ToString(css("thead"))}'>
-<tr style='{any.ToString(css("th"))}'>
+<thead style='{any.ToString(css("thead")?.CSSValue)}'>
+<tr style='{any.ToString(css("th")?.CSSValue)}'>
 {thead}
 </tr>
 </thead>
