@@ -25,6 +25,7 @@ Public Class ResourceDescription
         Dim text As New StringBuilder(If(Me.text, ""))
         Dim image As New StringBuilder(If(Me.image, ""))
         Dim table As New StringBuilder(If(Me.table, ""))
+        Dim opts As New Dictionary(Of String, Object)
 
         For Each key As String In meta.Keys
             Call text.Replace($"${{{key}}}", meta(key))
@@ -32,12 +33,28 @@ Public Class ResourceDescription
             Call table.Replace($"${{{key}}}", meta(key))
         Next
 
+        For Each key As String In options.Keys
+            Dim value As Object = options(key)
+
+            If TypeOf value Is String Then
+                Dim str As New StringBuilder(DirectCast(value, String))
+
+                For Each name As String In meta.Keys
+                    Call str.Replace($"${{{name}}}", meta(name))
+                Next
+
+                value = str
+            End If
+
+            Call opts.Add(key, value)
+        Next
+
         Return New ResourceDescription With {
             .text = text.ToString,
             .image = image.ToString,
             .table = table.ToString,
             .styles = styles,
-            .options = options
+            .options = opts
         }
     End Function
 

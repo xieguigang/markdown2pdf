@@ -45,9 +45,9 @@ Public Class TableSolver : Inherits ResourceSolver
         Return cells _
             .Select(Function(s)
                         If isHeader Then
-                            Return $"<th style='{any.ToString(css("th")?.CSSValue)}'>{s}</th>"
+                            Return $"<th style='{any.ToString(css("th")?.CSSValue)}'>{s.Trim(""""c)}</th>"
                         Else
-                            Return $"<td style='{any.ToString(css("td")?.CSSValue)}'>{s}</td>"
+                            Return $"<td style='{any.ToString(css("td")?.CSSValue)}'>{s.Trim(""""c)}</td>"
                         End If
                     End Function) _
             .JoinBy(vbCrLf)
