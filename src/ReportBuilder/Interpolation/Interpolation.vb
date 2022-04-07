@@ -98,34 +98,56 @@ Public Module Interpolation
             ' text
             Return New ResourceDescription With {.text = DirectCast(value, JsonValue).GetStripString}
         ElseIf TypeOf value Is JsonObject Then
-            Dim res As JsonObject = value
-            Dim names As Index(Of String) = res.ObjectKeys.Indexing
-            Dim styles As String = Nothing
-
-            If "styles" Like names Then
-                styles = DirectCast(res("styles"), JsonValue).GetStripString
-            End If
-
-            If "text" Like names Then
-                Return New ResourceDescription With {
-                    .text = DirectCast(res("text"), JsonValue).GetStripString,
-                    .styles = styles
-                }
-            ElseIf "image" Like names Then
-                Return New ResourceDescription With {
-                    .image = DirectCast(res("image"), JsonValue).GetStripString,
-                    .styles = styles
-                }
-            ElseIf "table" Like names Then
-                Return New ResourceDescription With {
-                    .table = DirectCast(res("table"), JsonValue).GetStripString,
-                    .styles = styles
-                }
-            Else
-                Throw New NotImplementedException
-            End If
+            Return DirectCast(value, JsonObject).ParseResourceFile
         Else
             ' json array for ul list in html
+            Throw New NotImplementedException
+        End If
+    End Function
+
+    Private Function parseOpts(opts As JsonObject) As Dictionary(Of String, Object)
+        Dim options As New Dictionary(Of String, Object)
+
+        If opts.HasObjectKey("options") Then
+            opts = opts("options")
+
+            For Each key As String In opts.ObjectKeys
+                options(key) = DirectCast(opts(key), JsonValue).value
+            Next
+        End If
+
+        Return options
+    End Function
+
+    <Extension>
+    Public Function ParseResourceFile(res As JsonObject) As ResourceDescription
+        Dim names As Index(Of String) = res.ObjectKeys.Indexing
+        Dim styles As String = Nothing
+        Dim options As Dictionary(Of String, Object) = parseOpts(res)
+
+        If "styles" Like names Then
+            styles = DirectCast(res("styles"), JsonValue).GetStripString
+        End If
+
+        If "text" Like names Then
+            Return New ResourceDescription With {
+                .text = DirectCast(res("text"), JsonValue).GetStripString,
+                .styles = styles,
+                .options = options
+            }
+        ElseIf "image" Like names Then
+            Return New ResourceDescription With {
+                .image = DirectCast(res("image"), JsonValue).GetStripString,
+                .styles = styles,
+                .options = options
+            }
+        ElseIf "table" Like names Then
+            Return New ResourceDescription With {
+                .table = DirectCast(res("table"), JsonValue).GetStripString,
+                .styles = styles,
+                .options = options
+            }
+        Else
             Throw New NotImplementedException
         End If
     End Function

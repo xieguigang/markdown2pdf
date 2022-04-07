@@ -6,6 +6,7 @@ Public Class ResourceDescription
     Public Property table As String
     Public Property styles As String
     Public Property text As String
+    Public Property options As Dictionary(Of String, Object)
 
     Public ReadOnly Property type As ResourceTypes
         Get
