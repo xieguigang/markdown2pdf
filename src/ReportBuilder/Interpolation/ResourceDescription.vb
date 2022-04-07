@@ -1,10 +1,11 @@
 ﻿Imports System.Text
+Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
 
 Public Class ResourceDescription
 
     Public Property image As String
     Public Property table As String
-    Public Property styles As String
+    Public Property styles As CSSFile
     Public Property text As String
     Public Property options As Dictionary(Of String, Object)
 

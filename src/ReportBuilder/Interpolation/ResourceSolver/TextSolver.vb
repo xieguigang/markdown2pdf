@@ -1,9 +1,5 @@
 ﻿Imports System.Net
-Imports System.Text
-Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
-Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class TextSolver : Inherits ResourceSolver
 
@@ -12,7 +8,7 @@ Public Class TextSolver : Inherits ResourceSolver
     End Sub
 
     Public Overrides Function GetHtml(workdir As String) As String
-        If resource.styles.StringEmpty Then
+        If resource.styles.IsNullOrEmpty Then
             Return WebUtility.HtmlEncode(resource.text)
         Else
             Return $"<span style='{resource.styles}'>{WebUtility.HtmlEncode(resource.text)}</span>"

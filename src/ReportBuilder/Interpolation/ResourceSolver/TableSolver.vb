@@ -20,27 +20,20 @@ Public Class TableSolver : Inherits ResourceSolver
 
         Dim table As EntityObject() = EntityObject.LoadDataSet(tablefile).ToArray
         Dim tbody As New StringBuilder
-        Dim css As CSSFile
-
-        If resource.styles.StringEmpty Then
-            css = New CSSFile With {.Selectors = New Dictionary(Of Selector)}
-        Else
-            css = CssParser.GetTagWithCSS(CSS:=resource.styles)
-        End If
-
+        Dim css As CSSFile = resource.styles
         Dim names As String() = table(Scan0).Properties.Keys.ToArray
-        Dim thead As String = BuildRowHtml(names, css)
+        Dim thead As String = BuildRowHtml(names, css, isHeader:=True)
 
         For Each row As EntityObject In table
-            tbody.AppendLine($"<tr style='{css("tr").ToString}'>{BuildRowHtml(row(names), css)}</tr>")
+            tbody.AppendLine($"<tr style='{any.ToString(css("tr"))}'>{BuildRowHtml(row(names), css, isHeader:=False)}</tr>")
         Next
 
-        Return $"<table>
+        Return $"<table style='{any.ToString(css("table"))}'>
 
-<thead style='{css("thead").ToString}'>
-<th style='{css("th").ToString}'>
+<thead style='{any.ToString(css("thead"))}'>
+<tr style='{any.ToString(css("th"))}'>
 {thead}
-</th>
+</tr>
 </thead>
 <tbody>
 {tbody.ToString}
@@ -49,7 +42,15 @@ Public Class TableSolver : Inherits ResourceSolver
 </table>"
     End Function
 
-    Private Function BuildRowHtml(cells As IEnumerable(Of String), css As CSSFile) As String
-        Return cells.Select(Function(s) $"<td>{s}</td>").JoinBy(vbCrLf)
+    Private Function BuildRowHtml(cells As IEnumerable(Of String), css As CSSFile, isHeader As Boolean) As String
+        Return cells _
+            .Select(Function(s)
+                        If isHeader Then
+                            Return $"<th>{s}</th>"
+                        Else
+                            Return $"<td>{s}</td>"
+                        End If
+                    End Function) _
+            .JoinBy(vbCrLf)
     End Function
 End Class

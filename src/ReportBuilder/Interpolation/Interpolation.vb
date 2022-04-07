@@ -43,6 +43,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
 
 Public Module Interpolation
 
@@ -127,13 +128,38 @@ Public Module Interpolation
     End Function
 
     <Extension>
+    Private Function parseCss(styles As JsonElement) As CSSFile
+        If TypeOf styles Is JsonValue Then
+            Return New CSSFile With {
+                .Selectors = New Dictionary(Of Selector) From {
+                    {"*", CssParser.ParseStyle(DirectCast(styles, JsonValue).GetStripString)}
+                }
+            }
+        Else
+            Dim list As JsonObject = DirectCast(styles, JsonObject)
+            Dim css As New CSSFile With {.Selectors = New Dictionary(Of Selector)}
+
+            For Each key As String In list.ObjectKeys
+                Dim value As JsonValue = DirectCast(list(key), JsonValue)
+                Dim style As Selector = CssParser.ParseStyle(value.GetStripString)
+
+                css.Selectors.Add(key, style)
+            Next
+
+            Return css
+        End If
+    End Function
+
+    <Extension>
     Public Function ParseResourceFile(res As JsonObject) As ResourceDescription
         Dim names As Index(Of String) = res.ObjectKeys.Indexing
-        Dim styles As String = Nothing
+        Dim styles As CSSFile = Nothing
         Dim options As Dictionary(Of String, Object) = parseOpts(res)
 
         If "styles" Like names Then
-            styles = DirectCast(res("styles"), JsonValue).GetStripString
+            styles = res("styles").parseCss
+        Else
+            styles = New CSSFile With {.Selectors = New Dictionary(Of Selector)}
         End If
 
         If "text" Like names Then
