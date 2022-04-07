@@ -1,5 +1,4 @@
-﻿Imports System.Net
-Imports System.Text
+﻿Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
@@ -18,20 +17,20 @@ Public Class TableSolver : Inherits ResourceSolver
             Return Nothing
         End If
 
-        Dim table As EntityObject() = EntityObject.LoadDataSet(tablefile).ToArray
+        Dim table As DataFrame = DataFrame.Load(tablefile)
         Dim tbody As New StringBuilder
         Dim css As CSSFile = resource.styles
-        Dim names As String() = table(Scan0).Properties.Keys.ToArray
+        Dim names As String() = table.Headers.ToArray
         Dim thead As String = BuildRowHtml(names, css, isHeader:=True)
 
-        For Each row As EntityObject In table
-            tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row(names), css, isHeader:=False)}</tr>")
+        For Each row As RowObject In table.Rows
+            tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row.AsEnumerable, css, isHeader:=False)}</tr>")
         Next
 
         Return $"<table style='{any.ToString(css("table")?.CSSValue)}'>
 
 <thead style='{any.ToString(css("thead")?.CSSValue)}'>
-<tr style='{any.ToString(css("th")?.CSSValue)}'>
+<tr>
 {thead}
 </tr>
 </thead>
@@ -46,9 +45,9 @@ Public Class TableSolver : Inherits ResourceSolver
         Return cells _
             .Select(Function(s)
                         If isHeader Then
-                            Return $"<th>{s}</th>"
+                            Return $"<th style='{any.ToString(css("th")?.CSSValue)}'>{s}</th>"
                         Else
-                            Return $"<td>{s}</td>"
+                            Return $"<td style='{any.ToString(css("td")?.CSSValue)}'>{s}</td>"
                         End If
                     End Function) _
             .JoinBy(vbCrLf)
