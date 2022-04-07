@@ -22,8 +22,9 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim css As CSSFile = resource.styles
         Dim names As String() = table.Headers.ToArray
         Dim thead As String = BuildRowHtml(names, css, isHeader:=True)
+        Dim maxRows As Integer = resource.options.TryGetValue("nrows", [default]:=-1)
 
-        For Each row As RowObject In table.Rows
+        For Each row As RowObject In If(maxRows > 0, table.Rows.Take(maxRows), table.Rows)
             tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row.AsEnumerable, css, isHeader:=False)}</tr>")
         Next
 
