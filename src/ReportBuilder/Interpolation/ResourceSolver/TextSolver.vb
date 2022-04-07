@@ -11,7 +11,7 @@ Public Class TextSolver : Inherits ResourceSolver
         If resource.styles.IsNullOrEmpty Then
             Return WebUtility.HtmlEncode(resource.text)
         Else
-            Return $"<span style='{resource.styles}'>{WebUtility.HtmlEncode(resource.text)}</span>"
+            Return $"<span style='{resource.styles("*")?.CSSValue}'>{WebUtility.HtmlEncode(resource.text)}</span>"
         End If
     End Function
 End Class

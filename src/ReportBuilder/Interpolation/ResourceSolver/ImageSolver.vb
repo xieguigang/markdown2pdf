@@ -12,7 +12,7 @@ Public Class ImageSolver : Inherits ResourceSolver
 
         If html Then
             If filepath.FileExists Then
-                Return $"<img style='{resource.styles}' src='{filepath}' />"
+                Return $"<img style='{resource.styles("*")?.CSSValue}' src='{filepath}' />"
             Else
                 Return any.ToString(resource.options.TryGetValue("missing", [default]:=""))
             End If
