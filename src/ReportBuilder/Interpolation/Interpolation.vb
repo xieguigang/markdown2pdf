@@ -107,12 +107,19 @@ Public Module Interpolation
 
     Private Function parseOpts(opts As JsonObject) As Dictionary(Of String, Object)
         Dim options As New Dictionary(Of String, Object)
+        Dim value As JsonValue
 
         If opts.HasObjectKey("options") Then
             opts = opts("options")
 
             For Each key As String In opts.ObjectKeys
-                options(key) = DirectCast(opts(key), JsonValue).value
+                value = DirectCast(opts(key), JsonValue)
+
+                If value.UnderlyingType Is GetType(String) Then
+                    options(key) = value.GetStripString
+                Else
+                    options(key) = value.value
+                End If
             Next
         End If
 

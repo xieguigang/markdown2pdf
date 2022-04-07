@@ -35,7 +35,8 @@ Public Class ResourceDescription
             .text = text.ToString,
             .image = image.ToString,
             .table = table.ToString,
-            .styles = styles
+            .styles = styles,
+            .options = options
         }
     End Function
 

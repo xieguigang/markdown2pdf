@@ -1,9 +1,4 @@
-﻿Imports System.Net
-Imports System.Text
-Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.Data.csv.IO
-Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
-Imports any = Microsoft.VisualBasic.Scripting
+﻿Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class ImageSolver : Inherits ResourceSolver
 
