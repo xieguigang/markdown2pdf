@@ -205,7 +205,7 @@ getStringValue:
         End If
 
         If copyToTemp Then
-            Dim tmpdir As String = TempFileSystem.GetAppSysTempFile(ext:="__pdf_template", sessionID:=App.PID.ToHexString, prefix:="wkhtmltopdf")
+            Dim tmpdir As String = TempFileSystem.GetAppSysTempFile(ext:="__pdf_template", sessionID:="", prefix:="wkhtmltopdf")
             Call New Directory(template).CopyTo(tmpdir).ToArray
             template = tmpdir
         End If
