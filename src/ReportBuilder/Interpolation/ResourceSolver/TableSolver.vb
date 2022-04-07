@@ -20,12 +20,14 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim table As DataFrame = DataFrame.Load(tablefile)
         Dim tbody As New StringBuilder
         Dim css As CSSFile = resource.styles
-        Dim names As String() = table.Headers.ToArray
-        Dim thead As String = BuildRowHtml(names, css, isHeader:=True)
+        Dim names As String() = table.Headers.Select(Function(str) str.Trim(""""c)).ToArray
         Dim maxRows As Integer = resource.options.TryGetValue("nrows", [default]:=-1)
+        Dim fieldNames As String() = resource.options.TryGetValue("fields", [default]:=Nothing)
+        Dim ordinals As Integer() = If(fieldNames Is Nothing, Nothing, fieldNames.Select(Function(d) names.IndexOf(d))).ToArray
+        Dim thead As String = BuildRowHtml(names, ordinals, css, isHeader:=True)
 
         For Each row As RowObject In If(maxRows > 0, table.Rows.Take(maxRows), table.Rows)
-            tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row.AsEnumerable, css, isHeader:=False)}</tr>")
+            tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row.AsEnumerable, ordinals, css, isHeader:=False)}</tr>")
         Next
 
         Return $"<table style='{any.ToString(css("table")?.CSSValue)}'>
@@ -42,8 +44,11 @@ Public Class TableSolver : Inherits ResourceSolver
 </table>"
     End Function
 
-    Private Function BuildRowHtml(cells As IEnumerable(Of String), css As CSSFile, isHeader As Boolean) As String
-        Return cells _
+    Private Function BuildRowHtml(cells As IEnumerable(Of String), ordinals As Integer(), css As CSSFile, isHeader As Boolean) As String
+        Dim allStrs As String() = cells.ToArray
+        Dim partStrs As String() = ordinals.Select(Function(i) allStrs(i)).ToArray
+
+        Return partStrs _
             .Select(Function(s)
                         If isHeader Then
                             Return $"<th style='{any.ToString(css("th")?.CSSValue)}'>{s.Trim(""""c)}</th>"

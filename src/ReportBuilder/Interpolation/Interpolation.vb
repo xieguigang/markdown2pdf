@@ -114,13 +114,26 @@ Public Module Interpolation
             opts = opts("options")
 
             For Each key As String In opts.ObjectKeys
-                value = DirectCast(opts(key), JsonValue)
+                Select Case opts(key).GetType
+                    Case GetType(JsonValue)
+                        value = DirectCast(opts(key), JsonValue)
 
-                If value.UnderlyingType Is GetType(String) Then
-                    options(key) = value.GetStripString
-                Else
-                    options(key) = value.value
-                End If
+                        If value.UnderlyingType Is GetType(String) Then
+                            options(key) = value.GetStripString
+                        Else
+                            options(key) = value.value
+                        End If
+                    Case GetType(JsonArray)
+                        Dim array As String() = DirectCast(opts(key), JsonArray) _
+                            .Select(Function(d)
+                                        Return DirectCast(d, JsonValue).GetStripString
+                                    End Function) _
+                            .ToArray
+
+                        options(key) = array
+                    Case Else
+                        Throw New NotImplementedException
+                End Select
             Next
         End If
 
