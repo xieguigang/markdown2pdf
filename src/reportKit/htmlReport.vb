@@ -132,24 +132,13 @@ getStringValue:
         Return singleVal
     End Function
 
-    <ExportAPI("loadResource")>
-    <RApiReturn(GetType(list))>
-    Public Function loadResource(description As JsonObject,
-                                 <RDefaultExpression>
-                                 Optional workdir As Object = "~getwd();",
-                                 Optional meta As list = Nothing,
-                                 Optional env As Environment = Nothing) As Object
-
-        Dim res As Dictionary(Of String, ResourceDescription) = Interpolation.ParseResourceList(description)
-        Dim contents As New Dictionary(Of String, Object)
+    Private Function getMetaData(meta As list, engine As RInterpreter) As Object
+        Dim metadata As New Dictionary(Of String, String)
         Dim singleVal As [Variant](Of String, Message)
-        Dim engine As RInterpreter = env.globalEnvironment.Rscript
 
         If meta Is Nothing Then
             meta = New list
         End If
-
-        Dim metadata As New Dictionary(Of String, String)
 
         For Each line In meta.slots
             singleVal = engine.evalString(line.Value)
@@ -160,6 +149,27 @@ getStringValue:
                 metadata(line.Key) = singleVal.TryCast(Of String)
             End If
         Next
+
+        Return metadata
+    End Function
+
+    <ExportAPI("loadResource")>
+    <RApiReturn(GetType(list))>
+    Public Function loadResource(description As JsonObject,
+                                 <RDefaultExpression>
+                                 Optional workdir As Object = "~getwd();",
+                                 Optional meta As list = Nothing,
+                                 Optional env As Environment = Nothing) As Object
+
+        Dim engine As RInterpreter = env.globalEnvironment.Rscript
+        Dim metadata As Object = getMetaData(meta, engine)
+
+        If TypeOf metadata Is Message Then
+            Return metadata
+        End If
+
+        Dim contents As New Dictionary(Of String, Object)
+        Dim res As Dictionary(Of String, ResourceDescription) = Interpolation.ParseResourceList(description, metadata)
 
         For Each file As String In res.Keys
             Dim resVal As ResourceDescription = res(file)
@@ -195,7 +205,7 @@ getStringValue:
         End If
 
         If copyToTemp Then
-            Dim tmpdir As String = TempFileSystem.GetAppSysTempFile
+            Dim tmpdir As String = TempFileSystem.GetAppSysTempFile(ext:="__pdf_template", sessionID:="", prefix:="wkhtmltopdf")
             Call New Directory(template).CopyTo(tmpdir).ToArray
             template = tmpdir
         End If
