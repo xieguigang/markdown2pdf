@@ -8,8 +8,9 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <Configurations>Debug;Release;Rsharp_app_release</Configurations>
+    <Configurations>Debug;Release;Rsharp_app_release;mzkit_win32</Configurations>
 	  <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+	  <DefineConstants>netcore5=1</DefineConstants>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -36,6 +37,10 @@
     <DocumentationFile>WkHtmlToPdf.CLI.InteropService.xml</DocumentationFile>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='mzkit_win32|AnyCPU'">
+    <DocumentationFile>WkHtmlToPdf.CLI.InteropService.xml</DocumentationFile>
+  </PropertyGroup>
+
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <DocumentationFile>WkHtmlToPdf.CLI.InteropService.xml</DocumentationFile>
     <RemoveIntegerChecks>true</RemoveIntegerChecks>
@@ -47,6 +52,17 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Rsharp_app_release|x64'">
+    <DocumentationFile>WkHtmlToPdf.CLI.InteropService.xml</DocumentationFile>
+    <RemoveIntegerChecks>true</RemoveIntegerChecks>
+    <Optimize>false</Optimize>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineConstants>netcore5=1,UNIX=1</DefineConstants>
+    <OutputPath>../../assembly/</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='mzkit_win32|x64'">
     <DocumentationFile>WkHtmlToPdf.CLI.InteropService.xml</DocumentationFile>
     <RemoveIntegerChecks>true</RemoveIntegerChecks>
     <Optimize>false</Optimize>
