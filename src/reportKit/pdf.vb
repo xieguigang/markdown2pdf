@@ -39,6 +39,7 @@
 
 #End Region
 
+Imports System.IO
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging
@@ -56,6 +57,22 @@ Imports REnv = SMRUCC.Rsharp.Runtime
 
 <Package("pdf", Category:=APICategories.UtilityTools)>
 Module pdf
+
+    ''' <summary>
+    ''' convert wmf image to pdf file
+    ''' </summary>
+    ''' <param name="wmf"></param>
+    ''' <param name="pdfsave"></param>
+    <ExportAPI("convertWmf")>
+    Public Sub convertWmf(wmf As String, pdfsave As String)
+        Dim img1 = iTextSharp.text.ImgWMF.GetInstance(wmf)
+        Dim pdfDoc As New iTextSharp.text.Document(img1)
+        iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, New FileStream(pdfsave, FileMode.Create))
+        pdfDoc.Open()
+        img1.SetAbsolutePosition(0, 0)
+        pdfDoc.Add(img1)
+        pdfDoc.Close()
+    End Sub
 
     <ExportAPI("pdfPage_options")>
     Public Function pdfPageOptions(Optional javascriptdelay# = 3000,
@@ -179,12 +196,12 @@ Module pdf
         End If
 
         Dim content As New PdfDocument With {
-            .Url = contentUrls,
+            .URL = contentUrls,
             .footer = If(footer, New Decoration With {.right = "[page] / [toPage]"}),
             .header = header,
-            .globalOptions = If(opts, New GlobalOptions With {.imagequality = 100}),
-            .page = If(pageOpts, New Page With {.javascriptdelay = 3000, .loaderrorhandling = handlers.ignore, .enableforms = True}),
-            .pagesize = New PageSize With {.pagesize = pdf_size},
+            .GlobalOptions = If(opts, New GlobalOptions With {.imagequality = 100}),
+            .Page = If(pageOpts, New Page With {.javascriptdelay = 3000, .loaderrorhandling = handlers.ignore, .enableforms = True}),
+            .PageSize = New PageSize With {.PageSize = pdf_size},
             .LocalConfigMode = False
         }
         Dim workdir As String = TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf")
