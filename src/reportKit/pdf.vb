@@ -62,24 +62,24 @@ Imports REnv = SMRUCC.Rsharp.Runtime
 <Package("pdf", Category:=APICategories.UtilityTools)>
 Module pdf
 
-    ''' <summary>
-    ''' convert wmf image to pdf file
-    ''' </summary>
-    ''' <param name="wmf"></param>
-    ''' <param name="pdfsave"></param>
-    <ExportAPI("convertWmf")>
-    Public Sub convertWmf(wmf As String, pdfsave As String)
-        Dim imageData = ImageDataFactory.Create(wmf)
-        Dim PdfDocument As New iText.Kernel.Pdf.PdfDocument(New PdfWriter(pdfsave))
-        Dim document As New Document(PdfDocument)
+    '''' <summary>
+    '''' convert wmf image to pdf file
+    '''' </summary>
+    '''' <param name="wmf"></param>
+    '''' <param name="pdfsave"></param>
+    '<ExportAPI("convertWmf")>
+    'Public Sub convertWmf(wmf As String, pdfsave As String)
+    '    Dim imageData = ImageDataFactory.Create(wmf)
+    '    Dim PdfDocument As New iText.Kernel.Pdf.PdfDocument(New PdfWriter(pdfsave))
+    '    Dim document As New Document(PdfDocument)
 
-        Dim image = New Image(imageData)
-        image.SetWidth(PdfDocument.GetDefaultPageSize().GetWidth() - 50)
-        image.SetAutoScaleHeight(True)
+    '    Dim image = New Image(imageData)
+    '    image.SetWidth(PdfDocument.GetDefaultPageSize().GetWidth() - 50)
+    '    image.SetAutoScaleHeight(True)
 
-        document.Add(image)
-        PdfDocument.Close()
-    End Sub
+    '    document.Add(image)
+    '    PdfDocument.Close()
+    'End Sub
 
     <ExportAPI("pdfPage_options")>
     Public Function pdfPageOptions(Optional javascriptdelay# = 3000,

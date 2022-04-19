@@ -67,7 +67,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-	  <PackageReference Include="itext7" Version="7.2.2" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	  <PackageReference Include="System.Resources.Extensions" Version="6.0.0" />
   </ItemGroup>
