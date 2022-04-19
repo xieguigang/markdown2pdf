@@ -40,6 +40,10 @@
 #End Region
 
 Imports System.IO
+Imports iText.IO.Image
+Imports iText.Kernel.Pdf
+Imports iText.Layout
+Imports iText.Layout.Element
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging
@@ -65,13 +69,16 @@ Module pdf
     ''' <param name="pdfsave"></param>
     <ExportAPI("convertWmf")>
     Public Sub convertWmf(wmf As String, pdfsave As String)
-        Dim img1 = iTextSharp.text.ImgWMF.GetInstance(wmf)
-        Dim pdfDoc As New iTextSharp.text.Document(img1)
-        iTextSharp.text.pdf.PdfWriter.GetInstance(pdfDoc, New FileStream(pdfsave, FileMode.Create))
-        pdfDoc.Open()
-        img1.SetAbsolutePosition(0, 0)
-        pdfDoc.Add(img1)
-        pdfDoc.Close()
+        Dim imageData = ImageDataFactory.Create(wmf)
+        Dim PdfDocument As New iText.Kernel.Pdf.PdfDocument(New PdfWriter(pdfsave))
+        Dim document As New Document(PdfDocument)
+
+        Dim image = New Image(imageData)
+        image.SetWidth(PdfDocument.GetDefaultPageSize().GetWidth() - 50)
+        image.SetAutoScaleHeight(True)
+
+        document.Add(image)
+        PdfDocument.Close()
     End Sub
 
     <ExportAPI("pdfPage_options")>
@@ -195,13 +202,13 @@ Module pdf
             Return Internal.debug.stop("no pdf content files was found!", env)
         End If
 
-        Dim content As New PdfDocument With {
-            .URL = contentUrls,
+        Dim content As New WkHtmlToPdf.Arguments.PdfDocument With {
+            .Url = contentUrls,
             .footer = If(footer, New Decoration With {.right = "[page] / [toPage]"}),
             .header = header,
-            .GlobalOptions = If(opts, New GlobalOptions With {.imagequality = 100}),
-            .Page = If(pageOpts, New Page With {.javascriptdelay = 3000, .loaderrorhandling = handlers.ignore, .enableforms = True}),
-            .PageSize = New PageSize With {.PageSize = pdf_size},
+            .globalOptions = If(opts, New GlobalOptions With {.imagequality = 100}),
+            .page = If(pageOpts, New Page With {.javascriptdelay = 3000, .loaderrorhandling = handlers.ignore, .enableforms = True}),
+            .pagesize = New PageSize With {.pagesize = pdf_size},
             .LocalConfigMode = False
         }
         Dim workdir As String = TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf")

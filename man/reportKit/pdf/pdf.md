@@ -2,6 +2,7 @@
 
 
 
++ [convertWmf](pdf/convertWmf.1) convert wmf image to pdf file
 + [pdfPage_options](pdf/pdfPage_options.1) 
 + [pdfGlobal_options](pdf/pdfGlobal_options.1) 
 + [pdfDecoration](pdf/pdfDecoration.1) 
