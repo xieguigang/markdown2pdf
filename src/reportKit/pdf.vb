@@ -40,10 +40,10 @@
 #End Region
 
 Imports System.IO
-Imports iText.IO.Image
-Imports iText.Kernel.Pdf
-Imports iText.Layout
-Imports iText.Layout.Element
+'Imports iText.IO.Image
+'Imports iText.Kernel.Pdf
+'Imports iText.Layout
+'Imports iText.Layout.Element
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging

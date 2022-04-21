@@ -374,6 +374,11 @@
     <Compile Include="HTML\HTMLReport.vb" />
     <Compile Include="EMailMsg.vb" />
     <Compile Include="Interpolation\Interpolation.vb" />
+    <Compile Include="Interpolation\ResourceDescription.vb" />
+    <Compile Include="Interpolation\ResourceSolver\ImageSolver.vb" />
+    <Compile Include="Interpolation\ResourceSolver\ResourceSolver.vb" />
+    <Compile Include="Interpolation\ResourceSolver\TableSolver.vb" />
+    <Compile Include="Interpolation\ResourceSolver\TextSolver.vb" />
     <Compile Include="Navigation.vb" />
     <Compile Include="HTML\HTMLExtensions.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
@@ -434,6 +439,10 @@
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\47-dotnet_Microsoft.VisualBasic.vbproj">
       <Project>{fecce1fd-e1d4-49e3-a668-60bb5e7aed99}</Project>
       <Name>47-dotnet_Microsoft.VisualBasic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\application%25json\application.json.vbproj">
+      <Project>{32228818-26f1-44df-8d40-347136c743cd}</Project>
+      <Name>application.json</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\text%25html\MIME-htmls.vbproj">
       <Project>{2dd4be80-ddc3-4767-94a7-10f1c3395716}</Project>
