@@ -1,7 +1,7 @@
 #' check the wkhtmltpdf config is valid or not
 #' 
-check_wkhtmltopdf = function() {
-    bin = getOption("wkhtmltopdf");
+const check_wkhtmltopdf = function() {
+    const bin = getOption("wkhtmltopdf");
 
     if (file.exists(bin)) {
         TRUE;
