@@ -24,7 +24,21 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim maxRows As Integer = resource.options.TryGetValue("nrows", [default]:=-1)
         Dim fieldNames As String() = resource.options.TryGetValue("fields", [default]:=Nothing)
         Dim ordinals As Integer() = If(fieldNames Is Nothing, Nothing, fieldNames.Select(Function(d) names.IndexOf(d)).ToArray)
-        Dim thead As String = BuildRowHtml(names, ordinals, css, isHeader:=True)
+        Dim thead As String
+
+        If ordinals.Any(Function(i) i = -1) Then
+            If fieldNames Is Nothing Then
+                Return resource.options.TryGetValue("no_content", [default]:="<span style='color: red;'>No table content data.</span>")
+            Else
+                thead = fieldNames _
+                    .Select(Function(s)
+                                Return $"<th style='{any.ToString(css("th")?.CSSValue)}'>{s.Trim(""""c)}</th>"
+                            End Function) _
+                    .JoinBy(vbCrLf)
+            End If
+        Else
+            thead = BuildRowHtml(names, ordinals, css, isHeader:=True)
+        End If
 
         For Each row As RowObject In If(maxRows > 0, table.Rows.Take(maxRows), table.Rows)
             tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row.AsEnumerable, ordinals, css, isHeader:=False)}</tr>")
