@@ -26,7 +26,7 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim ordinals As Integer() = If(fieldNames Is Nothing, Nothing, fieldNames.Select(Function(d) names.IndexOf(d)).ToArray)
         Dim thead As String
 
-        If ordinals.Any(Function(i) i = -1) Then
+        If Not ordinals Is Nothing AndAlso ordinals.Any(Function(i) i = -1) Then
             If fieldNames Is Nothing Then
                 Return resource.options.TryGetValue("no_content", [default]:="<span style='color: red;'>No table content data.</span>")
             Else
