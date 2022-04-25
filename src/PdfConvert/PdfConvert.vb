@@ -123,14 +123,24 @@ Public Module PdfConvert
         End If
 
         Try
+            Dim tmpfile As String = TempFileSystem.GetAppSysTempFile(
+                ext:=".pdf",
+                sessionID:="wkhtmltopdf_tempWork",
+                prefix:="output_contents"
+            )
+
+            woutput.OutputFilePath = tmpfile
+
+            Call tmpfile.ParentPath.MakeDir
             Call outputPdfFilePath.ParentPath.MakeDir
             Call environment.RunProcess(
                 args:=argument,
                 url:=url.JoinBy(ASCII.LF),
                 document:=document,
-                outputPdfFilePath:=outputPdfFilePath,
+                outputPdfFilePath:=tmpfile,
                 woutput:=woutput
             )
+            Call tmpfile.FileCopy(outputPdfFilePath)
         Finally
             If delete AndAlso File.Exists(outputPdfFilePath) Then
                 File.Delete(outputPdfFilePath)

@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.Net.Http
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class ImageSolver : Inherits ResourceSolver
@@ -11,18 +12,11 @@ Public Class ImageSolver : Inherits ResourceSolver
         Dim filepath As String = getfile(workdir)
         Dim html As Boolean = resource.options.TryGetValue("html", [default]:=False)
 
-        ' 20220425
-        ' copy image to temp dir, and then returns the temp file path
-        ' to fix the file path error in wkhtmltopdf
-        Dim tmpfile As String = TempFileSystem.GetAppSysTempFile(
-            ext:=$".{filepath.ExtensionSuffix}",
-            sessionID:="image_cache_store",
-            prefix:="imgfile_"
-        )
-
         If filepath.FileExists Then
-            filepath.FileCopy(tmpfile)
-            filepath = $"file://{tmpfile}"
+            ' 20220425
+            ' try to convert the image data to base64 data URI
+            ' to fix the file path error in wkhtmltopdf
+            filepath = New DataURI(filepath).ToString
         End If
 
         If html Then
