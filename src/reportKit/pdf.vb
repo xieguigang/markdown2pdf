@@ -206,7 +206,7 @@ Module pdf
             .Url = contentUrls,
             .footer = If(footer, New Decoration With {.right = "[page] / [toPage]"}),
             .header = header,
-            .globalOptions = If(opts, New GlobalOptions With {.imagequality = 100}),
+            .globalOptions = If(opts, New GlobalOptions With {.imagequality = 100, .enablelocalfileaccess = True}),
             .page = If(pageOpts, New Page With {.javascriptdelay = 3000, .loaderrorhandling = handlers.ignore, .enableforms = True}),
             .pagesize = New PageSize With {.pagesize = pdf_size},
             .LocalConfigMode = False

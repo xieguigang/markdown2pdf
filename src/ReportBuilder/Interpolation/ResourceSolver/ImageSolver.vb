@@ -16,13 +16,13 @@ Public Class ImageSolver : Inherits ResourceSolver
         ' to fix the file path error in wkhtmltopdf
         Dim tmpfile As String = TempFileSystem.GetAppSysTempFile(
             ext:=$".{filepath.ExtensionSuffix}",
-            sessionID:=App.PID.ToHexString,
-            prefix:="image_cache_"
+            sessionID:="image_cache_store",
+            prefix:="imgfile_"
         )
 
         If filepath.FileExists Then
             filepath.FileCopy(tmpfile)
-            filepath = tmpfile
+            filepath = $"file://{tmpfile}"
         End If
 
         If html Then
