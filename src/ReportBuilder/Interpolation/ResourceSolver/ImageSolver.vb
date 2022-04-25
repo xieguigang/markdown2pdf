@@ -37,7 +37,7 @@ Public Class ImageSolver : Inherits ResourceSolver
             .StringSplit("[/\\]") _
             .Select(Function(str) str.UrlEncode) _
             .ToArray
-        Dim newPath As String = tokens.JoinBy("/")
+        Dim newPath As String = tokens.JoinBy("/").StringReplace("[/]{2,}", "/")
 
         Return newPath
     End Function
