@@ -141,6 +141,7 @@ Public Module PdfConvert
                 woutput:=woutput
             )
             Call tmpfile.FileCopy(outputPdfFilePath)
+            Call Console.WriteLine($"  --> {outputPdfFilePath.GetFullPath}")
         Finally
             If delete AndAlso File.Exists(outputPdfFilePath) Then
                 File.Delete(outputPdfFilePath)
