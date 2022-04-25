@@ -73,6 +73,11 @@ Public Module htmlReportEngine
         Return New TemplateHandler(file:=url)
     End Function
 
+    <ExportAPI("encodeLocalURL")>
+    Public Function encodeLocalURL(filepath As String) As String
+        Return ImageSolver.encodeLocalURL(filepath)
+    End Function
+
     ''' <summary>
     ''' Render markdown to html text
     ''' </summary>
