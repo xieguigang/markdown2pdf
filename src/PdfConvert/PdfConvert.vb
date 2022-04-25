@@ -116,21 +116,21 @@ Public Module PdfConvert
             delete = True
         End If
 
+        Dim tmpfile As String = TempFileSystem.GetAppSysTempFile(
+            ext:=".pdf",
+            sessionID:="wkhtmltopdf_tempWork",
+            prefix:="output_contents"
+        )
+
+        woutput.OutputFilePath = tmpfile
+
         If Not File.Exists(environment.WkHtmlToPdfPath) Then
             Throw New PdfConvertException($"File '{environment.WkHtmlToPdfPath}' not found. Check if wkhtmltopdf application is installed.")
         Else
-            argument = document.BuildArguments(url, outputPdfFilePath)
+            argument = document.BuildArguments(url, tmpfile)
         End If
 
         Try
-            Dim tmpfile As String = TempFileSystem.GetAppSysTempFile(
-                ext:=".pdf",
-                sessionID:="wkhtmltopdf_tempWork",
-                prefix:="output_contents"
-            )
-
-            woutput.OutputFilePath = tmpfile
-
             Call tmpfile.ParentPath.MakeDir
             Call outputPdfFilePath.ParentPath.MakeDir
             Call environment.RunProcess(
