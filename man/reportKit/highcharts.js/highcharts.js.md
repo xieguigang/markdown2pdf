@@ -1,4 +1,4 @@
-﻿# highcharts.js
+# highcharts.js
 
 
 
