@@ -1,5 +1,4 @@
-﻿Imports Microsoft.VisualBasic.ApplicationServices
-Imports Microsoft.VisualBasic.Net.Http
+﻿Imports Microsoft.VisualBasic.Net.Http
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class ImageSolver : Inherits ResourceSolver
