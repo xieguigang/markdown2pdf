@@ -1,7 +1,9 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
+Imports Microsoft.VisualBasic.My.JavaScript
 Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class TableSolver : Inherits ResourceSolver
@@ -22,7 +24,7 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim css As CSSFile = resource.styles
         Dim names As String() = table.Headers.Select(Function(str) str.Trim(""""c)).ToArray
         Dim maxRows As Integer = resource.options.TryGetValue("nrows", [default]:=-1)
-        Dim orderBy As String = resource.options.TryGetValue("order_by", [default]:=Nothing)
+        Dim orderBy As Object = resource.options.TryGetValue("order_by", [default]:=Nothing)
         Dim fieldNames As String() = resource.options.TryGetValue("fields", [default]:=Nothing)
         Dim ordinals As Integer() = If(fieldNames Is Nothing, Nothing, fieldNames.Select(Function(d) names.IndexOf(d)).ToArray)
         Dim thead As String
@@ -41,7 +43,7 @@ Public Class TableSolver : Inherits ResourceSolver
             thead = BuildRowHtml(names, ordinals, css, isHeader:=True)
         End If
 
-        For Each row As RowObject In If(maxRows > 0, table.Rows.Take(maxRows), table.Rows)
+        For Each row As RowObject In RowSelector(table, maxRows, orderBy)
             tbody.AppendLine($"<tr style='{any.ToString(css("tr")?.CSSValue)}'>{BuildRowHtml(row.AsEnumerable, ordinals, css, isHeader:=False)}</tr>")
         Next
 
@@ -66,10 +68,63 @@ Public Class TableSolver : Inherits ResourceSolver
     ''' <param name="maxRows"></param>
     ''' <param name="orderBy"></param>
     ''' <returns></returns>
-    Private Function RowSelector(table As DataFrame, maxRows As Integer, orderBy As String) As IEnumerable(Of RowObject)
-        If Not orderBy.StringEmpty Then
+    Private Iterator Function RowSelector(table As DataFrame, maxRows As Integer, orderBy As Object) As IEnumerable(Of RowObject)
+        Dim orders As Integer()
 
+        If Not orderBy Is Nothing Then
+            Dim opts As JavaScriptObject
+
+            If TypeOf orderBy Is String Then
+                ' order by field by default .NET comparer function
+                opts = New JavaScriptObject
+                opts("field") = orderBy
+                opts("desc") = False
+            ElseIf TypeOf orderBy Is JavaScriptObject Then
+                opts = orderBy
+            Else
+                Throw New NotImplementedException
+            End If
+
+            Dim eval As String = opts("eval")
+            Dim evalFunc As Func(Of String, Object)
+
+            If eval Is Nothing Then
+                evalFunc = Function(str) str
+            Else
+                Select Case eval
+                    Case "nchars" : evalFunc = Function(str) Strings.Len(str)
+                    Case Else
+                        Throw New NotImplementedException
+                End Select
+            End If
+
+            Dim desc As Boolean = opts("desc")
+            Dim field As String = opts("field")
+            Dim fieldOrdinal As Integer = table.GetOrdinal(field)
+            Dim vec As String() = table.Column(fieldOrdinal).ToArray
+            Dim vecVal = vec.Select(evalFunc).Select(Function(any, i) (any, i)).ToArray
+
+            If desc Then
+                orders = vecVal _
+                    .OrderByDescending(Function(x) x.any) _
+                    .Select(Function(x) x.i) _
+                    .ToArray
+            Else
+                orders = vecVal _
+                    .OrderBy(Function(x) x.any) _
+                    .Select(Function(x) x.i) _
+                    .ToArray
+            End If
+        Else
+            ' no orders
+            orders = table.RowNumbers.Sequence.ToArray
         End If
+
+        maxRows = If(maxRows > 0, maxRows, table.RowNumbers)
+
+        For i As Integer = 0 To maxRows - 1
+            Yield table(i)
+        Next
     End Function
 
     Private Function BuildRowHtml(cells As IEnumerable(Of String), ordinals As Integer(), css As CSSFile, isHeader As Boolean) As String
