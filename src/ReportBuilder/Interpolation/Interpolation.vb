@@ -44,6 +44,7 @@ Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
+Imports Microsoft.VisualBasic.My.JavaScript
 
 Public Module Interpolation
 
@@ -108,36 +109,46 @@ Public Module Interpolation
 
     Private Function parseOpts(opts As JsonObject) As Dictionary(Of String, Object)
         Dim options As New Dictionary(Of String, Object)
-        Dim value As JsonValue
 
         If opts.HasObjectKey("options") Then
             opts = opts("options")
 
             For Each key As String In opts.ObjectKeys
-                Select Case opts(key).GetType
-                    Case GetType(JsonValue)
-                        value = DirectCast(opts(key), JsonValue)
-
-                        If value.UnderlyingType Is GetType(String) Then
-                            options(key) = value.GetStripString
-                        Else
-                            options(key) = value.value
-                        End If
-                    Case GetType(JsonArray)
-                        Dim array As String() = DirectCast(opts(key), JsonArray) _
-                            .Select(Function(d)
-                                        Return DirectCast(d, JsonValue).GetStripString
-                                    End Function) _
-                            .ToArray
-
-                        options(key) = array
-                    Case Else
-                        Throw New NotImplementedException
-                End Select
+                options(key) = parseValue(opts(key))
             Next
         End If
 
         Return options
+    End Function
+
+    Private Function parseValue(val As JsonElement) As Object
+        Select Case val.GetType
+            Case GetType(JsonValue)
+                Dim value = DirectCast(val, JsonValue)
+
+                If value.UnderlyingType Is GetType(String) Then
+                    Return value.GetStripString
+                Else
+                    Return value.value
+                End If
+            Case GetType(JsonArray)
+                Dim array As String() = DirectCast(val, JsonArray) _
+                    .Select(Function(d)
+                                Return DirectCast(d, JsonValue).GetStripString
+                            End Function) _
+                    .ToArray
+
+                Return array
+            Case Else
+                Dim obj As New JavaScriptObject
+                Dim source As JsonObject = DirectCast(val, JsonObject)
+
+                For Each keyName As String In source.ObjectKeys
+                    obj(keyName) = parseValue(source(keyName))
+                Next
+
+                Return obj
+        End Select
     End Function
 
     <Extension>

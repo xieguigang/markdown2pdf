@@ -22,6 +22,7 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim css As CSSFile = resource.styles
         Dim names As String() = table.Headers.Select(Function(str) str.Trim(""""c)).ToArray
         Dim maxRows As Integer = resource.options.TryGetValue("nrows", [default]:=-1)
+        Dim orderBy As String = resource.options.TryGetValue("order_by", [default]:=Nothing)
         Dim fieldNames As String() = resource.options.TryGetValue("fields", [default]:=Nothing)
         Dim ordinals As Integer() = If(fieldNames Is Nothing, Nothing, fieldNames.Select(Function(d) names.IndexOf(d)).ToArray)
         Dim thead As String
@@ -56,6 +57,19 @@ Public Class TableSolver : Inherits ResourceSolver
 </tbody>
 
 </table>"
+    End Function
+
+    ''' <summary>
+    ''' orderBy -> take
+    ''' </summary>
+    ''' <param name="table"></param>
+    ''' <param name="maxRows"></param>
+    ''' <param name="orderBy"></param>
+    ''' <returns></returns>
+    Private Function RowSelector(table As DataFrame, maxRows As Integer, orderBy As String) As IEnumerable(Of RowObject)
+        If Not orderBy.StringEmpty Then
+
+        End If
     End Function
 
     Private Function BuildRowHtml(cells As IEnumerable(Of String), ordinals As Integer(), css As CSSFile, isHeader As Boolean) As String
