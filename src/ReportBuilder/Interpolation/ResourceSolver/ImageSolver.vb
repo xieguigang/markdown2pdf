@@ -10,16 +10,18 @@ Public Class ImageSolver : Inherits ResourceSolver
     Public Overrides Function GetHtml(workdir As String) As String
         Dim filepath As String = getfile(workdir)
         Dim html As Boolean = resource.options.TryGetValue("html", [default]:=False)
+        Dim isDataUri As Boolean = False
 
         If filepath.FileExists Then
             ' 20220425
             ' try to convert the image data to base64 data URI
             ' to fix the file path error in wkhtmltopdf
             filepath = New DataURI(filepath).ToString
+            isDataUri = True
         End If
 
         If html Then
-            If filepath.FileExists Then
+            If isDataUri OrElse filepath.FileExists Then
                 Return $"<img style='{resource.styles("*")?.CSSValue}' src='{filepath}' />"
             Else
                 Return any.ToString(resource.options.TryGetValue("missing", [default]:=""))
