@@ -141,7 +141,10 @@ Public Class TableSolver : Inherits ResourceSolver
             Dim field As String = opts("field")
             Dim fieldOrdinal As Integer = table.GetOrdinal(field)
             Dim vec As String() = table.Column(fieldOrdinal).ToArray
-            Dim vecVal = vec.Select(evalFunc).Select(Function(any, i) (any, i)).ToArray
+            Dim vecVal = vec _
+                .Select(evalFunc) _
+                .Select(Function(any, i) (any, i)) _
+                .ToArray
 
             If desc Then
                 orders = vecVal _
@@ -181,7 +184,7 @@ Public Class TableSolver : Inherits ResourceSolver
             partStrs = From i As NamedValue(Of Integer)
                        In ordinals
                        Let str As String = allStrs(i)
-                       Let val As String = If(i.Description.StringEmpty, str, Val(str).ToString(format:=i.Description))
+                       Let val As String = If(i.Description.StringEmpty OrElse isHeader, str, Val(str).ToString(format:=i.Description))
                        Select val
         End If
 
