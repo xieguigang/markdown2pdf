@@ -123,7 +123,7 @@ Public Class TableSolver : Inherits ResourceSolver
         maxRows = If(maxRows > 0, maxRows, table.RowNumbers)
 
         For i As Integer = 0 To maxRows - 1
-            Yield table(i)
+            Yield table(orders(i))
         Next
     End Function
 
