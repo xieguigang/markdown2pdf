@@ -3,6 +3,7 @@
 html templat handler
 
 + [htmlTemplate](htmlReport/htmlTemplate.1) Create a html template model from the given template file
++ [pageNumbers](htmlReport/pageNumbers.1) assign the page numbers to the html templates
 + [encodeLocalURL](htmlReport/encodeLocalURL.1) 
 + [markdown.html](htmlReport/markdown.html.1) Render markdown to html text
 + [interpolate](htmlReport/interpolate.1) do report data interpolation.
