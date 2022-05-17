@@ -117,6 +117,12 @@ Namespace HTML
             Me.directory = directory.GetDirectoryFullPath
         End Sub
 
+        Public Function GetPageByName(name As String) As TemplateHandler
+            Return templates.Values _
+                .Where(Function(page) page.path.BaseName = name) _
+                .FirstOrDefault
+        End Function
+
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Sub SetByIndex(index As String, value As Object) Implements IDataIndex.SetByIndex
             If value Is Nothing Then

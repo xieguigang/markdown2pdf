@@ -41,6 +41,7 @@
 
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices
+Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.FileIO
@@ -71,6 +72,38 @@ Public Module htmlReportEngine
     <ExportAPI("htmlTemplate")>
     Public Function template(url As String) As TemplateHandler
         Return New TemplateHandler(file:=url)
+    End Function
+
+    ''' <summary>
+    ''' assign the page numbers to the html templates
+    ''' </summary>
+    ''' <param name="report"></param>
+    ''' <param name="orders">
+    ''' the file basename of the html files
+    ''' </param>
+    ''' <returns></returns>
+    <ExportAPI("pageNumbers")>
+    Public Function pageNumbers(report As HTMLReport, orders As String(),
+                                Optional pageStart As Integer = 1,
+                                Optional env As Environment = Nothing) As HTMLReport
+
+        Dim pageNumber As Integer = pageStart
+        Dim page As TemplateHandler
+
+        For Each name As String In orders
+            page = report.GetPageByName(name)
+
+            If page Is Nothing Then
+                Call env.AddMessage($"missing page '{name}' in the template!", MSG_TYPES.WRN)
+            End If
+
+            If InStr(page.html, "[page]") > 1 Then
+                page.builder.Replace("[page]", pageNumber)
+                pageNumber += 1
+            End If
+        Next
+
+        Return report
     End Function
 
     <ExportAPI("encodeLocalURL")>
