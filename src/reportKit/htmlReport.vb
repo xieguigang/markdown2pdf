@@ -211,9 +211,15 @@ getStringValue:
 
         For Each file As String In res.Keys
             Dim resVal As ResourceDescription = res(file)
-            Dim html As String = resVal _
-                .FillMetadata(metadata) _
-                .CreateResourceHtml(workdir)
+            Dim html As String
+
+            Try
+                html = resVal _
+                    .FillMetadata(metadata) _
+                    .CreateResourceHtml(workdir)
+            Catch ex As Exception
+                Return Internal.debug.stop({$"error while handling resource file: {file}!", $"file: {file}"}, env)
+            End Try
 
             contents(file) = html
         Next
