@@ -97,6 +97,42 @@ Public Module htmlReportEngine
         Return output
     End Function
 
+    <ExportAPI("pageHeaders")>
+    Public Function pageHeaders(report As Object,
+                                Optional orders As String() = Nothing,
+                                Optional headerStart As Integer = 1,
+                                Optional env As Environment = Nothing) As Object
+
+        If report Is Nothing Then
+            Return Internal.debug.stop("the required report object can not be nothing!", env)
+        End If
+        If TypeOf report Is TemplateHandler Then
+            report = New HTMLReport(DirectCast(report, TemplateHandler))
+        End If
+        If Not TypeOf report Is HTMLReport Then
+            Return Message.InCompatibleType(GetType(HTMLReport), report.GetType, env)
+        End If
+
+        Dim template As HTMLReport = DirectCast(report, HTMLReport)
+        Dim warnings As String() = Nothing
+
+        If orders.IsNullOrEmpty Then
+            If template.pages = 1 Then
+                orders = {template.templates.First.Key}
+            Else
+                Return Internal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
+            End If
+        End If
+
+        Call template.pageHeaders(orders, headerStart, warnings)
+
+        For Each line As String In warnings
+            Call env.AddMessage(line, MSG_TYPES.WRN)
+        Next
+
+        Return template
+    End Function
+
     <ExportAPI("encodeLocalURL")>
     Public Function encodeLocalURL(filepath As String) As String
         Return ImageSolver.encodeLocalURL(filepath)

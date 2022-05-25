@@ -76,6 +76,12 @@ Namespace HTML
         ''' <returns></returns>
         Public ReadOnly Property directory As String
 
+        Public ReadOnly Property pages As Integer
+            Get
+                Return templates.Count
+            End Get
+        End Property
+
         Dim minify As Boolean = True
 
         ''' <summary>
@@ -115,6 +121,14 @@ Namespace HTML
                               End Function)
             Me.minify = minify
             Me.directory = directory.GetDirectoryFullPath
+        End Sub
+
+        Sub New(page As TemplateHandler, Optional minify As Boolean = False)
+            Dim singleKey As String = page.path.BaseName
+
+            Me.templates = New Dictionary(Of String, TemplateHandler) From {{singleKey, page}}
+            Me.minify = minify
+            Me.directory = page.path.ParentPath
         End Sub
 
         Public Function GetPageByName(name As String) As TemplateHandler
