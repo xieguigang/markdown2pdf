@@ -37,4 +37,49 @@ Public Module PageElements
 
         Return report
     End Function
+
+    ''' <summary>
+    ''' fill h1, h2, h3, h4 header titles
+    ''' </summary>
+    ''' <param name="report">
+    ''' place holder for the title could be:
+    ''' 
+    ''' ``[#h1]``, ``[#h2]``, ``[#h3]`` and ``[#h4]``.
+    ''' </param>
+    ''' <param name="orders"></param>
+    ''' <param name="headerStart"></param>
+    ''' <param name="warnings"></param>
+    ''' <returns></returns>
+    <Extension>
+    Public Function pageHeaders(report As HTMLReport, orders As String(),
+                                Optional headerStart As Integer = 1,
+                                Optional ByRef warnings As String() = Nothing) As HTMLReport
+
+        Dim page As TemplateHandler
+        Dim msg As New List(Of String)
+        Dim h1 As Integer = headerStart
+        Dim h2 As Integer = 1
+        Dim h3 As Integer = 1
+        Dim h4 As Integer = 1
+
+        For Each name As String In orders
+            page = report.GetPageByName(name)
+
+            If page Is Nothing Then
+                Call msg.Add($"missing page '{name}' in the template!")
+            End If
+
+            Dim seekNext As Boolean = True
+
+            Do While seekNext
+                If InStr(page.html, "[#h1]") > 1 Then
+
+                End If
+            Loop
+        Next
+
+        warnings = msg.ToArray
+
+        Return report
+    End Function
 End Module
