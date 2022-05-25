@@ -10,6 +10,7 @@ Convert markdown document to html/pdf using VisualBasic in a super easy way! Thi
 
 - [x] Convert markdown/html document to PDF
 - [ ] Custom CSS style supports. (Works in progress)
+- [x] Html template rendering engine for do automatically data analysis report
 
 ## How to install
 
@@ -126,6 +127,18 @@ markdown2pdf ./input.md
 # so that convert from a html file is also works fine!
 markdown2pdf ./input.html
 ```
+
+### Html template engine
+
+There are some special placeholer can be used for the html template rendering:
+
++ ``[#page]`` for create page number dynamics
++ ``[#h1]`` for create the master header numbers
++ ``[#h2]`` for create the secondary header numbers
++ ``[#h3]`` for create the header numbers in third level
++ ``[#h4]`` for create the header numbers in fourth level
++ ``[#fig]`` for create the figure numbers
++ ``[#tab]`` for create the table numbers
 
 ## Dependence
 

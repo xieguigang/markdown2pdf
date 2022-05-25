@@ -87,23 +87,14 @@ Public Module htmlReportEngine
                                 Optional pageStart As Integer = 1,
                                 Optional env As Environment = Nothing) As HTMLReport
 
-        Dim pageNumber As Integer = pageStart
-        Dim page As TemplateHandler
+        Dim warnings As String() = Nothing
+        Dim output As HTMLReport = report.pageNumbers(orders, pageStart, warnings)
 
-        For Each name As String In orders
-            page = report.GetPageByName(name)
-
-            If page Is Nothing Then
-                Call env.AddMessage($"missing page '{name}' in the template!", MSG_TYPES.WRN)
-            End If
-
-            If InStr(page.html, "[page]") > 1 Then
-                page.builder.Replace("[page]", pageNumber)
-                pageNumber += 1
-            End If
+        For Each msg As String In warnings
+            Call env.AddMessage(msg, MSG_TYPES.WRN)
         Next
 
-        Return report
+        Return output
     End Function
 
     <ExportAPI("encodeLocalURL")>
