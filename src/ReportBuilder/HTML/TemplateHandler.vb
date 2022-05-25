@@ -93,6 +93,11 @@ Namespace HTML
         ''' <summary>
         ''' Interpolated html report file save
         ''' </summary>
+        ''' <param name="path">
+        ''' the file path of the target ``*.html`` text file, 
+        ''' the default <see cref="path"/> will be used if 
+        ''' the value of this parameter is nothing.
+        ''' </param>
         <MethodImpl(MethodImplOptions.AggressiveInlining)>
         Public Sub Flush(Optional minify As Boolean = True, Optional path As String = Nothing)
             Call If(minify,

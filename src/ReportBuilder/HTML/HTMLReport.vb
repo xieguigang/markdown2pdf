@@ -192,6 +192,24 @@ Namespace HTML
             Return Me
         End Function
 
+        Public Function Save(outputdir As String) As HTMLReport
+            Dim newName As String
+            Dim sourceFolder As String = Me.directory.GetDirectoryFullPath
+
+            For Each template In templates.Values
+                newName = template.path _
+                    .GetFullPath _
+                    .Replace(sourceFolder, "")
+
+                Call template.Flush(
+                    minify:=minify,
+                    path:=$"{outputdir}/{newName}"
+                )
+            Next
+
+            Return Me
+        End Function
+
 #Region "IDisposable Support"
         Private disposedValue As Boolean ' To detect redundant calls
 

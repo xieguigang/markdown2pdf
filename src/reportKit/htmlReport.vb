@@ -254,9 +254,21 @@ getStringValue:
         Return New list With {.slots = contents}
     End Function
 
+    ''' <summary>
+    ''' save the modified interpolated html
+    ''' template data onto the disk file.
+    ''' </summary>
+    ''' <param name="template"></param>
+    ''' <param name="outputdir">
+    ''' export of the page files into this new output 
+    ''' directory instead of export to the source 
+    ''' folder where this report object is loaded via 
+    ''' the ``reportTemplate`` function.
+    ''' </param>
+    ''' <returns></returns>
     <ExportAPI("flush")>
-    Public Function saveReport(template As HTMLReport) As Boolean
-        Call template.Save()
+    Public Function saveReport(template As HTMLReport, Optional outputdir As String = Nothing) As Boolean
+        Call template.Save(outputdir)
         Return True
     End Function
 
