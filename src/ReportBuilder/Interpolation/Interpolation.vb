@@ -89,6 +89,7 @@ Public Module Interpolation
             Case ResourceTypes.image : Return New ImageSolver(res).GetHtml(workdir)
             Case ResourceTypes.table : Return New TableSolver(res).GetHtml(workdir)
             Case ResourceTypes.text : Return New TextSolver(res).GetHtml(workdir)
+            Case ResourceTypes.html : Return New TextSolver(res, isHtml:=True).GetHtml(workdir)
             Case Else
                 Throw New NotImplementedException
         End Select
@@ -201,6 +202,12 @@ Public Module Interpolation
         If "text" Like names Then
             Return New ResourceDescription With {
                 .text = DirectCast(res("text"), JsonValue).GetStripString,
+                .styles = styles,
+                .options = options
+            }
+        ElseIf "html" Like names Then
+            Return New ResourceDescription With {
+                .html = DirectCast(res("text"), JsonValue).GetStripString,
                 .styles = styles,
                 .options = options
             }
