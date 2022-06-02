@@ -11,6 +11,7 @@
     <Configurations>Debug;Release;Rsharp_app_release;mzkit_win32</Configurations>
 	  <GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 	  <DefineConstants>netcore5=1</DefineConstants>
+	  <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -71,6 +72,10 @@
     <DefineDebug>false</DefineDebug>
     <DefineConstants>netcore5=1,UNIX=1</DefineConstants>
     <OutputPath>../../assembly/</OutputPath>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='mzkit_win32|net6.0|x64'">
+    <DefineTrace>true</DefineTrace>
   </PropertyGroup>
 
   <ItemGroup>
