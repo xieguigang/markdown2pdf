@@ -22,6 +22,25 @@
             Case Else
                 h4 += 1
         End Select
+
+        Return Me
+    End Function
+
+    Public Shared Function Parse(h0 As String) As HeaderCounter
+        Dim n As Integer() = Strings.Trim(h0) _
+            .Split(" "c) _
+            .Select(AddressOf Integer.Parse) _
+            .ToArray
+
+        If n.Length = 1 Then
+            Return New HeaderCounter With {.h1 = n(Scan0)}
+        ElseIf n.Length = 2 Then
+            Return New HeaderCounter With {.h1 = n(0), .h2 = n(1)}
+        ElseIf n.Length = 3 Then
+            Return New HeaderCounter With {.h1 = n(0), .h2 = n(1), .h3 = n(2)}
+        Else
+            Return New HeaderCounter With {.h1 = n(0), .h2 = n(1), .h3 = n(2), .h4 = n(3)}
+        End If
     End Function
 
     Public Overloads Function ToString(level As Integer) As String

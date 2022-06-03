@@ -52,15 +52,12 @@ Public Module PageElements
     ''' <returns></returns>
     <Extension>
     Public Function pageHeaders(report As HTMLReport, orders As String(),
-                                Optional headerStart As Integer = 1,
+                                Optional headerStart As String = "1",
                                 Optional ByRef warnings As String() = Nothing) As HTMLReport
 
         Dim page As TemplateHandler
         Dim msg As New List(Of String)
-        Dim h1 As Integer = headerStart
-        Dim h2 As Integer = 1
-        Dim h3 As Integer = 1
-        Dim h4 As Integer = 1
+        Dim header As HeaderCounter = HeaderCounter.Parse(headerStart)
 
         For Each name As String In orders
             page = report.GetPageByName(name)
