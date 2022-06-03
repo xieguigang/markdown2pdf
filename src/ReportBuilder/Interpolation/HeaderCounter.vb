@@ -5,6 +5,37 @@
     Public Property h3 As Integer = 1
     Public Property h4 As Integer = 1
 
+    Public Function Count(tag As String) As HeaderCounter
+        Select Case Strings.LCase(tag)
+            Case "h1"
+                h1 += 1
+                h2 = 1
+                h3 = 1
+                h4 = 1
+            Case "h2"
+                h2 += 1
+                h3 = 1
+                h4 = 1
+            Case "h3"
+                h3 += 1
+                h4 = 1
+            Case Else
+                h4 += 1
+        End Select
+    End Function
+
+    Public Overloads Function ToString(level As Integer) As String
+        If level = 1 Then
+            Return h1
+        ElseIf level = 2 Then
+            Return $"{h1}.{h2}"
+        ElseIf level = 3 Then
+            Return $"{h1}.{h2}.{h3}"
+        Else
+            Return $"{h1}.{h2}.{h3}.{h4}"
+        End If
+    End Function
+
     Public Overrides Function ToString() As String
         Return $"{h1}.{h2}.{h3}.{h4}"
     End Function
