@@ -43,6 +43,10 @@
         End If
     End Function
 
+    Public Overloads Function ToString(level As String) As String
+        Return ToString(Integer.Parse(level.Match("\d+")))
+    End Function
+
     Public Overloads Function ToString(level As Integer) As String
         If level = 1 Then
             Return h1

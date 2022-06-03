@@ -32,9 +32,6 @@ EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "JSON-netcore5", "..\..\..\runtime\sciBASIC#\mime\application%json\JSON-netcore5.vbproj", "{15730A28-805D-40DD-A380-DAD2CAE5EEA2}"
 EndProject
 Global
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		..\..\..\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{985f72b6-f0bd-4076-99f7-b76f0fa8d294}*SharedItemsImports = 5
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		BioDeep_database|Any CPU = BioDeep_database|Any CPU
 		BioDeep_database|x64 = BioDeep_database|x64
@@ -2126,5 +2123,8 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {60CCC327-0389-4AE2-80F8-882F806ECF8B}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		..\..\..\R-sharp\studio\Rstudio.common\Rstudio.common.projitems*{985f72b6-f0bd-4076-99f7-b76f0fa8d294}*SharedItemsImports = 5
 	EndGlobalSection
 EndGlobal

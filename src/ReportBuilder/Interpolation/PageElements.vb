@@ -1,4 +1,5 @@
 ﻿Imports System.Runtime.CompilerServices
+Imports System.Text.RegularExpressions
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 
 Public Module PageElements
@@ -58,6 +59,11 @@ Public Module PageElements
         Dim page As TemplateHandler
         Dim msg As New List(Of String)
         Dim header As HeaderCounter = HeaderCounter.Parse(headerStart)
+        Dim tag As Match
+        Dim buffer As New List(Of String)
+        Dim headStr As String
+
+        Static placeholder As New Regex("\[#[hH][1234]\]", RegexICSng)
 
         For Each name As String In orders
             page = report.GetPageByName(name)
@@ -66,13 +72,21 @@ Public Module PageElements
                 Call msg.Add($"missing page '{name}' in the template!")
             End If
 
-            Dim seekNext As Boolean = True
+            For Each line As String In page.lines
+                tag = placeholder.Match(line)
 
-            Do While seekNext
-                If InStr(page.html, "[#h1]") > 1 Then
-
+                If tag.Success Then
+                    headStr = header _
+                        .Count(tag.Value) _
+                        .ToString(tag.Value)
+                    line = line.Replace(tag.Value, headStr)
                 End If
-            Loop
+
+                buffer.Add(line)
+            Next
+
+            Call page.Commit(buffer)
+            Call buffer.Clear()
         Next
 
         warnings = msg.ToArray
