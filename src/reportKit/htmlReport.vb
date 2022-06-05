@@ -199,7 +199,7 @@ Public Module htmlReportEngine
             End If
         End If
 
-        Call template.elementCounter(orders, tableStart, prefix,, format, warnings)
+        Call template.elementCounter(orders, tableStart, prefix, "[#tab]", format, warnings)
 
         For Each line As String In warnings
             Call env.AddMessage(line, MSG_TYPES.WRN)
