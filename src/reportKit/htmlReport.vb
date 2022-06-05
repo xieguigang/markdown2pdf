@@ -100,7 +100,7 @@ Public Module htmlReportEngine
     <ExportAPI("pageHeaders")>
     Public Function pageHeaders(report As Object,
                                 Optional orders As String() = Nothing,
-                                Optional headerStart As Integer = 1,
+                                Optional headerStart As String = "1",
                                 Optional env As Environment = Nothing) As Object
 
         If report Is Nothing Then
