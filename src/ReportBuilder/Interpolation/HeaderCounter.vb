@@ -1,26 +1,37 @@
 ﻿Public Class HeaderCounter
 
-    Public Property h1 As Integer = 1
-    Public Property h2 As Integer = 1
-    Public Property h3 As Integer = 1
-    Public Property h4 As Integer = 1
+    Public ReadOnly Property h1 As Integer = 1
+    Public ReadOnly Property h2 As Integer = 1
+    Public ReadOnly Property h3 As Integer = 1
+    Public ReadOnly Property h4 As Integer = 1
+
+    Private Sub New(h1 As Integer,
+                    Optional h2 As Integer = 1,
+                    Optional h3 As Integer = 1,
+                    Optional h4 As Integer = 1)
+
+        Me.h1 = h1 - 1
+        Me.h2 = If(h2 > 0, h2 - 1, 0)
+        Me.h3 = If(h3 > 0, h3 - 1, 0)
+        Me.h4 = If(h4 > 0, h4 - 1, 0)
+    End Sub
 
     Public Function Count(tag As String) As HeaderCounter
-        Select Case Strings.LCase(tag)
+        Select Case Strings.LCase(tag).Match("[Hh]\d+")
             Case "h1"
-                h1 += 1
-                h2 = 1
-                h3 = 1
-                h4 = 1
+                _h1 += 1
+                _h2 = 0
+                _h3 = 0
+                _h4 = 0
             Case "h2"
-                h2 += 1
-                h3 = 1
-                h4 = 1
+                _h2 += 1
+                _h3 = 0
+                _h4 = 0
             Case "h3"
-                h3 += 1
-                h4 = 1
+                _h3 += 1
+                _h4 = 0
             Case Else
-                h4 += 1
+                _h4 += 1
         End Select
 
         Return Me
@@ -33,13 +44,13 @@
             .ToArray
 
         If n.Length = 1 Then
-            Return New HeaderCounter With {.h1 = n(Scan0)}
+            Return New HeaderCounter(h1:=n(Scan0))
         ElseIf n.Length = 2 Then
-            Return New HeaderCounter With {.h1 = n(0), .h2 = n(1)}
+            Return New HeaderCounter(h1:=n(Scan0), h2:=n(1))
         ElseIf n.Length = 3 Then
-            Return New HeaderCounter With {.h1 = n(0), .h2 = n(1), .h3 = n(2)}
+            Return New HeaderCounter(h1:=n(Scan0), h2:=n(1), h3:=n(2))
         Else
-            Return New HeaderCounter With {.h1 = n(0), .h2 = n(1), .h3 = n(2), .h4 = n(3)}
+            Return New HeaderCounter(h1:=n(Scan0), h2:=n(1), h3:=n(2), h4:=n(3))
         End If
     End Function
 
