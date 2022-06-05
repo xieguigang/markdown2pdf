@@ -1,5 +1,6 @@
 ﻿Imports System.Runtime.CompilerServices
 Imports System.Text.RegularExpressions
+Imports Microsoft.VisualBasic.Language
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 
 Public Module PageElements
@@ -83,6 +84,62 @@ Public Module PageElements
                 End If
 
                 buffer.Add(line)
+            Next
+
+            Call page.Commit(buffer)
+            Call buffer.Clear()
+        Next
+
+        warnings = msg.ToArray
+
+        Return report
+    End Function
+
+    ''' <summary>
+    ''' 
+    ''' </summary>
+    ''' <param name="report"></param>
+    ''' <param name="orders"></param>
+    ''' <param name="elementStart"></param>
+    ''' <param name="prefix"></param>
+    ''' <param name="pattern">
+    ''' + ``[#fig]`` for count figures
+    ''' + ``[#tab]`` for count tables
+    ''' </param>
+    ''' <param name="format">
+    ''' + p for prefix
+    ''' + # for counts
+    ''' </param>
+    ''' <param name="warnings"></param>
+    ''' <returns></returns>
+    <Extension>
+    Public Function elementCounter(report As HTMLReport, orders As String(),
+                                   Optional elementStart As Integer = 1,
+                                   Optional prefix As String = "fig",
+                                   Optional pattern As String = "[#fig]",
+                                   Optional format As String = "p #. ",
+                                   Optional ByRef warnings As String() = Nothing) As HTMLReport
+
+        Dim page As TemplateHandler
+        Dim msg As New List(Of String)
+        Dim i As i32 = elementStart
+        Dim buffer As New List(Of String)
+        Dim tag As String
+
+        For Each name As String In orders
+            page = report.GetPageByName(name)
+
+            If page Is Nothing Then
+                Call msg.Add($"missing page '{name}' in the template!")
+            End If
+
+            For Each line As String In page.lines
+                If line.Contains(pattern) Then
+                    tag = format.Replace("#", ++i).Replace("p", prefix)
+                    line = line.Replace(pattern, tag)
+                End If
+
+                Call buffer.Add(line)
             Next
 
             Call page.Commit(buffer)
