@@ -207,7 +207,7 @@ Public Module Interpolation
             }
         ElseIf "html" Like names Then
             Return New ResourceDescription With {
-                .html = DirectCast(res("text"), JsonValue).GetStripString,
+                .html = DirectCast(res("html"), JsonValue).GetStripString,
                 .styles = styles,
                 .options = options
             }
