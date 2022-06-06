@@ -196,14 +196,19 @@ Namespace HTML
             Dim newName As String
             Dim sourceFolder As String = Me.directory.GetDirectoryFullPath
 
-            For Each template In templates.Values
-                newName = template.path _
-                    .GetFullPath _
-                    .Replace(sourceFolder, "")
+            For Each template As TemplateHandler In templates.Values
+                If Not outputdir.StringEmpty Then
+                    newName = template.path _
+                        .GetFullPath _
+                        .Replace(sourceFolder, "")
+                    newName = $"{outputdir}/{newName}"
+                Else
+                    newName = template.path
+                End If
 
                 Call template.Flush(
                     minify:=minify,
-                    path:=$"{outputdir}/{newName}"
+                    path:=newName
                 )
             Next
 
