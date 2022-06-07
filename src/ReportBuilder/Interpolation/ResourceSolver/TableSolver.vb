@@ -1,6 +1,5 @@
 ﻿Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.ComponentModel.DataSourceModel
 Imports Microsoft.VisualBasic.Data.csv.IO
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
@@ -12,34 +11,6 @@ Public Class TableSolver : Inherits ResourceSolver
     Public Sub New(res As ResourceDescription)
         MyBase.New(res)
     End Sub
-
-    Private Shared Iterator Function parseFieldOrdinals(fieldNames As String(), names As String()) As IEnumerable(Of NamedValue(Of Integer))
-        For Each name As String In fieldNames
-            Dim i As Integer = names.IndexOf(name)
-
-            If i = -1 Then
-                Dim format As String = name.Match("[:][GF]\d+", RegexICSng)
-
-                If format.StringEmpty Then
-                    Yield New NamedValue(Of Integer) With {
-                        .Name = name,
-                        .Value = -1
-                    }
-                Else
-                    Yield New NamedValue(Of Integer) With {
-                        .Name = name.Replace(format, ""),
-                        .Value = names.IndexOf(.Name),
-                        .Description = format.Trim(":"c)
-                    }
-                End If
-            Else
-                Yield New NamedValue(Of Integer) With {
-                    .Name = name,
-                    .Value = i
-                }
-            End If
-        Next
-    End Function
 
     Public Overrides Function GetHtml(workdir As String) As String
         Dim tablefile As String = If(resource.table.FileExists, resource.table, $"{workdir}/{resource.table}")
@@ -55,12 +26,12 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim maxRows As Integer = resource.options.TryGetValue("nrows", [default]:=-1)
         Dim maxWidth As Integer = resource.options.TryGetValue("max_width", [default]:=-1)
         Dim orderBy As Object = resource.options.TryGetValue("order_by", [default]:=Nothing)
-        Dim fieldNames As String() = resource.options.TryGetValue("fields", [default]:=Nothing)
-        Dim ordinals As NamedValue(Of Integer)() = If(fieldNames Is Nothing, Nothing, parseFieldOrdinals(fieldNames, names).ToArray)
+        Dim fieldNames As Object() = resource.options.TryGetValue("fields", [default]:=Nothing)
+        Dim ordinals As FieldDescription() = If(fieldNames Is Nothing, Nothing, FieldDescription.parseFieldOrdinals(fieldNames, names).ToArray)
         Dim thead As String
         Dim rowCells As String
 
-        If Not ordinals Is Nothing AndAlso ordinals.Any(Function(i) i.Value = -1) Then
+        If Not ordinals Is Nothing AndAlso ordinals.Any(Function(i) i.ordinal = -1) Then
             If fieldNames Is Nothing Then
                 Return resource.options.TryGetValue("no_content", [default]:="<span style='color: red;'>No table content data.</span>")
             Else
@@ -170,7 +141,7 @@ Public Class TableSolver : Inherits ResourceSolver
     End Function
 
     Private Function BuildRowHtml(cells As IEnumerable(Of String),
-                                  ordinals As NamedValue(Of Integer)(),
+                                  ordinals As FieldDescription(),
                                   css As CSSFile,
                                   isHeader As Boolean,
                                   maxWidth As Integer) As String
@@ -181,10 +152,10 @@ Public Class TableSolver : Inherits ResourceSolver
         If ordinals Is Nothing Then
             partStrs = allStrs
         Else
-            partStrs = From i As NamedValue(Of Integer)
+            partStrs = From i As FieldDescription
                        In ordinals
                        Let str As String = allStrs(i)
-                       Let val As String = If(i.Description.StringEmpty OrElse isHeader, str, Val(str).ToString(format:=i.Description))
+                       Let val As String = i.ToString(isHeader, str)
                        Select val
         End If
 
