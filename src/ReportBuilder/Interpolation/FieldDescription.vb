@@ -17,7 +17,13 @@ Public Class FieldDescription
     Public Property [alias] As String
 
     Public Overloads Function ToString(isHeader As Boolean, str As String) As String
-        If isHeader OrElse format.StringEmpty Then
+        If isHeader Then
+            If [alias].StringEmpty Then
+                Return str
+            Else
+                Return [alias]
+            End If
+        ElseIf format.StringEmpty Then
             Return str
         Else
             Return Val(str).ToString(format)
