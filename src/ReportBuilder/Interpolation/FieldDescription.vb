@@ -1,4 +1,6 @@
-﻿Public Class FieldDescription
+﻿Imports Microsoft.VisualBasic.My.JavaScript
+
+Public Class FieldDescription
 
     ''' <summary>
     ''' the field reference name in the csv table file
@@ -22,9 +24,19 @@
     End Function
 
     Friend Shared Iterator Function parseFieldOrdinals(fieldNames As Object(), names As String()) As IEnumerable(Of FieldDescription)
-        For Each name As String In fieldNames
-            Yield ParseDescription(name, names)
+        For Each name As Object In fieldNames
+            If TypeOf name Is String Then
+                Yield ParseDescription(DirectCast(name, String), names)
+            ElseIf TypeOf name Is JavaScriptObject Then
+                Yield ParseDescription(DirectCast(name, JavaScriptObject), names)
+            Else
+                Throw New NotImplementedException(name.GetType.FullName)
+            End If
         Next
+    End Function
+
+    Public Shared Function ParseDescription(field As JavaScriptObject, names As String()) As FieldDescription
+
     End Function
 
     Public Shared Function ParseDescription(name As String, names As String()) As FieldDescription

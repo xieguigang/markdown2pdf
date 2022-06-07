@@ -133,9 +133,13 @@ Public Module Interpolation
                     Return value.value
                 End If
             Case GetType(JsonArray)
-                Dim array As String() = DirectCast(val, JsonArray) _
+                Dim array As Object() = DirectCast(val, JsonArray) _
                     .Select(Function(d)
-                                Return DirectCast(d, JsonValue).GetStripString
+                                If TypeOf d Is JsonValue Then
+                                    Return DirectCast(d, JsonValue).GetStripString
+                                Else
+                                    Return parseValue(d)
+                                End If
                             End Function) _
                     .ToArray
 
