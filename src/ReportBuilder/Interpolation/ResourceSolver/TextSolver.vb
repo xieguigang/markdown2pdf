@@ -12,7 +12,7 @@ Public Class TextSolver : Inherits ResourceSolver
     End Sub
 
     Public Overrides Function GetHtml(workdir As String) As String
-        Dim text As String = resource.text
+        Dim text As String = If(isHtml, resource.html, resource.text)
 
         If Not isHtml Then
             text = WebUtility.HtmlEncode(text)
