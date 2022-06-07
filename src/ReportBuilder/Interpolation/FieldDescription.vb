@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.My.JavaScript
+Imports any = Microsoft.VisualBasic.Scripting
 
 Public Class FieldDescription
 
@@ -36,7 +37,17 @@ Public Class FieldDescription
     End Function
 
     Public Shared Function ParseDescription(field As JavaScriptObject, names As String()) As FieldDescription
+        Dim refStr As String = field.GetNames.First
+        Dim opt As JavaScriptObject = field(refStr)
+        Dim aliasName As String = any.ToString(opt("alias"))
+        Dim format As String = any.ToString(opt("format"))
 
+        Return New FieldDescription With {
+            .referenceName = refStr,
+            .ordinal = names.IndexOf(.referenceName),
+            .[alias] = aliasName,
+            .format = format
+        }
     End Function
 
     Public Shared Function ParseDescription(name As String, names As String()) As FieldDescription
