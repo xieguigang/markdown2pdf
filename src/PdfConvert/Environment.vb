@@ -46,7 +46,7 @@ Imports System.Configuration
 Imports System.IO
 Imports Microsoft.VisualBasic.Language.Default
 Imports WkHtmlToPdf.Arguments
-Imports ProgramFiles = Microsoft.VisualBasic.FileIO.Path.ProgramPathSearchTool
+Imports ProgramFiles = Microsoft.VisualBasic.ApplicationServices.ProgramPathSearchTool
 
 Module InternalEnvironment
 
