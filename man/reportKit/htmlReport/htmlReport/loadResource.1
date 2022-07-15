@@ -1,12 +1,44 @@
 .\" man page create by R# package system.
 .TH HTMLREPORT 4 2000-01-01 "loadResource" "loadResource"
 .SH NAME
-loadResource \- 
+loadResource \- load the resource files based on the description list data,
 .SH SYNOPSIS
 \fIloadResource(\fBdescription\fR as <generic> JsonObject, 
 \fBworkdir\fR as any = CALL "GETWD"(), 
 \fBmeta\fR as list = \fB<NULL>\fR, 
 [\fB<Environment>\fR]);\fR
+.SH DESCRIPTION
+.PP
+load the resource files based on the description list data, 
+ and then generates the html segments for the resource files.
+.PP
+.SH OPTIONS
+.PP
+\fBdescription\fB \fR\- 
+ the resource file contents in this description data 
+ supports file types:
+ 
+ 1. *.txt for plant text file
+ 2. *.csv for data table file
+ 3. *.png/jpg/bmp for raster image file
+ 4. *.svg for vector image file
+ 5. *.html for html text file
+ 6. *.md for makrdown text file, the markdown text file 
+      will be rendering as the html document text at first
+      and then returns a html document to the rendering 
+      engine.
+      
+. 
+.PP
+.PP
+\fBworkdir\fB \fR\- -. 
+.PP
+.PP
+\fBmeta\fB \fR\- -. 
+.PP
+.PP
+\fBenv\fB \fR\- -. 
+.PP
 .SH SEE ALSO
 htmlReport
 .SH FILES

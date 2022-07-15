@@ -10,6 +10,6 @@ html templat handler
 + [encodeLocalURL](htmlReport/encodeLocalURL.1) 
 + [markdown.html](htmlReport/markdown.html.1) Render markdown to html text
 + [interpolate](htmlReport/interpolate.1) do report data interpolation.
-+ [loadResource](htmlReport/loadResource.1) 
++ [loadResource](htmlReport/loadResource.1) load the resource files based on the description list data, 
 + [flush](htmlReport/flush.1) save the modified interpolated html
 + [reportTemplate](htmlReport/reportTemplate.1) Create a html template model from a 
