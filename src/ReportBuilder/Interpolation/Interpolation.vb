@@ -99,7 +99,9 @@ Public Module Interpolation
     Public Function ParseResourceFile(value As JsonElement, meta As Dictionary(Of String, String)) As ResourceDescription
         If TypeOf value Is JsonValue Then
             ' text
-            Return New ResourceDescription With {.text = DirectCast(value, JsonValue).GetStripString}
+            Return New ResourceDescription With {
+                .text = DirectCast(value, JsonValue).GetStripString(decodeMetachar:=True)
+            }
         ElseIf TypeOf value Is JsonObject Then
             Return DirectCast(value, JsonObject).ParseResourceFile(meta)
         Else
@@ -128,7 +130,7 @@ Public Module Interpolation
                 Dim value = DirectCast(val, JsonValue)
 
                 If value.UnderlyingType Is GetType(String) Then
-                    Return value.GetStripString
+                    Return value.GetStripString(decodeMetachar:=True)
                 Else
                     Return value.value
                 End If
@@ -136,7 +138,7 @@ Public Module Interpolation
                 Dim array As Object() = DirectCast(val, JsonArray) _
                     .Select(Function(d)
                                 If TypeOf d Is JsonValue Then
-                                    Return DirectCast(d, JsonValue).GetStripString
+                                    Return DirectCast(d, JsonValue).GetStripString(decodeMetachar:=True)
                                 Else
                                     Return parseValue(d)
                                 End If
@@ -172,7 +174,7 @@ Public Module Interpolation
         If TypeOf styles Is JsonValue Then
             Return New CSSFile With {
                 .Selectors = New Dictionary(Of Selector) From {
-                    {"*", CssParser.ParseStyle(meta.getCssString(DirectCast(styles, JsonValue).GetStripString))}
+                    {"*", CssParser.ParseStyle(meta.getCssString(DirectCast(styles, JsonValue).GetStripString(decodeMetachar:=True)))}
                 }
             }
         Else
@@ -181,7 +183,7 @@ Public Module Interpolation
 
             For Each key As String In list.ObjectKeys
                 Dim value As JsonValue = DirectCast(list(key), JsonValue)
-                Dim cssStr As String = meta.getCssString(value.GetStripString)
+                Dim cssStr As String = meta.getCssString(value.GetStripString(decodeMetachar:=True))
                 Dim style As Selector = CssParser.ParseStyle(cssStr)
 
                 Call css.Selectors.Add(key, style)
@@ -205,25 +207,25 @@ Public Module Interpolation
 
         If "text" Like names Then
             Return New ResourceDescription With {
-                .text = DirectCast(res("text"), JsonValue).GetStripString,
+                .text = DirectCast(res("text"), JsonValue).GetStripString(decodeMetachar:=True),
                 .styles = styles,
                 .options = options
             }
         ElseIf "html" Like names Then
             Return New ResourceDescription With {
-                .html = DirectCast(res("html"), JsonValue).GetStripString,
+                .html = DirectCast(res("html"), JsonValue).GetStripString(decodeMetachar:=True),
                 .styles = styles,
                 .options = options
             }
         ElseIf "image" Like names Then
             Return New ResourceDescription With {
-                .image = DirectCast(res("image"), JsonValue).GetStripString,
+                .image = DirectCast(res("image"), JsonValue).GetStripString(decodeMetachar:=True),
                 .styles = styles,
                 .options = options
             }
         ElseIf "table" Like names Then
             Return New ResourceDescription With {
-                .table = DirectCast(res("table"), JsonValue).GetStripString,
+                .table = DirectCast(res("table"), JsonValue).GetStripString(decodeMetachar:=True),
                 .styles = styles,
                 .options = options
             }
