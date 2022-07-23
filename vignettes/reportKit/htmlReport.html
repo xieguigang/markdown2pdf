@@ -1,0 +1,408 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>htmlReport</title>
+    <meta name="author" content="xie.guigang@gcmodeller.org" />
+    <meta name="copyright" content="SMRUCC genomics Copyright (c) 2020" />
+    <meta name="keywords" content="GCModeller; Xanthomonas; Artificial Life" />
+    <meta name="generator" content="https://github.com/xieguigang/xDoc" />
+    <meta name="theme-color" content="#333" />
+    <meta name="last-update" content="7/24/2022 1:06:19 AM" />
+    <meta name="description" content="A software system aim at Artificial Life system design and analysis." />
+    <meta class="foundation-data-attribute-namespace" />
+    <meta class="foundation-mq-xxlarge" />
+    <meta class="foundation-mq-xlarge" />
+    <meta class="foundation-mq-large" />
+    <meta class="foundation-mq-medium" />
+    <meta class="foundation-mq-small" />
+    <meta class="foundation-mq-topbar" />
+  </head>
+  <body>
+    <table width="100%" summary="page for {htmlReport}">
+      <tbody>
+        <tr>
+          <td>{htmlReport}</td>
+          <td style="text-align: right;">R# Documentation</td>
+        </tr>
+      </tbody>
+    </table>
+    <h1>htmlReport</h1>
+    <hr />
+    <p></p>
+    <div id="main-wrapper">
+                           <div>
+  <h2 id="htmlTemplate">htmlTemplate</h2>
+  <hr />
+  <p>
+                    <p>Create a html template model from the given template file</p>  
+                
+                    <pre><p>let <code>htmlTemplate</code> as function(<code>url</code> as string) -> <code>&lt;generic&gt; TemplateHandler</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::template]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>url</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="pageNumbers">pageNumbers</h2>
+  <hr />
+  <p>
+                    <p>assign the page numbers to the html templates</p>  
+                
+                    <pre><p>let <code>pageNumbers</code> as function(<code>report</code> as <generic> HTMLReport, 
+<code>orders</code> as string, 
+<code>pageStart</code> as integer = 1, 
+[<code>&lt;Environment&gt;</code>]) -> <code>&lt;generic&gt; HTMLReport</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::pageNumbers]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>report</code>: -
+                </li>
+<li>
+  <code>orders</code>: the file basename of the html files
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="pageHeaders">pageHeaders</h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>pageHeaders</code> as function(<code>report</code> as any, 
+<code>orders</code> as string = <code>&lt;NULL&gt;</code>, 
+<code>headerStart</code> as string = "1", 
+[<code>&lt;Environment&gt;</code>]) -> <code>any</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::pageHeaders]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="countFigures">countFigures</h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>countFigures</code> as function(<code>report</code> as any, 
+<code>orders</code> as string = <code>&lt;NULL&gt;</code>, 
+<code>figStart</code> as integer = 1, 
+<code>prefix</code> as string = "fig", 
+<code>format</code> as string = "p #. ", 
+[<code>&lt;Environment&gt;</code>]) -> <code>any</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::countFigures]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="countTables">countTables</h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>countTables</code> as function(<code>report</code> as any, 
+<code>orders</code> as string = <code>&lt;NULL&gt;</code>, 
+<code>tableStart</code> as integer = 1, 
+<code>prefix</code> as string = "table", 
+<code>format</code> as string = "p #. ", 
+[<code>&lt;Environment&gt;</code>]) -> <code>any</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::countTables]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="encodeLocalURL">encodeLocalURL</h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>encodeLocalURL</code> as function(<code>filepath</code> as string) -> <code>string</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::encodeLocalURL]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="markdown.html">markdown.html</h2>
+  <hr />
+  <p>
+                    <p>Render markdown to html text</p>  
+                
+                    <pre><p>let <code>markdown.html</code> as function(<code>markdown</code> as string) -> <code>string</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::markdownToHtml]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>markdown</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="interpolate">interpolate</h2>
+  <hr />
+  <p>
+                    <p>do report data interpolation.</p>  
+                
+                    <pre><p>let <code>interpolate</code> as function(<code>template</code> as <generic> HTMLReport, <code>metadata</code> as list, [<code>&lt;Environment&gt;</code>]) -> <code>&lt;generic&gt; HTMLReport</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::fillContent]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>template</code>: -
+                </li>
+<li>
+  <code>metadata</code>: -
+                </li>
+<li>
+  <code>env</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="loadResource">loadResource</h2>
+  <hr />
+  <p>
+                    <p>load the resource files based on the description list data, <br />
+ and then generates the html segments for the resource files.</p>  
+                
+                    <pre><p>let <code>loadResource</code> as function(<code>description</code> as <generic> JsonObject, 
+<code>workdir</code> as any = CALL "GETWD"(), 
+<code>meta</code> as list = <code>&lt;NULL&gt;</code>, 
+[<code>&lt;Environment&gt;</code>]) -> <code>list</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::loadResource]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>description</code>: the resource file contents in this description data <br />
+ supports file types:
+                </li>
+<li>
+  <code>workdir</code>: -
+                </li>
+<li>
+  <code>meta</code>: -
+                </li>
+<li>
+  <code>env</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="flush">flush</h2>
+  <hr />
+  <p>
+                    <p>save the modified interpolated html<br />
+ template data onto the disk file.</p>  
+                
+                    <pre><p>let <code>flush</code> as function(<code>template</code> as <generic> HTMLReport, <code>outputdir</code> as string = <code>&lt;NULL&gt;</code>) -> <code>boolean</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::saveReport]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>template</code>: -
+                </li>
+<li>
+  <code>outputdir</code>: export of the page files into this new output <br />
+ directory instead of export to the source <br />
+ folder where this report object is loaded via <br />
+ the <code>reportTemplate</code> function.
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="reportTemplate">reportTemplate</h2>
+  <hr />
+  <p>
+                    <p>Create a html template model from a <br />
+ given report template directory.</p>  
+                
+                    <pre><p>let <code>reportTemplate</code> as function(<code>template</code> as string, <code>copyToTemp</code> as boolean = TRUE) -> <code>&lt;generic&gt; HTMLReport</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.htmlReportEngine
+    # LibPath: E:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "htmlReport"
+    #
+    return call <code>R&#35;.interop_[htmlReportEngine::reportTemplate]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>template</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div>
+                       </div>
+  </body>
+</html>
