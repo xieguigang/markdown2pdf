@@ -1,7 +1,7 @@
 .\" man page create by R# package system.
 .TH HTMLREPORT 4 2000-01-01 "loadResource" "loadResource"
 .SH NAME
-loadResource \- load the resource files based on the description list data,
+loadResource \- Load resource files for build html report
 .SH SYNOPSIS
 \fIloadResource(\fBdescription\fR as <generic> JsonObject, 
 \fBworkdir\fR as any = CALL "GETWD"(), 
@@ -9,7 +9,9 @@ loadResource \- load the resource files based on the description list data,
 [\fB<Environment>\fR]);\fR
 .SH DESCRIPTION
 .PP
-load the resource files based on the description list data, 
+Load resource files for build html report
+ 
+ load the resource files based on the description list data, 
  and then generates the html segments for the resource files.
 .PP
 .SH OPTIONS
@@ -18,12 +20,12 @@ load the resource files based on the description list data,
  the resource file contents in this description data 
  supports file types:
  
- 1. *.txt for plant text file
- 2. *.csv for data table file
- 3. *.png/jpg/bmp for raster image file
- 4. *.svg for vector image file
- 5. *.html for html text file
- 6. *.md for makrdown text file, the markdown text file 
+ 1. \fB*.txt\fR for plant text file
+ 2. \fB*.csv\fR for data table file
+ 3. \fB*.png/jpg/bmp\fR for raster image file
+ 4. \fB*.svg\fR for vector image file
+ 5. \fB*.html\fR for html text file
+ 6. \fB*.md\fR for makrdown text file, the markdown text file 
       will be rendering as the html document text at first
       and then returns a html document to the rendering 
       engine.

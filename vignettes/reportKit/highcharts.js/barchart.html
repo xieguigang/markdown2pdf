@@ -27,8 +27,10 @@
         }
 
         code {
-            color: inherit;
+            color: rgb(194, 42, 42);
             background: inherit;
+            font-style:italic;
+            font-weight: bold;
         }
 
         body {
@@ -154,11 +156,13 @@
 
         <h3>Usage</h3>
 
-        <pre><code class='language-R'>barchart(data
-title = "title",
-subtitle = "subtitle",
-ylab = "Y",
-serialName = "data")</code></pre>
+        <div style="width: 100%; padding-left: 3%; color: black;">
+            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>barchart</strong>(<i>data</i>,
+    <i>title</i> = <span style='color: brown;'><strong>"title"</strong></span>,
+    <i>subtitle</i> = <span style='color: brown;'><strong>"subtitle"</strong></span>,
+    <i>ylab</i> = <span style='color: brown;'><strong>"Y"</strong></span>,
+    <i>serialName</i> = <span style='color: brown;'><strong>"data"</strong></span>);</code></pre>
+        </div>
 
         <h3>Arguments</h3>
 

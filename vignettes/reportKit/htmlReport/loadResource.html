@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>load the resource files based on the description list data,</title>
+    <title>Load resource files for build html report</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <style rel="stylesheet" type="text/css">
@@ -27,8 +27,10 @@
         }
 
         code {
-            color: inherit;
+            color: rgb(194, 42, 42);
             background: inherit;
+            font-style:italic;
+            font-weight: bold;
         }
 
         body {
@@ -146,17 +148,19 @@
             </tr>
         </table>
 
-        <h2>load the resource files based on the description list data,</h2>
+        <h2>Load resource files for build html report</h2>
 
         <h3>Description</h3>
 
-        <p>and then generates the html segments for the resource files.</p>
+        <p><br /> load the resource files based on the description list data, <br /> and then generates the html segments for the resource files.</p>
 
         <h3>Usage</h3>
 
-        <pre><code class='language-R'>loadResource(description
-workdir = Call "getwd"(),
-meta = NULL)</code></pre>
+        <div style="width: 100%; padding-left: 3%; color: black;">
+            <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>loadResource</strong>(<i>description</i>,
+    <i>workdir</i> = Call "getwd"(),
+    <i>meta</i> = <span style='color: blue;'>NULL</span>);</code></pre>
+        </div>
 
         <h3>Arguments</h3>
 
@@ -167,12 +171,12 @@ meta = NULL)</code></pre>
  supports file types:</p>
 
 <ol>
-<li>*.txt for plant text file</li>
-<li>*.csv for data table file</li>
-<li>*.png/jpg/bmp for raster image file</li>
-<li>*.svg for vector image file</li>
-<li>*.html for html text file</li>
-<li>*.md for makrdown text file, the markdown text file <br />
+<li><code>*.txt</code> for plant text file</li>
+<li><code>*.csv</code> for data table file</li>
+<li><code>*.png/jpg/bmp</code> for raster image file</li>
+<li><code>*.svg</code> for vector image file</li>
+<li><code>*.html</code> for html text file</li>
+<li><code>*.md</code> for makrdown text file, the markdown text file <br />
   will be rendering as the html document text at first<br />
   and then returns a html document to the rendering <br />
   engine.</li>

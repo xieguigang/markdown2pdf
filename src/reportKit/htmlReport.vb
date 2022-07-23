@@ -294,6 +294,8 @@ getStringValue:
     End Function
 
     ''' <summary>
+    ''' Load resource files for build html report
+    ''' 
     ''' load the resource files based on the description list data, 
     ''' and then generates the html segments for the resource files.
     ''' </summary>
@@ -301,12 +303,12 @@ getStringValue:
     ''' the resource file contents in this description data 
     ''' supports file types:
     ''' 
-    ''' 1. *.txt for plant text file
-    ''' 2. *.csv for data table file
-    ''' 3. *.png/jpg/bmp for raster image file
-    ''' 4. *.svg for vector image file
-    ''' 5. *.html for html text file
-    ''' 6. *.md for makrdown text file, the markdown text file 
+    ''' 1. ``*.txt`` for plant text file
+    ''' 2. ``*.csv`` for data table file
+    ''' 3. ``*.png/jpg/bmp`` for raster image file
+    ''' 4. ``*.svg`` for vector image file
+    ''' 5. ``*.html`` for html text file
+    ''' 6. ``*.md`` for makrdown text file, the markdown text file 
     '''      will be rendering as the html document text at first
     '''      and then returns a html document to the rendering 
     '''      engine.
