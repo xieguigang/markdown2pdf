@@ -376,7 +376,9 @@ getStringValue:
     ''' Create a html template model from a 
     ''' given report template directory.
     ''' </summary>
-    ''' <param name="template"></param>
+    ''' <param name="template">
+    ''' the zip file package or the template html resource directory path
+    ''' </param>
     ''' <returns></returns>
     <ExportAPI("reportTemplate")>
     Public Function reportTemplate(template As String, Optional copyToTemp As Boolean = True) As HTMLReport
