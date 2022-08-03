@@ -1,4 +1,5 @@
 ﻿Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Imaging
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
@@ -16,7 +17,10 @@ Imports REnv = SMRUCC.Rsharp.Runtime
 Module highcharts
 
     <ExportAPI("to_javascript")>
-    Public Function getJavascript(chart As Object, <RDefaultExpression> Optional divId As Object = "~random_str(8)") As String
+    Public Function getJavascript(chart As Object,
+                                  <RDefaultExpression>
+                                  Optional divId As Object = "~random_str(8)",
+                                  Optional env As Environment = Nothing) As String
         If chart Is Nothing Then
             Return ""
         End If
@@ -43,8 +47,12 @@ Module highcharts
     Public Function piechart(data As list,
                              Optional title As String = "title",
                              Optional subtitle As String = "subtitle",
-                             Optional serialName As String = "percentage") As PieChart
+                             Optional serialName As String = "percentage",
+                             <RRawVectorArgument>
+                             Optional backgroundColor As Object = "#ffffff",
+                             Optional env As Environment = Nothing) As PieChart
 
+        Dim bg As String = RColorPalette.getColor(backgroundColor, [default]:="#ffffff")
         Dim pieData As Object() = data.slots.CreateDataSequence
         Dim chart As New PieChart With {
             .chart = chartProfiles.PieChart3D,
@@ -73,7 +81,7 @@ Module highcharts
             }
         }
 
-        Return chart
+        Return chart.setBackground(bg.TranslateColor)
     End Function
 
     <ExportAPI("barchart")>
@@ -82,6 +90,8 @@ Module highcharts
                              Optional subtitle As String = "subtitle",
                              Optional ylab As String = "Y",
                              Optional serialName As String = "data",
+                             <RRawVectorArgument>
+                             Optional backgroundColor As Object = "#ffffff",
                              Optional env As Environment = Nothing) As BarChart
 
         Dim values As Dictionary(Of String, Double) = data.AsGeneric(Of Double)(env)
@@ -94,6 +104,7 @@ Module highcharts
                 }
             }
         }
+        Dim bg As String = RColorPalette.getColor(backgroundColor, [default]:="#ffffff")
         Dim chart As New BarChart With {
             .chart = New chart With {
                 .type = "column",
@@ -138,7 +149,7 @@ Module highcharts
             }
         }
 
-        Return chart
+        Return chart.setBackground(bg.TranslateColor)
     End Function
 
     ''' <summary>
@@ -157,7 +168,9 @@ Module highcharts
                                      Optional title$ = "pie chart",
                                      Optional subtitle$ = "pie chart",
                                      Optional pointerName$ = "item",
-                                     Optional serialName$ = "serial name") As VariablePieChart
+                                     Optional serialName$ = "serial name",
+                                     <RRawVectorArgument>
+                                     Optional backgroundColor As Object = "#ffffff") As VariablePieChart
 
         Dim names As String() = data.rownames
         Dim y As Double() = REnv.asVector(Of Double)(data.getColumnVector("y"))
@@ -171,6 +184,7 @@ Module highcharts
                         }
                     End Function) _
             .ToArray
+        Dim bg As String = RColorPalette.getColor(backgroundColor, [default]:="#ffffff")
         Dim serial As New VariablePieSerial With {
             .minPointSize = 10,
             .innerSize = $"{innerSize}%",
@@ -191,7 +205,7 @@ Module highcharts
             .series = {serial}
         }
 
-        Return chart
+        Return chart.setBackground(bg.TranslateColor)
     End Function
 
     ''' <summary>
@@ -214,8 +228,11 @@ Module highcharts
                                      Optional xlab As String = "X",
                                      Optional ylab As String = "Y",
                                      Optional serialName As String = "data",
+                                     <RRawVectorArgument>
+                                     Optional backgroundColor As Object = "#ffffff",
                                      Optional env As Environment = Nothing) As VariWideBarChart
 
+        Dim bg As String = RColorPalette.getColor(backgroundColor, [default]:="#ffffff")
         Dim sdata = data.slots.Keys _
             .Select(Function(name)
                         Dim value As Object() = data.getValue(name, env, New Object() {0.0, 0.0})
@@ -250,6 +267,6 @@ Module highcharts
                 }
         }
 
-        Return chart
+        Return chart.setBackground(bg.TranslateColor)
     End Function
 End Module

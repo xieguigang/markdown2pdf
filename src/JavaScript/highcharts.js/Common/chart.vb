@@ -55,6 +55,7 @@ Public Class chart
     ''' <returns></returns>
     Public Property type As String
     Public Property options3d As options3d
+    Public Property backgroundColor As String = "#ffffff"
     ''' <summary>
     ''' 图表中数据报表的放大类型，可以以X轴放大，或是以Y轴放大，还可以以XY轴同时放大。
     ''' </summary>
