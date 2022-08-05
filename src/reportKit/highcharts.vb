@@ -249,6 +249,11 @@ Module highcharts
             .subtitle = New title With {.text = subtitle},
             .yAxis = New Axis With {.title = New title With {.text = ylab}},
             .xAxis = New Axis With {
+                .labels = New labelOptions With {
+                    .rotation = -45,
+                    .autoRotation = {-45},
+                    .enabled = True
+                },
                 .type = "category",
                 .title = New title With {.text = xlab}},
                 .legend = New legendOptions With {.enabled = False},

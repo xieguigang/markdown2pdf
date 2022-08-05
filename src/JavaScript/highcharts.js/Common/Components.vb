@@ -198,6 +198,8 @@ Public Class labelOptions
     Public Property style As styleOptions
     Public Property formatter As Lambda
     Public Property rotation As Double?
+    Public Property autoRotation As Double()
+    Public Property enabled As Boolean?
 End Class
 
 Public Class styleOptions
