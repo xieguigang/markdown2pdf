@@ -93,8 +93,7 @@ Public Module Javascript
         '    .GetObjectJson(chart, indent:=True, knownTypes:=knownTypes) _
         '    .RemoveJsonNullItems _
         '    .FixDate
-        Dim JSON$ = chart _
-            .NewtonsoftJsonWriter _
+        Dim JSON$ = Microsoft.VisualBasic.MIME.application.json.JSONSerializer.GetJson(chart) _
             .FixDate(UTCdate) _
             .RemoveJsonNullItems _
             .RemoveTrailingComma _
