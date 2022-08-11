@@ -183,6 +183,17 @@ Module highcharts
                             .z = z(i)
                         }
                     End Function) _
+            .GroupBy(Function(v) v.name) _
+            .Select(Function(v)
+                        Dim my As Double = v.Select(Function(i) i.y).Average
+                        Dim mz As Double = v.Select(Function(i) i.z).Average
+
+                        Return New VariablePieSerialData With {
+                            .name = v.Key,
+                            .y = my,
+                            .z = mz
+                        }
+                    End Function) _
             .ToArray
         Dim bg As String = RColorPalette.getColor(backgroundColor, [default]:="#ffffff")
         Dim serial As New VariablePieSerial With {
