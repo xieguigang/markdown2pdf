@@ -97,6 +97,10 @@ Module InternalEnvironment
             Next
         Next
 
+        If "/usr/local/bin/wkhtmltopdf".FileExists Then
+            Return "/usr/local/bin/wkhtmltopdf"
+        End If
+
         Throw New FileNotFoundException("Progream ""wkhtmltopdf"" is not installed!")
     End Function
 End Module
