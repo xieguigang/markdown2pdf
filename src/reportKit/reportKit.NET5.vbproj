@@ -74,10 +74,14 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\..\R-sharp\R#\Rsharp-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Data\DataFrame\dataframework-netcore5.vbproj" />
+    <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Data_science\Mathematica\Math\Math\Math.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\gr\Microsoft.VisualBasic.Imaging\imaging.NET5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\Microsoft.VisualBasic.Core\src\Core.vbproj" />
+    <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\application%json\JSON-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\text%markdown\markdown.NET5.vbproj" />
+    <ProjectReference Include="..\JavaScript\d3.js\d3.js.vbproj" />
+    <ProjectReference Include="..\JavaScript\font-awesome\font-awesome.vbproj" />
     <ProjectReference Include="..\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj" />
     <ProjectReference Include="..\PdfConvert\WkHtmlToPdf.NET5.vbproj" />
     <ProjectReference Include="..\ReportBuilder\reportBuilder-netcore5.vbproj" />
