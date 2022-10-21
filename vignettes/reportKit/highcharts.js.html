@@ -1,0 +1,286 @@
+<!DOCTYPE html><html lang="zh-CN">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+    <title>highcharts.js</title>
+    <meta name="author" content="xie.guigang@gcmodeller.org" />
+    <meta name="copyright" content="SMRUCC genomics Copyright (c) 2020" />
+    <meta name="keywords" content="GCModeller; Xanthomonas; Artificial Life" />
+    <meta name="generator" content="https://github.com/xieguigang/xDoc" />
+    <meta name="theme-color" content="#333" />
+    <meta name="last-update" content="2022-10-21" />
+    <meta name="description" content="A software system aim at Artificial Life system design and analysis." />
+    <meta class="foundation-data-attribute-namespace" />
+    <meta class="foundation-mq-xxlarge" />
+    <meta class="foundation-mq-xlarge" />
+    <meta class="foundation-mq-large" />
+    <meta class="foundation-mq-medium" />
+    <meta class="foundation-mq-small" />
+    <meta class="foundation-mq-topbar" />
+  </head>
+  <body>
+    <table width="100%" summary="page for {highcharts.js}">
+      <tbody>
+        <tr>
+          <td>{highcharts.js}</td>
+          <td style="text-align: right;">R# Documentation</td>
+        </tr>
+      </tbody>
+    </table>
+    <h1>highcharts.js</h1>
+    <hr />
+    <p></p>
+    <div id="main-wrapper">
+                           <div>
+  <h2 id="to_javascript">
+    <a href="./highcharts.js/to_javascript.html">to_javascript</a>
+  </h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>to_javascript</code> as function(<code>chart</code> as any, <code>divId</code> as any = CALL "RANDOM_STR"(8), [<code>&lt;Environment&gt;</code>]) -> <code>string</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.highcharts
+    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "highcharts.js"
+    #
+    return call <code>R&#35;.interop_[highcharts::getJavascript]</code>(...);
+}</p></pre>
+
+                    
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="to_html">
+    <a href="./highcharts.js/to_html.html">to_html</a>
+  </h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>to_html</code> as function(<code>Javascript</code> as string, <code>divId</code> as string, <code>style</code> as string = "height: 450px;") -> <code>string</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.highcharts
+    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "highcharts.js"
+    #
+    return call <code>R&#35;.interop_[highcharts::getHtml]</code>(...);
+}</p></pre>
+
+                    
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="piechart">
+    <a href="./highcharts.js/piechart.html">piechart</a>
+  </h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>piechart</code> as function(<code>data</code> as list, 
+<code>title</code> as string = "title", 
+<code>subtitle</code> as string = "subtitle", 
+<code>serialName</code> as string = "percentage", 
+<code>backgroundColor</code> as any = "#ffffff", 
+[<code>&lt;Environment&gt;</code>]) -> <code>&lt;generic&gt; PieChart</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.highcharts
+    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "highcharts.js"
+    #
+    return call <code>R&#35;.interop_[highcharts::piechart]</code>(...);
+}</p></pre>
+
+                    
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="barchart">
+    <a href="./highcharts.js/barchart.html">barchart</a>
+  </h2>
+  <hr />
+  <p>
+                    <p>It is a column char actually</p>  
+                
+                    <pre><p>let <code>barchart</code> as function(<code>data</code> as list, 
+<code>title</code> as string = "title", 
+<code>subtitle</code> as string = "subtitle", 
+<code>ylab</code> as string = "Y", 
+<code>serialName</code> as string = "data", 
+<code>backgroundColor</code> as any = "#ffffff", 
+<code>display3D</code> as boolean = TRUE, 
+[<code>&lt;Environment&gt;</code>]) -> <code>&lt;generic&gt; BarChart</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.highcharts
+    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "highcharts.js"
+    #
+    return call <code>R&#35;.interop_[highcharts::BarChart]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>data</code>: a dictionary of [name => value] tuple paired list
+                </li>
+<li>
+  <code>title</code>: -
+                </li>
+<li>
+  <code>subtitle</code>: -
+                </li>
+<li>
+  <code>ylab</code>: -
+                </li>
+<li>
+  <code>serialName</code>: -
+                </li>
+<li>
+  <code>backgroundColor</code>: -
+                </li>
+<li>
+  <code>env</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="varywide_pieChart">
+    <a href="./highcharts.js/varywide_pieChart.html">varywide_pieChart</a>
+  </h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>varywide_pieChart</code> as function(<code>data</code> as <generic> dataframe, 
+<code>innerSize</code> as string = "20", 
+<code>title</code> as string = "pie chart", 
+<code>subtitle</code> as string = "pie chart", 
+<code>pointerName</code> as string = "item", 
+<code>serialName</code> as string = "serial name", 
+<code>backgroundColor</code> as any = "#ffffff") -> <code>&lt;generic&gt; VariablePieChart</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.highcharts
+    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "highcharts.js"
+    #
+    return call <code>R&#35;.interop_[highcharts::VariablePieChart]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>data</code>: -
+                </li>
+<li>
+  <code>innerSize</code>: radius size in percentage.
+                </li>
+<li>
+  <code>title$</code>: -
+                </li>
+<li>
+  <code>subtitle$</code>: -
+                </li>
+<li>
+  <code>pointerName$</code>: -
+                </li>
+<li>
+  <code>serialName$</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div><br /><div>
+  <h2 id="varywide_barChart">
+    <a href="./highcharts.js/varywide_barChart.html">varywide_barChart</a>
+  </h2>
+  <hr />
+  <p>
+                      
+                
+                    <pre><p>let <code>varywide_barChart</code> as function(<code>data</code> as list, 
+<code>title</code> as string = "title", 
+<code>subtitle</code> as string = "subtitle", 
+<code>xlab</code> as string = "X", 
+<code>ylab</code> as string = "Y", 
+<code>serialName</code> as string = "data", 
+<code>backgroundColor</code> as any = "#ffffff", 
+[<code>&lt;Environment&gt;</code>]) -> <code>&lt;generic&gt; VariWideBarChart</code> {
+    #
+    # .NET API information
+    #
+    # module: reportKit.highcharts
+    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
+    # library: reportKit.dll
+    # package: "highcharts.js"
+    #
+    return call <code>R&#35;.interop_[highcharts::VariWideBarChart]</code>(...);
+}</p></pre>
+
+                    <div>
+  <h4>Arguments</h4>
+  <ul>
+                   <li>
+  <code>data</code>: data mapping of <code>[name -&gt; x, y]</code>
+                </li>
+<li>
+  <code>title</code>: -
+                </li>
+<li>
+  <code>subtitle</code>: -
+                </li>
+<li>
+  <code>xlab</code>: -
+                </li>
+<li>
+  <code>ylab</code>: -
+                </li>
+<li>
+  <code>serialName</code>: -
+                </li>
+<li>
+  <code>env</code>: -
+                </li>
+                </ul>
+</div>
+                       
+                    
+
+                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
+</div>
+                       </div>
+  </body>
+</html>

@@ -84,6 +84,19 @@ Module highcharts
         Return chart.setBackground(bg.TranslateColor)
     End Function
 
+    ''' <summary>
+    ''' It is a column char actually
+    ''' </summary>
+    ''' <param name="data">
+    ''' a dictionary of [name => value] tuple paired list
+    ''' </param>
+    ''' <param name="title"></param>
+    ''' <param name="subtitle"></param>
+    ''' <param name="ylab"></param>
+    ''' <param name="serialName"></param>
+    ''' <param name="backgroundColor"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
     <ExportAPI("barchart")>
     Public Function BarChart(data As list,
                              Optional title As String = "title",
@@ -92,16 +105,21 @@ Module highcharts
                              Optional serialName As String = "data",
                              <RRawVectorArgument>
                              Optional backgroundColor As Object = "#ffffff",
+                             Optional display3D As Boolean = True,
                              Optional env As Environment = Nothing) As BarChart
 
         Dim values As Dictionary(Of String, Double) = data.AsGeneric(Of Double)(env)
         Dim x As New Axis With {
             .categories = values.Keys.ToArray,
             .labels = New labelOptions With {
-                .skew3d = True,
+                .skew3d = display3D,
                 .style = New styleOptions With {
                     .fontSize = "16px"
                 }
+            },
+            .title = New title With {
+                .skew3d = display3D,
+                .text = serialName
             }
         }
         Dim bg As String = RColorPalette.getColor(backgroundColor, [default]:="#ffffff")
@@ -109,7 +127,7 @@ Module highcharts
             .chart = New chart With {
                 .type = "column",
                 .options3d = New options3d With {
-                    .enabled = True,
+                    .enabled = display3D,
                     .alpha = 15,
                     .beta = 15,
                     .viewDistance = 25,
@@ -123,7 +141,7 @@ Module highcharts
                 .min = 0,
                 .title = New title With {
                     .text = ylab,
-                    .skew3d = True
+                    .skew3d = display3D
                 },
                 .allowDecimals = False
             },
