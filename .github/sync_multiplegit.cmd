@@ -1,9 +1,11 @@
 @echo off
 
-git pull local HEAD:master
-git pull gitee HEAD:master
+git pull gitlink HEAD
+git pull gitee HEAD
+git pull local HEAD
 
-git push local HEAD:master
-git push gitee HEAD:master
+git push gitlink HEAD
+git push gitee HEAD
+git push local HEAD
 
 echo synchronization of this code repository job done!
