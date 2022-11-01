@@ -16,12 +16,13 @@ Public Module PageElements
     <Extension>
     Public Function pageNumbers(report As HTMLReport, orders As String(),
                                 Optional pageStart As Integer = 1,
-                                Optional ByRef warnings As String() = Nothing) As HTMLReport
+                                Optional ByRef warnings As String() = Nothing,
+                                Optional total_overrides As Integer = -1) As HTMLReport
 
         Dim pageNumber As Integer = pageStart
         Dim page As TemplateHandler
         Dim msg As New List(Of String)
-        Dim total As Integer = report.pages
+        Dim total As Integer = If(total_overrides > 0, total_overrides, report.pages)
 
         For Each name As String In orders
             page = report.GetPageByName(name)
