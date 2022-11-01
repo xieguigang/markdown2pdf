@@ -35,7 +35,7 @@ Public Module PageElements
                 pageNumber += 1
             End If
             If InStr(page.html, "[#total_pages]") > 1 Then
-                page.builder.Replace("[#total_pages]", pageNumber)
+                page.builder.Replace("[#total_pages]", total)
             End If
         Next
 
