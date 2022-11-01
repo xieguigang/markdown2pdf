@@ -76,6 +76,10 @@ Namespace HTML
         ''' <returns></returns>
         Public ReadOnly Property directory As String
 
+        ''' <summary>
+        ''' get counts of the template html pages number
+        ''' </summary>
+        ''' <returns></returns>
         Public ReadOnly Property pages As Integer
             Get
                 Return templates.Count

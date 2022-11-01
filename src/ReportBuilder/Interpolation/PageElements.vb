@@ -21,6 +21,7 @@ Public Module PageElements
         Dim pageNumber As Integer = pageStart
         Dim page As TemplateHandler
         Dim msg As New List(Of String)
+        Dim total As Integer = report.pages
 
         For Each name As String In orders
             page = report.GetPageByName(name)
@@ -32,6 +33,9 @@ Public Module PageElements
             If InStr(page.html, "[#page]") > 1 Then
                 page.builder.Replace("[#page]", pageNumber)
                 pageNumber += 1
+            End If
+            If InStr(page.html, "[#total_pages]") > 1 Then
+                page.builder.Replace("[#total_pages]", pageNumber)
             End If
         Next
 
