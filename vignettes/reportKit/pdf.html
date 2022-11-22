@@ -11,7 +11,7 @@
     <meta name="generator" content="https://github.com/xieguigang/xDoc" />
     <meta name="theme-color" content="#333" />
     <meta name="last-update" content="2022-11-22" />
-    <meta name="description" content="A software system aim at Artificial Life system design and analysis." />
+    <meta name="description" content="" />
     <meta class="foundation-data-attribute-namespace" />
     <meta class="foundation-mq-xxlarge" />
     <meta class="foundation-mq-xlarge" />
@@ -31,186 +31,54 @@
     </table>
     <h1>pdf</h1>
     <hr />
+    <p>
+      <code>
+        <span style="color: blue;">imports</span>
+        <span style="color: brown"> "pdf"</span>
+        <span style="color: blue;"> from</span>
+        <span style="color: brown"> "reportKit"</span>
+      </code>
+    </p>
     <p></p>
     <div id="main-wrapper">
-                           <div>
-  <h2 id="pdfPage_options">
+      <table>
+        <thead>
+          <tr>
+            <th>function</th>
+            <th>description</th>
+          </tr>
+        </thead>
+        <tbody><tr>
+  <td id="pdfPage_options">
     <a href="./pdf/pdfPage_options.html">pdfPage_options</a>
-  </h2>
-  <hr />
-  <p>
-                      
-                
-                    <pre><p>let <code>pdfPage_options</code> as function(<code>javascriptdelay</code> as double = 3000, 
-<code>loaderrorhandling</code> as <integer> handlers = [abort], 
-<code>debugjavascript</code> as boolean = TRUE, 
-<code>enableforms</code> as boolean = TRUE) -> <code>&lt;generic&gt; Page</code> {
-    #
-    # .NET API information
-    #
-    # module: reportKit.pdf
-    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
-    # library: reportKit.dll
-    # package: "pdf"
-    #
-    return call <code>R&#35;.interop_[pdf::pdfPageOptions]</code>(...);
-}</p></pre>
-
-                    
-                       
-                    
-
-                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
-</div><br /><div>
-  <h2 id="pdfGlobal_options">
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td id="pdfGlobal_options">
     <a href="./pdf/pdfGlobal_options.html">pdfGlobal_options</a>
-  </h2>
-  <hr />
-  <p>
-                      
-                
-                    <pre><p>let <code>pdfGlobal_options</code> as function(<code>margintop</code> as integer = 0, 
-<code>marginleft</code> as integer = 0, 
-<code>marginright</code> as integer = 0, 
-<code>marginbottom</code> as integer = 0, 
-<code>imagequality</code> as integer = 100, 
-<code>title</code> as string = "") -> <code>&lt;generic&gt; GlobalOptions</code> {
-    #
-    # .NET API information
-    #
-    # module: reportKit.pdf
-    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
-    # library: reportKit.dll
-    # package: "pdf"
-    #
-    return call <code>R&#35;.interop_[pdf::pdfGlobalOptions]</code>(...);
-}</p></pre>
-
-                    
-                       
-                    
-
-                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
-</div><br /><div>
-  <h2 id="pdfDecoration">
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td id="pdfDecoration">
     <a href="./pdf/pdfDecoration.html">pdfDecoration</a>
-  </h2>
-  <hr />
-  <p>
-                      
-                
-                    <pre><p>let <code>pdfDecoration</code> as function(<code>spacing</code> as double = 8, 
-<code>center</code> as string = "-- [page] --", 
-<code>fontsize</code> as double = 14, 
-<code>fontname</code> as string = "Microsoft YaHei", 
-<code>html</code> as string = <code>&lt;NULL&gt;</code>) -> <code>&lt;generic&gt; Decoration</code> {
-    #
-    # .NET API information
-    #
-    # module: reportKit.pdf
-    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
-    # library: reportKit.dll
-    # package: "pdf"
-    #
-    return call <code>R&#35;.interop_[pdf::pdfDecoration]</code>(...);
-}</p></pre>
-
-                    <div>
-  <h4>Arguments</h4>
-  <ul>
-                   <li>
-  <code>spacing</code>: -
-                </li>
-<li>
-  <code>center</code>: -
-                </li>
-<li>
-  <code>fontsize</code>: -
-                </li>
-<li>
-  <code>fontname</code>: -
-                </li>
-<li>
-  <code>html</code>: Adds a html footer/header
-                </li>
-                </ul>
-</div>
-                       
-                    
-
-                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
-</div><br /><div>
-  <h2 id="logo_html">
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td id="logo_html">
     <a href="./pdf/logo_html.html">logo_html</a>
-  </h2>
-  <hr />
-  <p>
-                      
-                
-                    <pre><p>let <code>logo_html</code> as function(<code>logo</code> as string) -> <code>string</code> {
-    #
-    # .NET API information
-    #
-    # module: reportKit.pdf
-    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
-    # library: reportKit.dll
-    # package: "pdf"
-    #
-    return call <code>R&#35;.interop_[pdf::logoHtml]</code>(...);
-}</p></pre>
-
-                    
-                       
-                    
-
-                    <span style="font-size:0.9em; display: none"><h4>Details</h4><blockquote></blockquote></span></p>
-</div><br /><div>
-  <h2 id="makePDF">
+  </td>
+  <td></td>
+</tr>
+<tr>
+  <td id="makePDF">
     <a href="./pdf/makePDF.html">makePDF</a>
-  </h2>
-  <hr />
-  <p>
-                    <p>convert the local html documents to pdf document.</p>  
-                
-                    <pre><p>let <code>makePDF</code> as function(<code>files</code> as any, 
-<code>pdfout</code> as string = "out.pdf", 
-<code>wwwroot</code> as string = "/", 
-<code>style</code> as string = <code>&lt;NULL&gt;</code>, 
-<code>resolvedAsDataUri</code> as boolean = FALSE, 
-<code>footer</code> as <generic> Decoration = <code>&lt;NULL&gt;</code>, 
-<code>header</code> as <generic> Decoration = <code>&lt;NULL&gt;</code>, 
-<code>opts</code> as <generic> GlobalOptions = <code>&lt;NULL&gt;</code>, 
-<code>pageOpts</code> as <generic> Page = <code>&lt;NULL&gt;</code>, 
-<code>pdf_size</code> as <integer> QPrinter = [A4], 
-[<code>&lt;Environment&gt;</code>]) -> <code>string</code> {
-    #
-    # .NET API information
-    #
-    # module: reportKit.pdf
-    # LibPath: D:/GCModeller/src/workbench/markdown2pdf/assembly/net6.0
-    # library: reportKit.dll
-    # package: "pdf"
-    #
-    return call <code>R&#35;.interop_[pdf::makePDF]</code>(...);
-}</p></pre>
-
-                    <div>
-  <h4>Arguments</h4>
-  <ul>
-                   <li>
-  <code>files</code>: markdown files or html files
-                </li>
-<li>
-  <code>pdfout</code>: -
-                </li>
-                </ul>
-</div>
-                       
-                    
-
-                    <span style="font-size:0.9em; display: block"><h4>Details</h4><blockquote><p>the executable file path of the wkhtmltopdf should be<br />
- configed via <code>options(wkhtmltopdf = ...)</code>.</p></blockquote></span></p>
-</div>
-                       </div>
+  </td>
+  <td><p>convert the local html documents to pdf document.</p></td>
+</tr></tbody>
+      </table>
+    </div>
   </body>
 </html>
