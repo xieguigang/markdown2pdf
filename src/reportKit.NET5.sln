@@ -4199,8 +4199,8 @@ Global
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Release|x86.Build.0 = Release|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|Any CPU.ActiveCfg = Release|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|Any CPU.Build.0 = Release|Any CPU
-		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|x64.ActiveCfg = Release|Any CPU
-		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|x64.Build.0 = Release|Any CPU
+		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|x64.ActiveCfg = Rsharp_app_release|x64
+		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|x64.Build.0 = Rsharp_app_release|x64
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|x86.ActiveCfg = Release|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Rsharp_app_release|x86.Build.0 = Release|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.RsharpDev|Any CPU.ActiveCfg = Release|Any CPU

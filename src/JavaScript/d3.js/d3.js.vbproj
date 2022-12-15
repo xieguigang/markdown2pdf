@@ -2,8 +2,9 @@
 
   <PropertyGroup>
     <RootNamespace>SMRUCC.WebCloud.JavaScript.d3js</RootNamespace>
-    <TargetFrameworks>net6.0-windows;net6.0;net48</TargetFrameworks>
     <AssemblyName>SMRUCC.WebCloud.JavaScript.d3js</AssemblyName>
+    <TargetFrameworks>net6.0-windows;net6.0;net48</TargetFrameworks>
+    
 	  <Platforms>AnyCPU;x64</Platforms>
 	  <Configurations>Debug;Release;Rsharp_app_release;LipidSearch;mzkit;NPSearch;mzkit_win32</Configurations>
   </PropertyGroup>
