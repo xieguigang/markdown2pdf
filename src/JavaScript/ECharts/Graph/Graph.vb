@@ -22,7 +22,7 @@ Public Class Graph
                 .category = typeIndex.IndexOf(node.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)),
                 .index = nodes.Count,
                 .name = node.label,
-                .value = node.data.weights()(0)
+                .value = node.data.weights.ElementAtOrDefault(0)
             }
         Next
         For Each edge As Edge In g.graphEdges
