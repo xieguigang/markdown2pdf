@@ -19,6 +19,7 @@ declare namespace echart_app {
     }
     interface options<T extends serial_data> {
         series: T[];
+        color?: string[];
     }
     interface serial_data {
         type: string;
