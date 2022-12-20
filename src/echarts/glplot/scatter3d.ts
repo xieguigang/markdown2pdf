@@ -1,3 +1,5 @@
+/// <reference path="../plot/plotApp.ts" />
+
 namespace gl_plot {
 
     export interface scatterAdapter<T> {

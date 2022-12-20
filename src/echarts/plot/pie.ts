@@ -1,3 +1,5 @@
+/// <reference path="plotApp.ts" />
+
 namespace plot {
 
     export interface pieAdapter<T> {
