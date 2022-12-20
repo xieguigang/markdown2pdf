@@ -11,6 +11,10 @@ declare namespace echart_app {
         setOption(option: {}): void;
         resize(): void;
         on(evt: string, handle: (a: evt_argument) => void): any;
+        dispatchAction(arg: {
+            type: string;
+            dataIndex: number;
+        }): any;
     }
     interface evt_argument {
         dataIndex: number;
