@@ -5,7 +5,11 @@ namespace plot {
         protected dom: HTMLElement
         protected echart: echart_app.echarts_canvas;
 
-        public constructor(id: string = "container") {
+        /**
+         * @param id the html element node id, which should be
+         *    no ``#`` symbol prefix, example value as "container".
+        */
+        public constructor(id: string) {
             canvas.check_env();
 
             this.dom = document.getElementById(id);
@@ -21,9 +25,9 @@ namespace plot {
             }
         }
 
-        protected abstract loadOptions<T>(data: T): {};
+        protected abstract loadOptions(data: any): echart_app.options;
 
-        public plot<T>(data: T) {
+        public plot(data: any) {
             const option = this.loadOptions(data);
             const vm = this.echart;
 

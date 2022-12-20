@@ -16,4 +16,8 @@ namespace echart_app {
             useDirtyRect: boolean
         });
     }
+
+    export interface options {
+        
+    }
 }
