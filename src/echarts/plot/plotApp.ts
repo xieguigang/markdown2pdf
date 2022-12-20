@@ -25,7 +25,7 @@ namespace plot {
             }
         }
 
-        protected abstract loadOptions(data: any): echart_app.options;
+        protected abstract loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
 
         public plot(data: any) {
             const option = this.loadOptions(data);

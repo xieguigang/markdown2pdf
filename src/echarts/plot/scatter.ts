@@ -3,7 +3,15 @@
 namespace plot {
 
     export interface scatterAdapter<T> {
-        (data: T): echart_app.options;
+        (data: T): scatter_option;
+    }
+
+    export interface scatter_option extends echart_app.options<scatter_data> {
+
+    }
+
+    export interface scatter_data extends echart_app.serial_data {
+
     }
 
     export class scatter<T> extends canvas {
@@ -12,8 +20,8 @@ namespace plot {
             super(id);
         }
 
-        protected loadOptions(data: T): echart_app.options {
-            return this.adapter(data);
+        protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T> {
+            return <any>this.adapter(data);
         }
     }
 }

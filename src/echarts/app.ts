@@ -27,7 +27,24 @@ namespace echart_app {
         });
     }
 
-    export interface options {
+    export interface options<T extends serial_data> {
+        series: T[];
+    }
 
+    export interface serial_data {
+        type: string;
+        name: string;
+        data: any[];
+        symbol: string;
+        symbolSize: number;
+        itemStyle: {
+            borderWidth: number,
+            color: string,
+            borderColor: string,
+            normal: {
+                shadowBlur: number,
+                shadowColor: string
+            }
+        }
     }
 }
