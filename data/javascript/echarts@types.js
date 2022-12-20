@@ -29,6 +29,9 @@ var plot;
                 useDirtyRect: false
             });
         }
+        get chartObj() {
+            return this.echart;
+        }
         static check_env() {
             if (!echart_app.echarts) {
                 throw "The ECharts should be imports before this script module is loaded!";

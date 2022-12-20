@@ -10,6 +10,7 @@ declare namespace echart_app {
     interface echarts_canvas {
         setOption(option: {}): void;
         resize(): void;
+        on(evt: string, handle: (any: any) => void): any;
     }
     interface echarts_factory {
         init(dom: HTMLElement, any: any, opt: {
@@ -42,6 +43,7 @@ declare namespace plot {
     abstract class canvas {
         protected dom: HTMLElement;
         protected echart: echart_app.echarts_canvas;
+        get chartObj(): echart_app.echarts_canvas;
         /**
          * @param id the html element node id, which should be
          *    no ``#`` symbol prefix, example value as "container".

@@ -18,6 +18,7 @@ namespace echart_app {
     export interface echarts_canvas {
         setOption(option: {}): void;
         resize(): void;
+        on(evt: string, handle: (any) => void);
     }
 
     export interface echarts_factory {

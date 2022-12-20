@@ -5,6 +5,10 @@ namespace plot {
         protected dom: HTMLElement
         protected echart: echart_app.echarts_canvas;
 
+        public get chartObj(): echart_app.echarts_canvas {
+            return this.echart;
+        }
+
         /**
          * @param id the html element node id, which should be
          *    no ``#`` symbol prefix, example value as "container".
