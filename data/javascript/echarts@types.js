@@ -53,6 +53,10 @@ var gl_plot;
         }
         loadOptions(data) {
             const opt = this.adapter(data);
+            opt.grid3D = opt.grid3D || {};
+            opt.xAxis3D = opt.xAxis3D || { type: "value" };
+            opt.yAxis3D = opt.yAxis3D || { type: "value" };
+            opt.zAxis3D = opt.zAxis3D || { type: "value" };
             return opt;
         }
     }

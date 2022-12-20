@@ -17,7 +17,24 @@ declare namespace echart_app {
             useDirtyRect: boolean;
         }): any;
     }
-    interface options {
+    interface options<T extends serial_data> {
+        series: T[];
+    }
+    interface serial_data {
+        type: string;
+        name: string;
+        data: any[];
+        symbol: string;
+        symbolSize: number;
+        itemStyle: {
+            borderWidth: number;
+            color: string;
+            borderColor: string;
+            normal: {
+                shadowBlur: number;
+                shadowColor: string;
+            };
+        };
     }
 }
 declare namespace plot {
@@ -30,37 +47,57 @@ declare namespace plot {
         */
         constructor(id: string);
         private static check_env;
-        protected abstract loadOptions(data: any): echart_app.options;
+        protected abstract loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
         plot(data: any): void;
     }
 }
 declare namespace gl_plot {
     interface scatterAdapter<T> {
-        (data: T): echart_app.options;
+        (data: T): scatter3d_options;
+    }
+    interface scatter3d_options extends echart_app.options<gl_scatter_data> {
+        grid3D: {};
+        xAxis3D: gl_axis;
+        yAxis3D: gl_axis;
+        zAxis3D: gl_axis;
+    }
+    interface gl_scatter_data extends echart_app.serial_data {
+        dimensions: string[];
+    }
+    interface gl_axis {
+        type: string;
+        name: string;
     }
     class scatter3d<T> extends plot.canvas {
         private adapter;
         constructor(adapter: scatterAdapter<T>, id?: string);
-        protected loadOptions(data: any): echart_app.options;
+        protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
     }
 }
 declare namespace plot {
     interface pieAdapter<T> {
-        (data: T): echart_app.options;
+        (data: T): echart_app.options<pie_data>;
+    }
+    interface pie_data extends echart_app.serial_data {
+        radius: string;
     }
     class pie<T> extends canvas {
         private adapter;
         constructor(adapter: pieAdapter<T>, id?: string);
-        protected loadOptions(data: any): echart_app.options;
+        protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
     }
 }
 declare namespace plot {
     interface scatterAdapter<T> {
-        (data: T): echart_app.options;
+        (data: T): scatter_option;
+    }
+    interface scatter_option extends echart_app.options<scatter_data> {
+    }
+    interface scatter_data extends echart_app.serial_data {
     }
     class scatter<T> extends canvas {
         private adapter;
         constructor(adapter: scatterAdapter<T>, id?: string);
-        protected loadOptions(data: T): echart_app.options;
+        protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
     }
 }
