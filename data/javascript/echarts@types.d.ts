@@ -10,7 +10,11 @@ declare namespace echart_app {
     interface echarts_canvas {
         setOption(option: {}): void;
         resize(): void;
-        on(evt: string, handle: (any: any) => void): any;
+        on(evt: string, handle: (a: evt_argument) => void): any;
+    }
+    interface evt_argument {
+        dataIndex: number;
+        name: string;
     }
     interface echarts_factory {
         init(dom: HTMLElement, any: any, opt: {
