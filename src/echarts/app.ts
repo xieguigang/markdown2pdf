@@ -35,13 +35,13 @@ namespace echart_app {
         type: string;
         name: string;
         data: any[];
-        symbol: string;
-        symbolSize: number;
+        symbol?: string;
+        symbolSize?: number;
         itemStyle: {
-            borderWidth: number,
+            borderWidth?: number,
             color: string,
-            borderColor: string,
-            normal: {
+            borderColor?: string,
+            normal?: {
                 shadowBlur: number,
                 shadowColor: string
             }
