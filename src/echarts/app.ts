@@ -59,6 +59,13 @@ namespace echart_app {
         series: T[];
         color?: string[];
         tooltip?: {};
+        title?: {
+            text: string;
+            subtext: string;
+            sublink: string;
+            left: string | number;
+            top: string | number;
+        }
     }
 
     export interface serial_data {

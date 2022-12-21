@@ -111,6 +111,20 @@ var plot;
     }
     plot.heatmap = heatmap;
 })(plot || (plot = {}));
+var plot;
+(function (plot) {
+    class histogramPlot extends plot.canvas {
+        constructor(adapter, id = "container") {
+            super(id);
+            this.adapter = adapter;
+        }
+        loadOptions(data) {
+            const opt = this.adapter(data);
+            return opt;
+        }
+    }
+    plot.histogramPlot = histogramPlot;
+})(plot || (plot = {}));
 /// <reference path="plotApp.ts" />
 var plot;
 (function (plot) {

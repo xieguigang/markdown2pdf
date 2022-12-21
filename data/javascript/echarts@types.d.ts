@@ -32,6 +32,13 @@ declare namespace echart_app {
         series: T[];
         color?: string[];
         tooltip?: {};
+        title?: {
+            text: string;
+            subtext: string;
+            sublink: string;
+            left: string | number;
+            top: string | number;
+        };
     }
     interface serial_data {
         type: string;
@@ -117,6 +124,42 @@ declare namespace plot {
         private adapter;
         private colorSet;
         constructor(adapter: heatmapAdapter<T>, colorSet?: string[], id?: string);
+        protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
+    }
+}
+declare namespace plot {
+    interface histogramAdapter<T> {
+        (data: T): histogram_options;
+    }
+    interface histogram_options extends echart_app.options<histogram_data> {
+        xAxis: {
+            type: string;
+            min: number;
+            max: number;
+            interval: number;
+        };
+        yAxis: {
+            type: string;
+        };
+    }
+    interface histogram_data extends echart_app.serial_data {
+        shape: {
+            x: number;
+            y: number;
+            width: number;
+            height: number;
+        };
+        data: number[][];
+        encode: {
+            x: number[];
+            y: number;
+            tooltip: number;
+            label: number;
+        };
+    }
+    class histogramPlot<T> extends canvas {
+        private adapter;
+        constructor(adapter: histogramAdapter<T>, id?: string);
         protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
     }
 }
