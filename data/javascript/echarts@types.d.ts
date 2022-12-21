@@ -181,8 +181,11 @@ declare namespace plot {
         (data: T): scatter_option;
     }
     interface scatter_option extends echart_app.options<scatter_data> {
+        xAxis: {};
+        yAxis: {};
     }
     interface scatter_data extends echart_app.serial_data {
+        symbolSize: number;
     }
     class scatter<T> extends canvas {
         private adapter;

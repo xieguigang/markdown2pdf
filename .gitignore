@@ -255,3 +255,4 @@ paket-files/
 /Apps
 .Rproj.user
 *.zip
+data/javascript/echarts@types.js.map
