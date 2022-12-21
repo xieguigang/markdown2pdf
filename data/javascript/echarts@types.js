@@ -13,6 +13,25 @@ var echart_app;
         "#41b6ab", "#f0bf59", "#79c753", "#c02034", "#097988",
         "#ff1bff"
     ];
+    echart_app.jet = [
+        "#00007F",
+        "#0000FF",
+        "#007FFF",
+        "#00FFFF",
+        "#7FFF7F",
+        "#FFFF00",
+        "#FF7F00",
+        "#FF0000",
+        "#7F0000" // dark red
+    ];
+    function clear(id) {
+        const canvas = document.getElementById(id);
+        if (canvas) {
+            canvas.removeAttribute("_echarts_instance_");
+            canvas.innerHTML = "";
+        }
+    }
+    echart_app.clear = clear;
 })(echart_app || (echart_app = {}));
 var plot;
 (function (plot) {
@@ -22,6 +41,7 @@ var plot;
          *    no ``#`` symbol prefix, example value as "container".
         */
         constructor(id) {
+            echart_app.clear(id);
             canvas.check_env();
             this.dom = document.getElementById(id);
             this.echart = echart_app.echarts.init(this.dom, null, {
@@ -68,9 +88,10 @@ var gl_plot;
 var plot;
 (function (plot) {
     class heatmap extends plot.canvas {
-        constructor(adapter, id = "container") {
+        constructor(adapter, colorSet = echart_app.jet, id = "container") {
             super(id);
             this.adapter = adapter;
+            this.colorSet = colorSet;
         }
         loadOptions(data) {
             const opt = this.adapter(data);
@@ -81,7 +102,7 @@ var plot;
                     calculable: true,
                     realtime: false,
                     inRange: {
-                        color: echart_app.paper
+                        color: this.colorSet
                     }
                 };
             }

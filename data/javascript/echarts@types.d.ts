@@ -7,6 +7,8 @@ declare namespace echart_app {
      * The paper color set
     */
     const paper: string[];
+    const jet: string[];
+    function clear(id: string): void;
     interface echarts_canvas {
         setOption(option: {}): void;
         resize(): void;
@@ -113,7 +115,8 @@ declare namespace plot {
     }
     class heatmap<T> extends plot.canvas {
         private adapter;
-        constructor(adapter: heatmapAdapter<T>, id?: string);
+        private colorSet;
+        constructor(adapter: heatmapAdapter<T>, colorSet?: string[], id?: string);
         protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
     }
 }

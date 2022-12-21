@@ -31,7 +31,7 @@ namespace plot {
 
         public constructor(
             private adapter: heatmapAdapter<T>,
-            private colorSet: string[] = echart_app.paper,
+            private colorSet: string[] = echart_app.jet,
             id = "container"
         ) {
             super(id);

@@ -15,6 +15,18 @@ namespace echart_app {
         "#ff1bff"
     ];
 
+    export const jet: string[] = [
+        "#00007F",// dark blue
+        "#0000FF",// blue
+        "#007FFF",// azure
+        "#00FFFF",// cyan
+        "#7FFF7F",// light green
+        "#FFFF00",// yellow
+        "#FF7F00",// orange
+        "#FF0000",// red
+        "#7F0000" // dark red
+    ];
+
     export function clear(id: string) {
         const canvas: HTMLElement = document.getElementById(id);
 
