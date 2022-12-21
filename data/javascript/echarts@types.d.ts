@@ -29,6 +29,7 @@ declare namespace echart_app {
     interface options<T extends serial_data> {
         series: T[];
         color?: string[];
+        tooltip?: {};
     }
     interface serial_data {
         type: string;
@@ -82,6 +83,37 @@ declare namespace gl_plot {
     class scatter3d<T> extends plot.canvas {
         private adapter;
         constructor(adapter: scatterAdapter<T>, id?: string);
+        protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
+    }
+}
+declare namespace plot {
+    interface heatmap_data extends echart_app.serial_data {
+        progressive: number;
+        animation: boolean;
+        emphasis: {
+            itemStyle: {
+                borderColor: string;
+                borderWidth: number;
+            };
+        };
+    }
+    interface heatmap_option extends echart_app.options<heatmap_data> {
+        visualMap: {
+            min: number;
+            max: number;
+            calculable: boolean;
+            realtime: boolean;
+            inRange: {
+                color: string[];
+            };
+        };
+    }
+    interface heatmapAdapter<T> {
+        (data: T): echart_app.options<heatmap_data>;
+    }
+    class heatmap<T> extends plot.canvas {
+        private adapter;
+        constructor(adapter: heatmapAdapter<T>, id?: string);
         protected loadOptions<T extends echart_app.serial_data>(data: any): echart_app.options<T>;
     }
 }

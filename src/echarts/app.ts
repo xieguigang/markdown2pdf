@@ -37,6 +37,7 @@ namespace echart_app {
     export interface options<T extends serial_data> {
         series: T[];
         color?: string[];
+        tooltip?: {};
     }
 
     export interface serial_data {

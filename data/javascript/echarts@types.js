@@ -65,6 +65,31 @@ var gl_plot;
     }
     gl_plot.scatter3d = scatter3d;
 })(gl_plot || (gl_plot = {}));
+var plot;
+(function (plot) {
+    class heatmap extends plot.canvas {
+        constructor(adapter, id = "container") {
+            super(id);
+            this.adapter = adapter;
+        }
+        loadOptions(data) {
+            const opt = this.adapter(data);
+            if (!opt.visualMap) {
+                opt.visualMap = {
+                    min: 0,
+                    max: 1,
+                    calculable: true,
+                    realtime: false,
+                    inRange: {
+                        color: echart_app.paper
+                    }
+                };
+            }
+            return opt;
+        }
+    }
+    plot.heatmap = heatmap;
+})(plot || (plot = {}));
 /// <reference path="plotApp.ts" />
 var plot;
 (function (plot) {
