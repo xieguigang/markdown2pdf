@@ -29,7 +29,11 @@ namespace plot {
 
     export class heatmap<T> extends plot.canvas {
 
-        public constructor(private adapter: heatmapAdapter<T>, id = "container") {
+        public constructor(
+            private adapter: heatmapAdapter<T>,
+            private colorSet: string[] = echart_app.paper,
+            id = "container"
+        ) {
             super(id);
         }
 
@@ -43,7 +47,7 @@ namespace plot {
                     calculable: true,
                     realtime: false,
                     inRange: {
-                        color: echart_app.paper
+                        color: this.colorSet
                     }
                 };
             }

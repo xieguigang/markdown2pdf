@@ -15,6 +15,15 @@ namespace echart_app {
         "#ff1bff"
     ];
 
+    export function clear(id: string) {
+        const canvas: HTMLElement = document.getElementById(id);
+
+        if (canvas) {
+            canvas.removeAttribute("_echarts_instance_");
+            canvas.innerHTML = "";
+        }
+    }
+
     export interface echarts_canvas {
         setOption(option: {}): void;
         resize(): void;

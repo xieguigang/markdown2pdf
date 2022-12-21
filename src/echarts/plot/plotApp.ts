@@ -14,6 +14,7 @@ namespace plot {
          *    no ``#`` symbol prefix, example value as "container".
         */
         public constructor(id: string) {
+            echart_app.clear(id);
             canvas.check_env();
 
             this.dom = document.getElementById(id);
