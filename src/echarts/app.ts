@@ -49,7 +49,7 @@ namespace echart_app {
     }
 
     export interface echarts_factory {
-        init(dom: HTMLElement, any, opt: {
+        init(dom: HTMLElement, any?, opt?: {
             renderer: string,
             useDirtyRect: boolean
         });

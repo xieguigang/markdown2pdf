@@ -23,7 +23,7 @@ declare namespace echart_app {
         name: string;
     }
     interface echarts_factory {
-        init(dom: HTMLElement, any: any, opt: {
+        init(dom: HTMLElement, any?: any, opt?: {
             renderer: string;
             useDirtyRect: boolean;
         }): any;
