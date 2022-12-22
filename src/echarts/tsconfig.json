@@ -1,0 +1,15 @@
+{
+  "compilerOptions": {
+    "module": "amd",
+    "target": "es6",
+    "lib": [ "dom", "es6", "dom.iterable", "scripthost" ],
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "../../data/javascript/",
+    "outFile": "../../data/javascript/echarts@types.js",
+    "declaration": true
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}
