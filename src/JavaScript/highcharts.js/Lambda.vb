@@ -80,7 +80,7 @@ Public Class LambdaWriter : Inherits JsonConverter
             Call writer.WritePropertyName([property].Name)
             ' let the serializer serialize the value itself
             ' (so this converter will work with any other type, Not just int)
-            Call lambda.SetValue(TryCast([property].GetValue(value, Nothing), Lambda)?.ToString())
+            Call lambda.InlineCopy(TryCast([property].GetValue(value, Nothing), Lambda)?.ToString())
             Call serializer.Serialize(writer, lambda)
         Next
 
