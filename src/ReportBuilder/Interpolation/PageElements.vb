@@ -34,14 +34,14 @@ Public Module PageElements
 
             If page Is Nothing Then
                 Call msg.Add($"missing page '{name}' in the template!")
-            End If
-
-            If InStr(page.html, "[#page]") > 1 Then
-                page.builder.Replace("[#page]", pageNumber)
-                pageNumber += 1
-            End If
-            If InStr(page.html, "[#total_pages]") > 1 Then
-                page.builder.Replace("[#total_pages]", total)
+            Else
+                If InStr(page.html, "[#page]") > 1 Then
+                    page.builder.Replace("[#page]", pageNumber)
+                    pageNumber += 1
+                End If
+                If InStr(page.html, "[#total_pages]") > 1 Then
+                    page.builder.Replace("[#total_pages]", total)
+                End If
             End If
         Next
 

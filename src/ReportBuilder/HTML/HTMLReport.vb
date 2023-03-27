@@ -135,6 +135,15 @@ Namespace HTML
             Me.directory = page.path.ParentPath
         End Sub
 
+        ''' <summary>
+        ''' the given <paramref name="name"/> parameter should be the
+        ''' <see cref="BaseName(String, Boolean)"/> of the template page
+        ''' file path
+        ''' </summary>
+        ''' <param name="name"></param>
+        ''' <returns>
+        ''' this function returns nothing if the given page is not found
+        ''' </returns>
         Public Function GetPageByName(name As String) As TemplateHandler
             Return templates.Values _
                 .Where(Function(page) page.path.BaseName = name) _
