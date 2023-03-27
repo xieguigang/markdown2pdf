@@ -46,6 +46,7 @@ Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
 Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
@@ -56,6 +57,7 @@ Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports REnv = SMRUCC.Rsharp.Runtime
 
 ''' <summary>
@@ -89,8 +91,12 @@ Public Module htmlReportEngine
 
         Dim warnings As String() = Nothing
         Dim output As HTMLReport = report.pageNumbers(orders, pageStart, warnings)
+        Dim println = env.WriteLineHandler
 
-        For Each msg As String In warnings
+        Call println("get pdf page orders:")
+        Call println(orders)
+
+        For Each msg As String In warnings.SafeQuery
             Call env.AddMessage(msg, MSG_TYPES.WRN)
         Next
 
@@ -261,7 +267,7 @@ getStringValue:
             Return DirectCast(value, Message)
         End If
 
-        Dim strs As String() = REnv.asVector(Of String)(value)
+        Dim strs As String() = CLRVector.asCharacter(value)
         Dim singleVal = If(strs.IsNullOrEmpty, "", strs(Scan0))
 
         If singleVal.StartsWith("~") Then

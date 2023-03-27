@@ -17,7 +17,8 @@ Public Module PageElements
     Public Function pageNumbers(report As HTMLReport, orders As String(),
                                 Optional pageStart As Integer = 1,
                                 Optional ByRef warnings As String() = Nothing,
-                                Optional total_overrides As Integer = -1) As HTMLReport
+                                Optional total_overrides As Integer = -1,
+                                Optional println As Action(Of Object) = Nothing) As HTMLReport
 
         Dim pageNumber As Integer = pageStart
         Dim page As TemplateHandler
@@ -26,6 +27,10 @@ Public Module PageElements
 
         For Each name As String In orders
             page = report.GetPageByName(name)
+
+            If Not println Is Nothing Then
+                Call println($"{name} -> {pageNumber}")
+            End If
 
             If page Is Nothing Then
                 Call msg.Add($"missing page '{name}' in the template!")
