@@ -6,7 +6,7 @@ declare namespace Markdown2PDF {
    /**
    */
    function check_wkhtmltopdf(): object;
-   module  {
+   module _ {
       /**
       */
       function onLoad(): object;
