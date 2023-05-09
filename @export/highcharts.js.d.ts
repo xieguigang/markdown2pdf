@@ -7,23 +7,6 @@
 */
 declare namespace highcharts.js {
    /**
-     * @param divId default value Is ``null``.
-     * @param env default value Is ``null``.
-   */
-   function to_javascript(chart:any, divId?:any, env?:object): string;
-   /**
-     * @param style default value Is ``'height: 450px;'``.
-   */
-   function to_html(Javascript:string, divId:string, style?:string): string;
-   /**
-     * @param title default value Is ``'title'``.
-     * @param subtitle default value Is ``'subtitle'``.
-     * @param serialName default value Is ``'percentage'``.
-     * @param backgroundColor default value Is ``'#ffffff'``.
-     * @param env default value Is ``null``.
-   */
-   function piechart(data:object, title?:string, subtitle?:string, serialName?:string, backgroundColor?:any, env?:object): object;
-   /**
     * It is a column char actually
     * 
     * 
@@ -51,24 +34,22 @@ declare namespace highcharts.js {
    */
    function barchart(data:object, title?:string, subtitle?:string, ylab?:string, serialName?:string, backgroundColor?:any, display3D?:boolean, env?:object): object;
    /**
-    * 
-    * 
-     * @param data -
-     * @param innerSize radius size in percentage.
-     * 
-     * + default value Is ``'20'``.
-     * @param title 
-     * + default value Is ``'pie chart'``.
-     * @param subtitle 
-     * + default value Is ``'pie chart'``.
-     * @param pointerName 
-     * + default value Is ``'item'``.
-     * @param serialName 
-     * + default value Is ``'serial name'``.
-     * @param backgroundColor 
-     * + default value Is ``'#ffffff'``.
+     * @param title default value Is ``'title'``.
+     * @param subtitle default value Is ``'subtitle'``.
+     * @param serialName default value Is ``'percentage'``.
+     * @param backgroundColor default value Is ``'#ffffff'``.
+     * @param env default value Is ``null``.
    */
-   function varywide_pieChart(data:object, innerSize?:string, title?:string, subtitle?:string, pointerName?:string, serialName?:string, backgroundColor?:any): object;
+   function piechart(data:object, title?:string, subtitle?:string, serialName?:string, backgroundColor?:any, env?:object): object;
+   /**
+     * @param style default value Is ``'height: 450px;'``.
+   */
+   function to_html(Javascript:string, divId:string, style?:string): string;
+   /**
+     * @param divId default value Is ``null``.
+     * @param env default value Is ``null``.
+   */
+   function to_javascript(chart:any, divId?:any, env?:object): string;
    /**
     * 
     * 
@@ -95,4 +76,23 @@ declare namespace highcharts.js {
      * + default value Is ``null``.
    */
    function varywide_barChart(data:object, title?:string, subtitle?:string, xlab?:string, ylab?:string, serialName?:string, backgroundColor?:any, env?:object): object;
+   /**
+    * 
+    * 
+     * @param data -
+     * @param innerSize radius size in percentage.
+     * 
+     * + default value Is ``'20'``.
+     * @param title 
+     * + default value Is ``'pie chart'``.
+     * @param subtitle 
+     * + default value Is ``'pie chart'``.
+     * @param pointerName 
+     * + default value Is ``'item'``.
+     * @param serialName 
+     * + default value Is ``'serial name'``.
+     * @param backgroundColor 
+     * + default value Is ``'#ffffff'``.
+   */
+   function varywide_pieChart(data:object, innerSize?:string, title?:string, subtitle?:string, pointerName?:string, serialName?:string, backgroundColor?:any): object;
 }

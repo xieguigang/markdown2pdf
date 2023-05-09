@@ -8,31 +8,6 @@
 */
 declare namespace htmlReport {
    /**
-    * Create a html template model from the given template file
-    * 
-    * 
-     * @param url -
-   */
-   function htmlTemplate(url:string): object;
-   /**
-    * assign the page numbers to the html templates
-    * 
-    * 
-     * @param report -
-     * @param orders the file basename of the html files
-     * @param pageStart 
-     * + default value Is ``1``.
-     * @param env 
-     * + default value Is ``null``.
-   */
-   function pageNumbers(report:object, orders:string, pageStart?:object, env?:object): object;
-   /**
-     * @param orders default value Is ``null``.
-     * @param headerStart default value Is ``'1'``.
-     * @param env default value Is ``null``.
-   */
-   function pageHeaders(report:any, orders?:string, headerStart?:string, env?:object): any;
-   /**
      * @param orders default value Is ``null``.
      * @param figStart default value Is ``1``.
      * @param prefix default value Is ``'fig'``.
@@ -51,15 +26,27 @@ declare namespace htmlReport {
    /**
    */
    function encodeLocalURL(filepath:string): string;
-   module markdown {
-      /**
-       * Render markdown to html text
-       * 
-       * 
-        * @param markdown -
-      */
-      function html(markdown:string): string;
-   }
+   /**
+    * save the modified interpolated html
+    *  template data onto the disk file.
+    * 
+    * 
+     * @param template -
+     * @param outputdir export of the page files into this new output 
+     *  directory instead of export to the source 
+     *  folder where this report object is loaded via 
+     *  the ``reportTemplate`` function.
+     * 
+     * + default value Is ``null``.
+   */
+   function flush(template:object, outputdir?:string): boolean;
+   /**
+    * Create a html template model from the given template file
+    * 
+    * 
+     * @param url -
+   */
+   function htmlTemplate(url:string): object;
    /**
     * do report data interpolation.
     * 
@@ -101,20 +88,33 @@ declare namespace htmlReport {
      * + default value Is ``null``.
    */
    function loadResource(description:object, workdir?:any, meta?:object, env?:object): object;
+   module markdown {
+      /**
+       * Render markdown to html text
+       * 
+       * 
+        * @param markdown -
+      */
+      function html(markdown:string): string;
+   }
    /**
-    * save the modified interpolated html
-    *  template data onto the disk file.
+     * @param orders default value Is ``null``.
+     * @param headerStart default value Is ``'1'``.
+     * @param env default value Is ``null``.
+   */
+   function pageHeaders(report:any, orders?:string, headerStart?:string, env?:object): any;
+   /**
+    * assign the page numbers to the html templates
     * 
     * 
-     * @param template -
-     * @param outputdir export of the page files into this new output 
-     *  directory instead of export to the source 
-     *  folder where this report object is loaded via 
-     *  the ``reportTemplate`` function.
-     * 
+     * @param report -
+     * @param orders the file basename of the html files
+     * @param pageStart 
+     * + default value Is ``1``.
+     * @param env 
      * + default value Is ``null``.
    */
-   function flush(template:object, outputdir?:string): boolean;
+   function pageNumbers(report:object, orders:string, pageStart?:object, env?:object): object;
    /**
     * Create a html template model from a 
     *  given report template directory.
