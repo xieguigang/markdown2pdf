@@ -7,5 +7,5 @@
 declare namespace Echarts {
    /**
    */
-   function json_graph(g:object): object;
+   function json_graph(g: object): object;
 }

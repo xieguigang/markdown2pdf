@@ -12,7 +12,7 @@ declare namespace pdf {
      * @param debugjavascript default value Is ``true``.
      * @param enableforms default value Is ``true``.
    */
-   function pdfPage_options(javascriptdelay?:number, loaderrorhandling?:object, debugjavascript?:boolean, enableforms?:boolean): object;
+   function pdfPage_options(javascriptdelay?: number, loaderrorhandling?: object, debugjavascript?: boolean, enableforms?: boolean): object;
    /**
      * @param margintop default value Is ``0``.
      * @param marginleft default value Is ``0``.
@@ -21,7 +21,7 @@ declare namespace pdf {
      * @param imagequality default value Is ``100``.
      * @param title default value Is ``''``.
    */
-   function pdfGlobal_options(margintop?:object, marginleft?:object, marginright?:object, marginbottom?:object, imagequality?:object, title?:string): object;
+   function pdfGlobal_options(margintop?: object, marginleft?: object, marginright?: object, marginbottom?: object, imagequality?: object, title?: string): object;
    /**
     * 
     * 
@@ -41,10 +41,10 @@ declare namespace pdf {
      * 
      * + default value Is ``null``.
    */
-   function pdfDecoration(spacing?:number, center?:string, fontsize?:number, fontname?:string, html?:string): object;
+   function pdfDecoration(spacing?: number, center?: string, fontsize?: number, fontname?: string, html?: string): object;
    /**
    */
-   function logo_html(logo:string): string;
+   function logo_html(logo: string): string;
    /**
     * convert the local html documents to pdf document.
     * 
@@ -74,5 +74,5 @@ declare namespace pdf {
      * @param env 
      * + default value Is ``null``.
    */
-   function makePDF(files:any, pdfout?:string, wwwroot?:string, style?:string, resolvedAsDataUri?:boolean, footer?:object, header?:object, opts?:object, pageOpts?:object, pdf_size?:object, env?:object): string;
+   function makePDF(files: any, pdfout?: string, wwwroot?: string, style?: string, resolvedAsDataUri?: boolean, footer?: object, header?: object, opts?: object, pageOpts?: object, pdf_size?: object, env?: object): string;
 }
