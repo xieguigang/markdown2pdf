@@ -8,13 +8,38 @@
 */
 declare namespace htmlReport {
    /**
+    * Create a html template model from the given template file
+    * 
+    * 
+     * @param url -
+   */
+   function htmlTemplate(url: string): object;
+   /**
+    * assign the page numbers to the html templates
+    * 
+    * 
+     * @param report -
+     * @param orders the file basename of the html files
+     * @param pageStart 
+     * + default value Is ``1``.
+     * @param env 
+     * + default value Is ``null``.
+   */
+   function pageNumbers(report: object, orders: string, pageStart?: object, env?: object): object;
+   /**
+     * @param orders default value Is ``null``.
+     * @param headerStart default value Is ``'1'``.
+     * @param env default value Is ``null``.
+   */
+   function pageHeaders(report: any, orders?: string, headerStart?: string, env?: object): any;
+   /**
      * @param orders default value Is ``null``.
      * @param figStart default value Is ``1``.
      * @param prefix default value Is ``'fig'``.
      * @param format default value Is ``'p #. '``.
      * @param env default value Is ``null``.
    */
-   function countFigures(report:any, orders?:string, figStart?:object, prefix?:string, format?:string, env?:object): any;
+   function countFigures(report: any, orders?: string, figStart?: object, prefix?: string, format?: string, env?: object): any;
    /**
      * @param orders default value Is ``null``.
      * @param tableStart default value Is ``1``.
@@ -22,7 +47,7 @@ declare namespace htmlReport {
      * @param format default value Is ``'p #. '``.
      * @param env default value Is ``null``.
    */
-   function countTables(report:any, orders?:string, tableStart?:object, prefix?:string, format?:string, env?:object): any;
+   function countTables(report: any, orders?: string, tableStart?: object, prefix?: string, format?: string, env?: object): any;
    /**
    */
    function encodeLocalURL(filepath:string): string;
@@ -47,6 +72,16 @@ declare namespace htmlReport {
      * @param url -
    */
    function htmlTemplate(url:string): object;
+   function encodeLocalURL(filepath: string): string;
+   module markdown {
+      /**
+       * Render markdown to html text
+       * 
+       * 
+        * @param markdown -
+      */
+      function html(markdown: string): string;
+   }
    /**
     * do report data interpolation.
     * 
@@ -57,7 +92,7 @@ declare namespace htmlReport {
      * 
      * + default value Is ``null``.
    */
-   function interpolate(template:object, metadata:object, env?:object): object;
+   function interpolate(template: object, metadata: object, env?: object): object;
    /**
     * Load resource files for build html report
     *  
@@ -97,6 +132,7 @@ declare namespace htmlReport {
       */
       function html(markdown:string): string;
    }
+   function loadResource(description: object, workdir?: any, meta?: object, env?: object): object;
    /**
      * @param orders default value Is ``null``.
      * @param headerStart default value Is ``'1'``.
@@ -115,6 +151,7 @@ declare namespace htmlReport {
      * + default value Is ``null``.
    */
    function pageNumbers(report:object, orders:string, pageStart?:object, env?:object): object;
+   function flush(template: object, outputdir?: string): boolean;
    /**
     * Create a html template model from a 
     *  given report template directory.
@@ -124,5 +161,5 @@ declare namespace htmlReport {
      * @param copyToTemp 
      * + default value Is ``true``.
    */
-   function reportTemplate(template:string, copyToTemp?:boolean): object;
+   function reportTemplate(template: string, copyToTemp?: boolean): object;
 }

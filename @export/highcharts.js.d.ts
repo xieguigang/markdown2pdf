@@ -7,6 +7,23 @@
 */
 declare namespace highcharts.js {
    /**
+     * @param divId default value Is ``null``.
+     * @param env default value Is ``null``.
+   */
+   function to_javascript(chart: any, divId?: any, env?: object): string;
+   /**
+     * @param style default value Is ``'height: 450px;'``.
+   */
+   function to_html(Javascript: string, divId: string, style?: string): string;
+   /**
+     * @param title default value Is ``'title'``.
+     * @param subtitle default value Is ``'subtitle'``.
+     * @param serialName default value Is ``'percentage'``.
+     * @param backgroundColor default value Is ``'#ffffff'``.
+     * @param env default value Is ``null``.
+   */
+   function piechart(data: object, title?: string, subtitle?: string, serialName?: string, backgroundColor?: any, env?: object): object;
+   /**
     * It is a column char actually
     * 
     * 
@@ -32,7 +49,7 @@ declare namespace highcharts.js {
      * 
      * + default value Is ``null``.
    */
-   function barchart(data:object, title?:string, subtitle?:string, ylab?:string, serialName?:string, backgroundColor?:any, display3D?:boolean, env?:object): object;
+   function barchart(data: object, title?: string, subtitle?: string, ylab?: string, serialName?: string, backgroundColor?: any, display3D?: boolean, env?: object): object;
    /**
      * @param title default value Is ``'title'``.
      * @param subtitle default value Is ``'subtitle'``.
@@ -50,6 +67,7 @@ declare namespace highcharts.js {
      * @param env default value Is ``null``.
    */
    function to_javascript(chart:any, divId?:any, env?:object): string;
+   function varywide_pieChart(data: object, innerSize?: string, title?: string, subtitle?: string, pointerName?: string, serialName?: string, backgroundColor?: any): object;
    /**
     * 
     * 
@@ -95,4 +113,5 @@ declare namespace highcharts.js {
      * + default value Is ``'#ffffff'``.
    */
    function varywide_pieChart(data:object, innerSize?:string, title?:string, subtitle?:string, pointerName?:string, serialName?:string, backgroundColor?:any): object;
+   function varywide_barChart(data: object, title?: string, subtitle?: string, xlab?: string, ylab?: string, serialName?: string, backgroundColor?: any, env?: object): object;
 }
