@@ -80,14 +80,17 @@ Public Module PdfConvert
                                 Optional debug As Boolean = False,
                                 Optional sendMessage As Boolean = False,
                                 Optional bin As String = Nothing)
-
-        Call ConvertHtmlToPdf(document, New PdfOutput With {
-            .OutputFilePath = out
-        }, New PdfConvertEnvironment With {
-            .Debug = debug,
-            .PopulateSlaveProgressMessage = sendMessage,
-            .
-        })
+        Call ConvertHtmlToPdf(
+            document:=document,
+            woutput:=New PdfOutput With {
+                .OutputFilePath = out
+            },
+            environment:=InternalEnvironment.FromDefault(
+                debug:=debug,
+                sendMessage:=sendMessage,
+                bin:=bin
+            )
+        )
     End Sub
 
     Const noHTML$ = "You must supply a HTML string, if you have enterd the url: '-'"
