@@ -51,7 +51,7 @@ Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "network_graph-netcore5", ".
 EndProject
 Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "network_io-netcore5", "..\..\..\runtime\sciBASIC#\gr\network-visualization\Network.IO.Extensions\network_io-netcore5.vbproj", "{D9A67D27-DD9F-4ADE-82D7-D204A2EC5D9E}"
 EndProject
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "ECharts", "JavaScript\ECharts\ECharts.vbproj", "{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}"
+Project("{778DAE3C-4631-46EA-AA77-85C1314464D9}") = "ECharts", "JavaScript\ECharts\ECharts.vbproj", "{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -4067,8 +4067,8 @@ Global
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Biostack-Debug|x86.Build.0 = Debug|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|x64.Build.0 = Debug|Any CPU
+		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|x64.ActiveCfg = Debug|x64
+		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|x64.Build.0 = Debug|x64
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.Debug|x86.Build.0 = Debug|Any CPU
 		{A823DCF6-6406-4DFE-8C72-A0D5D82E7D3F}.DEMO|Any CPU.ActiveCfg = Debug|Any CPU
