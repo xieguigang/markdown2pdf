@@ -114,18 +114,22 @@ Module InternalEnvironment
             Return file
         End If
 
+        ' search inside the C:\Program Files at first
         For Each dir As String In ProgramFiles.SearchDirectory("wkhtmltopdf")
             For Each exeFile As String In ProgramFiles.SearchProgram(dir, "wkhtmltopdf", includeDll:=False)
                 Return exeFile
             Next
         Next
 
+        ' and then try to get executable path from environment variables
         If App.GetVariable("wkhtmltopdf").FileExists Then
             Return App.GetVariable("wkhtmltopdf")
         End If
         If System.Environment.GetEnvironmentVariable("wkhtmltopdf").FileExists Then
             Return System.Environment.GetEnvironmentVariable("wkhtmltopdf")
         End If
+
+        ' deal with the linux env
         If "/usr/local/bin/wkhtmltopdf".FileExists Then
             Return "/usr/local/bin/wkhtmltopdf"
         End If
