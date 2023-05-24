@@ -47,6 +47,7 @@ Imports System.Text
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService
+Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Text
 Imports WkHtmlToPdf.Arguments
@@ -75,9 +76,17 @@ Public Module PdfConvert
     ''' <param name="document"></param>
     ''' <param name="out$">PDF的保存的文件路径</param>
     <Extension>
-    Public Sub ConvertHtmlToPdf(document As PDFContent, out$)
+    Public Sub ConvertHtmlToPdf(document As PDFContent, out$,
+                                Optional debug As Boolean = False,
+                                Optional sendMessage As Boolean = False,
+                                Optional bin As String = Nothing)
+
         Call ConvertHtmlToPdf(document, New PdfOutput With {
             .OutputFilePath = out
+        }, New PdfConvertEnvironment With {
+            .Debug = debug,
+            .PopulateSlaveProgressMessage = sendMessage,
+            .
         })
     End Sub
 
@@ -127,6 +136,7 @@ Public Module PdfConvert
         If Not File.Exists(environment.WkHtmlToPdfPath) Then
             Throw New PdfConvertException($"File '{environment.WkHtmlToPdfPath}' not found. Check if wkhtmltopdf application is installed.")
         Else
+            ' generates the commandline arguments
             argument = document.BuildArguments(url, tmpfile)
         End If
 
@@ -141,12 +151,16 @@ Public Module PdfConvert
                 woutput:=woutput
             )
             Call tmpfile.FileCopy(outputPdfFilePath)
-            Call Console.WriteLine($"  --> {outputPdfFilePath.GetFullPath}")
+            Call VBDebugger.EchoLine($"  --> {outputPdfFilePath.GetFullPath}")
         Finally
             If delete AndAlso File.Exists(outputPdfFilePath) Then
                 File.Delete(outputPdfFilePath)
             End If
         End Try
+
+        If environment.PopulateSlaveProgressMessage Then
+            Call RunSlavePipeline.SendMessage($"""{environment.WkHtmlToPdfPath}"" {argument.TrimNewLine}")
+        End If
     End Sub
 
     ''' <summary>
@@ -249,6 +263,15 @@ Public Module PdfConvert
         Return sb.ToString
     End Function
 
+    ''' <summary>
+    ''' run the wkhtmltopdf convert task
+    ''' </summary>
+    ''' <param name="environment">The environment and configs for invoke the wkhtmltopdf</param>
+    ''' <param name="args">the commandline arguments</param>
+    ''' <param name="url$"></param>
+    ''' <param name="outputPdfFilePath">the file path of the generated pdf file</param>
+    ''' <param name="document"></param>
+    ''' <param name="woutput"></param>
     <Extension>
     Private Sub RunProcess(environment As PdfConvertEnvironment,
                            args$,
@@ -280,7 +303,7 @@ Public Module PdfConvert
             End If
 
             If environment.Debug Then
-                Call Console.WriteLine(process.StandardOutput)
+                Call VBDebugger.EchoLine(process.StandardOutput)
             End If
         End Using
 
@@ -336,13 +359,13 @@ Wkhtmltopdf output:
         Dim valid As Boolean
         Dim message As String
 
-        Call Console.WriteLine($"check for {content.Url.Length} content source urls...")
+        Call VBDebugger.EchoLine($"check for {content.Url.Length} content source urls...")
 
         For Each file As String In content.Url
             valid = file.localFileExists
             message = $"{file.GetFullPath} ... [{valid.ToString.ToLower}]"
 
-            Console.WriteLine(message)
+            Call VBDebugger.EchoLine(message)
 
             If Not valid Then
                 check = False

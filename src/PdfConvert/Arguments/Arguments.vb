@@ -71,6 +71,7 @@ Namespace Arguments
         Public Property WkHtmlToPdfPath As String
         Public Property Timeout As Integer
         Public Property Debug As Boolean
+        Public Property PopulateSlaveProgressMessage As Boolean
 
         Public Overrides Function ToString() As String
             Return Me.GetJson
