@@ -181,6 +181,8 @@ Namespace HTML
                 Call template.builder.Replace(find, value)
             Next
 
+            json(find.Trim("$"c)) = value
+
             Return Me
         End Function
 
