@@ -55,6 +55,7 @@ Imports Microsoft.VisualBasic.Text.Xml
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf
 Imports WkHtmlToPdf.Arguments
 Imports REnv = SMRUCC.Rsharp.Runtime
@@ -188,7 +189,7 @@ Module pdf
                 .Save() _
                 .HtmlFiles
         Else
-            contentUrls = DirectCast(REnv.asVector(Of String)(filelist), String()) _
+            contentUrls = CLRVector.asCharacter(filelist) _
                 .GetContentHtml(
                     wwwroot:=wwwroot,
                     style:=style,

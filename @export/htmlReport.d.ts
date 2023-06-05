@@ -29,6 +29,9 @@ declare namespace htmlReport {
    */
    function encodeLocalURL(filepath: string): string;
    /**
+   */
+   function exportJSON(report: object): object;
+   /**
     * save the modified interpolated html
     *  template data onto the disk file.
     * 

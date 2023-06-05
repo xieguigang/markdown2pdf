@@ -12,4 +12,5 @@ html templat handler
 + [interpolate](htmlReport/interpolate.1) do report data interpolation.
 + [loadResource](htmlReport/loadResource.1) Load resource files for build html report
 + [flush](htmlReport/flush.1) save the modified interpolated html
++ [exportJSON](htmlReport/exportJSON.1) 
 + [reportTemplate](htmlReport/reportTemplate.1) Create a html template model from a 
