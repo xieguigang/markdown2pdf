@@ -60,7 +60,7 @@ Namespace HTML
     Public Class HTMLReport : Implements IDisposable, IDataIndex
 
         ''' <summary>
-        ''' 
+        ''' the multiple report page
         ''' </summary>
         ''' <returns></returns>
         ''' <remarks>
@@ -87,6 +87,7 @@ Namespace HTML
         End Property
 
         Dim minify As Boolean = True
+        Dim json As New Dictionary(Of String, String)
 
         ''' <summary>
         ''' 获取所有<see cref="templates"/>模板的文件路径
@@ -108,6 +109,8 @@ Namespace HTML
         ''' <param name="name">在这里只需要输入``key_name``字符串即可</param>
         Default Public WriteOnly Property assign(name As String) As String
             Set(value As String)
+                json(name) = value
+
                 For Each template In templates.Values
                     template.builder(name) = value
                 Next
@@ -203,6 +206,10 @@ Namespace HTML
             Next
 
             Return Me
+        End Function
+
+        Public Function ExportJSON() As Dictionary(Of String, String)
+            Return json
         End Function
 
         Public Function Save(outputdir As String) As HTMLReport

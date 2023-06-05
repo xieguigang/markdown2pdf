@@ -378,6 +378,11 @@ getStringValue:
         Return True
     End Function
 
+    <ExportAPI("exportJSON")>
+    Public Function exportJSON(report As HTMLReport) As Dictionary(Of String, String)
+        Return report.ExportJSON
+    End Function
+
     ''' <summary>
     ''' Create a html template model from a 
     ''' given report template directory.
