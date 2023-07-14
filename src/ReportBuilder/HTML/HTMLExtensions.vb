@@ -61,7 +61,7 @@ Public Module HTMLExtensions
 
     <Extension>
     Public Function ToHTML(Of T As Class)(source As IEnumerable(Of T), Optional title As String = "", Optional describ As String = "") As String
-        Dim table As String = source.ToHTMLTable
+        Dim table As String = HTMLWriter.ToHTMLTable(source)
         Dim html As New StringBuilder(My.Resources.index)
 
         If String.IsNullOrEmpty(title) Then title = GetType(T).Name
@@ -78,7 +78,7 @@ Public Module HTMLExtensions
 
     <Extension>
     Public Function SaveAsHTML(Of T As Class)(source As IEnumerable(Of T), saveHTML As String, Optional title As String = "", Optional describ As String = "") As Boolean
-        Dim table As String = source.ToHTMLTable
+        Dim table As String = HTMLWriter.ToHTMLTable(source)
         Dim innerDoc As New StringBuilder($"<p>{describ}</p>")
 
         If String.IsNullOrEmpty(title) Then title = GetType(T).Name
