@@ -9,6 +9,11 @@ Public Class Graph
     Public Property nodes As Node()
     Public Property links As Link()
 
+    ''' <summary>
+    ''' convert the sciBASIC graph object as the echart graph object
+    ''' </summary>
+    ''' <param name="g"></param>
+    ''' <returns></returns>
     Public Shared Function FromGraph(g As NetworkGraph) As Graph
         Dim typeIndex As Index(Of String) = g.vertex _
             .Select(Function(v) v.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)) _
