@@ -16,15 +16,20 @@ Public Class Graph
     ''' <returns></returns>
     Public Shared Function FromGraph(g As NetworkGraph) As Graph
         Dim typeIndex As Index(Of String) = g.vertex _
-            .Select(Function(v) v.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)) _
+            .Select(Function(v)
+                        Return If(v.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE), "NO_CLASS")
+                    End Function) _
             .Distinct _
+            .Where(Function(si) Not si Is Nothing) _
             .Indexing
         Dim nodes As New Dictionary(Of String, Node)
         Dim links As New List(Of Link)
+        Dim tag As String
 
         For Each node In g.vertex
+            tag = If(node.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE), "NO_CLASS")
             nodes(node.label) = New Node With {
-                .category = typeIndex.IndexOf(node.data(NamesOf.REFLECTION_ID_MAPPING_NODETYPE)),
+                .category = typeIndex.IndexOf(tag),
                 .index = nodes.Count,
                 .name = node.label,
                 .value = node.data.weights.ElementAtOrDefault(0)
