@@ -29,8 +29,13 @@
         code {
             color: rgb(194, 42, 42);
             background: inherit;
-            font-style:italic;
+            font-style: italic;
             font-weight: bold;
+        }
+
+        pre code {
+            color: rgb(54, 54, 54);
+            font-style: normal;
         }
 
         body {
@@ -160,12 +165,12 @@
             <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>makePDF</strong>(<i>files</i>,
     <i>pdfout</i> = <span style='color: brown;'><strong>"out.pdf"</strong></span>,
     <i>wwwroot</i> = <span style='color: brown;'><strong>"/"</strong></span>,
-    <i>style</i> = <span style='color: blue;'>NULL</span>,
-    <i>resolvedAsDataUri</i> = <span style='color: blue;'>FALSE</span>,
-    <i>footer</i> = <span style='color: blue;'>NULL</span>,
-    <i>header</i> = <span style='color: blue;'>NULL</span>,
-    <i>opts</i> = <span style='color: blue;'>NULL</span>,
-    <i>pageOpts</i> = <span style='color: blue;'>NULL</span>,
+    <i>style</i> = <span style='color: blue !important;'>NULL</span>,
+    <i>resolvedAsDataUri</i> = <span style='color: blue !important;'>FALSE</span>,
+    <i>footer</i> = <span style='color: blue !important;'>NULL</span>,
+    <i>header</i> = <span style='color: blue !important;'>NULL</span>,
+    <i>opts</i> = <span style='color: blue !important;'>NULL</span>,
+    <i>pageOpts</i> = <span style='color: blue !important;'>NULL</span>,
     <i>pdf.size</i> = A4);</code></pre>
         </div>
 
@@ -192,6 +197,10 @@
         <h3>Value</h3>
 
         this function returns data object of type string.
+
+        <h3 style="display: none;">Examples</h3>
+
+        
 
         <hr />
         <div style="text-align: center;">[Package <em>pdf</em> version 1.0.0.0 <a
