@@ -30,29 +30,29 @@
             <code id="clr_ts">
 # namespace SMRUCC.WebCloud.JavaScript.highcharts
 export class chart {
-   # 图表的类型，默认为line，还有bar/column/pie……
-   type: string;
-   options3d: <a href="/vignettes/clr/SMRUCC/WebCloud/JavaScript/highcharts/viz3D/options3d.html">options3d</a>;
    backgroundColor: string;
-   # 图表中数据报表的放大类型，可以以X轴放大，或是以Y轴放大，还可以以XY轴同时放大。
-   zoomType: string;
+   # 所绘制图表的高度值。
+   height: double;
    # 图表中的x，y轴对换。
    inverted: boolean;
-   renderTo: string;
    margin: double;
-   # 是否为极性图表。
-   polar: boolean;
+   options3d: <a href="/vignettes/clr/SMRUCC/WebCloud/JavaScript/highcharts/viz3D/options3d.html">options3d</a>;
    plotBackgroundColor: string;
    plotBorderWidth: string;
    plotShadow: boolean;
-   # 在空白图表中，是否显示坐标轴。
-   showAxes: boolean;
-   # 所绘制图表的高度值。
-   height: double;
-   # 图表绘图区的宽度，默认为自适应。
-   width: double;
+   # 是否为极性图表。
+   polar: boolean;
    # 当窗口大小改变时，图表宽度自适应窗口大小改变。
    reflow: boolean;
+   renderTo: string;
+   # 在空白图表中，是否显示坐标轴。
+   showAxes: boolean;
+   # 图表的类型，默认为line，还有bar/column/pie……
+   type: string;
+   # 图表绘图区的宽度，默认为自适应。
+   width: double;
+   # 图表中数据报表的放大类型，可以以X轴放大，或是以Y轴放大，还可以以XY轴同时放大。
+   zoomType: string;
 }
 </code>
         </pre>

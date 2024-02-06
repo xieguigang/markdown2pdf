@@ -30,8 +30,6 @@
             <code id="clr_ts">
 # namespace WkHtmlToPdf.Arguments
 export class GlobalOptions {
-   # Do not collate when printing multiple copies
-   nocollate: boolean;
    # Read and write cookies from and to the supplied cookie jar file
    cookiejar: string;
    # Number of copies to print into the pdf file (default 1)
@@ -39,6 +37,7 @@ export class GlobalOptions {
    # Change the dpi explicitly (this has no effect on X11 based systems) 
    #  (default 96)
    dpi: integer;
+   enablelocalfileaccess: boolean;
    # PDF will be generated in grayscale
    grayscale: boolean;
    # When embedding images scale them down to this dpi(default 600)
@@ -47,7 +46,6 @@ export class GlobalOptions {
    imagequality: integer;
    # Generates lower quality pdf/ps. Useful to shrink the result document space
    lowquality: boolean;
-   enablelocalfileaccess: boolean;
    # Set the page bottom margin
    marginbottom: string;
    # Set the page left margin (default 10mm)
@@ -56,10 +54,12 @@ export class GlobalOptions {
    marginright: string;
    # Set the page top margin
    margintop: string;
-   # Set orientation to Landscape or Portrait (default Portrait)
-   orientation: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a>;
+   # Do not collate when printing multiple copies
+   nocollate: boolean;
    # Do not use lossless compression on pdf objects
    nopdfcompression: boolean;
+   # Set orientation to Landscape or Portrait (default Portrait)
+   orientation: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a>;
    # The title of the generated pdf file (The title of the first document 
    #  Is used if Not specified)
    title: string;

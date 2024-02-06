@@ -32,8 +32,6 @@
 export class Page {
    # Allow the file or files from the specified folder to be loaded (repeatable)
    allow: string;
-   # Do not print background
-   nobackground: boolean;
    # Bypass proxy for host (repeatable)
    bypassproxyfor: string;
    # Web cache directory
@@ -49,34 +47,36 @@ export class Page {
    customheader: list;
    # Show javascript debugging output
    debugjavascript: boolean;
-   # Set the default text encoding, for input
-   encoding: string;
    # Do not make links to remote web pages
    disableexternallinks: boolean;
-   # Specify how to handle pages that fail to load: abort, ignore Or skip (default abort)
-   loaderrorhandling: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a>;
-   # Specify how to handle media files that fail To load: abort, ignore Or skip (default ignore)
-   loadmediaerrorhandling: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a>;
-   # Turn HTML form fields into pdf form fields
-   enableforms: boolean;
-   # Do not load or print images
-   noimages: boolean;
    # Do not make local links
    disableinternallinks: boolean;
    # Do not allow web pages to run javascript
    disablejavascript: boolean;
+   # Turn HTML form fields into pdf form fields
+   enableforms: boolean;
+   # Link from section header to toc
+   enabletocbacklinks: boolean;
+   # Set the default text encoding, for input
+   encoding: string;
    # Wait some milliseconds for javascript finish (default 200)
    javascriptdelay: integer;
    # Keep relative external links as relative external links
    keeprelativelinks: boolean;
+   # Specify how to handle pages that fail to load: abort, ignore Or skip (default abort)
+   loaderrorhandling: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a>;
+   # Specify how to handle media files that fail To load: abort, ignore Or skip (default ignore)
+   loadmediaerrorhandling: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a>;
    # Minimum font size
    minimumfontsize: integer;
+   # Do not print background
+   nobackground: boolean;
+   # Do not load or print images
+   noimages: boolean;
    # Set the starting page number (default 0)
    pageoffset: integer;
    # Run this additional javascript after the page is done loading (repeatable)
    runscript: string;
-   # Link from section header to toc
-   enabletocbacklinks: boolean;
    # Specify a user style sheet, to load with every page
    userstylesheet: string;
    # Set viewport size if you have custom scrollbars Or css attribute overflow 
