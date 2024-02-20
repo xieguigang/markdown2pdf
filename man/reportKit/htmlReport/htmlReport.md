@@ -1,4 +1,4 @@
-# htmlReport
+﻿# htmlReport
 
 html templat handler
 

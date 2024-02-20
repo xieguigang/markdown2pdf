@@ -1,4 +1,4 @@
-# Echarts
+﻿# Echarts
 
 Echarts plot data helper, generate echart plot data object from .net clr object
 
