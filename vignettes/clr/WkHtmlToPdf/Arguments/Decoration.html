@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WkHtmlToPdf.Arguments.Decoration</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>Decoration {WkHtmlToPdf.Arguments}</td>
+                <td style="text-align: right;">.NET clr documentation</td>
+            </tr>
+        </table>
+
+        <h2>Decoration</h2>
+
+        <h3>Description</h3>
+
+        <p>The page decoration options: Headers And Footer Options</p>
+
+<p>Footers And Headers:<br />
+ Headers And footers can be added to the document by the --header-* And<br />
+ --footer* arguments respectfully.  In header And footer text string supplied<br />
+ to e.g. --header-left, the following variables will be substituted.</p>
+
+<ul>
+<li>[page]       Replaced by the number of the pages currently being printed</li>
+<li>[frompage]   Replaced by the number of the first page to be printed</li>
+<li>[topage]     Replaced by the number of the last page to be printed</li>
+<li>[webpage]    Replaced by the URL of the page being printed</li>
+<li>[section]    Replaced by the name of the current section</li>
+<li>[subsection] Replaced by the name of the current subsection</li>
+<li>[date]       Replaced by the current date in system local format</li>
+<li>[isodate]    Replaced by the current date in ISO 8601 extended format</li>
+<li>[time]       Replaced by the current time in system local format</li>
+<li>[title]      Replaced by the title of the of the current page object</li>
+<li>[doctitle]   Replaced by the title of the output document</li>
+<li>[sitepage]   Replaced by the number of the page in the current site being converted</li>
+<li><p>[sitepages]  Replaced by the number of pages in the current site being converted</p>
+
+<p>As an example specifying --header-right "Page [page] of [toPage]", will result<br />
+in the text "Page x of y" where x Is the number of the current page And y Is<br />
+the number Of the last page, To appear In the upper left corner In the document.</p></li>
+</ul>
+
+        <h3>Declare</h3>        
+
+        <pre>
+            <code id="clr_ts">
+# namespace WkHtmlToPdf.Arguments
+export class Decoration {
+   # Centered footer/header text
+   center: string;
+   # Set footer/header font name (default Arial)
+   fontname: string;
+   # Set footer/header font size (default 12)
+   fontsize: double;
+   # Adds a html footer/header
+   html: string;
+   # Left aligned footer/header text
+   left: string;
+   # Display line above the footer/header
+   line: boolean;
+   # Right aligned footer/header text
+   right: string;
+   # Spacing between footer/header and content in mm (default 0)
+   spacing: double;
+}
+</code>
+        </pre>
+
+        <h3>.NET clr type reference tree</h3>
+
+        this clr type has no other .net clr type reference.
+
+
+        <hr />
+        <div style="text-align: center;">[Package <em>{$package}</em> version {$version} <a
+                href="../{$package}.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript">r_highlights("clr_ts");</script>
+
+</html>

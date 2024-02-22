@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>WkHtmlToPdf.Arguments.GlobalOptions</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+    <link rel="stylesheet" type="text/css" href="../../_assets/page.css">
+</head>
+
+<body>
+    <div class="container">
+
+        <table style="width: 100%;">
+            <tr>
+                <td>GlobalOptions {WkHtmlToPdf.Arguments}</td>
+                <td style="text-align: right;">.NET clr documentation</td>
+            </tr>
+        </table>
+
+        <h2>GlobalOptions</h2>
+
+        <h3>Description</h3>
+
+        
+
+        <h3>Declare</h3>        
+
+        <pre>
+            <code id="clr_ts">
+# namespace WkHtmlToPdf.Arguments
+export class GlobalOptions {
+   # Read and write cookies from and to the supplied cookie jar file
+   cookiejar: string;
+   # Number of copies to print into the pdf file (default 1)
+   copies: integer;
+   # Change the dpi explicitly (this has no effect on X11 based systems) 
+   #  (default 96)
+   dpi: integer;
+   enablelocalfileaccess: boolean;
+   # PDF will be generated in grayscale
+   grayscale: boolean;
+   # When embedding images scale them down to this dpi(default 600)
+   imagedpi: integer;
+   # When jpeg compressing images use this quality (default 94)
+   imagequality: integer;
+   # Generates lower quality pdf/ps. Useful to shrink the result document space
+   lowquality: boolean;
+   # Set the page bottom margin
+   marginbottom: string;
+   # Set the page left margin (default 10mm)
+   marginleft: string;
+   # Set the page right margin (default 10mm)
+   marginright: string;
+   # Set the page top margin
+   margintop: string;
+   # Do not collate when printing multiple copies
+   nocollate: boolean;
+   # Do not use lossless compression on pdf objects
+   nopdfcompression: boolean;
+   # Set orientation to Landscape or Portrait (default Portrait)
+   orientation: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a>;
+   # The title of the generated pdf file (The title of the first document 
+   #  Is used if Not specified)
+   title: string;
+}
+</code>
+        </pre>
+
+        <h3>.NET clr type reference tree</h3>
+
+        <ol>
+<li>use by <i>property</i> member <code>orientation</code>: <a href="/vignettes/clr/System/Nullable`1.html">Nullable`1</a></li>
+</ol>
+
+
+        <hr />
+        <div style="text-align: center;">[Package <em>{$package}</em> version {$version} <a
+                href="../{$package}.html">Index</a>]
+        </div>
+    </div>
+</body>
+
+<script type="text/javascript" src="../../_assets/R_syntax.js"></script>
+<script type="text/javascript" src="../../_assets/highlights.js"></script>
+<script type="text/javascript">r_highlights("clr_ts");</script>
+
+</html>
