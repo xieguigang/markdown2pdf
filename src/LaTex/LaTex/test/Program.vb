@@ -8,7 +8,8 @@ Module Program
 
     Sub convertTest()
         Dim md As String = "E:\GCModeller\src\workbench\markdown2pdf\src\LaTex\test\test1.md".ReadAllText
-        Dim tex As String = New MarkdownHTML().Transform(md)
+        Dim render As New MarkdownHTML()
+        Dim tex As String = render.Transform(md)
 
         Call Console.WriteLine(tex)
 
