@@ -101,6 +101,9 @@ declare namespace htmlReport {
         * @param markdown -
       */
       function html(markdown: string): string;
+      /**
+      */
+      function latex(markdown: string): string;
    }
    /**
      * @param orders default value Is ``null``.

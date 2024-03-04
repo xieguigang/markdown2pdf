@@ -9,6 +9,7 @@ html templat handler
 + [countTables](htmlReport/countTables.1) 
 + [encodeLocalURL](htmlReport/encodeLocalURL.1) 
 + [markdown.html](htmlReport/markdown.html.1) Render markdown to html text
++ [markdown.latex](htmlReport/markdown.latex.1) 
 + [interpolate](htmlReport/interpolate.1) do report data interpolation.
 + [loadResource](htmlReport/loadResource.1) Load resource files for build html report
 + [flush](htmlReport/flush.1) save the modified interpolated html
