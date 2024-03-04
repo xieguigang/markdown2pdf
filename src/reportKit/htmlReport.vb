@@ -58,7 +58,7 @@ Imports SMRUCC.Rsharp.Runtime.Components
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
-Imports REnv = SMRUCC.Rsharp.Runtime
+Imports WkHtmlToPdf.LaTex
 
 ''' <summary>
 ''' html templat handler
@@ -227,6 +227,12 @@ Public Module htmlReportEngine
     <ExportAPI("markdown.html")>
     Public Function markdownToHtml(markdown As String) As String
         Static render As New MarkdownHTML
+        Return render.Transform(markdown)
+    End Function
+
+    <ExportAPI("markdown.latex")>
+    Public Function markdownToLaTex(markdown As String) As String
+        Static render As New MarkdownHTML(render:=New TexRender)
         Return render.Transform(markdown)
     End Function
 

@@ -1,9 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <RootNamespace>LaTex</RootNamespace>
+    <RootNamespace>WkHtmlToPdf.LaTex</RootNamespace>
     <TargetFramework>net6.0</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
+    <AssemblyName>WkHtmlToPdf.LaTex</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
