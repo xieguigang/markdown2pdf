@@ -130,10 +130,10 @@ Public Class TableSolver : Inherits ResourceSolver
             End If
         Else
             ' no orders
-            orders = table.RowNumbers.Sequence.ToArray
+            orders = table.Nrows.Sequence.ToArray
         End If
 
-        maxRows = If(maxRows > 0, maxRows, table.RowNumbers)
+        maxRows = If(maxRows > 0, maxRows, table.Nrows)
 
         For i As Integer = 0 To maxRows - 1
             Yield table(orders(i))
