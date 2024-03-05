@@ -16,10 +16,6 @@ Public Class TexRender : Inherits Render
         Return html
     End Function
 
-    Public Overrides Function Header(text As String) As String
-        Throw New NotImplementedException()
-    End Function
-
     Public Overrides Function Document(text As String) As String
         Return $"\documentclass[{Size},{BaseFontSizePt}pt]{{article}}
 
@@ -29,5 +25,17 @@ Public Class TexRender : Inherits Render
 
 \end{{document}}
 "
+    End Function
+
+    Public Overrides Function CodeSpan(text As String) As String
+        Return $"\code{{{text}}}"
+    End Function
+
+    Public Overrides Function Header(text As String, level As Integer) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function HorizontalLine() As String
+        Return "\hrule height h depth d width w \relax"
     End Function
 End Class
