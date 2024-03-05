@@ -38,7 +38,7 @@ Public Class TexRender : Inherits Render
             Case 3 £º Return $"\subsubsection{{{text}}}"
 
             Case Else
-                Throw New NotImplementedException
+                Throw New NotImplementedException($"header title at level {level}: {text}")
         End Select
     End Function
 
