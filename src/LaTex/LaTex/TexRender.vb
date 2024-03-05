@@ -32,7 +32,14 @@ Public Class TexRender : Inherits Render
     End Function
 
     Public Overrides Function Header(text As String, level As Integer) As String
-        Throw New NotImplementedException()
+        Select Case level
+            Case 1 : Return $"\section{{{text}}}"
+            Case 2 : Return $"\subsection{{{text}}}"
+            Case 3 £º Return $"\subsubsection{{{text}}}"
+
+            Case Else
+                Throw New NotImplementedException
+        End Select
     End Function
 
     Public Overrides Function HorizontalLine() As String
