@@ -29,7 +29,11 @@ Public Class TexRender : Inherits Render
 
 \lstdefinestyle{{lang_r}} {{language=r,style=numbers}}
 \lstdefinestyle{{lang_xml}} {{language=xml,style=numbers}}
-\lstdefinestyle{{lang_vb}} {{language=vb,style=numbers}}
+\lstdefinestyle{{lang_vbnet}} {{language=vbnet,style=numbers}}
+
+\lstset{{language=r,frame=lines}}
+\lstset{{language=xml,frame=lines}}
+\lstset{{language=vbnet,frame=lines}}
 
 \begin{{document}}
 
@@ -57,5 +61,19 @@ Public Class TexRender : Inherits Render
 
     Public Overrides Function HorizontalLine() As String
         Return "\hrule height h depth d width w \relax"
+    End Function
+
+    Public Overrides Function NewLine() As String
+        Return "\newline"
+    End Function
+
+    Public Overrides Function CodeBlock(code As String, lang As String) As String
+        Return $"
+
+\begin{{lstlisting}}[style=lang_{lang}]
+{code}
+\end{{lstlisting}}
+
+"
     End Function
 End Class
