@@ -19,6 +19,18 @@ Public Class TexRender : Inherits Render
     Public Overrides Function Document(text As String) As String
         Return $"\documentclass[{Size},{BaseFontSizePt}pt]{{article}}
 
+\usepackage{{listings}}
+\usepackage{{ctex}}
+\usepackage{{xcolor}}
+
+% language syntax highlight definition
+
+\lstdefinestyle{{numbers}} {{numbers=left, stepnumber=1, numberstyle=\tiny, numbersep=10pt,frame=lines,backgroundcolor={{}}}}
+
+\lstdefinestyle{{lang_r}} {{language=r,style=numbers}}
+\lstdefinestyle{{lang_xml}} {{language=xml,style=numbers}}
+\lstdefinestyle{{lang_vb}} {{language=vb,style=numbers}}
+
 \begin{{document}}
 
 {text}
@@ -35,7 +47,8 @@ Public Class TexRender : Inherits Render
         Select Case level
             Case 1 : Return $"\section{{{text}}}"
             Case 2 : Return $"\subsection{{{text}}}"
-            Case 3 £º Return $"\subsubsection{{{text}}}"
+            Case 3 : Return $"\subsubsection{{{text}}}"
+            Case 4 : Return $"\subsubsubsection{{{text}}}"
 
             Case Else
                 Throw New NotImplementedException($"header title at level {level}: {text}")
