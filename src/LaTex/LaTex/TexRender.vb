@@ -22,6 +22,8 @@ Public Class TexRender : Inherits Render
 \usepackage{{listings}}
 \usepackage{{ctex}}
 \usepackage{{xcolor}}
+\usepackage{{graphicx}}
+\usepackage{{epstopdf}} %%package to overcome problem with eps in pdf files
 
 % language syntax highlight definition
 
@@ -73,6 +75,19 @@ Public Class TexRender : Inherits Render
 \begin{{lstlisting}}[style=lang_{lang}]
 {code}
 \end{{lstlisting}}
+
+"
+    End Function
+
+    Public Overrides Function Image(url As String, altText As String, title As String) As String
+        Return $"
+
+\begin{{figure}}
+\centering
+        \includegraphics[totalheight=8cm]{{{url}}}
+    \caption{{{title}}}
+    \label{{fig:verticalcell}}
+\end{{figure}}
 
 "
     End Function
