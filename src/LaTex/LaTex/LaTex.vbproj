@@ -5,6 +5,9 @@
     <TargetFramework>net6.0</TargetFramework>
     <Platforms>AnyCPU;x64</Platforms>
     <AssemblyName>WkHtmlToPdf.LaTex</AssemblyName>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>Rendering markdown to latex document</Title>
   </PropertyGroup>
 
   <ItemGroup>
