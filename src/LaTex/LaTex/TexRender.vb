@@ -49,10 +49,10 @@ Public Class TexRender : Inherits Render
 
     Public Overrides Function Header(text As String, level As Integer) As String
         Select Case level
-            Case 1 : Return $"\section{{{text}}}"
-            Case 2 : Return $"\subsection{{{text}}}"
-            Case 3 : Return $"\subsubsection{{{text}}}"
-            Case 4 : Return $"\subsubsubsection{{{text}}}"
+            Case 1 : Return $"\section{{{text}}}" & vbCrLf & vbCrLf
+            Case 2 : Return $"\subsection{{{text}}}" & vbCrLf & vbCrLf
+            Case 3 : Return $"\subsubsection{{{text}}}" & vbCrLf & vbCrLf
+            Case 4 : Return $"\subsubsubsection{{{text}}}" & vbCrLf & vbCrLf
 
             Case Else
                 Throw New NotImplementedException($"header title at level {level}: {text}")
