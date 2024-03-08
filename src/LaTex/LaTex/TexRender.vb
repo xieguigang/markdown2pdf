@@ -19,4 +19,40 @@ Public Class TexRender : Inherits Render
     Public Overrides Function Document(text As String) As String
         Return $"\documentclass[{Size},{BaseFontSizePt}pt]{{article}}" & vbCrLf & vbCrLf & text
     End Function
+
+    Public Overrides Function Header(text As String, level As Integer) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function CodeSpan(text As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function CodeBlock(code As String, lang As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function HorizontalLine() As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function NewLine() As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Image(url As String, altText As String, title As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Bold(text As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Italic(text As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function BlockQuote(text As String) As String
+        Throw New NotImplementedException()
+    End Function
 End Class
