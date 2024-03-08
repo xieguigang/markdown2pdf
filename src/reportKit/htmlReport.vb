@@ -48,7 +48,6 @@ Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
-Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
@@ -59,6 +58,7 @@ Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf.LaTex
+Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MakrdownRender
 
 ''' <summary>
 ''' html templat handler
