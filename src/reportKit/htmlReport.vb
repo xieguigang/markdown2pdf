@@ -58,7 +58,7 @@ Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf.LaTex
-Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MakrdownRender
+Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 
 ''' <summary>
 ''' html templat handler

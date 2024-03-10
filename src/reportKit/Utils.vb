@@ -3,7 +3,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.Net.Http
 Imports Microsoft.VisualBasic.Text.Xml
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
-Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MakrdownRender
+Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 
 Module Utils
 
