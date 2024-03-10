@@ -95,23 +95,47 @@ Public Class TexRender : Inherits Render
     End Function
 
     Public Overrides Function Bold(text As String) As String
-        Throw New NotImplementedException()
+        Return $"\textbf{{{text}}}"
     End Function
 
     Public Overrides Function Italic(text As String) As String
-        Throw New NotImplementedException()
+        Return $"\textit{{{text}}}"
+    End Function
+
+    Public Overrides Function Underline(text As String) As String
+        Return $"\underline{{{text}}}"
     End Function
 
     Public Overrides Function BlockQuote(text As String) As String
-        Throw New NotImplementedException()
+        Return $"
+\begin{{quotation}}
+{text}
+\end{{quatation}}
+"
     End Function
 
     Public Overrides Function AnchorLink(url As String, text As String, title As String) As String
-        Throw New NotImplementedException()
+        Return $"\href{{{url}}}{{{text}}}"
     End Function
 
     Public Overrides Function List(items As IEnumerable(Of String), orderList As Boolean) As String
-        Throw New NotImplementedException()
+        items = items _
+            .Select(Function(i) $"\item {i}") _
+            .ToArray
+
+        If orderList Then
+            Return $"
+\begin{{enumerate}}
+{items.JoinBy(vbLf)}
+\end{{enumerate}}
+"
+        Else
+            Return $"
+\begin{{itemize}}
+{items.JoinBy(vbLf)}
+\end{{itemize}}
+"
+        End If
     End Function
 
     Public Overrides Function Table(head() As String, rows As IEnumerable(Of String())) As String
@@ -132,4 +156,5 @@ Public Class TexRender : Inherits Render
 
 "
     End Function
+
 End Class
