@@ -24,6 +24,8 @@ Public Class TexRender : Inherits Render
 \usepackage{{xcolor}}
 \usepackage{{graphicx}}
 \usepackage{{epstopdf}} %%package to overcome problem with eps in pdf files
+\usepackage{{float}}
+\usepackage{{booktabs}}
 
 % language syntax highlight definition
 
@@ -102,5 +104,32 @@ Public Class TexRender : Inherits Render
 
     Public Overrides Function BlockQuote(text As String) As String
         Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function AnchorLink(url As String, text As String, title As String) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function List(items As IEnumerable(Of String), orderList As Boolean) As String
+        Throw New NotImplementedException()
+    End Function
+
+    Public Overrides Function Table(head() As String, rows As IEnumerable(Of String())) As String
+        Dim row_text As String() = rows.Select(Function(r) r.JoinBy("&")).ToArray
+
+        Return $"
+\begin{{table}}[H]
+\caption{{\textbf{{table caption title}}}}
+\centering
+\begin{{tabular}}{{{New String("c"c, head.Length)}}}
+\toprule
+{head.JoinBy("&")} \\
+\midrule
+{row_text.JoinBy(" \\" & vbLf) }
+\bottomrule
+\end{{tabular}}
+\end{{table}}
+
+"
     End Function
 End Class
