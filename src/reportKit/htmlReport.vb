@@ -227,6 +227,9 @@ Public Module htmlReportEngine
     ''' Render markdown to html text
     ''' </summary>
     ''' <param name="markdown"></param>
+    ''' <param name="image_url">
+    ''' apply for the document template rendering
+    ''' </param>
     ''' <returns></returns>
     <ExportAPI("markdown.html")>
     <RApiReturn(TypeCodes.string)>
