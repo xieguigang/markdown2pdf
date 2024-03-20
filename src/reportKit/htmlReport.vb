@@ -229,11 +229,14 @@ Public Module htmlReportEngine
     ''' </param>
     <ExportAPI("html_render")>
     <RApiReturn(GetType(HtmlRender))>
-    Public Function htmlRender(Optional image_class As String = Nothing,
+    Public Function htmlRender(<RRawVectorArgument>
+                               Optional image_class As Object = Nothing,
                                Optional image_url As Object = Nothing,
                                Optional env As Environment = Nothing) As Object
 
-        Dim render As New HtmlRender With {.image_class = image_class}
+        Dim render As New HtmlRender With {
+            .image_class = CLRVector.asCharacter(image_class).JoinBy(" ")
+        }
 
         If image_url IsNot Nothing Then
             If TypeOf image_url Is MethodInfo Then
