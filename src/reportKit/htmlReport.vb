@@ -63,6 +63,7 @@ Imports WkHtmlToPdf.LaTex
 Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 Imports any = Microsoft.VisualBasic.Scripting
 Imports Microsoft.VisualBasic.Emit.Delegates
+Imports Microsoft.VisualBasic.MIME.text.markdown
 
 ''' <summary>
 ''' html templat handler
@@ -223,21 +224,16 @@ Public Module htmlReportEngine
         Return ImageSolver.encodeLocalURL(filepath)
     End Function
 
-    ''' <summary>
-    ''' Render markdown to html text
-    ''' </summary>
-    ''' <param name="markdown"></param>
     ''' <param name="image_url">
     ''' apply for the document template rendering
     ''' </param>
-    ''' <returns></returns>
-    <ExportAPI("markdown.html")>
-    <RApiReturn(TypeCodes.string)>
-    Public Function markdownToHtml(markdown As String,
-                                   Optional image_url As Object = Nothing,
-                                   Optional env As Environment = Nothing) As Object
+    <ExportAPI("html_render")>
+    <RApiReturn(GetType(HtmlRender))>
+    Public Function htmlRender(Optional image_class As String = Nothing,
+                               Optional image_url As Object = Nothing,
+                               Optional env As Environment = Nothing) As Object
 
-        Dim render As New MarkdownHTML
+        Dim render As New HtmlRender With {.image_class = image_class}
 
         If image_url IsNot Nothing Then
             If TypeOf image_url Is MethodInfo Then
@@ -262,10 +258,23 @@ Public Module htmlReportEngine
                                 .DefaultFirst
                         End If
                     End Function)
+            Else
+                Return Message.InCompatibleType(GetType(RFunction), image_url.GetType, env)
             End If
         End If
 
-        Return render.Transform(markdown)
+        Return render
+    End Function
+
+    ''' <summary>
+    ''' Render markdown to html text
+    ''' </summary>
+    ''' <param name="markdown"></param>
+    ''' <returns></returns>
+    <ExportAPI("markdown.html")>
+    <RApiReturn(TypeCodes.string)>
+    Public Function markdownToHtml(markdown As String, Optional htmlRender As HtmlRender = Nothing) As Object
+        Return New MarkdownHTML(If(htmlRender, New HtmlRender)).Transform(markdown)
     End Function
 
     <ExportAPI("markdown.latex")>
