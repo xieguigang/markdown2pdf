@@ -39,6 +39,7 @@
 
 #End Region
 
+Imports System.Reflection
 Imports System.Runtime.CompilerServices
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
@@ -54,11 +55,14 @@ Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
 Imports SMRUCC.Rsharp.Interpreter
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
+Imports SMRUCC.Rsharp.Runtime.Components.[Interface]
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf.LaTex
 Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
+Imports any = Microsoft.VisualBasic.Scripting
+Imports Microsoft.VisualBasic.Emit.Delegates
 
 ''' <summary>
 ''' html templat handler
@@ -225,8 +229,37 @@ Public Module htmlReportEngine
     ''' <param name="markdown"></param>
     ''' <returns></returns>
     <ExportAPI("markdown.html")>
-    Public Function markdownToHtml(markdown As String) As String
-        Static render As New MarkdownHTML
+    <RApiReturn(TypeCodes.string)>
+    Public Function markdownToHtml(markdown As String,
+                                   Optional image_url As Object = Nothing,
+                                   Optional env As Environment = Nothing) As Object
+
+        Dim render As New MarkdownHTML
+
+        If image_url IsNot Nothing Then
+            If TypeOf image_url Is MethodInfo Then
+                Dim del As MethodInfo = image_url
+
+                render.SetImageUrlRouter(
+                    Function(url) As String
+                        Return any.ToString(del.Invoke(Nothing, New Object() {url}))
+                    End Function)
+            ElseIf image_url.GetType.ImplementInterface(Of RFunction) Then
+                Dim fun As RFunction = image_url
+
+                render.SetImageUrlRouter(
+                    Function(url) As String
+                        Dim out As Object = fun.Invoke(env, InvokeParameter.CreateLiterals(url))
+
+                        If Program.isException(out) Then
+                            Throw DirectCast(out, Message).ToCLRException
+                        Else
+                            Return any.ToString(out)
+                        End If
+                    End Function)
+            End If
+        End If
+
         Return render.Transform(markdown)
     End Function
 
