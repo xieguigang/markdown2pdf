@@ -64,6 +64,7 @@ Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 Imports any = Microsoft.VisualBasic.Scripting
 Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.MIME.text.markdown
+Imports Bootstrap5
 
 ''' <summary>
 ''' html templat handler
@@ -228,15 +229,23 @@ Public Module htmlReportEngine
     ''' apply for the document template rendering
     ''' </param>
     <ExportAPI("html_render")>
-    <RApiReturn(GetType(HtmlRender))>
+    <RApiReturn(GetType(HtmlRender), GetType(BootstrapRender))>
     Public Function htmlRender(<RRawVectorArgument>
                                Optional image_class As Object = Nothing,
                                Optional image_url As Object = Nothing,
+                               Optional framework As String = "bootstrap",
                                Optional env As Environment = Nothing) As Object
 
-        Dim render As New HtmlRender With {
-            .image_class = CLRVector.asCharacter(image_class).JoinBy(" ")
-        }
+        Dim render As HtmlRender
+
+        Select Case Strings.Trim(framework).ToLower
+            Case "bootstrap" : render = New BootstrapRender
+
+            Case Else
+                render = New HtmlRender
+        End Select
+
+        render.image_class = CLRVector.asCharacter(image_class).JoinBy(" ")
 
         If image_url IsNot Nothing Then
             If TypeOf image_url Is MethodInfo Then
