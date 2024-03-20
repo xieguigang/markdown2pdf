@@ -99,8 +99,13 @@ declare namespace htmlReport {
        * 
        * 
         * @param markdown -
+        * @param image_url apply for the document template rendering
+        * 
+        * + default value Is ``null``.
+        * @param env 
+        * + default value Is ``null``.
       */
-      function html(markdown: string): string;
+      function html(markdown: string, image_url?: any, env?: object): string;
       /**
       */
       function latex(markdown: string): string;
