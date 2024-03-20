@@ -46,6 +46,18 @@ declare namespace htmlReport {
    */
    function flush(template: object, outputdir?: string): boolean;
    /**
+    * 
+    * 
+     * @param image_class 
+     * + default value Is ``null``.
+     * @param image_url apply for the document template rendering
+     * 
+     * + default value Is ``null``.
+     * @param env 
+     * + default value Is ``null``.
+   */
+   function html_render(image_class?: string, image_url?: any, env?: object): object;
+   /**
     * Create a html template model from the given template file
     * 
     * 
@@ -99,13 +111,10 @@ declare namespace htmlReport {
        * 
        * 
         * @param markdown -
-        * @param image_url apply for the document template rendering
-        * 
-        * + default value Is ``null``.
-        * @param env 
+        * @param htmlRender 
         * + default value Is ``null``.
       */
-      function html(markdown: string, image_url?: any, env?: object): string;
+      function html(markdown: string, htmlRender?: object): string;
       /**
       */
       function latex(markdown: string): string;
