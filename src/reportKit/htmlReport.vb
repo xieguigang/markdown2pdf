@@ -257,7 +257,9 @@ Public Module htmlReportEngine
                         If Program.isException(out) Then
                             Throw DirectCast(out, Message).ToCLRException
                         Else
-                            Return any.ToString(out)
+                            Return CLRVector _
+                                .asCharacter(out) _
+                                .DefaultFirst
                         End If
                     End Function)
             End If
