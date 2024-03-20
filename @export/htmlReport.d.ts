@@ -56,7 +56,7 @@ declare namespace htmlReport {
      * @param env 
      * + default value Is ``null``.
    */
-   function html_render(image_class?: string, image_url?: any, env?: object): object;
+   function html_render(image_class?: any, image_url?: any, env?: object): object;
    /**
     * Create a html template model from the given template file
     * 
