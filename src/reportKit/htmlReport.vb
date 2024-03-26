@@ -41,14 +41,17 @@
 
 Imports System.Reflection
 Imports System.Runtime.CompilerServices
+Imports Bootstrap5
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.CommandLine.Reflection
+Imports Microsoft.VisualBasic.Emit.Delegates
 Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
+Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
@@ -60,11 +63,8 @@ Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf.LaTex
-Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 Imports any = Microsoft.VisualBasic.Scripting
-Imports Microsoft.VisualBasic.Emit.Delegates
-Imports Microsoft.VisualBasic.MIME.text.markdown
-Imports Bootstrap5
+Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 
 ''' <summary>
 ''' html templat handler
