@@ -62,6 +62,7 @@ Imports SMRUCC.Rsharp.Runtime.Components.[Interface]
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
+Imports WkHtmlToPdf
 Imports WkHtmlToPdf.LaTex
 Imports any = Microsoft.VisualBasic.Scripting
 Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
@@ -80,6 +81,11 @@ Public Module htmlReportEngine
     <ExportAPI("htmlTemplate")>
     Public Function template(url As String) As TemplateHandler
         Return New TemplateHandler(file:=url)
+    End Function
+
+    <ExportAPI("pageBreak")>
+    Public Function pageBreak() As String
+        Return PdfConvert.PdfPageBreak
     End Function
 
     ''' <summary>
