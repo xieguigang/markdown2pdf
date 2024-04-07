@@ -122,6 +122,9 @@ declare namespace htmlReport {
       function latex(markdown: string): string;
    }
    /**
+   */
+   function pageBreak(): string;
+   /**
      * @param orders default value Is ``null``.
      * @param headerStart default value Is ``'1'``.
      * @param env default value Is ``null``.

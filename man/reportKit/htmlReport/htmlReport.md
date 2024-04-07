@@ -3,6 +3,7 @@
 html templat handler
 
 + [htmlTemplate](htmlReport/htmlTemplate.1) Create a html template model from the given template file
++ [pageBreak](htmlReport/pageBreak.1) 
 + [pageNumbers](htmlReport/pageNumbers.1) assign the page numbers to the html templates
 + [pageHeaders](htmlReport/pageHeaders.1) 
 + [countFigures](htmlReport/countFigures.1) 
