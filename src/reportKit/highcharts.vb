@@ -4,6 +4,7 @@ Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
+Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports SMRUCC.WebCloud.JavaScript.highcharts
 Imports SMRUCC.WebCloud.JavaScript.highcharts.BarChart
 Imports SMRUCC.WebCloud.JavaScript.highcharts.Javascript
@@ -191,8 +192,8 @@ Module highcharts
                                      Optional backgroundColor As Object = "#ffffff") As VariablePieChart
 
         Dim names As String() = data.rownames
-        Dim y As Double() = REnv.asVector(Of Double)(data.getColumnVector("y"))
-        Dim z As Double() = REnv.asVector(Of Double)(data.getColumnVector("z"))
+        Dim y As Double() = CLRVector.asNumeric(data.getColumnVector("y"))
+        Dim z As Double() = CLRVector.asNumeric(data.getColumnVector("z"))
         Dim dataset As VariablePieSerialData() = names _
             .Select(Function(name, i)
                         Return New VariablePieSerialData With {

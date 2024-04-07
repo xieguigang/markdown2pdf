@@ -181,7 +181,7 @@ Module pdf
                             Optional env As Environment = Nothing) As Object
 
         Dim [strict] As Boolean = env.globalEnvironment.options.strict
-        Dim filelist As Array = REnv.asVector(Of Object)(files)
+        Dim filelist As Array = CLRVector.asObject(files)
         Dim contentUrls As String()
 
         If filelist.Length = 1 AndAlso TypeOf filelist(Scan0) Is HTMLReport Then
