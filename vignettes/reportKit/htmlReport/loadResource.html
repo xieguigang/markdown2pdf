@@ -22,7 +22,7 @@
 
         <h3>Description</h3>
 
-         <br /> load the resource files based on the description list data, <br /> and then generates the html segments for the resource files.
+        <p><br /> load the resource files based on the description list data, <br /> and then generates the html segments for the resource files.</p>
 
         <h3>Usage</h3>
 
@@ -37,16 +37,22 @@
         <table>
             
 <dt>description</dt>
-<dd><p>*.txt</code> for plant text file
+<dd><p>the resource file contents in this description data 
+ supports file types:
+ 
+ 1. <code>*.txt</code> for plant text file
  2. <code>*.csv</code> for data table file
  3. <code>*.png/jpg/bmp</code> for raster image file
  4. <code>*.svg</code> for vector image file
  5. <code>*.html</code> for html text file
- 6. <code>*.md. [as <a href="/vignettes/clr/Microsoft/VisualBasic/MIME/application/json/Javascript/JsonObject.html">JsonObject</a>]</p></dd>
+ 6. <code>*.md</code> for makrdown text file, the markdown text file 
+      will be rendering as the html document text at first
+      and then returns a html document to the rendering 
+      engine. [as <a href="/vignettes/clr/Microsoft/VisualBasic/MIME/application/json/Javascript/JsonObject.html">JsonObject</a>]</p></dd>
 
 
 <dt>workdir</dt>
-<dd><p></p></dd>
+<dd><p>-</p></dd>
 
 
 <dt>meta</dt>
