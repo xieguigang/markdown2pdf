@@ -293,13 +293,13 @@ Public Module htmlReportEngine
     <ExportAPI("markdown.html")>
     <RApiReturn(TypeCodes.string)>
     Public Function markdownToHtml(markdown As String, Optional htmlRender As HtmlRender = Nothing) As Object
-        Return New MarkdownHTML(If(htmlRender, New HtmlRender)).Transform(markdown).StripHTMLTags
+        Return New MarkdownHTML(If(htmlRender, New HtmlRender)).Transform(markdown)
     End Function
 
     <ExportAPI("markdown.text")>
     <RApiReturn(TypeCodes.string)>
     Public Function markdownToText(markdown As String) As String
-        Return New MarkdownHTML(New TextRender).Transform(markdown)
+        Return New MarkdownHTML(New TextRender).Transform(markdown).StripHTMLTags
     End Function
 
     <ExportAPI("markdown.latex")>
