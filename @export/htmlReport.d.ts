@@ -120,6 +120,9 @@ declare namespace htmlReport {
       /**
       */
       function latex(markdown: string): string;
+      /**
+      */
+      function text(markdown: string): string;
    }
    /**
    */
