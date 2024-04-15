@@ -295,6 +295,12 @@ Public Module htmlReportEngine
         Return New MarkdownHTML(If(htmlRender, New HtmlRender)).Transform(markdown)
     End Function
 
+    <ExportAPI("markdown.text")>
+    <RApiReturn(TypeCodes.string)>
+    Public Function markdownToText(markdown As String) As String
+        Return New MarkdownHTML(New TextRender).Transform(markdown)
+    End Function
+
     <ExportAPI("markdown.latex")>
     Public Function markdownToLaTex(markdown As String) As String
         Static render As New MarkdownHTML(render:=New TexRender)
