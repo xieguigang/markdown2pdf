@@ -66,7 +66,6 @@ Imports WkHtmlToPdf
 Imports WkHtmlToPdf.LaTex
 Imports any = Microsoft.VisualBasic.Scripting
 Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
-Imports Microsoft.VisualBasic.Text.Parser.HtmlParser
 
 ''' <summary>
 ''' html templat handler
@@ -299,7 +298,7 @@ Public Module htmlReportEngine
     <ExportAPI("markdown.text")>
     <RApiReturn(TypeCodes.string)>
     Public Function markdownToText(markdown As String) As String
-        Return New MarkdownHTML(New TextRender).Transform(markdown).StripHTMLTags
+        Return New MarkdownHTML(New TextRender).Transform(markdown)
     End Function
 
     <ExportAPI("markdown.latex")>
