@@ -1,0 +1,114 @@
+﻿proj,files,totalLines,commentLines,blankLines,lineOfCodes,class,property,method,functions,operator,size(bytes),size
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\Bootstrap5\Bootstrap5.vbproj,Bootstrap5\BootstrapRender.vb,15,0,5,10,1,0,0,1,0,477,477 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\Bootstrap5\Bootstrap5.vbproj,<project>,15,0,5,10,1,0,0,1,0,477,477 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\PieChart.vb,27,10,4,13,1,5,0,1,0,730,730 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\RadarChart.vb,23,0,5,18,2,5,0,2,0,632,632 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\Scatter.vb,21,0,6,15,2,5,0,1,0,546,546 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\My Project\Resources.Designer.vb,63,23,8,32,1,2,0,0,0,2798,2.80 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\Network\NetworkGenerator.vb,124,19,11,94,1,0,0,4,0,5367,5.37 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\Network\htmlwidget\BuildData.vb,70,8,13,49,1,0,0,2,0,2400,2.40 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\Network\htmlwidget\JSON.vb,46,0,5,41,5,29,0,0,0,1539,1.54 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\Network\JSON\v3.vb,76,15,15,46,4,15,1,4,0,2563,2.56 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\Network\JSON\v4.vb,16,0,5,11,2,4,0,0,0,370,370 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\test\test\Module1.vb,81,8,15,58,1,0,1,1,0,3380,3.38 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\test\test\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\test\test\My Project\AssemblyInfo.vb,35,15,7,13,0,0,0,0,0,1169,1.17 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\test\test\My Project\Resources.Designer.vb,63,23,8,32,1,2,0,0,0,2774,2.77 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,d3.js\test\test\My Project\Settings.Designer.vb,73,9,13,51,2,2,1,0,0,2962,2.96 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\d3.js\d3.js.vbproj,<project>,744,148,119,477,23,69,3,15,0,28106,28.11 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\ECharts\ECharts.vbproj,ECharts\Graph\Graph.vb,77,5,15,57,4,11,0,1,0,2384,2.38 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\ECharts\ECharts.vbproj,<project>,77,5,15,57,4,11,0,1,0,2384,2.38 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,font-awesome\Content.vb,13,0,3,10,1,1,1,1,0,357,357 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,font-awesome\Icon.vb,65,9,10,46,1,4,2,3,0,2066,2.07 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,font-awesome\Icons.vb,2494,0,1,2493,1,0,0,0,0,58707,58.71 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,font-awesome\Script.vb,46,32,10,4,1,0,0,1,0,1832,1.83 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,font-awesome\Styles.vb,16,9,1,6,1,0,0,0,0,316,316 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,font-awesome\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,font-awesome\My Project\Resources.Designer.vb,63,23,8,32,1,2,0,0,0,2805,2.81 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\font-awesome\font-awesome.vbproj,<project>,2710,82,35,2593,6,7,3,5,0,66521,66.52 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\ChartTypes.vb,15,6,0,9,1,0,0,0,0,258,258 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Highcharts.vb,93,23,14,56,2,14,0,1,0,3320,3.32 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Javascript.vb,136,26,16,94,1,0,1,8,0,5055,5.05 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Lambda.vb,88,9,17,62,2,2,1,4,0,2855,2.85 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\3D\options3d.vb,33,0,6,27,3,12,0,1,0,950,950 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Charts\AreaChart.vb,13,0,4,9,3,1,0,0,0,279,279 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Charts\BarChart.vb,38,0,9,29,7,10,0,1,0,1071,1.07 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Charts\LineChart.vb,44,8,11,25,5,8,1,0,0,1483,1.48 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Charts\PieChart.vb,48,0,12,36,7,14,0,2,0,1421,1.42 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Charts\PolarChart.vb,22,3,5,14,2,4,1,0,0,567,567 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Charts\ScatterChart.vb,37,0,6,31,6,17,0,0,0,1057,1.06 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Common\AbstractSerial.vb,46,20,7,19,3,8,0,1,0,1305,1.30 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Common\chart.vb,98,32,8,58,1,20,0,1,0,3137,3.14 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Common\ChartProfiles.vb,59,0,8,51,1,0,0,7,0,1770,1.77 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Common\Components.vb,150,20,19,111,14,75,0,1,0,4473,4.47 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Common\plotOptions.vb,39,0,4,35,2,12,0,1,0,1369,1.37 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\Data\SynchronizedLines.vb,17,0,5,12,2,8,0,0,0,402,402 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\My Project\AssemblyInfo.vb,36,15,6,15,0,0,0,0,0,1233,1.23 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\My Project\Resources.Designer.vb,63,23,8,32,1,2,0,0,0,2804,2.80 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\My Project\Settings.Designer.vb,74,9,12,53,2,2,1,0,0,3050,3.05 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\test\Module1.vb,7,0,3,4,1,0,1,0,0,61,61 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\test\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\test\My Project\AssemblyInfo.vb,35,15,7,13,0,0,0,0,0,1163,1.16 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\test\My Project\Resources.Designer.vb,62,23,8,31,1,2,0,0,0,2768,2.77 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,highcharts.js\test\My Project\Settings.Designer.vb,73,9,13,51,2,2,1,0,0,2968,2.97 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\highcharts.js\highcharts.js-netcore5.vbproj,<project>,1352,259,212,881,69,213,7,28,0,45695,45.70 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\jsTree\jsTree-netcore5.vbproj,jsTree\TreeNode.vb,7,0,2,5,1,3,0,0,0,152,152 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\jsTree\jsTree-netcore5.vbproj,jsTree\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\jsTree\jsTree-netcore5.vbproj,jsTree\My Project\AssemblyInfo.vb,36,15,6,15,0,0,0,0,0,1175,1.18 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\jsTree\jsTree-netcore5.vbproj,jsTree\My Project\Resources.Designer.vb,63,23,8,32,1,2,0,0,0,2800,2.80 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\jsTree\jsTree-netcore5.vbproj,jsTree\My Project\Settings.Designer.vb,74,9,12,53,2,2,1,0,0,3042,3.04 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\JavaScript\jsTree\jsTree-netcore5.vbproj,<project>,193,56,30,107,4,7,1,0,0,7607,7.61 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\LaTex\LaTex\LaTex.vbproj,LaTex\TexRender.vb,160,1,36,123,1,2,1,15,0,4550,4.55 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\LaTex\LaTex\LaTex.vbproj,LaTex\test\Program.vb,19,0,4,15,1,0,2,0,0,528,528 B
+G:\GCModeller\src\runtime\markdown2pdf\src\LaTex\LaTex\LaTex.vbproj,<project>,179,1,40,138,2,2,3,15,0,5078,5.08 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\LaTex\LaTex\test\test.vbproj,test\Program.vb,19,0,4,15,1,0,2,0,0,526,526 B
+G:\GCModeller\src\runtime\markdown2pdf\src\LaTex\LaTex\test\test.vbproj,<project>,19,0,4,15,1,0,2,0,0,526,526 B
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Environment.vb,95,3,15,77,1,1,1,3,0,3548,3.55 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\PdfConvert.vb,337,40,55,242,1,0,6,6,0,12404,12.40 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Settings.vb,7,5,0,2,1,0,0,0,0,429,429 B
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Arguments.vb,30,0,8,22,2,8,0,2,0,862,862 B
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Document.vb,129,9,19,101,4,13,0,7,0,4746,4.75 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Xml.vb,19,0,4,15,1,7,0,0,0,575,575 B
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Options\Decoration.vb,151,101,14,36,1,8,0,0,0,5773,5.77 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Options\Global.vb,123,62,20,41,2,16,0,0,0,4076,4.08 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Options\Outline.vb,35,16,6,13,1,4,0,0,0,1072,1.07 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Options\Page.vb,212,118,30,64,2,27,0,0,0,7146,7.15 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Options\PageSize.vb,105,34,9,62,2,3,0,2,0,4473,4.47 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Arguments\Options\TOC.vb,53,27,9,17,1,6,0,0,0,1774,1.77 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Exception\ErrorParser.vb,26,0,6,20,2,0,0,1,0,856,856 B
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,PdfConvert\Exception\Exceptions.vb,17,0,4,13,2,0,2,0,0,388,388 B
+G:\GCModeller\src\runtime\markdown2pdf\src\PdfConvert\WkHtmlToPdf.NET5.vbproj,<project>,1339,415,199,725,23,93,9,21,0,48122,48.12 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\EMailMsg.vb,16,0,4,12,1,0,0,1,0,541,541 B
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Navigation.vb,37,5,8,24,1,2,0,1,0,1451,1.45 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\HTML\BuilderHelpers.vb,66,13,12,41,1,0,0,3,0,2360,2.36 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\HTML\HTMLExtensions.vb,77,4,17,56,1,2,0,6,0,3282,3.28 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\HTML\HTMLReport.vb,246,71,36,139,1,4,5,9,0,9893,9.89 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\HTML\TemplateHandler.vb,76,26,9,41,1,4,3,1,0,2717,2.72 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\FieldDescription.vb,89,8,11,70,1,4,0,4,0,3134,3.13 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\HeaderCounter.vb,76,0,10,66,1,4,1,5,0,2329,2.33 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\Interpolation.vb,195,10,28,157,1,0,0,9,0,7735,7.74 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\PageElements.vb,163,37,28,98,1,0,0,3,0,5561,5.56 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\ResourceDescription.vb,93,0,16,77,2,7,0,3,0,2947,2.95 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\ResourceSolver\ImageSolver.vb,62,14,8,40,1,0,1,3,0,2192,2.19 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\ResourceSolver\ResourceSolver.vb,17,0,7,10,1,0,1,1,0,366,366 B
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\ResourceSolver\TableSolver.vb,178,9,25,144,1,0,1,3,0,6783,6.78 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\Interpolation\ResourceSolver\TextSolver.vb,29,0,7,22,1,1,1,1,0,838,838 B
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\My Project\AssemblyInfo.vb,36,15,6,15,0,0,0,0,0,1202,1.20 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\My Project\Resources.Designer.vb,132,67,12,53,1,6,0,0,0,6407,6.41 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,ReportBuilder\My Project\Settings.Designer.vb,74,9,12,53,2,2,1,0,0,3076,3.08 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\ReportBuilder\reportBuilder-netcore5.vbproj,<project>,1675,297,258,1120,19,36,14,53,0,63252,63.25 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\Echarts.vb,24,8,5,11,1,0,0,1,0,686,686 B
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\highcharts.vb,307,36,19,252,1,0,0,6,0,13129,13.13 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\htmlReport.vb,447,76,69,302,1,0,0,18,0,17069,17.07 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\pdf.vb,203,40,23,140,1,0,0,5,0,8421,8.42 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\Utils.vb,75,2,14,59,1,0,0,1,0,2836,2.84 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\zzz.vb,7,0,3,4,1,0,0,0,0,102,102 B
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\My Project\Application.Designer.vb,13,9,2,2,0,0,0,0,0,438,438 B
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\My Project\AssemblyInfo.vb,39,15,8,16,0,0,0,0,0,1309,1.31 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\My Project\Resources.Designer.vb,62,23,8,31,1,2,0,0,0,2777,2.78 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,reportKit\My Project\Settings.Designer.vb,74,9,12,53,2,2,1,0,0,3021,3.02 KB
+G:\GCModeller\src\runtime\markdown2pdf\src\reportKit\reportKit.NET5.vbproj,<project>,1251,218,163,870,9,4,1,31,0,49788,49.79 KB
+../,<root>,19108,2962,2160,13986,322,884,86,340,0,635112,635.11 KB

@@ -1,3 +1,62 @@
+﻿#Region "Microsoft.VisualBasic::db6327f34226580300dc90f7fa093ac5, G:/GCModeller/src/runtime/markdown2pdf/src/LaTex/LaTex//TexRender.vb"
+
+    ' Author:
+    ' 
+    '       xieguigang (I@xieguigang.me)
+    ' 
+    ' Copyright (c) 2021 R# language
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+
+    ' Code Statistics:
+
+    '   Total Lines: 160
+    '    Code Lines: 123
+    ' Comment Lines: 1
+    '   Blank Lines: 36
+    '     File Size: 4.55 KB
+
+
+    ' Class TexRender
+    ' 
+    '     Properties: BaseFontSizePt, Size
+    ' 
+    '     Constructor: (+1 Overloads) Sub New
+    '     Function: AnchorLink, BlockQuote, Bold, CodeBlock, CodeSpan
+    '               Document, Header, HorizontalLine, Image, Italic
+    '               List, NewLine, Paragraph, Table, Underline
+    ' 
+    ' /********************************************************************************/
+
+#End Region
+
 Imports Microsoft.VisualBasic.MIME.text.markdown
 
 Public Class TexRender : Inherits Render
@@ -158,3 +217,4 @@ Public Class TexRender : Inherits Render
     End Function
 
 End Class
+

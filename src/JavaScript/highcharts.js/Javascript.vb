@@ -1,35 +1,48 @@
-﻿#Region "Microsoft.VisualBasic::10d8a118f1be5af7d2dda536ed1bff0b, markdown2pdf\JavaScript\highcharts.js\Javascript.vb"
+﻿#Region "Microsoft.VisualBasic::6ab1e352e28905a404be71184ea7895b, G:/GCModeller/src/runtime/markdown2pdf/src/JavaScript/highcharts.js//Javascript.vb"
 
     ' Author:
     ' 
-    '       asuka (amethyst.asuka@gcmodeller.org)
-    '       xie (genetics@smrucc.org)
-    '       xieguigang (xie.guigang@live.com)
+    '       xieguigang (I@xieguigang.me)
     ' 
-    ' Copyright (c) 2018 GPL3 Licensed
+    ' Copyright (c) 2021 R# language
     ' 
     ' 
-    ' GNU GENERAL PUBLIC LICENSE (GPL3)
+    ' MIT License
     ' 
     ' 
-    ' This program is free software: you can redistribute it and/or modify
-    ' it under the terms of the GNU General Public License as published by
-    ' the Free Software Foundation, either version 3 of the License, or
-    ' (at your option) any later version.
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
     ' 
-    ' This program is distributed in the hope that it will be useful,
-    ' but WITHOUT ANY WARRANTY; without even the implied warranty of
-    ' MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    ' GNU General Public License for more details.
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
     ' 
-    ' You should have received a copy of the GNU General Public License
-    ' along with this program. If not, see <http://www.gnu.org/licenses/>.
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
 
 
 
     ' /********************************************************************************/
 
     ' Summaries:
+
+
+    ' Code Statistics:
+
+    '   Total Lines: 136
+    '    Code Lines: 94
+    ' Comment Lines: 26
+    '   Blank Lines: 16
+    '     File Size: 5.05 KB
+
 
     ' Module Javascript
     ' 

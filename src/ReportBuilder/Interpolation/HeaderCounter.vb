@@ -1,4 +1,61 @@
-﻿Public Class HeaderCounter
+﻿#Region "Microsoft.VisualBasic::f21b2eb611a73b06eb9e428a9a86c9c2, G:/GCModeller/src/runtime/markdown2pdf/src/ReportBuilder//Interpolation/HeaderCounter.vb"
+
+    ' Author:
+    ' 
+    '       xieguigang (I@xieguigang.me)
+    ' 
+    ' Copyright (c) 2021 R# language
+    ' 
+    ' 
+    ' MIT License
+    ' 
+    ' 
+    ' Permission is hereby granted, free of charge, to any person obtaining a copy
+    ' of this software and associated documentation files (the "Software"), to deal
+    ' in the Software without restriction, including without limitation the rights
+    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    ' copies of the Software, and to permit persons to whom the Software is
+    ' furnished to do so, subject to the following conditions:
+    ' 
+    ' The above copyright notice and this permission notice shall be included in all
+    ' copies or substantial portions of the Software.
+    ' 
+    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    ' SOFTWARE.
+
+
+
+    ' /********************************************************************************/
+
+    ' Summaries:
+
+
+    ' Code Statistics:
+
+    '   Total Lines: 76
+    '    Code Lines: 66
+    ' Comment Lines: 0
+    '   Blank Lines: 10
+    '     File Size: 2.33 KB
+
+
+    ' Class HeaderCounter
+    ' 
+    '     Properties: h1, h2, h3, h4
+    ' 
+    '     Constructor: (+1 Overloads) Sub New
+    '     Function: Count, Parse, (+3 Overloads) ToString
+    ' 
+    ' /********************************************************************************/
+
+#End Region
+
+Public Class HeaderCounter
 
     Public ReadOnly Property h1 As Integer = 1
     Public ReadOnly Property h2 As Integer = 1
@@ -74,3 +131,4 @@
         Return $"{h1}.{h2}.{h3}.{h4}"
     End Function
 End Class
+
