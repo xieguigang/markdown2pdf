@@ -8,7 +8,10 @@ declare namespace echart_app {
     */
     const paper: string[];
     const jet: string[];
-    function clear(id: string): void;
+    /**
+     * clear target node and then returns target node
+    */
+    function clear(id: string): HTMLElement;
     interface echarts_canvas {
         setOption(option: {}): void;
         resize(): void;

@@ -2,10 +2,12 @@ var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
             ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
         return extendStatics(d, b);
     };
     return function (d, b) {
+        if (typeof b !== "function" && b !== null)
+            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
         extendStatics(d, b);
         function __() { this.constructor = d; }
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
@@ -27,22 +29,26 @@ var echart_app;
         "#ff1bff"
     ];
     echart_app.jet = [
-        "#00007F",
-        "#0000FF",
-        "#007FFF",
-        "#00FFFF",
-        "#7FFF7F",
-        "#FFFF00",
-        "#FF7F00",
-        "#FF0000",
+        "#00007F", // dark blue
+        "#0000FF", // blue
+        "#007FFF", // azure
+        "#00FFFF", // cyan
+        "#7FFF7F", // light green
+        "#FFFF00", // yellow
+        "#FF7F00", // orange
+        "#FF0000", // red
         "#7F0000" // dark red
     ];
+    /**
+     * clear target node and then returns target node
+    */
     function clear(id) {
         var canvas = document.getElementById(id);
         if (canvas) {
             canvas.removeAttribute("_echarts_instance_");
             canvas.innerHTML = "";
         }
+        return canvas;
     }
     echart_app.clear = clear;
 })(echart_app || (echart_app = {}));
@@ -66,7 +72,7 @@ var plot;
             get: function () {
                 return this.echart;
             },
-            enumerable: true,
+            enumerable: false,
             configurable: true
         });
         canvas.check_env = function () {

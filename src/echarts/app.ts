@@ -27,6 +27,9 @@ namespace echart_app {
         "#7F0000" // dark red
     ];
 
+    /**
+     * clear target node and then returns target node
+    */
     export function clear(id: string) {
         const canvas: HTMLElement = document.getElementById(id);
 
@@ -34,6 +37,8 @@ namespace echart_app {
             canvas.removeAttribute("_echarts_instance_");
             canvas.innerHTML = "";
         }
+
+        return canvas;
     }
 
     export interface echarts_canvas {
