@@ -15,6 +15,9 @@ namespace echart_app {
         "#ff1bff"
     ];
 
+    /**
+     * The jet color set for heatmap plot
+    */
     export const jet: string[] = [
         "#00007F",// dark blue
         "#0000FF",// blue
@@ -58,35 +61,5 @@ namespace echart_app {
             renderer: string,
             useDirtyRect: boolean
         });
-    }
-
-    export interface options<T extends serial_data> {
-        series: T[];
-        color?: string[];
-        tooltip?: {};
-        title?: {
-            text: string;
-            subtext: string;
-            sublink: string;
-            left: string | number;
-            top: string | number;
-        }
-    }
-
-    export interface serial_data {
-        type: string;
-        name: string;
-        data: any[];
-        symbol?: string;
-        symbolSize?: number;
-        itemStyle: {
-            borderWidth?: number,
-            color: string,
-            borderColor?: string,
-            normal?: {
-                shadowBlur: number,
-                shadowColor: string
-            }
-        }
     }
 }
