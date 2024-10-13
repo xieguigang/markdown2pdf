@@ -71,7 +71,7 @@ Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf
 Imports WkHtmlToPdf.Arguments
-Imports REnv = SMRUCC.Rsharp.Runtime
+Imports RInternal = SMRUCC.Rsharp.Runtime.Internal
 
 <Package("pdf", Category:=APICategories.UtilityTools)>
 Module pdf
@@ -213,7 +213,7 @@ Module pdf
         End If
 
         If contentUrls.IsNullOrEmpty Then
-            Return Internal.debug.stop("no pdf content files was found!", env)
+            Return RInternal.debug.stop("no pdf content files was found!", env)
         End If
 
         Dim content As New WkHtmlToPdf.Arguments.PdfDocument With {
@@ -235,9 +235,9 @@ Module pdf
         }
 
         If wkhtmltopdf.WkHtmlToPdfPath.StringEmpty Then
-            Return Internal.debug.stop("please config wkhtmltopdf program at first!", env)
+            Return RInternal.debug.stop("please config wkhtmltopdf program at first!", env)
         ElseIf Not wkhtmltopdf.WkHtmlToPdfPath.FileExists Then
-            Return Internal.debug.stop($"wkhtmltopdf program Is Not exists at the given location '{wkhtmltopdf.WkHtmlToPdfPath}'...", env)
+            Return RInternal.debug.stop($"wkhtmltopdf program Is Not exists at the given location '{wkhtmltopdf.WkHtmlToPdfPath}'...", env)
         End If
 
         If wkhtmltopdf.Debug Then
@@ -246,7 +246,7 @@ Module pdf
         End If
 
         If Not content.CheckContentSource Then
-            Return Internal.debug.stop("part of the content is missing... break pdf conversion progress...", env)
+            Return RInternal.debug.stop("part of the content is missing... break pdf conversion progress...", env)
         End If
 
         Call pdfout.ParentPath.MakeDir

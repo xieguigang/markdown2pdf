@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>Bootstrap5</RootNamespace>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFrameworks>net8.0-windows;net8.0;net48</TargetFrameworks>
     <Platforms>AnyCPU;x64</Platforms>
     <Configurations>Debug;Rsharp_app_release</Configurations>
   </PropertyGroup>

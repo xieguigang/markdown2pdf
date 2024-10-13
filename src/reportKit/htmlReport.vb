@@ -82,6 +82,7 @@ Imports WkHtmlToPdf
 Imports WkHtmlToPdf.LaTex
 Imports any = Microsoft.VisualBasic.Scripting
 Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
+Imports RInternal = SMRUCC.Rsharp.Runtime.Internal
 
 ''' <summary>
 ''' html templat handler
@@ -138,7 +139,7 @@ Public Module htmlReportEngine
                                 Optional env As Environment = Nothing) As Object
 
         If report Is Nothing Then
-            Return Internal.debug.stop("the required report object can not be nothing!", env)
+            Return RInternal.debug.stop("the required report object can not be nothing!", env)
         End If
         If TypeOf report Is TemplateHandler Then
             report = New HTMLReport(DirectCast(report, TemplateHandler))
@@ -154,7 +155,7 @@ Public Module htmlReportEngine
             If template.pages = 1 Then
                 orders = {template.templates.First.Key}
             Else
-                Return Internal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
+                Return RInternal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
             End If
         End If
 
@@ -176,7 +177,7 @@ Public Module htmlReportEngine
                                  Optional env As Environment = Nothing) As Object
 
         If report Is Nothing Then
-            Return Internal.debug.stop("the required report object can not be nothing!", env)
+            Return RInternal.debug.stop("the required report object can not be nothing!", env)
         End If
         If TypeOf report Is TemplateHandler Then
             report = New HTMLReport(DirectCast(report, TemplateHandler))
@@ -192,7 +193,7 @@ Public Module htmlReportEngine
             If template.pages = 1 Then
                 orders = {template.templates.First.Key}
             Else
-                Return Internal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
+                Return RInternal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
             End If
         End If
 
@@ -213,7 +214,7 @@ Public Module htmlReportEngine
                                 Optional format As String = "p #. ",
                                 Optional env As Environment = Nothing) As Object
         If report Is Nothing Then
-            Return Internal.debug.stop("the required report object can not be nothing!", env)
+            Return RInternal.debug.stop("the required report object can not be nothing!", env)
         End If
         If TypeOf report Is TemplateHandler Then
             report = New HTMLReport(DirectCast(report, TemplateHandler))
@@ -229,7 +230,7 @@ Public Module htmlReportEngine
             If template.pages = 1 Then
                 orders = {template.templates.First.Key}
             Else
-                Return Internal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
+                Return RInternal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
             End If
         End If
 
@@ -444,7 +445,7 @@ getStringValue:
                     .FillMetadata(metadata) _
                     .CreateResourceHtml(workdir)
             Catch ex As Exception
-                Return Internal.debug.stop({$"error while handling resource file: {file}!", $"file: {file}"}, env)
+                Return RInternal.debug.stop({$"error while handling resource file: {file}!", $"file: {file}"}, env)
             End Try
 
             contents(file) = html

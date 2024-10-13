@@ -62,8 +62,8 @@ Imports Microsoft.VisualBasic.CommandLine
 Imports Microsoft.VisualBasic.CommandLine.InteropService
 Imports Microsoft.VisualBasic.CommandLine.InteropService.Pipeline
 Imports Microsoft.VisualBasic.Language
-Imports Microsoft.VisualBasic.Text
 Imports WkHtmlToPdf.Arguments
+Imports ASCII = Microsoft.VisualBasic.Text.ASCII
 
 ''' <summary>
 ''' wkhtmltopdf is able to put several objects into the output file, an object is
