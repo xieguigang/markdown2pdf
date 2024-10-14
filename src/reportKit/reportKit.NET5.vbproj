@@ -110,7 +110,7 @@
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\application%json\JSON-netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\text%html\html_netcore5.vbproj" />
     <ProjectReference Include="..\..\..\..\runtime\sciBASIC#\mime\text%markdown\markdown.NET5.vbproj" />
-    <ProjectReference Include="..\..\..\sciBASIC#\gr\Drawing-net4.8\Drawing-net4.8.vbproj" />
+    
     <ProjectReference Include="..\JavaScript\Bootstrap5\Bootstrap5.vbproj" />
     <ProjectReference Include="..\JavaScript\d3.js\d3.js.vbproj" />
     <ProjectReference Include="..\JavaScript\ECharts\ECharts.vbproj" />
@@ -121,7 +121,11 @@
     <ProjectReference Include="..\ReportBuilder\reportBuilder-netcore5.vbproj" />
   </ItemGroup>
 
-  <ItemGroup>
+  <ItemGroup Condition=" '$(TargetFramework)' == 'net48' ">
+    <ProjectReference Include="..\..\..\sciBASIC#\gr\Drawing-net4.8\Drawing-net4.8.vbproj" />
+  </ItemGroup>
+
+    <ItemGroup>
     <None Include="..\..\LICENSE">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
