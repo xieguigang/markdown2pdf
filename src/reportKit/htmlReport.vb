@@ -1,62 +1,64 @@
 ﻿#Region "Microsoft.VisualBasic::b5852cafc5c217b4ddeb79ec319753b3, G:/GCModeller/src/runtime/markdown2pdf/src/reportKit//htmlReport.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (I@xieguigang.me)
-    ' 
-    ' Copyright (c) 2021 R# language
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (I@xieguigang.me)
+' 
+' Copyright (c) 2021 R# language
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 447
-    '    Code Lines: 302
-    ' Comment Lines: 76
-    '   Blank Lines: 69
-    '     File Size: 17.07 KB
+' Summaries:
 
 
-    ' Module htmlReportEngine
-    ' 
-    '     Function: countFigures, countTables, encodeLocalURL, evalString, exportJSON
-    '               fillContent, getMetaData, htmlRender, loadResource, markdownToHtml
-    '               markdownToLaTex, markdownToText, pageBreak, pageHeaders, pageNumbers
-    '               reportTemplate, saveReport, template
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 447
+'    Code Lines: 302
+' Comment Lines: 76
+'   Blank Lines: 69
+'     File Size: 17.07 KB
+
+
+' Module htmlReportEngine
+' 
+'     Function: countFigures, countTables, encodeLocalURL, evalString, exportJSON
+'               fillContent, getMetaData, htmlRender, loadResource, markdownToHtml
+'               markdownToLaTex, markdownToText, pageBreak, pageHeaders, pageNumbers
+'               reportTemplate, saveReport, template
+' 
+' /********************************************************************************/
 
 #End Region
 
+Imports System.IO
 Imports System.Reflection
 Imports System.Runtime.CompilerServices
+Imports System.Text
 Imports Bootstrap5
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
@@ -71,6 +73,7 @@ Imports Microsoft.VisualBasic.MIME.text.markdown
 Imports Microsoft.VisualBasic.Scripting.MetaData
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder
 Imports SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML
+Imports SMRUCC.Rsharp.Development
 Imports SMRUCC.Rsharp.Interpreter
 Imports SMRUCC.Rsharp.Runtime
 Imports SMRUCC.Rsharp.Runtime.Components
@@ -248,6 +251,24 @@ Public Module htmlReportEngine
         Return ImageSolver.encodeLocalURL(filepath)
     End Function
 
+    <ExportAPI("defaultSyntaxHighlight")>
+    Public Function defaultcodeSyntaxHighlight() As HtmlRender.CodeHtmlSyntaxHighlight
+        Return Function(code, lang)
+                   Select Case Strings.Trim(lang).ToLower
+                       Case "r", "json", "javascript", "js", "ts"
+                           Dim html As New StringBuilder
+                           Dim console As New StringWriter(html)
+
+                           Call ConsoleSyntaxHighlightPrinter.PrintCode(code, console, OutputEnvironments.Html)
+                           Call console.Flush()
+
+                           Return html.ToString
+                       Case Else
+                           Return If(code, "").Replace("<", "&lt;")
+                   End Select
+               End Function
+    End Function
+
     ''' <param name="image_url">
     ''' apply for the document template rendering
     ''' </param>
@@ -257,6 +278,7 @@ Public Module htmlReportEngine
                                Optional image_class As Object = Nothing,
                                Optional image_url As Object = Nothing,
                                Optional framework As String = "bootstrap",
+                               Optional syntax_highlight As HtmlRender.CodeHtmlSyntaxHighlight = Nothing,
                                Optional env As Environment = Nothing) As Object
 
         Dim render As HtmlRender
@@ -268,6 +290,7 @@ Public Module htmlReportEngine
                 render = New HtmlRender
         End Select
 
+        render.CodeSyntaxHighlight = syntax_highlight
         render.image_class = CLRVector.asCharacter(image_class).JoinBy(" ")
 
         If image_url IsNot Nothing Then
