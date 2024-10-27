@@ -9,6 +9,7 @@ html templat handler
 + [countFigures](htmlReport/countFigures.1) 
 + [countTables](htmlReport/countTables.1) 
 + [encodeLocalURL](htmlReport/encodeLocalURL.1) 
++ [defaultSyntaxHighlight](htmlReport/defaultSyntaxHighlight.1) 
 + [html_render](htmlReport/html_render.1) 
 + [markdown.html](htmlReport/markdown.html.1) Render markdown to html text
 + [markdown.text](htmlReport/markdown.text.1) 

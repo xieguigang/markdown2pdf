@@ -27,6 +27,9 @@ declare namespace htmlReport {
    function countTables(report: any, orders?: string, tableStart?: object, prefix?: string, format?: string, env?: object): any;
    /**
    */
+   function defaultSyntaxHighlight(): object;
+   /**
+   */
    function encodeLocalURL(filepath: string): string;
    /**
    */
@@ -55,10 +58,12 @@ declare namespace htmlReport {
      * + default value Is ``null``.
      * @param framework 
      * + default value Is ``'bootstrap'``.
+     * @param syntax_highlight 
+     * + default value Is ``null``.
      * @param env 
      * + default value Is ``null``.
    */
-   function html_render(image_class?: any, image_url?: any, framework?: string, env?: object): object|object;
+   function html_render(image_class?: any, image_url?: any, framework?: string, syntax_highlight?: object, env?: object): object|object;
    /**
     * Create a html template model from the given template file
     * 
