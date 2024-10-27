@@ -65,7 +65,6 @@ Imports Microsoft.VisualBasic.ApplicationServices.Debugging.Logging
 Imports Microsoft.VisualBasic.ApplicationServices.Zip
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Emit.Delegates
-Imports Microsoft.VisualBasic.FileIO
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.application.json.Javascript
@@ -84,6 +83,7 @@ Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf
 Imports WkHtmlToPdf.LaTex
 Imports any = Microsoft.VisualBasic.Scripting
+Imports Directory = Microsoft.VisualBasic.FileIO.Directory
 Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 Imports RInternal = SMRUCC.Rsharp.Runtime.Internal
 
