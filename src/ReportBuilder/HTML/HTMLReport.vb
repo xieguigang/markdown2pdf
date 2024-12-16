@@ -131,6 +131,12 @@ Namespace HTML
             End Set
         End Property
 
+        ''' <summary>
+        ''' Create html template object from load files in a directory repository
+        ''' </summary>
+        ''' <param name="directory$"></param>
+        ''' <param name="searchLevel"></param>
+        ''' <param name="minify"></param>
         Sub New(directory$,
                 Optional searchLevel As SearchOption = SearchOption.SearchTopLevelOnly,
                 Optional minify As Boolean = False)
@@ -144,6 +150,11 @@ Namespace HTML
             Me.directory = directory.GetDirectoryFullPath
         End Sub
 
+        ''' <summary>
+        ''' Create html template object from a single template object
+        ''' </summary>
+        ''' <param name="page"></param>
+        ''' <param name="minify"></param>
         Sub New(page As TemplateHandler, Optional minify As Boolean = False)
             Dim singleKey As String = page.path.BaseName
 
