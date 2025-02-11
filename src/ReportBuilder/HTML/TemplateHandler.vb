@@ -60,6 +60,7 @@
 #End Region
 
 Imports System.Runtime.CompilerServices
+Imports System.Text
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging
 Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
@@ -127,7 +128,7 @@ Namespace HTML
                 builder.ToString.DoCall(AddressOf HtmlCompress.Minify),
                 builder.ToString
             ) _
-            .SaveTo(path Or Me.path.AsDefault, TextEncodings.UTF8WithoutBOM)
+            .SaveTo(path Or Me.path.AsDefault, Encoding.UTF8)
         End Sub
 
         Public Overrides Function ToString() As String
