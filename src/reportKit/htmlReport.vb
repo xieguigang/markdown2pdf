@@ -569,6 +569,9 @@ getStringValue:
     ''' <param name="template">
     ''' the zip file package or the template html resource directory path
     ''' </param>
+    ''' <param name="copyToTemp">
+    ''' copy the template source to a temp directory and then load the template files?
+    ''' </param>
     ''' <returns></returns>
     <ExportAPI("reportTemplate")>
     Public Function reportTemplate(template As String, Optional copyToTemp As Boolean = True) As HTMLReport
