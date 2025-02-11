@@ -3,14 +3,14 @@
 html templat handler
 
 + [htmlTemplate](htmlReport/htmlTemplate.1) Create a html template model from the given template file
-+ [pageBreak](htmlReport/pageBreak.1) 
++ [pageBreak](htmlReport/pageBreak.1) insert a pdf pagebreak div into the current html template string
 + [pageNumbers](htmlReport/pageNumbers.1) assign the page numbers to the html templates
-+ [pageHeaders](htmlReport/pageHeaders.1) 
-+ [countFigures](htmlReport/countFigures.1) 
-+ [countTables](htmlReport/countTables.1) 
-+ [encodeLocalURL](htmlReport/encodeLocalURL.1) 
++ [pageHeaders](htmlReport/pageHeaders.1) assign the page headers to the html templates
++ [countFigures](htmlReport/countFigures.1) assign the figure numbers to the html templates
++ [countTables](htmlReport/countTables.1) assign the table numbers to the html templates
++ [encodeLocalURL](htmlReport/encodeLocalURL.1) make url encoded
 + [defaultSyntaxHighlight](htmlReport/defaultSyntaxHighlight.1) 
-+ [html_render](htmlReport/html_render.1) 
++ [html_render](htmlReport/html_render.1) create a markdown to html render
 + [markdown.html](htmlReport/markdown.html.1) Render markdown to html text
 + [markdown.text](htmlReport/markdown.text.1) 
 + [markdown.latex](htmlReport/markdown.latex.1) 

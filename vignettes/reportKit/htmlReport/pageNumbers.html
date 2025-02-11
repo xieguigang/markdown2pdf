@@ -36,18 +36,25 @@
         <table>
             
 <dt>report</dt>
-<dd><p>[as <a href="/vignettes/clr/SMRUCC/genomics/GCModeller/Workbench/ReportBuilder/HTML/HTMLReport.html">HTMLReport</a>]</p></dd>
+<dd><p>the html report template model. [as <a href="/vignettes/clr/SMRUCC/genomics/GCModeller/Workbench/ReportBuilder/HTML/HTMLReport.html">HTMLReport</a>]</p></dd>
 
 
 <dt>orders</dt>
-<dd><p>the file basename of the html files. [as string]</p></dd>
+<dd><p>the file basename of the html files to sort of the pages inside the report model object. [as string]</p></dd>
+
+
+<dt>pageStart</dt>
+<dd><p>page number count start, default is count start from 1. [as integer]</p></dd>
 
         </table>
 
 
-        <h3 style="display: none;">Details</h3>
+        <h3 style="display: block;">Details</h3>
 
-        
+        <p>the placeholder of the page number inside the template document text should be:
+ 
+ 1. [#page] for the page number of current page
+ 2. [#total_pages] for the total page numbers which is count from the template files.</p>
 
         <h3 style="display: block">Authors</h3>
 
