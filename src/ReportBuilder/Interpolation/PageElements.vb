@@ -67,6 +67,13 @@ Public Module PageElements
     ''' the file basename of the html files
     ''' </param>
     ''' <returns></returns>
+    ''' <remarks>
+    ''' the placeholder of the page number inside the template document text should be:
+    ''' 
+    ''' 1. [#page] for the page number of current page
+    ''' 2. [#total_pages] for the total page numbers which is count from the template files.
+    ''' 
+    ''' </remarks>
     <Extension>
     Public Function pageNumbers(report As HTMLReport, orders As String(),
                                 Optional pageStart As Integer = 1,

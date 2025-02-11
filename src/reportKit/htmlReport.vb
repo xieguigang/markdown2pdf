@@ -96,13 +96,18 @@ Public Module htmlReportEngine
     ''' <summary>
     ''' Create a html template model from the given template file
     ''' </summary>
-    ''' <param name="url"></param>
+    ''' <param name="url">should be a local file its file path, andalso this function also supports
+    ''' the http url for http get and load the template document text.</param>
     ''' <returns></returns>
     <ExportAPI("htmlTemplate")>
     Public Function template(url As String) As TemplateHandler
         Return New TemplateHandler(file:=url)
     End Function
 
+    ''' <summary>
+    ''' insert a pdf pagebreak div into the current html template string
+    ''' </summary>
+    ''' <returns></returns>
     <ExportAPI("pageBreak")>
     Public Function pageBreak() As String
         Return PdfConvert.PdfPageBreak
@@ -111,11 +116,21 @@ Public Module htmlReportEngine
     ''' <summary>
     ''' assign the page numbers to the html templates
     ''' </summary>
-    ''' <param name="report"></param>
+    ''' <param name="report">the html report template model</param>
     ''' <param name="orders">
-    ''' the file basename of the html files
+    ''' the file basename of the html files to sort of the pages inside the report model object.
+    ''' </param>
+    ''' <param name="pageStart">
+    ''' page number count start, default is count start from 1
     ''' </param>
     ''' <returns></returns>
+    ''' <remarks>
+    ''' the placeholder of the page number inside the template document text should be:
+    ''' 
+    ''' 1. [#page] for the page number of current page
+    ''' 2. [#total_pages] for the total page numbers which is count from the template files.
+    ''' 
+    ''' </remarks>
     <ExportAPI("pageNumbers")>
     Public Function pageNumbers(report As HTMLReport, orders As String(),
                                 Optional pageStart As Integer = 1,
@@ -135,6 +150,19 @@ Public Module htmlReportEngine
         Return output
     End Function
 
+    ''' <summary>
+    ''' assign the page headers to the html templates
+    ''' </summary>
+    ''' <param name="report"></param>
+    ''' <param name="orders"></param>
+    ''' <param name="headerStart"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' place holder for the title could be:
+    ''' 
+    ''' ``[#h1]``, ``[#h2]``, ``[#h3]`` and ``[#h4]``.
+    ''' </remarks>
     <ExportAPI("pageHeaders")>
     Public Function pageHeaders(report As Object,
                                 Optional orders As String() = Nothing,
@@ -171,6 +199,19 @@ Public Module htmlReportEngine
         Return template
     End Function
 
+    ''' <summary>
+    ''' assign the figure numbers to the html templates
+    ''' </summary>
+    ''' <param name="report"></param>
+    ''' <param name="orders"></param>
+    ''' <param name="figStart"></param>
+    ''' <param name="prefix"></param>
+    ''' <param name="format"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' the placeholder of the figure number in your template document text should be ``[#fig]``.
+    ''' </remarks>
     <ExportAPI("countFigures")>
     Public Function countFigures(report As Object,
                                  Optional orders As String() = Nothing,
@@ -209,6 +250,19 @@ Public Module htmlReportEngine
         Return template
     End Function
 
+    ''' <summary>
+    ''' assign the table numbers to the html templates
+    ''' </summary>
+    ''' <param name="report"></param>
+    ''' <param name="orders"></param>
+    ''' <param name="tableStart"></param>
+    ''' <param name="prefix"></param>
+    ''' <param name="format"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    ''' <remarks>
+    ''' the placeholder of the table number in your template text should be ``[#tab]``.
+    ''' </remarks>
     <ExportAPI("countTables")>
     Public Function countTables(report As Object,
                                 Optional orders As String() = Nothing,
@@ -246,6 +300,11 @@ Public Module htmlReportEngine
         Return template
     End Function
 
+    ''' <summary>
+    ''' make url encoded
+    ''' </summary>
+    ''' <param name="filepath"></param>
+    ''' <returns></returns>
     <ExportAPI("encodeLocalURL")>
     Public Function encodeLocalURL(filepath As String) As String
         Return ImageSolver.encodeLocalURL(filepath)
@@ -269,6 +328,9 @@ Public Module htmlReportEngine
                End Function
     End Function
 
+    ''' <summary>
+    ''' create a markdown to html render
+    ''' </summary>
     ''' <param name="image_url">
     ''' apply for the document template rendering
     ''' </param>

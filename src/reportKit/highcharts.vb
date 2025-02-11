@@ -67,8 +67,10 @@ Imports SMRUCC.WebCloud.JavaScript.highcharts.PieChart
 Imports SMRUCC.WebCloud.JavaScript.highcharts.viz3D
 Imports any = Microsoft.VisualBasic.Scripting
 Imports chartProfiles = SMRUCC.WebCloud.JavaScript.highcharts.chart
-Imports REnv = SMRUCC.Rsharp.Runtime
 
+''' <summary>
+''' helper for the highcharts.js visualization
+''' </summary>
 <Package("highcharts.js")>
 Module highcharts
 
