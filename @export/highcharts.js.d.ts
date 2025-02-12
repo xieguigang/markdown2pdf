@@ -5,7 +5,6 @@
 // ref=reportKit.highcharts@reportKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 /**
- * helper for the highcharts.js visualization
  * 
 */
 declare namespace highcharts.js {

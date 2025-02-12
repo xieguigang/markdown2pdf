@@ -10,59 +10,25 @@
 */
 declare namespace htmlReport {
    /**
-    * assign the figure numbers to the html templates
-    * 
-    * > the placeholder of the figure number in your template document text should be ``[#fig]``.
-    * 
-     * @param report -
-     * @param orders -
-     * 
-     * + default value Is ``null``.
-     * @param figStart -
-     * 
-     * + default value Is ``1``.
-     * @param prefix -
-     * 
-     * + default value Is ``'fig'``.
-     * @param format -
-     * 
-     * + default value Is ``'p #. '``.
-     * @param env -
-     * 
-     * + default value Is ``null``.
+     * @param orders default value Is ``null``.
+     * @param figStart default value Is ``1``.
+     * @param prefix default value Is ``'fig'``.
+     * @param format default value Is ``'p #. '``.
+     * @param env default value Is ``null``.
    */
    function countFigures(report: any, orders?: string, figStart?: object, prefix?: string, format?: string, env?: object): any;
    /**
-    * assign the table numbers to the html templates
-    * 
-    * > the placeholder of the table number in your template text should be ``[#tab]``.
-    * 
-     * @param report -
-     * @param orders -
-     * 
-     * + default value Is ``null``.
-     * @param tableStart -
-     * 
-     * + default value Is ``1``.
-     * @param prefix -
-     * 
-     * + default value Is ``'table'``.
-     * @param format -
-     * 
-     * + default value Is ``'p #. '``.
-     * @param env -
-     * 
-     * + default value Is ``null``.
+     * @param orders default value Is ``null``.
+     * @param tableStart default value Is ``1``.
+     * @param prefix default value Is ``'table'``.
+     * @param format default value Is ``'p #. '``.
+     * @param env default value Is ``null``.
    */
    function countTables(report: any, orders?: string, tableStart?: object, prefix?: string, format?: string, env?: object): any;
    /**
    */
    function defaultSyntaxHighlight(): object;
    /**
-    * make url encoded
-    * 
-    * 
-     * @param filepath -
    */
    function encodeLocalURL(filepath: string): string;
    /**
@@ -83,7 +49,6 @@ declare namespace htmlReport {
    */
    function flush(template: object, outputdir?: string): boolean;
    /**
-    * create a markdown to html render
     * 
     * 
      * @param image_class 
@@ -103,8 +68,7 @@ declare namespace htmlReport {
     * Create a html template model from the given template file
     * 
     * 
-     * @param url should be a local file its file path, andalso this function also supports
-     *  the http url for http get and load the template document text.
+     * @param url -
    */
    function htmlTemplate(url: string): object;
    /**
@@ -166,42 +130,21 @@ declare namespace htmlReport {
       function text(markdown: string): string;
    }
    /**
-    * insert a pdf pagebreak div into the current html template string
-    * 
-    * 
    */
    function pageBreak(): string;
    /**
-    * assign the page headers to the html templates
-    * 
-    * > place holder for the title could be:
-    * >  
-    * >  ``[#h1]``, ``[#h2]``, ``[#h3]`` and ``[#h4]``.
-    * 
-     * @param report -
-     * @param orders -
-     * 
-     * + default value Is ``null``.
-     * @param headerStart -
-     * 
-     * + default value Is ``'1'``.
-     * @param env -
-     * 
-     * + default value Is ``null``.
+     * @param orders default value Is ``null``.
+     * @param headerStart default value Is ``'1'``.
+     * @param env default value Is ``null``.
    */
    function pageHeaders(report: any, orders?: string, headerStart?: string, env?: object): any;
    /**
     * assign the page numbers to the html templates
     * 
-    * > the placeholder of the page number inside the template document text should be:
-    * >  
-    * >  1. [#page] for the page number of current page
-    * >  2. [#total_pages] for the total page numbers which is count from the template files.
     * 
-     * @param report the html report template model
-     * @param orders the file basename of the html files to sort of the pages inside the report model object.
-     * @param pageStart page number count start, default is count start from 1
-     * 
+     * @param report -
+     * @param orders the file basename of the html files
+     * @param pageStart 
      * + default value Is ``1``.
      * @param env 
      * + default value Is ``null``.
@@ -213,8 +156,7 @@ declare namespace htmlReport {
     * 
     * 
      * @param template the zip file package or the template html resource directory path
-     * @param copyToTemp copy the template source to a temp directory and then load the template files?
-     * 
+     * @param copyToTemp 
      * + default value Is ``true``.
    */
    function reportTemplate(template: string, copyToTemp?: boolean): object;
