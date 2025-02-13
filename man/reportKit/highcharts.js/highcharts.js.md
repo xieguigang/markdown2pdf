@@ -1,6 +1,6 @@
 ﻿# highcharts.js
 
-
+helper for the highcharts.js visualization
 
 + [to_javascript](highcharts.js/to_javascript.1) 
 + [to_html](highcharts.js/to_html.1) 

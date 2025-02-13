@@ -13,12 +13,24 @@ assign the page numbers to the html templates
 .PP
 .SH OPTIONS
 .PP
-\fBreport\fB \fR\- -. 
+\fBreport\fB \fR\- the html report template model. 
 .PP
 .PP
 \fBorders\fB \fR\- 
- the file basename of the html files
+ the file basename of the html files to sort of the pages inside the report model object.
 . 
+.PP
+.PP
+\fBpageStart\fB \fR\- 
+ page number count start, default is count start from 1
+. 
+.PP
+.SH DETAILS
+.PP
+the placeholder of the page number inside the template document text should be:
+ 
+ 1. [#page] for the page number of current page
+ 2. [#total_pages] for the total page numbers which is count from the template files.
 .PP
 .SH SEE ALSO
 htmlReport
