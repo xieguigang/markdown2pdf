@@ -107,21 +107,23 @@ Public Class ResourceDescription
             Call html.Replace(key, contentText)
         Next
 
-        For Each key As String In options.Keys
-            Dim value As Object = options(key)
+        If Not options Is Nothing Then
+            For Each key As String In options.Keys
+                Dim value As Object = options(key)
 
-            If TypeOf value Is String Then
-                Dim str As New StringBuilder(DirectCast(value, String))
+                If TypeOf value Is String Then
+                    Dim str As New StringBuilder(DirectCast(value, String))
 
-                For Each name As String In meta.Keys
-                    Call str.Replace($"${{{name}}}", meta(name))
-                Next
+                    For Each name As String In meta.Keys
+                        Call str.Replace($"${{{name}}}", meta(name))
+                    Next
 
-                value = str
-            End If
+                    value = str
+                End If
 
-            Call opts.Add(key, value)
-        Next
+                Call opts.Add(key, value)
+            Next
+        End If
 
         Return New ResourceDescription With {
             .text = text.ToString,
