@@ -72,6 +72,10 @@ Public Class FieldDescription
     ''' <returns></returns>
     Public Property [alias] As String
 
+    Public Overrides Function ToString() As String
+        Return $"[{ordinal}]{referenceName}"
+    End Function
+
     Public Overloads Function ToString(isHeader As Boolean, str As String) As String
         If isHeader Then
             If [alias].StringEmpty Then
