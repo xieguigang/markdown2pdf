@@ -60,6 +60,7 @@ Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
 Imports Microsoft.VisualBasic.My.JavaScript
 Imports any = Microsoft.VisualBasic.Scripting
+Imports std = System.Math
 
 Public Class TableSolver : Inherits ResourceSolver
 
@@ -188,7 +189,7 @@ Public Class TableSolver : Inherits ResourceSolver
             orders = table.Nrows.Sequence.ToArray
         End If
 
-        maxRows = If(maxRows > 0, maxRows, table.Nrows)
+        maxRows = If(maxRows > 0, std.Min(maxRows, table.Nrows), table.Nrows)
 
         For i As Integer = 0 To maxRows - 1
             Yield table.GetRow(orders(i))
