@@ -55,7 +55,7 @@
 
 Imports System.Text
 Imports Microsoft.VisualBasic.ComponentModel.Collection
-Imports Microsoft.VisualBasic.Data.csv.IO
+Imports Microsoft.VisualBasic.Data.Framework.IO
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.Language.CSS
 Imports Microsoft.VisualBasic.My.JavaScript

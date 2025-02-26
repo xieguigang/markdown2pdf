@@ -58,7 +58,7 @@
 Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports Microsoft.VisualBasic.CommandLine.Reflection
-Imports Microsoft.VisualBasic.Data.csv.DATA
+Imports Microsoft.VisualBasic.Data.Framework.DATA
 Imports Microsoft.VisualBasic.Scripting.MetaData
 
 ''' <summary>
