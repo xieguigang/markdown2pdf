@@ -75,7 +75,7 @@ Public Class TableSolver : Inherits ResourceSolver
             Return Nothing
         End If
 
-        Dim table As DataFrame = DataFrame.Load(tablefile)
+        Dim table As DataFrameResolver = DataFrameResolver.Load(tablefile)
         Dim tbody As New StringBuilder
         Dim css As CSSFile = resource.styles
         Dim names As String() = table.Headers.Select(Function(str) str.Trim(""""c)).ToArray
@@ -133,7 +133,7 @@ Public Class TableSolver : Inherits ResourceSolver
     ''' <param name="maxRows"></param>
     ''' <param name="orderBy"></param>
     ''' <returns></returns>
-    Private Iterator Function RowSelector(table As DataFrame, maxRows As Integer, orderBy As Object) As IEnumerable(Of RowObject)
+    Private Iterator Function RowSelector(table As DataFrameResolver, maxRows As Integer, orderBy As Object) As IEnumerable(Of RowObject)
         Dim orders As Integer()
 
         If Not orderBy Is Nothing Then
