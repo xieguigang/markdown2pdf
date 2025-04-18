@@ -36,7 +36,8 @@
     <i>header</i> = <span style='color: blue !important;'>NULL</span>,
     <i>opts</i> = <span style='color: blue !important;'>NULL</span>,
     <i>pageOpts</i> = <span style='color: blue !important;'>NULL</span>,
-    <i>pdf.size</i> = A4);</code></pre>
+    <i>pdf.size</i> = A4,
+    <i>pdf.temp</i> = <span style='color: blue !important;'>NULL</span>);</code></pre>
         </div>
 
         <h3>Arguments</h3>
@@ -49,6 +50,12 @@
 
 <dt>pdfout</dt>
 <dd><p>[as string]</p></dd>
+
+
+<dt>pdf.temp</dt>
+<dd><p>the temp directory for generates the pdf file, by default this parameter value 
+ is nothing which means use the system temp directory as the workdir. set this 
+ parameter value to a local directory for run pdf generation debug purpose. [as string]</p></dd>
 
         </table>
 
