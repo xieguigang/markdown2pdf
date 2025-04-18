@@ -1,62 +1,57 @@
 ﻿#Region "Microsoft.VisualBasic::51a11a2a7c618c2e5612db29efc772ca, G:/GCModeller/src/runtime/markdown2pdf/src/reportKit//pdf.vb"
 
-    ' Author:
-    ' 
-    '       xieguigang (I@xieguigang.me)
-    ' 
-    ' Copyright (c) 2021 R# language
-    ' 
-    ' 
-    ' MIT License
-    ' 
-    ' 
-    ' Permission is hereby granted, free of charge, to any person obtaining a copy
-    ' of this software and associated documentation files (the "Software"), to deal
-    ' in the Software without restriction, including without limitation the rights
-    ' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-    ' copies of the Software, and to permit persons to whom the Software is
-    ' furnished to do so, subject to the following conditions:
-    ' 
-    ' The above copyright notice and this permission notice shall be included in all
-    ' copies or substantial portions of the Software.
-    ' 
-    ' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-    ' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-    ' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-    ' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-    ' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-    ' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-    ' SOFTWARE.
+' Author:
+' 
+'       xieguigang (I@xieguigang.me)
+' 
+' Copyright (c) 2021 R# language
+' 
+' 
+' MIT License
+' 
+' 
+' Permission is hereby granted, free of charge, to any person obtaining a copy
+' of this software and associated documentation files (the "Software"), to deal
+' in the Software without restriction, including without limitation the rights
+' to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+' copies of the Software, and to permit persons to whom the Software is
+' furnished to do so, subject to the following conditions:
+' 
+' The above copyright notice and this permission notice shall be included in all
+' copies or substantial portions of the Software.
+' 
+' THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+' IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+' FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+' AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+' LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+' OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+' SOFTWARE.
 
 
 
-    ' /********************************************************************************/
+' /********************************************************************************/
 
-    ' Summaries:
-
-
-    ' Code Statistics:
-
-    '   Total Lines: 203
-    '    Code Lines: 140
-    ' Comment Lines: 40
-    '   Blank Lines: 23
-    '     File Size: 8.42 KB
+' Summaries:
 
 
-    ' Module pdf
-    ' 
-    '     Function: logoHtml, makePDF, pdfDecoration, pdfGlobalOptions, pdfPageOptions
-    ' 
-    ' /********************************************************************************/
+' Code Statistics:
+
+'   Total Lines: 203
+'    Code Lines: 140
+' Comment Lines: 40
+'   Blank Lines: 23
+'     File Size: 8.42 KB
+
+
+' Module pdf
+' 
+'     Function: logoHtml, makePDF, pdfDecoration, pdfGlobalOptions, pdfPageOptions
+' 
+' /********************************************************************************/
 
 #End Region
 
-Imports System.IO
-'Imports iText.IO.Image
-'Imports iText.Kernel.Pdf
-'Imports iText.Layout
-'Imports iText.Layout.Element
 Imports Microsoft.VisualBasic.ApplicationServices
 Imports Microsoft.VisualBasic.CommandLine.Reflection
 Imports Microsoft.VisualBasic.Imaging
@@ -72,6 +67,7 @@ Imports SMRUCC.Rsharp.Runtime.Vectorization
 Imports WkHtmlToPdf
 Imports WkHtmlToPdf.Arguments
 Imports RInternal = SMRUCC.Rsharp.Runtime.Internal
+
 
 <Package("pdf", Category:=APICategories.UtilityTools)>
 Module pdf
@@ -175,6 +171,11 @@ Module pdf
     ''' markdown files or html files
     ''' </param>
     ''' <param name="pdfout"></param>
+    ''' <param name="pdf_temp">
+    ''' the temp directory for generates the pdf file, by default this parameter value 
+    ''' is nothing which means use the system temp directory as the workdir. set this 
+    ''' parameter value to a local directory for run pdf generation debug purpose.
+    ''' </param>
     ''' <remarks>
     ''' the executable file path of the wkhtmltopdf should be
     ''' configed via ``options(wkhtmltopdf = ...)``.
@@ -191,12 +192,14 @@ Module pdf
                             Optional opts As GlobalOptions = Nothing,
                             Optional pageOpts As Page = Nothing,
                             Optional pdf_size As QPrinter = QPrinter.A4,
+                            Optional pdf_temp As String = Nothing,
                             Optional env As Environment = Nothing) As Object
 
-        Dim [strict] As Boolean = env.globalEnvironment.options.strict
+        Dim [strict] As Boolean = env.strictOption
         Dim filelist As Array = CLRVector.asObject(files)
         Dim contentUrls As String()
 
+        ' resolve the input files data as html content files
         If filelist.Length = 1 AndAlso TypeOf filelist(Scan0) Is HTMLReport Then
             contentUrls = DirectCast(filelist(Scan0), HTMLReport) _
                 .Save() _
@@ -225,7 +228,7 @@ Module pdf
             .pagesize = New PageSize With {.pagesize = pdf_size},
             .LocalConfigMode = False
         }
-        Dim workdir As String = TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf")
+        Dim workdir As String = If(pdf_temp, TempFileSystem.GetAppSysTempFile("__pdf", App.PID.ToHexString, "wkhtmltopdf"))
         Dim output As New PdfOutput With {.OutputFilePath = pdfout}
         Dim wkhtmltopdf As New PdfConvertEnvironment With {
             .TempFolderPath = workdir,

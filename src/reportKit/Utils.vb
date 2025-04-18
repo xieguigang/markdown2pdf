@@ -61,6 +61,24 @@ Imports MarkdownHTML = Microsoft.VisualBasic.MIME.text.markdown.MarkdownRender
 
 Module Utils
 
+    ''' <summary>
+    ''' Resolve the given content files as html files
+    ''' </summary>
+    ''' <param name="files"></param>
+    ''' <param name="wwwroot$"></param>
+    ''' <param name="style$"></param>
+    ''' <param name="resolvedAsDataUri"></param>
+    ''' <param name="strict"></param>
+    ''' <returns>
+    ''' a collection of the html document file path, for
+    ''' 
+    ''' 1. html file, its file path will be returns from this function directly
+    ''' 2. txt/markdown file, its file content will be transform as html and saved to a file
+    ''' 3. if the file is not exists, and strict is true, then an exception will be thrown
+    ''' 4. if the file is not exists, and strict is false, then a warning will be printed
+    ''' 5. if the style is not exists, then a default style will be used
+    ''' 6. if the style is exists, then it will be used as the css style for the html document
+    ''' </returns>
     <Extension>
     Friend Iterator Function GetContentHtml(files As IEnumerable(Of String),
                                             wwwroot$,
