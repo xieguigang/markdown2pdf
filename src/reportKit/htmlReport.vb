@@ -572,9 +572,15 @@ getStringValue:
     ''' <param name="copyToTemp">
     ''' copy the template source to a temp directory and then load the template files?
     ''' </param>
+    ''' <param name="tmpdir">
+    ''' config this temp dir parameter for run debug
+    ''' </param>
     ''' <returns></returns>
     <ExportAPI("reportTemplate")>
-    Public Function reportTemplate(template As String, Optional copyToTemp As Boolean = True) As HTMLReport
+    Public Function reportTemplate(template As String,
+                                   Optional copyToTemp As Boolean = True,
+                                   Optional tmpdir As String = Nothing) As HTMLReport
+
         If template.ExtensionSuffix("zip") Then
             Dim tempdir As String = TempFileSystem.TempDir
             Call Zip.ImprovedExtractToDirectory(template, tempdir, Overwrite.Always)
@@ -583,8 +589,14 @@ getStringValue:
         End If
 
         If copyToTemp Then
-            Dim tmpdir As String = TempFileSystem.GetAppSysTempFile(ext:="__pdf_template", sessionID:="", prefix:="wkhtmltopdf")
-            Call New Directory(template).CopyTo(tmpdir).ToArray
+            Dim dir As New Directory(template)
+
+            tmpdir = If(tmpdir, TempFileSystem.GetAppSysTempFile(
+                ext:="__pdf_template",
+                sessionID:="",
+                prefix:="wkhtmltopdf")
+            )
+            dir.CopyTo(tmpdir).ToArray
             template = tmpdir
         End If
 
