@@ -216,9 +216,6 @@ declare namespace htmlReport {
      * @param copyToTemp copy the template source to a temp directory and then load the template files?
      * 
      * + default value Is ``true``.
-     * @param tmpdir config this temp dir parameter for run debug
-     * 
-     * + default value Is ``null``.
    */
-   function reportTemplate(template: string, copyToTemp?: boolean, tmpdir?: string): object;
+   function reportTemplate(template: string, copyToTemp?: boolean): object;
 }
