@@ -4,7 +4,8 @@
 reportTemplate \- Create a html template model from a
 .SH SYNOPSIS
 \fIreportTemplate(\fBtemplate\fR as string, 
-\fBcopyToTemp\fR as boolean = TRUE);\fR
+\fBcopyToTemp\fR as boolean = TRUE, 
+\fBtmpdir\fR as string = \fB<NULL>\fR);\fR
 .SH DESCRIPTION
 .PP
 Create a html template model from a 
@@ -19,6 +20,11 @@ Create a html template model from a
 .PP
 \fBcopyToTemp\fB \fR\- 
  copy the template source to a temp directory and then load the template files?
+. 
+.PP
+.PP
+\fBtmpdir\fB \fR\- 
+ config this temp dir parameter for run debug
 . 
 .PP
 .SH SEE ALSO
