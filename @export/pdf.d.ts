@@ -37,15 +37,10 @@ declare namespace pdf {
      * + default value Is ``null``.
      * @param pdf_size 
      * + default value Is ``null``.
-     * @param pdf_temp the temp directory for generates the pdf file, by default this parameter value 
-     *  is nothing which means use the system temp directory as the workdir. set this 
-     *  parameter value to a local directory for run pdf generation debug purpose.
-     * 
-     * + default value Is ``null``.
      * @param env 
      * + default value Is ``null``.
    */
-   function makePDF(files: any, pdfout?: string, wwwroot?: string, style?: string, resolvedAsDataUri?: boolean, footer?: object, header?: object, opts?: object, pageOpts?: object, pdf_size?: object, pdf_temp?: string, env?: object): string;
+   function makePDF(files: any, pdfout?: string, wwwroot?: string, style?: string, resolvedAsDataUri?: boolean, footer?: object, header?: object, opts?: object, pageOpts?: object, pdf_size?: object, env?: object): string;
    /**
     * 
     * 
