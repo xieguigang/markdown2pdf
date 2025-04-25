@@ -13,6 +13,7 @@ makePDF \- convert the local html documents to pdf document.
 \fBopts\fR as <generic> GlobalOptions = \fB<NULL>\fR, 
 \fBpageOpts\fR as <generic> Page = \fB<NULL>\fR, 
 \fBpdf_size\fR as <integer> QPrinter = [A4], 
+\fBpdf_temp\fR as string = \fB<NULL>\fR, 
 [\fB<Environment>\fR]);\fR
 .SH DESCRIPTION
 .PP
@@ -26,6 +27,13 @@ convert the local html documents to pdf document.
 .PP
 .PP
 \fBpdfout\fB \fR\- -. 
+.PP
+.PP
+\fBpdf_temp\fB \fR\- 
+ the temp directory for generates the pdf file, by default this parameter value 
+ is nothing which means use the system temp directory as the workdir. set this 
+ parameter value to a local directory for run pdf generation debug purpose.
+. 
 .PP
 .SH DETAILS
 .PP
