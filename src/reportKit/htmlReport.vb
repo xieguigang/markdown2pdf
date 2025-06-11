@@ -535,7 +535,7 @@ getStringValue:
             End Try
 
             If debug AndAlso html Is Nothing Then
-
+                Dim filepath As String = resVal. ()
             End If
 
             contents(file) = html
