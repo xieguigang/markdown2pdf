@@ -535,7 +535,11 @@ getStringValue:
             End Try
 
             If debug AndAlso html Is Nothing Then
-                Dim filepath As String = resVal. ()
+                Dim filepath As String = resVal.GetResource.GetResourceFile(workdir)
+                Dim warn As String = $"[{resVal.type.Description}] null from '{filepath}'!"
+
+                Call warn.Warning
+                Call VBDebugger.EchoLine(warn)
             End If
 
             contents(file) = html
