@@ -513,6 +513,7 @@ getStringValue:
 
         Dim engine As RInterpreter = env.globalEnvironment.Rscript
         Dim metadata As Object = getMetaData(meta, engine)
+        Dim debug As Boolean = env.debugOption()
 
         If TypeOf metadata Is Message Then
             Return metadata
@@ -523,7 +524,7 @@ getStringValue:
 
         For Each file As String In res.Keys
             Dim resVal As ResourceDescription = res(file)
-            Dim html As String
+            Dim html As String = Nothing
 
             Try
                 html = resVal _
@@ -532,6 +533,10 @@ getStringValue:
             Catch ex As Exception
                 Return RInternal.debug.stop({$"error while handling resource file: {file}!", $"file: {file}"}, env)
             End Try
+
+            If debug AndAlso html Is Nothing Then
+
+            End If
 
             contents(file) = html
         Next
