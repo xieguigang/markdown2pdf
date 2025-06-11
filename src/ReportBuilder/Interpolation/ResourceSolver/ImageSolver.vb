@@ -63,7 +63,7 @@ Public Class ImageSolver : Inherits ResourceSolver
     End Sub
 
     Public Overrides Function GetHtml(workdir As String) As String
-        Dim filepath As String = getfile(workdir)
+        Dim filepath As String = GetResourceFile(workdir)
         Dim html As Boolean = resource.options.TryGetValue("html", [default]:=False)
         Dim isDataUri As Boolean = False
 
@@ -107,7 +107,7 @@ Public Class ImageSolver : Inherits ResourceSolver
         Return newPath
     End Function
 
-    Private Function getfile(workdir As String) As String
+    Public Overrides Function GetResourceFile(workdir As String) As String
         If resource.image.FileExists Then
             Return resource.image
         Else

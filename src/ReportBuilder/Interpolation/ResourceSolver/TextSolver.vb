@@ -83,4 +83,8 @@ Public Class TextSolver : Inherits ResourceSolver
                      </span>"
         End If
     End Function
+
+    Public Overrides Function GetResourceFile(workdir As String) As String
+        Return Nothing
+    End Function
 End Class

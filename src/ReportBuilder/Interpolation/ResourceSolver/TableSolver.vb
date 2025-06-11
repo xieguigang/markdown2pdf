@@ -68,8 +68,12 @@ Public Class TableSolver : Inherits ResourceSolver
         MyBase.New(res)
     End Sub
 
+    Public Overrides Function GetResourceFile(workdir As String) As String
+        Return If(resource.table.FileExists, resource.table, $"{workdir}/{resource.table}")
+    End Function
+
     Public Overrides Function GetHtml(workdir As String) As String
-        Dim tablefile As String = If(resource.table.FileExists, resource.table, $"{workdir}/{resource.table}")
+        Dim tablefile As String = GetResourceFile(workdir)
 
         If Not tablefile.FileExists Then
             Return Nothing

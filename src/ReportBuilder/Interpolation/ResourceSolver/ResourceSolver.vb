@@ -63,6 +63,7 @@ Public MustInherit Class ResourceSolver
     End Sub
 
     Public MustOverride Function GetHtml(workdir As String) As String
+    Public MustOverride Function GetResourceFile(workdir As String) As String
 
     Public Overrides Function ToString() As String
         Return resource.ToString
