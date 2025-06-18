@@ -526,6 +526,10 @@ getStringValue:
             Dim resVal As ResourceDescription = res(file)
             Dim html As String = Nothing
 
+            If debug Then
+                Call VBDebugger.EchoLine($"  * processing resource: {file} as [{resVal.type.ToString}] = '{resVal.getResourceValue}';")
+            End If
+
             Try
                 html = resVal _
                     .FillMetadata(metadata) _
