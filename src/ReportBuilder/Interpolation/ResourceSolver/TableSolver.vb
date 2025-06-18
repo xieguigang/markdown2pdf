@@ -69,13 +69,14 @@ Public Class TableSolver : Inherits ResourceSolver
     End Sub
 
     Public Overrides Function GetResourceFile(workdir As String) As String
-        Return If(resource.table.FileExists, resource.table, $"{workdir}/{resource.table}")
+        Return If(resource.table.FileExists, resource.table, $"{workdir}/{resource.table}".GetFullPath)
     End Function
 
     Public Overrides Function GetHtml(workdir As String) As String
         Dim tablefile As String = GetResourceFile(workdir)
 
         If Not tablefile.FileExists Then
+            Call VBDebugger.EchoLine($"[resource_error] table resource file is missing: {tablefile}")
             Return Nothing
         End If
 

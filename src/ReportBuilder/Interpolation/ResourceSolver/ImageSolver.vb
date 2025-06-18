@@ -111,7 +111,7 @@ Public Class ImageSolver : Inherits ResourceSolver
         If resource.image.FileExists Then
             Return resource.image
         Else
-            Return $"{workdir}/{resource.image}"
+            Return $"{workdir}/{resource.image}".GetFullPath
         End If
     End Function
 End Class
