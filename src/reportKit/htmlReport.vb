@@ -509,11 +509,12 @@ getStringValue:
                                  <RDefaultExpression>
                                  Optional workdir As Object = "~getwd();",
                                  Optional meta As list = Nothing,
+                                 Optional debug_mode As Boolean? = Nothing,
                                  Optional env As Environment = Nothing) As Object
 
         Dim engine As RInterpreter = env.globalEnvironment.Rscript
         Dim metadata As Object = getMetaData(meta, engine)
-        Dim debug As Boolean = env.debugOption()
+        Dim debug As Boolean = env.debugOption(debug_mode)
 
         If TypeOf metadata Is Message Then
             Return metadata
