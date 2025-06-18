@@ -531,7 +531,7 @@ getStringValue:
                     .FillMetadata(metadata) _
                     .CreateResourceHtml(workdir)
             Catch ex As Exception
-                Return RInternal.debug.stop({$"error while handling resource file: {file}!", $"file: {file}"}, env)
+                Return RInternal.debug.stop({$"error while handling resource file: {file}!", $"file: {file}", $"clr_error: " & ex.ToString}, env)
             End Try
 
             If debug AndAlso html Is Nothing Then
