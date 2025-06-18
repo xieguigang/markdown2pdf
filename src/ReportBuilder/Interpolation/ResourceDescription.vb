@@ -83,8 +83,11 @@ Public Class ResourceDescription
                 Return ResourceTypes.html
             ElseIf Not table.StringEmpty Then
                 Return ResourceTypes.table
-            Else
+            ElseIf Not image.StringEmpty Then
                 Return ResourceTypes.image
+            Else
+                ' default is blank text?
+                Return ResourceTypes.text
             End If
         End Get
     End Property
