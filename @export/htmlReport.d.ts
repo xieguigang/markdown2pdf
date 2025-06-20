@@ -143,13 +143,11 @@ declare namespace htmlReport {
      * @param meta -
      * 
      * + default value Is ``null``.
-     * @param debug_mode 
-     * + default value Is ``null``.
      * @param env -
      * 
      * + default value Is ``null``.
    */
-   function loadResource(description: object, workdir?: any, meta?: object, debug_mode?: object, env?: object): object;
+   function loadResource(description: object, workdir?: any, meta?: object, env?: object): object;
    module markdown {
       /**
        * Render markdown to html text
