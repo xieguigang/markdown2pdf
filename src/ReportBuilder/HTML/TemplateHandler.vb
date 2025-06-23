@@ -66,7 +66,6 @@ Imports Microsoft.VisualBasic.Language
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.Document
 Imports Microsoft.VisualBasic.Scripting.SymbolBuilder
-Imports Microsoft.VisualBasic.Text
 
 Namespace HTML
 

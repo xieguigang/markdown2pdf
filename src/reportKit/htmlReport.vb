@@ -93,6 +93,23 @@ Imports RInternal = SMRUCC.Rsharp.Runtime.Internal
 <Package("htmlReport", Category:=APICategories.UtilityTools)>
 Public Module htmlReportEngine
 
+    Sub New()
+        RInternal.htmlPrinter.AttachHtmlFormatter(Of TemplateHandler)(AddressOf GetSingleHtml)
+    End Sub
+
+    ''' <summary>
+    ''' attach the html formatter to the R# runtime
+    ''' </summary>
+    ''' 
+    <RGenericOverloads(RInternal.toHtml_apiName)>
+    Private Function GetSingleHtml(template As TemplateHandler, args As list, env As Environment) As String
+        If template Is Nothing Then
+            Return ""
+        Else
+            Return template.html
+        End If
+    End Function
+
     ''' <summary>
     ''' Create a html template model from the given template file
     ''' </summary>
@@ -407,6 +424,35 @@ Public Module htmlReportEngine
     Public Function markdownToLaTex(markdown As String) As String
         Static render As New MarkdownHTML(render:=New TexRender)
         Return render.Transform(markdown)
+    End Function
+
+    ''' <summary>
+    ''' do report data interpolation.
+    ''' </summary>
+    ''' <param name="template"></param>
+    ''' <param name="metadata"></param>
+    ''' <param name="env"></param>
+    ''' <returns></returns>
+    <ExportAPI("interpolate.html")>
+    <ROperator("+")>
+    <RApiReturn(GetType(TemplateHandler))>
+    Public Function fillContent(template As TemplateHandler, metadata As list, Optional env As Environment = Nothing) As Object
+        Dim singleVal As [Variant](Of String, Message)
+        Dim engine As RInterpreter = env.globalEnvironment.Rscript
+        Dim value As Object
+
+        For Each key As String In metadata.getNames
+            value = metadata.getByName(key)
+            singleVal = engine.evalString(value)
+
+            If singleVal Like GetType(Message) Then
+                Return singleVal.TryCast(Of Message)
+            Else
+                template.builder(key) = singleVal.TryCast(Of String)
+            End If
+        Next
+
+        Return template
     End Function
 
     ''' <summary>
