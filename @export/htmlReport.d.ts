@@ -107,17 +107,19 @@ declare namespace htmlReport {
      *  the http url for http get and load the template document text.
    */
    function htmlTemplate(url: string): object;
-   /**
-    * do report data interpolation.
-    * 
-    * 
-     * @param template -
-     * @param metadata -
-     * @param env -
-     * 
-     * + default value Is ``null``.
-   */
-   function interpolate(template: object, metadata: object, env?: object): object;
+   module interpolate {
+      /**
+       * do report data interpolation.
+       * 
+       * 
+        * @param template -
+        * @param metadata -
+        * @param env -
+        * 
+        * + default value Is ``null``.
+      */
+      function html(template: object, metadata: object, env?: object): object;
+   }
    /**
     * Load resource files for build html report
     *  
