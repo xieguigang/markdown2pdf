@@ -107,19 +107,17 @@ declare namespace htmlReport {
      *  the http url for http get and load the template document text.
    */
    function htmlTemplate(url: string): object;
-   module interpolate {
-      /**
-       * do report data interpolation.
-       * 
-       * 
-        * @param template -
-        * @param metadata -
-        * @param env -
-        * 
-        * + default value Is ``null``.
-      */
-      function html(template: object, metadata: object, env?: object): object;
-   }
+   /**
+    * do report data interpolation.
+    * 
+    * 
+     * @param template -
+     * @param metadata -
+     * @param env -
+     * 
+     * + default value Is ``null``.
+   */
+   function interpolate(template: object, metadata: object, env?: object): object;
    /**
     * Load resource files for build html report
     *  
@@ -145,13 +143,11 @@ declare namespace htmlReport {
      * @param meta -
      * 
      * + default value Is ``null``.
-     * @param debug_mode 
-     * + default value Is ``null``.
      * @param env -
      * 
      * + default value Is ``null``.
    */
-   function loadResource(description: object, workdir?: any, meta?: object, debug_mode?: object, env?: object): object;
+   function loadResource(description: object, workdir?: any, meta?: object, env?: object): object;
    module markdown {
       /**
        * Render markdown to html text
