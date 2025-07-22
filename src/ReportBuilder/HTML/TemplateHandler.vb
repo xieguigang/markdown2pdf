@@ -97,6 +97,21 @@ Namespace HTML
             End Get
         End Property
 
+        ReadOnly values As New Dictionary(Of String, String)
+
+        Default Public Property Assign(name As String) As String
+            Get
+                Return values.TryGetValue(name)
+            End Get
+            Set(value As String)
+                builder(name) = value
+
+                If Not values.ContainsKey(name) Then
+                    Call values.Add(name, value)
+                End If
+            End Set
+        End Property
+
         ''' <summary>
         ''' create a report template handler for 
         ''' a single html template file.
