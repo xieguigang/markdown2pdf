@@ -68,7 +68,9 @@ Imports WkHtmlToPdf
 Imports WkHtmlToPdf.Arguments
 Imports RInternal = SMRUCC.Rsharp.Runtime.Internal
 
-
+''' <summary>
+''' Helper tools for make pdf by call wkhtmltopdf
+''' </summary>
 <Package("pdf", Category:=APICategories.UtilityTools)>
 Module pdf
 
@@ -111,7 +113,8 @@ Module pdf
                                      Optional marginright% = 0,
                                      Optional marginbottom% = 0,
                                      Optional imagequality% = 100,
-                                     Optional title$ = "") As GlobalOptions
+                                     Optional title$ = "",
+                                     Optional orientation As Orientations? = Nothing) As GlobalOptions
 
         Return New GlobalOptions With {
             .margintop = margintop,
@@ -119,7 +122,8 @@ Module pdf
             .marginright = marginright,
             .marginbottom = marginbottom,
             .imagequality = imagequality,
-            .title = title
+            .title = title,
+            .orientation = orientation
         }
     End Function
 
