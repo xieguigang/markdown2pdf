@@ -244,6 +244,7 @@ Namespace HTML
             Dim sourceFolder As String = Me.directory.GetDirectoryFullPath
 
             For Each template As TemplateHandler In templates.Values
+                ' keeps the source folder structure
                 If Not outputdir.StringEmpty Then
                     newName = template.path _
                         .GetFullPath _
