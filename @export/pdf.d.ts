@@ -5,6 +5,7 @@
 // ref=reportKit.pdf@reportKit, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
 
 /**
+ * Helper tools for make pdf by call wkhtmltopdf
  * 
 */
 declare namespace pdf {
@@ -73,8 +74,9 @@ declare namespace pdf {
      * @param marginbottom default value Is ``0``.
      * @param imagequality default value Is ``100``.
      * @param title default value Is ``''``.
+     * @param orientation default value Is ``null``.
    */
-   function pdfGlobal_options(margintop?: object, marginleft?: object, marginright?: object, marginbottom?: object, imagequality?: object, title?: string): object;
+   function pdfGlobal_options(margintop?: object, marginleft?: object, marginright?: object, marginbottom?: object, imagequality?: object, title?: string, orientation?: object): object;
    /**
      * @param javascriptdelay default value Is ``3000``.
      * @param loaderrorhandling default value Is ``null``.
