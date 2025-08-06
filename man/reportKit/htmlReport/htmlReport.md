@@ -14,7 +14,6 @@ html templat handler
 + [markdown.html](htmlReport/markdown.html.1) Render markdown to html text
 + [markdown.text](htmlReport/markdown.text.1) 
 + [markdown.latex](htmlReport/markdown.latex.1) 
-+ [interpolate.html](htmlReport/interpolate.html.1) do report data interpolation.
 + [interpolate](htmlReport/interpolate.1) do report data interpolation.
 + [loadResource](htmlReport/loadResource.1) Load resource files for build html report
 + [flush](htmlReport/flush.1) save the modified interpolated html
