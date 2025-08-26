@@ -75,8 +75,6 @@ Imports ASCII = Microsoft.VisualBasic.Text.ASCII
 ''' </summary>
 Public Module PdfConvert
 
-    Public Const PdfPageBreak$ = "<div style='page-break-before:always;'></div>"
-
     <MethodImpl(MethodImplOptions.AggressiveInlining)>
     <Extension>
     Public Sub ConvertHtmlToPdf(document As PDFContent, output As PdfOutput)
