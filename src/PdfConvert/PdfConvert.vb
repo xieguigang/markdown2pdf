@@ -295,8 +295,8 @@ Public Module PdfConvert
 
         Using process As New IORedirect(environment.WkHtmlToPdfPath, args, IOredirect:=True)
             If environment.Debug Then
-                Call $"Process running in debug mode...".__DEBUG_ECHO
-                Call $"Current workspace: {App.CurrentDirectory}.".__DEBUG_ECHO
+                Call $"Process running in debug mode...".debug
+                Call $"Current workspace: {App.CurrentDirectory}.".debug
             End If
 
             Call process.Start(False)
