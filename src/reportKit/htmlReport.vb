@@ -127,7 +127,7 @@ Public Module htmlReportEngine
     ''' <returns></returns>
     <ExportAPI("pageBreak")>
     Public Function pageBreak() As String
-        Return PdfConvert.PdfPageBreak
+        Return Microsoft.VisualBasic.MIME.Html.Document.Pagebreak
     End Function
 
     ''' <summary>
