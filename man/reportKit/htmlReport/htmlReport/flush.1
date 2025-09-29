@@ -1,21 +1,23 @@
 .\" man page create by R# package system.
 .TH HTMLREPORT 4 2000-Jan "flush" "flush"
 .SH NAME
-flush \- save the modified interpolated html
+flush \- save the modified interpolated html template data onto the disk file.
 .SH SYNOPSIS
-\fIflush(\fBtemplate\fR as <generic> HTMLReport, 
-\fBoutputdir\fR as string = \fB<NULL>\fR);\fR
+\fIflush(\fBtemplate\fR as any, 
+\fBfile\fR as string = \fB<NULL>\fR, 
+[\fB<Environment>\fR]);\fR
 .SH DESCRIPTION
 .PP
-save the modified interpolated html
- template data onto the disk file.
+save the modified interpolated html template data onto the disk file.
 .PP
 .SH OPTIONS
 .PP
-\fBtemplate\fB \fR\- -. 
+\fBtemplate\fB \fR\- 
+ the html template object of @\fBT:SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML.HTMLReport\fR or @\fBT:SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML.TemplateHandler\fR.
+. 
 .PP
 .PP
-\fBoutputdir\fB \fR\- 
+\fBfile\fB \fR\- 
  export of the page files into this new output 
  directory instead of export to the source 
  folder where this report object is loaded via 

@@ -69,19 +69,20 @@ declare namespace htmlReport {
    */
    function exportJSON(report: object): object;
    /**
-    * save the modified interpolated html
-    *  template data onto the disk file.
+    * save the modified interpolated html template data onto the disk file.
     * 
     * 
-     * @param template -
-     * @param outputdir export of the page files into this new output 
+     * @param template the html template object of @``T:SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML.HTMLReport`` or @``T:SMRUCC.genomics.GCModeller.Workbench.ReportBuilder.HTML.TemplateHandler``.
+     * @param file export of the page files into this new output 
      *  directory instead of export to the source 
      *  folder where this report object is loaded via 
      *  the ``reportTemplate`` function.
      * 
      * + default value Is ``null``.
+     * @param env 
+     * + default value Is ``null``.
    */
-   function flush(template: object, outputdir?: string): boolean;
+   function flush(template: any, file?: string, env?: object): boolean;
    /**
     * create a markdown to html render
     * 

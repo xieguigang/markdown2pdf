@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>save the modified interpolated html</title>
+    <title>save the modified interpolated html template data onto the disk file.</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
     <link rel="stylesheet" type="text/css" href="https://rdocumentation.rsharp.net/assets/page.css">
@@ -18,17 +18,17 @@
             </tr>
         </table>
 
-        <h2>save the modified interpolated html</h2>
+        <h2>save the modified interpolated html template data onto the disk file.</h2>
 
         <h3>Description</h3>
 
-        <p>template data onto the disk file.</p>
+        
 
         <h3>Usage</h3>
 
         <div style="width: 100%; padding-left: 3%; color: black;">
             <pre><code class='language-R' style="color: black; font-weight:normal;"><strong>flush</strong>(<i>template</i>,
-    <i>outputdir</i> = <span style='color: blue !important;'>NULL</span>);</code></pre>
+    <i>file</i> = <span style='color: blue !important;'>NULL</span>);</code></pre>
         </div>
 
         <h3>Arguments</h3>
@@ -36,10 +36,10 @@
         <table>
             
 <dt>template</dt>
-<dd><p>[as <a href="/vignettes/clr/SMRUCC/genomics/GCModeller/Workbench/ReportBuilder/HTML/HTMLReport.html">HTMLReport</a>]</p></dd>
+<dd><p>the html template object of <a href="/vignettes/clr/SMRUCC/genomics/GCModeller/Workbench/ReportBuilder/HTML/HTMLReport.html">HTMLReport</a> or <a href="/vignettes/clr/SMRUCC/genomics/GCModeller/Workbench/ReportBuilder/HTML/TemplateHandler.html">TemplateHandler</a>.</p></dd>
 
 
-<dt>outputdir</dt>
+<dt>file</dt>
 <dd><p>export of the page files into this new output 
  directory instead of export to the source 
  folder where this report object is loaded via 
