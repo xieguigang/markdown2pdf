@@ -80,7 +80,6 @@ Imports SMRUCC.Rsharp.Runtime.Components.[Interface]
 Imports SMRUCC.Rsharp.Runtime.Internal.Object
 Imports SMRUCC.Rsharp.Runtime.Interop
 Imports SMRUCC.Rsharp.Runtime.Vectorization
-Imports WkHtmlToPdf
 Imports WkHtmlToPdf.LaTex
 Imports any = Microsoft.VisualBasic.Scripting
 Imports Directory = Microsoft.VisualBasic.FileIO.Directory
@@ -600,11 +599,12 @@ getStringValue:
     End Function
 
     ''' <summary>
-    ''' save the modified interpolated html
-    ''' template data onto the disk file.
+    ''' save the modified interpolated html template data onto the disk file.
     ''' </summary>
-    ''' <param name="template"></param>
-    ''' <param name="outputdir">
+    ''' <param name="template">
+    ''' the html template object of <see cref="HTMLReport"/> or <see cref="TemplateHandler"/>.
+    ''' </param>
+    ''' <param name="file">
     ''' export of the page files into this new output 
     ''' directory instead of export to the source 
     ''' folder where this report object is loaded via 
@@ -612,8 +612,23 @@ getStringValue:
     ''' </param>
     ''' <returns></returns>
     <ExportAPI("flush")>
-    Public Function saveReport(template As HTMLReport, Optional outputdir As String = Nothing) As Boolean
-        Call template.Save(outputdir)
+    <RApiReturn(TypeCodes.boolean)>
+    Public Function saveReport(template As Object,
+                               Optional file As String = Nothing,
+                               Optional env As Environment = Nothing) As Object
+
+        If template Is Nothing Then
+            Return RInternal.debug.stop("the required html template object should not be nothing!", env)
+        End If
+
+        If TypeOf template Is HTMLReport Then
+            Call DirectCast(template, HTMLReport).Save(file)
+        ElseIf TypeOf template Is TemplateHandler Then
+            Call DirectCast(template, TemplateHandler).Flush(minify:=False, file)
+        Else
+            Return Message.InCompatibleType(GetType(HTMLReport), template.GetType, env)
+        End If
+
         Return True
     End Function
 
