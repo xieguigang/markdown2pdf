@@ -63,6 +63,7 @@ Imports System.Runtime.CompilerServices
 Imports System.Text
 Imports Microsoft.VisualBasic.ApplicationServices.Debugging
 Imports Microsoft.VisualBasic.Language
+Imports Microsoft.VisualBasic.Language.[Default]
 Imports Microsoft.VisualBasic.Linq
 Imports Microsoft.VisualBasic.MIME.Html.Document
 Imports Microsoft.VisualBasic.Scripting.SymbolBuilder
@@ -118,15 +119,21 @@ Namespace HTML
         ''' </summary>
         ''' <param name="file"></param>
         Sub New(file As String)
+            Dim checkBash As Boolean = file.ExtensionSuffix("ts", "sh")
+
             ' 可能在将报告写入硬盘文件之前，文件系统的上下文已经变了
             ' 所以需要在这里获取得到全路径
             path = file.GetFullPath
-            builder = New ScriptBuilder(Interpolation.Interpolate(path))
+            builder = New ScriptBuilder(Interpolation.Interpolate(path, checkBash))
         End Sub
 
         Public Sub Commit(newLines As IEnumerable(Of String))
             _builder = New ScriptBuilder(newLines)
         End Sub
+
+        Private Function SourceFile() As [Default](Of String)
+            Return path.AsDefault
+        End Function
 
         ''' <summary>
         ''' Interpolated html report file save
@@ -142,7 +149,7 @@ Namespace HTML
                 builder.ToString.DoCall(AddressOf HtmlCompress.Minify),
                 builder.ToString
             ) _
-            .SaveTo(path Or Me.path.AsDefault, Encoding.UTF8)
+            .SaveTo(path Or SourceFile(), Encoding.UTF8)
         End Sub
 
         Public Overrides Function ToString() As String

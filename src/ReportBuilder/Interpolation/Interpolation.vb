@@ -71,18 +71,27 @@ Public Module Interpolation
     ''' </summary>
     ''' <param name="templateUrl">the file path of the template</param>
     ''' <returns></returns>
-    Public Function Interpolate(templateUrl As String) As String
+    Public Function Interpolate(templateUrl As String, Optional bash_script As Boolean = False) As String
         Dim dir As String = templateUrl.ParentPath
         Dim template As New StringBuilder(templateUrl.ReadAllText)
-        Dim fragmentRefs As String() = template.ToString.Matches("[$]\{.+?\}", RegexICSng).ToArray
-        Dim url As String
-        Dim part As String
+        ' this syntax may conflicts with the bash/typescript script syntax
+        ' 
+        ' bash/typescript string interpolation syntax
+        ' ${...}
+        '
+        If Not bash_script Then
+            Dim fragmentRefs As String() = template.ToString _
+                .Matches("[$]\{.+?\}", RegexICSng) _
+                .ToArray
+            Dim url As String
+            Dim part As String
 
-        For Each ref As String In fragmentRefs
-            url = dir & "/" & ref.GetStackValue("{", "}")
-            part = Interpolate(templateUrl:=url)
-            template.Replace(ref, part)
-        Next
+            For Each ref As String In fragmentRefs
+                url = dir & "/" & ref.GetStackValue("{", "}")
+                part = Interpolate(templateUrl:=url)
+                template.Replace(ref, part)
+            Next
+        End If
 
         Return template.ToString
     End Function
