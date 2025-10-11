@@ -494,7 +494,7 @@ getStringValue:
         Dim strs As String() = CLRVector.asCharacter(value)
         Dim singleVal = If(strs.IsNullOrEmpty, "", strs(Scan0))
 
-        If singleVal.StartsWith("~") Then
+        If singleVal IsNot Nothing AndAlso singleVal.StartsWith("~") Then
             value = engine.Evaluate(singleVal.Trim("~"c))
             GoTo getStringValue
         End If
