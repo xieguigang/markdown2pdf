@@ -83,7 +83,7 @@ Public Class TableSolver : Inherits ResourceSolver
         Dim table As DataFrameResolver = DataFrameResolver.Load(tablefile)
         Dim tbody As New StringBuilder
         Dim css As CSSFile = resource.styles
-        Dim names As String() = table.Headers.Select(Function(str) str.Trim(""""c)).ToArray
+        Dim names As String() = table.Headers.Select(Function(col) col.Name.Trim(""""c)).ToArray
         Dim maxRows As Integer = resource.options.TryGetValue("nrows", [default]:=-1)
         Dim maxWidth As Integer = resource.options.TryGetValue("max_width", [default]:=-1)
         Dim orderBy As Object = resource.options.TryGetValue("order_by", [default]:=Nothing)
