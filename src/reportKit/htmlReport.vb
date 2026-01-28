@@ -458,7 +458,7 @@ Public Module htmlReportEngine
     ''' do report data interpolation.
     ''' </summary>
     ''' <param name="template"></param>
-    ''' <param name="metadata"></param>
+    ''' <param name="metadata">这个列表必须要包含有数据，不然操作符会直接返回空值</param>
     ''' <param name="env"></param>
     ''' <returns></returns>
     <ExportAPI("interpolate")>

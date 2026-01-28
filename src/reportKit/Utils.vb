@@ -65,8 +65,8 @@ Module Utils
     ''' Resolve the given content files as html files
     ''' </summary>
     ''' <param name="files"></param>
-    ''' <param name="wwwroot$"></param>
-    ''' <param name="style$"></param>
+    ''' <param name="wwwroot"></param>
+    ''' <param name="style"></param>
     ''' <param name="resolvedAsDataUri"></param>
     ''' <param name="strict"></param>
     ''' <returns>
