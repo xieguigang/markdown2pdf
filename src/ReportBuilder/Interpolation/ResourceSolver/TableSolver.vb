@@ -80,7 +80,7 @@ Public Class TableSolver : Inherits ResourceSolver
             Return Nothing
         End If
 
-        Dim table As DataFrameResolver = DataFrameResolver.Load(tablefile)
+        Dim table As DataFrameResolver = DataFrameResolver.Load(tablefile).MeasureTypeSchema
         Dim tbody As New StringBuilder
         Dim css As CSSFile = resource.styles
         Dim names As String() = table.Headers.Select(Function(col) col.Name.Trim(""""c)).ToArray
