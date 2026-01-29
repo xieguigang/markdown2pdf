@@ -164,8 +164,10 @@ Public Class TableSolver : Inherits ResourceSolver
                 Select Case eval
                     Case "nchars" : evalFunc = Function(str) Strings.Len(str)
                     Case "as.numeric" : evalFunc = Function(str) str.ParseDouble
+                    Case "as.character" : evalFunc = Function(str) str
+
                     Case Else
-                        Throw New NotImplementedException
+                        Throw New NotImplementedException($"unknown options of field eval, value should be 'nchars'(for sort by string length), 'as.numeric'(for sort by numeric value), 'as.character'(for sort by alphabet order)")
                 End Select
             End If
 
