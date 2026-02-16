@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <RootNamespace>reportKit</RootNamespace>
-    <TargetFrameworks>net8.0-windows;net8.0</TargetFrameworks>
+    <TargetFrameworks>net10.0-windows;net10.0</TargetFrameworks>
     <AssemblyName>reportKit</AssemblyName>
     <Platforms>AnyCPU;x64</Platforms>
     <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
@@ -96,7 +96,7 @@
 
   <ItemGroup>
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
-	  <PackageReference Include="System.Resources.Extensions" Version="10.0.2" />
+	  <PackageReference Include="System.Resources.Extensions" Version="10.0.3" />
   </ItemGroup>
 
   <ItemGroup>
