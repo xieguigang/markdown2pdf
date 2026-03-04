@@ -260,7 +260,7 @@ Public Module Interpolation
                 .options = options
             }
         Else
-            Throw New NotImplementedException
+            Throw New NotImplementedException("unknown data resource type!")
         End If
     End Function
 End Module
