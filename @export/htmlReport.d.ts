@@ -27,11 +27,13 @@ declare namespace htmlReport {
      * @param format -
      * 
      * + default value Is ``'p #. '``.
+     * @param strict 
+     * + default value Is ``false``.
      * @param env -
      * 
      * + default value Is ``null``.
    */
-   function countFigures(report: any, orders?: string, figStart?: object, prefix?: string, format?: string, env?: object): any;
+   function countFigures(report: any, orders?: string, figStart?: object, prefix?: string, format?: string, strict?: boolean, env?: object): any;
    /**
     * assign the table numbers to the html templates
     * 
@@ -50,11 +52,13 @@ declare namespace htmlReport {
      * @param format -
      * 
      * + default value Is ``'p #. '``.
+     * @param strict 
+     * + default value Is ``false``.
      * @param env -
      * 
      * + default value Is ``null``.
    */
-   function countTables(report: any, orders?: string, tableStart?: object, prefix?: string, format?: string, env?: object): any;
+   function countTables(report: any, orders?: string, tableStart?: object, prefix?: string, format?: string, strict?: boolean, env?: object): any;
    /**
    */
    function defaultSyntaxHighlight(): object;
@@ -190,11 +194,13 @@ declare namespace htmlReport {
      * @param headerStart -
      * 
      * + default value Is ``'1'``.
+     * @param strict 
+     * + default value Is ``false``.
      * @param env -
      * 
      * + default value Is ``null``.
    */
-   function pageHeaders(report: any, orders?: string, headerStart?: string, env?: object): any;
+   function pageHeaders(report: any, orders?: string, headerStart?: string, strict?: boolean, env?: object): any;
    /**
     * assign the page numbers to the html templates
     * 
