@@ -183,6 +183,7 @@ Public Module htmlReportEngine
     Public Function pageHeaders(report As Object,
                                 Optional orders As String() = Nothing,
                                 Optional headerStart As String = "1",
+                                Optional strict As Boolean = False,
                                 Optional env As Environment = Nothing) As Object
 
         If report Is Nothing Then
@@ -201,8 +202,11 @@ Public Module htmlReportEngine
         If orders.IsNullOrEmpty Then
             If template.pages = 1 Then
                 orders = {template.templates.First.Key}
-            Else
+            ElseIf strict Then
                 Return RInternal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
+            Else
+                Call env.AddMessage("the page orders is not specificed but the report template contains multuple pages, so the page headers will be assigned to the first page by default!", MSG_TYPES.WRN)
+                Return template
             End If
         End If
 
@@ -234,6 +238,7 @@ Public Module htmlReportEngine
                                  Optional figStart As Integer = 1,
                                  Optional prefix As String = "fig",
                                  Optional format As String = "p #. ",
+                                 Optional strict As Boolean = False,
                                  Optional env As Environment = Nothing) As Object
 
         If report Is Nothing Then
@@ -252,8 +257,11 @@ Public Module htmlReportEngine
         If orders.IsNullOrEmpty Then
             If template.pages = 1 Then
                 orders = {template.templates.First.Key}
-            Else
+            ElseIf strict Then
                 Return RInternal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
+            Else
+                Call env.AddMessage("the page orders is not specificed but the report template contains multuple pages, so the page headers will be assigned to the first page by default!", MSG_TYPES.WRN)
+                Return template
             End If
         End If
 
@@ -285,6 +293,7 @@ Public Module htmlReportEngine
                                 Optional tableStart As Integer = 1,
                                 Optional prefix As String = "table",
                                 Optional format As String = "p #. ",
+                                Optional strict As Boolean = False,
                                 Optional env As Environment = Nothing) As Object
         If report Is Nothing Then
             Return RInternal.debug.stop("the required report object can not be nothing!", env)
@@ -302,8 +311,11 @@ Public Module htmlReportEngine
         If orders.IsNullOrEmpty Then
             If template.pages = 1 Then
                 orders = {template.templates.First.Key}
-            Else
+            ElseIf strict Then
                 Return RInternal.debug.stop("the page orders must be specificed when the report template contains multuple pages!", env)
+            Else
+                Call env.AddMessage("the page orders is not specificed but the report template contains multuple pages, so the page headers will be assigned to the first page by default!", MSG_TYPES.WRN)
+                Return template
             End If
         End If
 
