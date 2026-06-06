@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.31911.260
+# Visual Studio Version 18
+VisualStudioVersion = 18.6.11822.322 stable
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "modules", "modules", "{AC1B5723-573F-40FB-9E98-EB9DBB7425A2}"
 EndProject
@@ -4821,8 +4821,8 @@ Global
 		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Release|x86.Build.0 = Release|Any CPU
 		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|Any CPU.Build.0 = Release|Any CPU
-		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|x64.ActiveCfg = Release|x64
-		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|x64.Build.0 = Release|x64
+		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|x64.ActiveCfg = Rsharp_app_release|x64
+		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|x64.Build.0 = Rsharp_app_release|x64
 		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|x86.ActiveCfg = Release|Any CPU
 		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.Rsharp_app_release|x86.Build.0 = Release|Any CPU
 		{EE7425A7-C781-497A-B7F4-6C0267BB8000}.RsharpDev|Any CPU.ActiveCfg = Release|Any CPU
@@ -5025,8 +5025,8 @@ Global
 		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Release|x86.Build.0 = Release|Any CPU
 		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|Any CPU.ActiveCfg = Release|Any CPU
 		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|Any CPU.Build.0 = Release|Any CPU
-		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|x64.ActiveCfg = Release|x64
-		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|x64.Build.0 = Release|x64
+		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|x64.ActiveCfg = Rsharp_app_release|x64
+		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|x64.Build.0 = Rsharp_app_release|x64
 		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|x86.ActiveCfg = Release|Any CPU
 		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.Rsharp_app_release|x86.Build.0 = Release|Any CPU
 		{4F9F26FF-6164-4523-BEB2-D738FAD19FF6}.RsharpDev|Any CPU.ActiveCfg = Release|Any CPU
